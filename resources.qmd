@@ -2,4 +2,8 @@
 title: "Resources"
 ---
 
-### Textbooks
+### Textbooks about R
+| | | |
+|---------------|---------------|---------------|
+| [R for Data Science, 2e](https://r4ds.hadley.nz/)                       | Wickham, H., Çetinkaya-Rundel, M., and Grolemund, G.       | O'Reilly, 2nd edition, 2022 |      
+| [Statistical Inference via Data Science](https://moderndive.com/index.html) | Ismay, C., Kim, A., Y. and Valdivia, A.| CRC Press, 2nd edition, 2025

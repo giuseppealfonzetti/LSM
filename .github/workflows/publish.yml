@@ -27,7 +27,7 @@ jobs:
         with:
           cache-version: 1
 
-            - name: Install system dependencies
+      - name: Install system dependencies
         run: |
           sudo apt-get install -y libcurl4-openssl-dev libfontconfig1-dev libfreetype6-dev libnode-dev libx11-dev      
       - name: Restore renv

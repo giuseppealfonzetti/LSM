@@ -20,7 +20,14 @@ d |>
     Date = as.Date(Date),
   ) |>
     gt() |> 
-  text_transform(cells_body(columns = c(Slides)),
+    text_transform(cells_body(columns = c(Slides)),
+    fn = function(x) {
+      ifelse(is.na(x), fontawesome::fa("book", fill_opacity = 0.1),
+        glue::glue("<a href = {x}>{fontawesome::fa('book')}</a>")
+      )
+    }
+  ) |> 
+  text_transform(cells_body(columns = c(Material)),
     fn = function(x) {
       ifelse(is.na(x), fontawesome::fa("laptop", fill_opacity = 0.1),
         glue::glue("<a href = {x}>{fontawesome::fa('laptop')}</a>")
@@ -31,7 +38,7 @@ d |>
   sub_missing(columns = c(Date, Class, Topic, Notes), missing_text = "") |>
   cols_align(
     align = "center", 
-    columns = c(Slides)
+    columns = c(Slides, Material)
     ) |>
   cols_align(
     align = "left", 

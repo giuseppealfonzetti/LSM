@@ -16,6 +16,14 @@ website:
         text: Introduction
       - href: resources.qmd
         text: Resources
+  page-footer: 
+    background: "#3F51B5"
+    left: "Website made with [Quarto](https://quarto.org/) and hosted on [GitHub](https://github.com/giuseppealfonzetti/LSM)." 
+    right: 
+      - icon: github
+        href: https://github.com/giuseppealfonzetti/LSM
+      - icon: envelope
+        href: mailto:giuseppe.alfonzetti@uniud.it
 
 format:
   html:
@@ -25,7 +33,3 @@ format:
     toc: true
     code-copy: true
     code-overflow: wrap
-
-
-
-

@@ -1,6 +1,8 @@
 ---
-title: "LSM"
+title: "Laboratory of Statistics and Mathematics 2025/2026"
 ---
+
+Schedule and topics outline for the lab classes
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
 library(googlesheets4)
@@ -44,6 +46,5 @@ d |>
     locations = cells_body(
       columns = c(Date, Topic)
     )
-  ) |> 
-    gt::cols_width(everything())
+  ) 
 ```

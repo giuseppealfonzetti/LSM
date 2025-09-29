@@ -2,6 +2,48 @@
 title: "LSM"
 ---
 
-This is a Quarto website.
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+library(googlesheets4)
+library(gt)
+library(tidyverse)
+library(knitr)
+gs4_deauth()
+d <- read_sheet("https://docs.google.com/spreadsheets/d/1Wh9kCWrxjaCjhN-j7dryvMvCnsh3LiqITC9_9lponEQ/edit?usp=sharing", sheet = "schedule")
+```
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+::: column-screen-right
+```{r, echo = FALSE}
+d |>
+  mutate(
+    Date = as.Date(Date),
+  ) |>
+    gt() |> 
+  text_transform(cells_body(columns = c(Slides)),
+    fn = function(x) {
+      ifelse(is.na(x), fontawesome::fa("laptop", fill_opacity = 0.1),
+        glue::glue("<a href = {x}>{fontawesome::fa('laptop')}</a>")
+      )
+    }
+  ) |> 
+  fmt_date(Date, date_style = 30) |>
+  sub_missing(columns = c(Date, Class, Topic, Notes), missing_text = "") |>
+  cols_align(
+    align = "center", 
+    columns = c(Slides)
+    ) |>
+  cols_align(
+    align = "left", 
+    columns = c(Date, Topic, Notes)
+    ) |>
+  tab_style(
+    style = cell_borders(
+      sides = "right",
+      color = "#D3D3D3",
+      style = "solid"
+    ),
+    locations = cells_body(
+      columns = c(Date, Topic)
+    )
+  ) |> 
+    gt::cols_width(everything())
+```

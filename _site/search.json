@@ -1,0 +1,19 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site",
+    "crumbs": [
+      "Abot"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "LSM",
+    "section": "",
+    "text": "Date\nClass\nTopic\nSlides\nNotes\n\n\n\n\nOct 1\nLab 1\nIntro\n\n\n\n\n\n\n\nOct 15\nLab 2\n\n\n\n\n\n\n\n\n\nOct 29\nLab 3\n\n\n\n\n\n\n\n\n\nNov 12\nLab 4\n\n\n\n\n\n\n\n\n\nOct 26\nLab 5\n\n\n\n\n\n\n\n\n\nDec 11\nLab 6"
+  }
+]

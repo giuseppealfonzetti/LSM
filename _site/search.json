@@ -28,5 +28,15 @@
     "crumbs": [
       "Resources"
     ]
+  },
+  {
+    "objectID": "class1.html",
+    "href": "class1.html",
+    "title": "Resources for Lab 1",
+    "section": "",
+    "text": "The data analysis life cycle\n\n\n\n\n\n\n\nInteractive web console\nFor this class, consider accessing R from web.\n\n\nInstall R and Rstudio\nAt home, install R and Rstudio on your personal laptop! For a guide, see for example this tutorial.",
+    "crumbs": [
+      "Introduction"
+    ]
   }
 ]

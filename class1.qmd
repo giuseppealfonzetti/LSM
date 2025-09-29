@@ -1,4 +1,16 @@
 ---
-title: "Introduction"
+title: "Resources for Lab 1"
 ---
+
+### The data analysis life cycle
+
+![](assets/ds_life_cycle.png){width=100% fig-align="center"}
+
+### Interactive web console
+
+For this class, consider accessing [R from web](https://webr.sh/#code=eJxNjkFOxDAMRcW2XMLSbFoxouIAvQQS68pt3MSaNIlit0PXnIA7zI4bsOdepAUkdl%2F2%2F%2B%2F%2F97dbwJk%2BXoKyejJPj8%2B3hOo%2BWxdnaq809ItQbv%2F%2FDSp%2B3d2fgIMoeg8YDPiIBqRkoPinxUPC8YKWpPI8ZMxbrWy2lbJQU1UncLgSYInFC6CCOoKJsyjkeBWI03HZm4QUKkdo6kTBLqXzyK8sC3oWgoHLBF9%2B6o4lhlJRhkUzD4tyDIBjjiIgiUYui6xNPmq907s%2F6BmQpH7tdlpfaGfYfnTBNc2DpTj3KXLQeveN0Xe%2FtKbM%2BQY%2B%2Bnan). 
+
+### Install R and Rstudio
+
+At home, install R and Rstudio on your personal laptop! For a guide, see for example [this tutorial](https://rstudio-education.github.io/hopr/starting.html).
 

@@ -14,9 +14,19 @@
     "href": "index.html",
     "title": "Laboratory of Statistics and Mathematics 2025/2026",
     "section": "",
-    "text": "Schedule and topics outline for the lab classes\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDate\nClass\nTopic\nSlides\nNotes\n\n\n\n\nOct 1\nLab 1\nIntroduction to the Lab\n\n\n\n\n\n\n\nOct 15\nLab 2\n\n\n\n\n\n\n\n\n\nOct 29\nLab 3\n\n\n\n\n\n\n\n\n\nNov 12\nLab 4\n\n\n\n\n\n\n\n\n\nOct 26\nLab 5\n\n\n\n\n\n\n\n\n\nDec 11\nLab 6",
+    "text": "Schedule and topics outline for the lab classes\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDate\nClass\nTopic\nMaterial\nSlides\nNotes\n\n\n\n\nOct 1\nLab 1\nIntroduction to R\nhttps://giuseppealfonzetti.github.io/LSM/class1.html\n\n\n\n\n\n\n\nOct 15\nLab 2\n\n\nNA\n\n\n\n\n\n\n\nOct 29\nLab 3\n\n\nNA\n\n\n\n\n\n\n\nNov 12\nLab 4\n\n\nNA\n\n\n\n\n\n\n\nOct 26\nLab 5\n\n\nNA\n\n\n\n\n\n\n\nDec 11\nLab 6\n\n\nNA",
     "crumbs": [
       "Schedule"
+    ]
+  },
+  {
+    "objectID": "class1.html",
+    "href": "class1.html",
+    "title": "Resources for Lab 1",
+    "section": "",
+    "text": "The data analysis life cycle\n\n\n\n\n\n\n\nInteractive web console\nFor this class, consider accessing R from web.\n\n\nInstall R and Rstudio\nAt home, install R and Rstudio on your personal laptop! For a guide, see for example this tutorial.",
+    "crumbs": [
+      "Introduction"
     ]
   }
 ]

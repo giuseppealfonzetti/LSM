@@ -1,0 +1,39 @@
+---
+title: "Introduction to R"
+subtitle: "Laboratory of Statistics and Mathematics"
+author: Giuseppe Alfonzetti  
+format:
+  revealjs:
+    include-in-header: 
+      text: |
+        <meta name="description" content="Course introduction."/> 
+    width: 1150
+    slide-number: true
+    sc-sb-title: true
+    incremental: true   
+    logo: ../themes/favicon.ico
+    footer: "Course Introduction"
+    footer-logo-link: "https://giuseppealfonzetti.github.io/LSM"
+    theme: ../themes/slides_theme.scss
+    toc: TRUE
+    toc-depth: 2
+    toc-title: Contents
+    transition: convex
+    transition-speed: fast
+slide-level: 4
+title-slide-attributes:
+    data-background-color: "#045D5D"
+    data-footer: " "
+embed-resources: true
+highlight-style: tango
+open-graph:
+    description: "Course introduction." 
+---
+
+
+
+
+
+
+## Content and Motivation {background="#00100F"}
+

@@ -52,5 +52,96 @@
     "title": "Introduction to R",
     "section": "Course Logistics",
     "text": "Course Logistics"
+  },
+  {
+    "objectID": "slides/slides_class1.html#new-slide",
+    "href": "slides/slides_class1.html#new-slide",
+    "title": "Introduction to R",
+    "section": "new slide",
+    "text": "new slide"
+  },
+  {
+    "objectID": "slides/slides_class1.html#aim-of-the-lab-classes",
+    "href": "slides/slides_class1.html#aim-of-the-lab-classes",
+    "title": "Introduction to R",
+    "section": "Aim of the Lab classes",
+    "text": "Aim of the Lab classes"
+  },
+  {
+    "objectID": "slides/slides_class1.html#new-new-slide",
+    "href": "slides/slides_class1.html#new-new-slide",
+    "title": "Introduction to R",
+    "section": "new new slide",
+    "text": "new new slide"
+  },
+  {
+    "objectID": "slides/slides_class1.html#our-goal",
+    "href": "slides/slides_class1.html#our-goal",
+    "title": "Introduction to R",
+    "section": "Our goal",
+    "text": "Our goal\nThe data analysis pipeline:"
+  },
+  {
+    "objectID": "slides/slides_class1.html#the-data-analysis-pipeline",
+    "href": "slides/slides_class1.html#the-data-analysis-pipeline",
+    "title": "Introduction to R",
+    "section": "The data analysis pipeline",
+    "text": "The data analysis pipeline\n\nImport: Read data from text formats (for example, .csv) and spreadsheet formats (like Excel .xlsx files).\nTidy: Store your data in a cosistent format. Each row is an observation, each column a variable. Each variable has a specific type (numeric, chracter, logical, etc..)\nTransform: Select the variables of interest. Combine existing variables in new variables. Filter relevant observations. Reshape data.\nVisualize: Explore data patterns with visualisations.\nModel: It’s the only step where “math” enters the game. Goes from simple descriptive statistics, to more elaborated modelling strategies."
+  },
+  {
+    "objectID": "slides/slides_class1.html#import",
+    "href": "slides/slides_class1.html#import",
+    "title": "Introduction to R",
+    "section": "Import",
+    "text": "Import\nYou will learn how to read external data sources from R. In particular, we will focus on\n\nUniversal text formats, as .csv.\nProprietary spreadsheets formats, as Excel .xls and .xlsx;"
+  },
+  {
+    "objectID": "slides/slides_class1.html#tidy",
+    "href": "slides/slides_class1.html#tidy",
+    "title": "Introduction to R",
+    "section": "Tidy",
+    "text": "Tidy\nYou will know hot to store your data in a cosistent format.\n\nEach row is an observation;\nEach column a variable, with a unique name.\nEach variable has a specific type (numeric, chracter, logical, etc..).\n\n\n\n# A tibble: 234 × 7\n   manufacturer displ model      class     cyl trans        hwy\n   &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;   &lt;int&gt; &lt;chr&gt;      &lt;int&gt;\n 1 audi           1.8 a4         compact     4 auto(l5)      29\n 2 audi           1.8 a4         compact     4 manual(m5)    29\n 3 audi           2   a4         compact     4 manual(m6)    31\n 4 audi           2   a4         compact     4 auto(av)      30\n 5 audi           2.8 a4         compact     6 auto(l5)      26\n 6 audi           2.8 a4         compact     6 manual(m5)    26\n 7 audi           3.1 a4         compact     6 auto(av)      27\n 8 audi           1.8 a4 quattro compact     4 manual(m5)    26\n 9 audi           1.8 a4 quattro compact     4 auto(l5)      25\n10 audi           2   a4 quattro compact     4 manual(m6)    28\n# ℹ 224 more rows"
+  },
+  {
+    "objectID": "slides/slides_class1.html#transform",
+    "href": "slides/slides_class1.html#transform",
+    "title": "Introduction to R",
+    "section": "Transform",
+    "text": "Transform\nYou will learn how to transform the data at your willingness:\n\nSelect the variables of interest;\nCombine existing variables in new variables;\nFilter relevant observations;\nReshape data;\n\n\n\n# A tibble: 234 × 3\n   displ class     hwy\n   &lt;dbl&gt; &lt;chr&gt;   &lt;int&gt;\n 1   1.8 compact    29\n 2   1.8 compact    29\n 3   2   compact    31\n 4   2   compact    30\n 5   2.8 compact    26\n 6   2.8 compact    26\n 7   3.1 compact    27\n 8   1.8 compact    26\n 9   1.8 compact    25\n10   2   compact    28\n# ℹ 224 more rows"
+  },
+  {
+    "objectID": "slides/slides_class1.html#visualize",
+    "href": "slides/slides_class1.html#visualize",
+    "title": "Introduction to R",
+    "section": "Visualize",
+    "text": "Visualize\nYou will learn how to explore data patterns with visualisations."
+  },
+  {
+    "objectID": "slides/slides_class1.html#model",
+    "href": "slides/slides_class1.html#model",
+    "title": "Introduction to R",
+    "section": "Model",
+    "text": "Model\nIt’s the only step where “math” enters the game. Goes from simple descriptive statistics, to more elaborated modelling strategies. Often combined with visualisations."
+  },
+  {
+    "objectID": "slides/slides_class1.html#communivate",
+    "href": "slides/slides_class1.html#communivate",
+    "title": "Introduction to R",
+    "section": "Communivate",
+    "text": "Communivate\nCreate plots, reports, dashboards, to highlight the insights and the results you got from the data"
+  },
+  {
+    "objectID": "slides/slides_class1.html#communicate",
+    "href": "slides/slides_class1.html#communicate",
+    "title": "Introduction to R",
+    "section": "Communicate",
+    "text": "Communicate\n\nWrite reports;\nChoose appropriate viasualizations;\nHighilight the results in terms of insights."
+  },
+  {
+    "objectID": "slides/slides_class1.html#why-r",
+    "href": "slides/slides_class1.html#why-r",
+    "title": "Introduction to R",
+    "section": "Why R?",
+    "text": "Why R?\n\n\nReplicability!"
   }
 ]

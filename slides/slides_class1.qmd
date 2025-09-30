@@ -1,39 +1,110 @@
 ---
 title: "Introduction to R"
-subtitle: "Laboratory of Statistics and Mathematics"
-author: Giuseppe Alfonzetti  
-format:
+subtitle: "Laboratory of Statistics and Mathematics 2025/2026"
+author: Giuseppe Alfonzetti
+format: 
   revealjs:
-    include-in-header: 
-      text: |
-        <meta name="description" content="Course introduction."/> 
-    width: 1150
     slide-number: true
-    sc-sb-title: true
-    incremental: true   
-    logo: ../themes/favicon.ico
+    incremental: false   
     footer: "Course Introduction"
-    footer-logo-link: "https://giuseppealfonzetti.github.io/LSM"
     theme: ../themes/slides_theme.scss
-    toc: TRUE
-    toc-depth: 2
-    toc-title: Contents
     transition: convex
     transition-speed: fast
-slide-level: 4
 title-slide-attributes:
-    data-background-color: "#045D5D"
+    data-background-color: "#1565C0"
     data-footer: " "
 embed-resources: true
 highlight-style: tango
-open-graph:
-    description: "Course introduction." 
+
 ---
 
 
 
 
+```{r load}
+library(tidyverse)
+```
+
+## Our goal
+
+#### The data analysis pipeline:
+
+![](../assets/ds_life_cycle.png){width=100% fig-align="center"}
+
+## Import
+
+You will learn how to read external data sources from R. In particular, we will focus on 
+
+- Universal text formats, as .csv.
+- Proprietary spreadsheets formats, as Excel .xls and .xlsx;
+
+## Tidy {style="font-size: 0.8em;"}
+
+You will know hot to store your data in a cosistent format. 
+
+- Each row is an observation; 
+- Each column a variable, with a unique name. 
+- Each variable has a specific type (numeric, chracter, logical, etc..).
+
+```{r tidy}
+mpg |> select(manufacturer, displ, model, class, cyl, trans, hwy)
+```
 
 
-## Content and Motivation {background="#00100F"}
+## Transform {style="font-size: 0.8em;"}
 
+You will learn how to transform the data at your willingness: 
+
+- Select the variables of interest;
+- Combine existing variables in new variables; 
+- Filter relevant observations;
+- Reshape data;
+
+```{r transform}
+mpg |> 
+  select(displ, class, hwy)
+```
+
+## Visualize {style="font-size: 0.8em;"}
+
+You will learn how to explore data patterns with visualisations.
+
+```{r visualise}
+mpg |> 
+  select(manufacturer, displ, model, class, cyl, trans, hwy) |> 
+  ggplot(aes(x=displ, y=hwy)) +
+  geom_point(aes(col=class), size=2)+
+  theme_minimal()+
+  labs(y="Fuel effciency (miles per gallon)", x="Engine size (liters)", col ="Car Type:" )
+```
+
+## Model {style="font-size: 0.8em;"}
+
+It's the only step where "math" enters the game. Goes from simple descriptive statistics, to more elaborated modelling strategies.
+Often combined with visualisations. 
+
+```{r model}
+mpg |> 
+  select(manufacturer, displ, model, class, cyl, trans, hwy) |> 
+  ggplot(aes(x=displ, y=hwy)) +
+  geom_point(aes(col=class), size=2, alpha=0.5)+
+  geom_smooth(aes(col=class), method = lm, se=FALSE) +
+  theme_minimal()+
+  labs(y="Fuel effciency (miles per gallon)", x="Engine size (liters)", col ="Car Type:" )
+```
+## Communicate
+
+
+- Write reports;
+- Choose appropriate viasualizations;
+- Highilight the results in terms of insights.
+
+
+
+## Why R?
+
+. . .
+
+::: {.r-fit-text .r-stretch}
+Replicability!
+:::

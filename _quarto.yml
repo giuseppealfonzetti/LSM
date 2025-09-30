@@ -5,19 +5,17 @@ website:
   title: "Laboratory of Statistics and Mathematics 2025/2026"
   page-navigation: true
   sidebar: 
-    background: "#3F51B5"
+    background: "#1565C0"
     pinned: true
     align: center
     style: docked
     contents:
       - href: index.qmd
         text: Schedule
-      - href: class1.qmd
-        text: Introduction
       - href: resources.qmd
         text: Resources
   page-footer: 
-    background: "#3F51B5"
+    background: "#1565C0"
     left: "Website made with [Quarto](https://quarto.org/) and hosted on [GitHub](https://github.com/giuseppealfonzetti/LSM)." 
     right: 
       - icon: github

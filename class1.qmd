@@ -6,11 +6,27 @@ title: "Resources for Lab 1"
 
 ![](assets/ds_life_cycle.png){width=100% fig-align="center"}
 
-### Interactive web console
+### Interactive web console Basic R
 
-For this class, consider accessing [R from web](https://webr.sh/#code=eJxNjkFOxDAMRcW2XMLSbFoxouIAvQQS68pt3MSaNIlit0PXnIA7zI4bsOdepAUkdl%2F2%2F%2B%2F%2F97dbwJk%2BXoKyejJPj8%2B3hOo%2BWxdnaq809ItQbv%2F%2FDSp%2B3d2fgIMoeg8YDPiIBqRkoPinxUPC8YKWpPI8ZMxbrWy2lbJQU1UncLgSYInFC6CCOoKJsyjkeBWI03HZm4QUKkdo6kTBLqXzyK8sC3oWgoHLBF9%2B6o4lhlJRhkUzD4tyDIBjjiIgiUYui6xNPmq907s%2F6BmQpH7tdlpfaGfYfnTBNc2DpTj3KXLQeveN0Xe%2FtKbM%2BQY%2B%2Bnan). 
+Access the [R web](https://webr.sh/#code=eJydkr9u2zAQh4dsfIpDvNioWocy0ABBjL5DgE5FUZyoc0WAf1zyaNdzl659h2x9g%2B59rxwtB3GLxEHCQYIgft%2F9eMdfP24Devr9MbBlR71%2Bd3O7Rh7%2BzIfoab6l7kvJlObH%2F3tk%2FHv2E2EJGk6sCYTiKVkDG3SFAHO2XwP1sLU8CKw6uH4L7csNo0BYZerz3FiM508ZzIAJDVM6OIR5Zk2gt3ntcAc8EJgYmAJD5pgkuw1gFL7pnlPk4vf4vmg%2BohEw9NCpja7ZzVQ3cNlAO3sseiJkGjVkxAAeQ0HndmrTVlpf6YsnExxohEzfCgVDMi2OIAQWjh7ZmlG1qCrZJFH0RdPtlv%2BFeUz1j2KcR41ZLTNYlWDYxqA%2BjN%2Bn%2BnQjsHOQh7iFXSx7Sx%2BNjD0wVgnE1b36QexrZKmf7PepvnrfQEhxu2zlbaJbLmbHmcdtqu6Y%2BhNhJjKdvJY%2B78vJxevkzkhx4bKq3lfRwhUfsvKfdNN%2BPtmK%2B1tHjurpQc5eXSubMtcUDSAfWiGXsj%2Bo1R2TqwX3)  console for some basic R commands
 
-### Install R and Rstudio
+### Interactive web console Dataset and Visualization
 
-At home, install R and Rstudio on your personal laptop! For a guide, see for example [this tutorial](https://rstudio-education.github.io/hopr/starting.html).
+Access the [R web](https://webr.sh/#code=eJxlkE1OwzAQRsU2pxipLBJRteIAvQELVIRYVhN7mozq2JZnktA1J%2BAO3XED9twLO7AoYuef73vzNO9vF48DfTx7ZXVk7zf7S0TtP7d9GGg7U3sYhdL2%2Bt%2Bi4tfNtAL2ougcoLfgAlqQ3IGcP44OIpoTdiSV4zZhOtfK9jxREmqqagU9TgSYa%2BEEqKA9wZGTKKQwC4Tj8lImCSlUPaGtObEs3YllRMdCECkLgCPfab9ozGzzybJo4nZUDh7QpCACEslw1um66ILWBb0rxDUgSf26eyyozcOCWsP59%2F5SeE1z11EYDjGw17rETXC7px9gsyihMZSHFOmWnTtkJcihcfBVGXJ7TS95E4Y4Ki2FvImUNwV%2FMgOhr%2F9VG%2FgGx5ObnQ%3D%3D) console for a quick visualisation 
 
+### Homework:
+
+- Install R and Rstudio: install R and Rstudio on your personal laptop! For a guide, see for example [this tutorial](https://moderndive.com/v2/getting-started.html) and get familiar with Rstudio interface.
+
+- Install useful packages:
+    - `install.package()` command.
+    - Run `install.package("tidyverse")`.
+
+- Run `head(mtcars)`to visualise the first rows of the `mtcars` dataset.
+- Run `?mtcars` to check the meaning of the column in the `mtcars`dataset.
+- Use the `summary()`function on the `mtcars` dataset. 
+    - What's the highest Miles-Per-Gallon value?
+    - What's the average number of carubretors?
+
+### Other resources:
+- [Why should I use R?](https://www.jumpingrivers.com/blog/comparing-r-excel-data-wrangling/)

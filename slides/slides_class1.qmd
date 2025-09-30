@@ -108,3 +108,154 @@ mpg |>
 ::: {.r-fit-text .r-stretch}
 Replicability!
 :::
+
+
+## Excel vs R {style="font-size: 0.8em;"}
+
+- Consider creating a new variable in your dataset:
+
+![](../assets/class1/dragformula1.gif){width=100% fig-align="center"}
+
+. . .
+
+- Now you share your spreadsheet to your colleague. 
+
+. . .
+
+- She will not know the formula within each cell unless she inspect them individually!
+
+## Excel vs R {style="font-size: 0.8em;"}
+
+```{r}
+my_data <- tibble("QuantityA" = c(50, 90, 10, 30),
+"QuantityB" = c(20, 25, 45, 15))
+```
+
+- Consider the same data in R, stored in the object `my_data`
+
+```{r echo=TRUE}
+my_data 
+```
+
+. . .
+
+- You can create the same `Tot` column yo had before in Excel with
+
+```{r echo=TRUE}
+my_data |> 
+  mutate(Tot = QuantityA + QuantityB)
+```
+
+. . .
+
+- And now your colleague has nou doubt about where those numbers come from!
+
+## Excel VS R {style="font-size: 0.8em;"}
+
+- You are interested in computing the total number of products sold by each representative:
+
+![](../assets/class1/pivot1.gif){width=100% fig-align="center"}
+
+. . . 
+
+- That's a lot of point-and-clicks! 
+
+. . .
+
+- Will your colleague be able to reproduce your results?
+
+## Excel VS R {style="font-size: 0.8em;"}
+
+```{r}
+my_data2 <- tibble(
+  SalesRepresentative = c("Eleonor", "Elizabeth", "John", "Matt", "Eleonor", "Elizabeth", "John", "Matt", "Eleonor", "Elizabeth"),
+  Product = c("A", "B", "C", "A", "A", "C", "B", "B", "A", "C"), 
+  QuantitySold=c(50, 90, 10, 34, 5, 8, 20, 5, 15, 45),
+  Region = c("IT", "UK", "FR", "DE", "IT", "IT", "UK", "UK", "UK", "DE"))
+```
+
+Consider the same dataset in R stored in the new object `my_data2`:
+
+```{r echo=TRUE}
+my_data2
+```
+
+
+. . .
+
+You get the same results seen in Excel by running 
+
+```{r echo=TRUE}
+my_data2 |> 
+  group_by(SalesRepresentative) |> 
+  summarise(Total = sum(QuantitySold))
+```
+
+# Hands-on {background="#1565C0"}
+
+## Access R from Web
+
+- Connect to [https://giuseppealfonzetti.github.io/LSM/](https://giuseppealfonzetti.github.io/LSM/)
+
+- Click on the "Material" [(💻)](https://giuseppealfonzetti.github.io/LSM/class1.html) icon corresponding to today lab.
+
+- Access the interactive web console.
+
+## Basic R grammar {style="font-size: 0.5em;"}
+- Run a command: 
+  - Get the cursor on the line and press CTRL+ENTER on Windows, or CMD+ENTER on MacOS.
+
+- Assign a value to an object
+
+```{r echo = TRUE}
+a = 1                            # numeric value assigned with = 
+b <- 2                           # numeric value assigne with <- 
+c <- "ciao"                      # character value 
+c                                # display the content stored in c
+```
+
+- Basic math
+
+```{r, echo = TRUE}
+a+b                              # sum the values stored in a and b
+```
+
+- Create a vector
+
+
+```{r echo = TRUE}
+v1 <- c(1, 7, 2)                 # create the vector manually
+v2 <- 1:10                       # create a sequence 1 to 10 automatically
+v3 <- seq(1,10,by=2)             # create a sequence automatically with the seq() function
+```
+
+- Seek help
+
+```{r echo=TRUE}
+?seq()                           # R will show you the documentation of the seq function
+```
+
+- Create and inspect matrices
+
+
+```{r echo=TRUE}
+m <- matrix(1:6, nrow=2, ncol=3) # create a matrix
+nrow(m)                          # inspect the number of rows
+ncol(m)                          # inspect the number of columns
+m[1,2]                           # display element on the first row, at the second column
+```
+
+## Quick visualization {style="font-size: 0.5em;"}
+
+Some test datasets are preloaded in R. That's the case of `iris`, a famous dataset about iris flower dimensions
+
+```{r echo=TRUE}
+head(iris)
+```
+
+You can easily visualise petal dimension distribution yourself by using the `ggplot2`package. Don't worry about understanding the syntax for now!
+
+```{r echo=TRUE}
+ggplot(data=iris, aes(x=Petal.Length, y=Petal.Width)) + geom_point(aes(col=Species))
+```
+

@@ -146,14 +146,14 @@
     "href": "slides/slides_class1.html#excel-vs-r",
     "title": "Introduction to R",
     "section": "Excel vs R",
-    "text": "Excel vs R\n\nConsider creating a new variable in your dataset:\n\n\n\n\nNow you share your spreadsheet to your colleague.\n\n\n\n\nShe will not know the formula within each cell unless she inspect them individually!"
+    "text": "Excel vs R\n\nConsider creating a new variable in your dataset:\n\n\n\n\nNow you share your spreadsheet with your colleague.\n\n\n\n\nShe will not know the formula within each cell unless she inspect all of them individually!"
   },
   {
     "objectID": "slides/slides_class1.html#excel-vs-r-1",
     "href": "slides/slides_class1.html#excel-vs-r-1",
     "title": "Introduction to R",
     "section": "Excel vs R",
-    "text": "Excel vs R\n\nConsider the same data in R, stored in the object my_data\n\n\nmy_data \n\n# A tibble: 4 × 2\n  QuantityA QuantityB\n      &lt;dbl&gt;     &lt;dbl&gt;\n1        50        20\n2        90        25\n3        10        45\n4        30        15\n\n\n\n\nYou can create the same Tot column yo had before in Excel with\n\n\nmy_data |&gt; \n  mutate(Tot = QuantityA + QuantityB)\n\n# A tibble: 4 × 3\n  QuantityA QuantityB   Tot\n      &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;\n1        50        20    70\n2        90        25   115\n3        10        45    55\n4        30        15    45\n\n\n\n\n\nAnd now your colleague has nou doubt about where those numbers come from!"
+    "text": "Excel vs R\n\nConsider the same data in R, stored in the object my_data\n\n\nmy_data \n\n# A tibble: 4 × 2\n  QuantityA QuantityB\n      &lt;dbl&gt;     &lt;dbl&gt;\n1        50        20\n2        90        25\n3        10        45\n4        30        15\n\n\n\n\nYou can create the same Tot column you had before in Excel with\n\n\nmy_data |&gt; \n  mutate(Tot = QuantityA + QuantityB)\n\n# A tibble: 4 × 3\n  QuantityA QuantityB   Tot\n      &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;\n1        50        20    70\n2        90        25   115\n3        10        45    55\n4        30        15    45\n\n\n\n\n\nAnd now your colleague has no doubt about where those numbers come from!"
   },
   {
     "objectID": "slides/slides_class1.html#excel-vs-r-2",

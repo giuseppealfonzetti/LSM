@@ -118,11 +118,11 @@ Replicability!
 
 . . .
 
-- Now you share your spreadsheet to your colleague. 
+- Now you share your spreadsheet with your colleague. 
 
 . . .
 
-- She will not know the formula within each cell unless she inspect them individually!
+- She will not know the formula within each cell unless she inspect all of them individually!
 
 ## Excel vs R {style="font-size: 0.8em;"}
 
@@ -139,7 +139,7 @@ my_data
 
 . . .
 
-- You can create the same `Tot` column yo had before in Excel with
+- You can create the same `Tot` column you had before in Excel with
 
 ```{r echo=TRUE}
 my_data |> 
@@ -148,7 +148,7 @@ my_data |>
 
 . . .
 
-- And now your colleague has nou doubt about where those numbers come from!
+- And now your colleague has no doubt about where those numbers come from!
 
 ## Excel VS R {style="font-size: 0.8em;"}
 

@@ -4,54 +4,14 @@ title: "Laboratory of Statistics and Mathematics 2025/2026"
 
 Schedule and topics outline for the lab classes
 
-```{r, echo = FALSE, message = FALSE, warning = FALSE}
-library(googlesheets4)
-library(gt)
-library(tidyverse)
-library(knitr)
-gs4_deauth()
-d <- read_sheet("https://docs.google.com/spreadsheets/d/1Wh9kCWrxjaCjhN-j7dryvMvCnsh3LiqITC9_9lponEQ/edit?usp=sharing", sheet = "schedule")
-```
 
-::: column-screen-right
-```{r, echo = FALSE}
-d |>
-  mutate(
-    Date = as.Date(Date),
-  ) |>
-    gt() |> 
-    text_transform(cells_body(columns = c(Slides)),
-    fn = function(x) {
-      ifelse(is.na(x), fontawesome::fa("book", fill_opacity = 0.1),
-        glue::glue("<a href = {x}>{fontawesome::fa('book')}</a>")
-      )
-    }
-  ) |> 
-  text_transform(cells_body(columns = c(Material)),
-    fn = function(x) {
-      ifelse(is.na(x), fontawesome::fa("laptop", fill_opacity = 0.1),
-        glue::glue("<a href = {x}>{fontawesome::fa('laptop')}</a>")
-      )
-    }
-  ) |> 
-  fmt_date(Date, date_style = 30) |>
-  sub_missing(columns = c(Date, Class, Topic, Notes), missing_text = "") |>
-  cols_align(
-    align = "center", 
-    columns = c(Slides, Material)
-    ) |>
-  cols_align(
-    align = "left", 
-    columns = c(Date, Topic, Notes)
-    ) |>
-  tab_style(
-    style = cell_borders(
-      sides = "right",
-      color = "#D3D3D3",
-      style = "solid"
-    ),
-    locations = cells_body(
-      columns = c(Date, Topic)
-    )
-  ) 
-```
+
+
+| Date   | Class | Topic              | Material | Slides | Notes |
+|--------|-------|--------------------|----------|--------|-------|
+| Oct 1  | Lab 1 | Introduction to R  | [💻](https://giuseppealfonzetti.github.io/LSM/class1.html)       | [📖](https://giuseppealfonzetti.github.io/LSM/slides/slides_class1.html)    |       |
+| Oct 15 | Lab 2 |                    |        |      |       |
+| Oct 29 | Lab 3 |                    |       |     |       |
+| Nov 12 | Lab 4 |                    |       |     |       |
+| Oct 26 | Lab 5 |                    |       |   |       |
+| Dec 11 | Lab 6 |                    |      |   |       |

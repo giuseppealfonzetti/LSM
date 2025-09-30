@@ -110,7 +110,7 @@ Replicability!
 :::
 
 
-## Excel vs R {style="font-size: 0.8em;"}
+## Excel vs R {style="font-size: 0.6em;"}
 
 - Consider creating a new variable in your dataset:
 
@@ -124,7 +124,7 @@ Replicability!
 
 - She will not know the formula within each cell unless she inspect all of them individually!
 
-## Excel vs R {style="font-size: 0.8em;"}
+## Excel vs R {style="font-size: 0.6em;"}
 
 ```{r}
 my_data <- tibble("QuantityA" = c(50, 90, 10, 30),
@@ -150,7 +150,7 @@ my_data |>
 
 - And now your colleague has no doubt about where those numbers come from!
 
-## Excel VS R {style="font-size: 0.8em;"}
+## Excel VS R {style="font-size: 0.6em;"}
 
 - You are interested in computing the total number of products sold by each representative:
 
@@ -164,7 +164,7 @@ my_data |>
 
 - Will your colleague be able to reproduce your results?
 
-## Excel VS R {style="font-size: 0.8em;"}
+## Excel VS R {style="font-size: 0.6em;"}
 
 ```{r}
 my_data2 <- tibble(

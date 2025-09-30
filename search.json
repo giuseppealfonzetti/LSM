@@ -66,11 +66,60 @@
     "text": "Why R?\n\n\nReplicability!"
   },
   {
+    "objectID": "slides/slides_class1.html#excel-vs-r",
+    "href": "slides/slides_class1.html#excel-vs-r",
+    "title": "Introduction to R",
+    "section": "Excel vs R",
+    "text": "Excel vs R\n\nConsider creating a new variable in your dataset:\n\n\n\n\nNow you share your spreadsheet to your colleague.\n\n\n\n\nShe will not know the formula within each cell unless she inspect them individually!"
+  },
+  {
+    "objectID": "slides/slides_class1.html#excel-vs-r-1",
+    "href": "slides/slides_class1.html#excel-vs-r-1",
+    "title": "Introduction to R",
+    "section": "Excel vs R",
+    "text": "Excel vs R\n\nConsider the same data in R, stored in the object my_data\n\n\nmy_data \n\n# A tibble: 4 × 2\n  QuantityA QuantityB\n      &lt;dbl&gt;     &lt;dbl&gt;\n1        50        20\n2        90        25\n3        10        45\n4        30        15\n\n\n\n\nYou can create the same Tot column yo had before in Excel with\n\n\nmy_data |&gt; \n  mutate(Tot = QuantityA + QuantityB)\n\n# A tibble: 4 × 3\n  QuantityA QuantityB   Tot\n      &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;\n1        50        20    70\n2        90        25   115\n3        10        45    55\n4        30        15    45\n\n\n\n\n\nAnd now your colleague has nou doubt about where those numbers come from!"
+  },
+  {
+    "objectID": "slides/slides_class1.html#excel-vs-r-2",
+    "href": "slides/slides_class1.html#excel-vs-r-2",
+    "title": "Introduction to R",
+    "section": "Excel VS R",
+    "text": "Excel VS R\n\nYou are interested in computing the total number of products sold by each representative:\n\n\n\n\nThat’s a lot of point-and-clicks!\n\n\n\n\nWill your colleague be able to reproduce your results?"
+  },
+  {
+    "objectID": "slides/slides_class1.html#excel-vs-r-3",
+    "href": "slides/slides_class1.html#excel-vs-r-3",
+    "title": "Introduction to R",
+    "section": "Excel VS R",
+    "text": "Excel VS R\nConsider the same dataset in R stored in the new object my_data2:\n\nmy_data2\n\n# A tibble: 10 × 4\n   SalesRepresentative Product QuantitySold Region\n   &lt;chr&gt;               &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; \n 1 Eleonor             A                 50 IT    \n 2 Elizabeth           B                 90 UK    \n 3 John                C                 10 FR    \n 4 Matt                A                 34 DE    \n 5 Eleonor             A                  5 IT    \n 6 Elizabeth           C                  8 IT    \n 7 John                B                 20 UK    \n 8 Matt                B                  5 UK    \n 9 Eleonor             A                 15 UK    \n10 Elizabeth           C                 45 DE    \n\n\n\nYou get the same results seen in Excel by running\n\nmy_data2 |&gt; \n  group_by(SalesRepresentative) |&gt; \n  summarise(Total = sum(QuantitySold))\n\n# A tibble: 4 × 2\n  SalesRepresentative Total\n  &lt;chr&gt;               &lt;dbl&gt;\n1 Eleonor                70\n2 Elizabeth             143\n3 John                   30\n4 Matt                   39"
+  },
+  {
+    "objectID": "slides/slides_class1.html#access-r-from-web",
+    "href": "slides/slides_class1.html#access-r-from-web",
+    "title": "Introduction to R",
+    "section": "Access R from Web",
+    "text": "Access R from Web\n\nConnect to https://giuseppealfonzetti.github.io/LSM/\nClick on the “Material” (💻) icon corresponding to today lab.\nAccess the interactive web console."
+  },
+  {
+    "objectID": "slides/slides_class1.html#basic-r-grammar",
+    "href": "slides/slides_class1.html#basic-r-grammar",
+    "title": "Introduction to R",
+    "section": "Basic R grammar",
+    "text": "Basic R grammar\n\nRun a command:\n\nGet the cursor on the line and press CTRL+ENTER on Windows, or CMD+ENTER on MacOS.\n\nAssign a value to an object\n\n\na = 1                            # numeric value assigned with = \nb &lt;- 2                           # numeric value assigne with &lt;- \nc &lt;- \"ciao\"                      # character value \nc                                # display the content stored in c\n\n[1] \"ciao\"\n\n\n\nBasic math\n\n\na+b                              # sum the values stored in a and b\n\n[1] 3\n\n\n\nCreate a vector\n\n\nv1 &lt;- c(1, 7, 2)                 # create the vector manually\nv2 &lt;- 1:10                       # create a sequence 1 to 10 automatically\nv3 &lt;- seq(1,10,by=2)             # create a sequence automatically with the seq() function\n\n\nSeek help\n\n\n?seq()                           # R will show you the documentation of the seq function\n\n\nCreate and inspect matrices\n\n\nm &lt;- matrix(1:6, nrow=2, ncol=3) # create a matrix\nnrow(m)                          # inspect the number of rows\n\n[1] 2\n\nncol(m)                          # inspect the number of columns\n\n[1] 3\n\nm[1,2]                           # display element on the first row, at the second column\n\n[1] 3"
+  },
+  {
+    "objectID": "slides/slides_class1.html#quick-visualization",
+    "href": "slides/slides_class1.html#quick-visualization",
+    "title": "Introduction to R",
+    "section": "Quick visualization",
+    "text": "Quick visualization\nSome test datasets are preloaded in R. That’s the case of iris, a famous dataset about iris flower dimensions\n\nhead(iris)\n\n  Sepal.Length Sepal.Width Petal.Length Petal.Width Species\n1          5.1         3.5          1.4         0.2  setosa\n2          4.9         3.0          1.4         0.2  setosa\n3          4.7         3.2          1.3         0.2  setosa\n4          4.6         3.1          1.5         0.2  setosa\n5          5.0         3.6          1.4         0.2  setosa\n6          5.4         3.9          1.7         0.4  setosa\n\n\nYou can easily visualise petal dimension distribution yourself by using the ggplot2package. Don’t worry about understanding the syntax for now!\n\nggplot(data=iris, aes(x=Petal.Length, y=Petal.Width)) + geom_point(aes(col=Species))"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Laboratory of Statistics and Mathematics 2025/2026",
+    "title": "Laboratory of Statistics and Mathematics",
     "section": "",
-    "text": "Schedule and topics outline for the lab classes\n\n\n\nDate\nClass\nTopic\nMaterial\nSlides\nNotes\n\n\n\n\nOct 1\nLab 1\nIntroduction to R\n💻\n📖\n\n\n\nOct 15\nLab 2\n\n\n\n\n\n\nOct 29\nLab 3\n\n\n\n\n\n\nNov 12\nLab 4\n\n\n\n\n\n\nOct 26\nLab 5\n\n\n\n\n\n\nDec 11\nLab 6",
+    "text": "Schedule and topics outline for the 2025/2026 lab classes\n💻\n\n\n\nDate\nClass\nTopic\nMaterial\nSlides\nNotes\n\n\n\n\nOct 1\nLab 1\nIntroduction to R\n💻\n📖\n\n\n\nOct 15\nLab 2\n\n\n\n\n\n\nOct 29\nLab 3\n\n\n\n\n\n\nNov 12\nLab 4\n\n\n\n\n\n\nOct 26\nLab 5\n\n\n\n\n\n\nDec 11\nLab 6",
     "crumbs": [
       "Schedule"
     ]
@@ -80,9 +129,6 @@
     "href": "class1.html",
     "title": "Resources for Lab 1",
     "section": "",
-    "text": "The data analysis life cycle\n\n\n\n\n\n\n\nInteractive web console\nFor this class, consider accessing R from web.\n\n\nInstall R and Rstudio\nAt home, install R and Rstudio on your personal laptop! For a guide, see for example this tutorial.",
-    "crumbs": [
-      "Introduction"
-    ]
+    "text": "The data analysis life cycle\n\n\n\n\n\n\n\nInteractive web console Basic R\nAccess the R web console for some basic R commands\n\n\nInteractive web console Dataset and Visualization\nAccess the R web console for a quick visualisation\n\n\nHomework:\n\nInstall R and Rstudio: install R and Rstudio on your personal laptop! For a guide, see for example this tutorial and get familiar with Rstudio interface.\nInstall useful packages:\n\ninstall.package() command.\nRun install.package(\"tidyverse\").\n\nRun head(mtcars)to visualise the first rows of the mtcars dataset.\nRun ?mtcars to check the meaning of the column in the mtcarsdataset.\nUse the summary()function on the mtcars dataset.\n\nWhat’s the highest Miles-Per-Gallon value?\nWhat’s the average number of carubretors?\n\n\n\n\nOther resources:\n\nWhy should I use R?"
   }
 ]

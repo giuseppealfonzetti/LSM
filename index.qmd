@@ -7,11 +7,11 @@ Schedule and topics outline for the 2025/2026 lab classes
 
 [💻](class1.qmd)
 
-| Date   | Class | Topic              | Material | Slides | Notes |
-|--------|-------|--------------------|----------|--------|-------|
-| Oct 1  | Lab 1 | Introduction to R  | [💻](class1.qmd)       | [📖](slides/slides_class1.html)    |       |
-| Oct 15 | Lab 2 |                    |        |      |       |
-| Oct 29 | Lab 3 |                    |       |     |       |
-| Nov 12 | Lab 4 |                    |       |     |       |
-| Oct 26 | Lab 5 |                    |       |   |       |
-| Dec 11 | Lab 6 |                    |      |   |       |
+| Date   | Class | Topic                       | Material | Slides | Notes |
+|--------|-------|-----------------------------|----------|--------|-------|
+| Oct 1  | Lab 1 | Introduction to R (Part 1)  | [💻](class1.qmd)       | [📖](slides/slides_class1.html)    |       |
+| Oct 15 | Lab 2 | Introduction to R (Part 2)  | [💻](class2.qmd)      | [📖](slides/slides_class2.html)      |       |
+| Oct 29 | Lab 3 |                             |       |     |       |
+| Nov 12 | Lab 4 |                             |       |     |       |
+| Oct 26 | Lab 5 |                             |       |   |       |
+| Dec 11 | Lab 6 |                             |      |   |       |

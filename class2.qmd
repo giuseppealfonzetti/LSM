@@ -125,12 +125,12 @@ Compute a summary table where you report:
 
 - the number of new hired by department.
 
-Save it as an excel file wit the `write_xlsx()` function.
+Save it as an excel file via the `write_xlsx()` function.
 
 ##### Exercise 5
 
 Given the summary table in the previous exercise, 
-reproduce the following, reproduce the following bar plot of the median salary by department (hint: use `geom_col()`).
+reproduce the following bar plot of the median salary by department (hint: use `geom_col()`).
 
 ```{r}
 #| echo: FALSE
@@ -148,9 +148,9 @@ empl |>
 
 ##### Exercise 6
 
-You have been told to create an Excel file where employees from different department are collected in different sheets.
+You have to create an Excel file where employees from different department are collected in different sheets.
 
-In R, you can create multi-sheets Excel files by feeding `write_xlsx()` with a list of datasets. Assume you stored the original dataset in the object `dt`, try running
+In R, you can create multi-sheets Excel files by feeding `write_xlsx()` with a list of datasets. Assume you stored the original dataset in the object `dt`. Now, try running
 
 ```{r}
 #| echo: TRUE
@@ -158,7 +158,7 @@ In R, you can create multi-sheets Excel files by feeding `write_xlsx()` with a l
 my_departments <- split(dt, dt$department)
 ```
 
-- What does the `split()`function does? Run `?split()`to read the documentation.
+- What does the `split()`function do? Run `?split()` to read the documentation.
 
 - What kind of object is stored in `my_departments`? Run `typeof(my_departments)` to investigate.
 

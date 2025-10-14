@@ -16,7 +16,7 @@ Access the [R web](https://webr.sh/#code=eJxlkE1OwzAQRsU2pxipLBJRteIAvQELVIRYVhN
 
 ### Homework:
 
-- Install R and Rstudio: install R and Rstudio on your personal laptop! For a guide, see for example [this tutorial](https://moderndive.com/v2/getting-started.html) and get familiar with Rstudio interface.
+- Install R and Rstudio: install R and Rstudio on your personal laptop! For a guide, see for example [this tutorial](https://moderndive.com/v2/getting-started.html) and get familiar with Rstudio interface. If you prefer a video tutorial, check it [here](https://www.youtube.com/playlist?list=PLRPB0ZzEYegOZivdelOuEn-R-XUN-DOjd).
 
 - Install useful packages:
     - `install.package()` command.

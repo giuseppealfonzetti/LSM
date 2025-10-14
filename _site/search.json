@@ -34,7 +34,7 @@
     "href": "class1.html",
     "title": "Resources for Lab 1",
     "section": "",
-    "text": "The data analysis life cycle\n\n\n\n\n\n\n\nInteractive web console Basic R\nAccess the R web console for some basic R commands\n\n\nInteractive web console Dataset and Visualization\nAccess the R web console for a quick visualisation\n\n\nHomework:\n\nInstall R and Rstudio: install R and Rstudio on your personal laptop! For a guide, see for example this tutorial and get familiar with Rstudio interface.\nInstall useful packages:\n\ninstall.package() command.\nRun install.package(\"tidyverse\").\n\nRun head(mtcars)to visualise the first rows of the mtcars dataset.\nRun ?mtcars to check the meaning of the column in the mtcarsdataset.\nUse the summary()function on the mtcars dataset.\n\nWhat’s the highest Miles-Per-Gallon value?\nWhat’s the average number of carubretors?\n\n\n\n\nOther resources:\n\nWhy should I use R?"
+    "text": "The data analysis life cycle\n\n\n\n\n\n\n\nInteractive web console Basic R\nAccess the R web console for some basic R commands\n\n\nInteractive web console Dataset and Visualization\nAccess the R web console for a quick visualisation\n\n\nHomework:\n\nInstall R and Rstudio: install R and Rstudio on your personal laptop! For a guide, see for example this tutorial and get familiar with Rstudio interface. If you prefer a video tutorial, check it here.\nInstall useful packages:\n\ninstall.package() command.\nRun install.package(\"tidyverse\").\n\nRun head(mtcars)to visualise the first rows of the mtcars dataset.\nRun ?mtcars to check the meaning of the column in the mtcarsdataset.\nUse the summary()function on the mtcars dataset.\n\nWhat’s the highest Miles-Per-Gallon value?\nWhat’s the average number of carubretors?\n\n\n\n\nOther resources:\n\nWhy should I use R?"
   },
   {
     "objectID": "slides/slides_class1.html#content-and-motivation",
@@ -210,5 +210,131 @@
     "title": "Introduction to R",
     "section": "Quick visualization",
     "text": "Quick visualization\nSome test datasets are preloaded in R. That’s the case of iris, a famous dataset about iris flower dimensions\n\nhead(iris)\n\n  Sepal.Length Sepal.Width Petal.Length Petal.Width Species\n1          5.1         3.5          1.4         0.2  setosa\n2          4.9         3.0          1.4         0.2  setosa\n3          4.7         3.2          1.3         0.2  setosa\n4          4.6         3.1          1.5         0.2  setosa\n5          5.0         3.6          1.4         0.2  setosa\n6          5.4         3.9          1.7         0.4  setosa\n\n\nYou can easily visualise petal dimension distribution yourself by using the ggplot2package. Don’t worry about understanding the syntax for now!\n\nggplot(data=iris, aes(x=Petal.Length, y=Petal.Width)) + geom_point(aes(col=Species))"
+  },
+  {
+    "objectID": "slides/slides_class2.html#rstudio",
+    "href": "slides/slides_class2.html#rstudio",
+    "title": "Introduction to R - Part 2",
+    "section": "Rstudio",
+    "text": "Rstudio"
+  },
+  {
+    "objectID": "slides/slides_class2.html#recap-of-r-basics",
+    "href": "slides/slides_class2.html#recap-of-r-basics",
+    "title": "Introduction to R - Part 2",
+    "section": "Recap of R basics",
+    "text": "Recap of R basics\nBasic math:\n\na = 3                            # numeric value assigned with = \nb &lt;- 2                           # numeric value assigne with &lt;- \na+b                              # sum\na-b                              # difference\na*b                              # multiply\na/b                              # ratio\na^b                              # power\n\n\nR Functions: always called by name_of_the_function()\n\nv1 &lt;- c(1, 7, 2)          # create a vector with the function c()\nv2 &lt;- seq(0,10, by=0.5)   # create a vector with the function seq()\nm &lt;- matrix(c(0,7,9,2,4,10), nrow=2, ncol=3) # create a matrix by column\n\n\n\nAccessing elements: Access elements within vector and matrices with [ ].\n\nv1[2]   # access the second element of v1\n\n[1] 7\n\nm[2,3]  # access the elemnt in the second row - third column cell\n\n[1] 10"
+  },
+  {
+    "objectID": "slides/slides_class2.html#additional-types-of-objects",
+    "href": "slides/slides_class2.html#additional-types-of-objects",
+    "title": "Introduction to R - Part 2",
+    "section": "Additional types of objects",
+    "text": "Additional types of objects\nLogical values: represent a TRUE/FALSEstatement\n\n# store in the object `my_logical` the answer to \"is 3 less than 4?\". \n# Can only take values TRUE/FALSE\nmy_logical = 3 &lt; 4  \nmy_logical\n\n[1] TRUE\n\n\n\nFactors: categorical variables with known levels\n\n# start from a raw vector of strings\nmy_raw_var &lt;- c(\"low\", \"low\", \"medium\", \"low\", \"high\", \"high\", \"medium\")\nmy_raw_var\n\n[1] \"low\"    \"low\"    \"medium\" \"low\"    \"high\"   \"high\"   \"medium\"\n\n\n\n\n\n# convert automatically to a factor via `as.factor()`\nmy_fact &lt;- as.factor(my_raw_var)\nmy_fact\n\n[1] low    low    medium low    high   high   medium\nLevels: high low medium\n\n\n\n\n\n# manual construction with `factor()` specifying levels ordering\nmy_fact &lt;- factor(my_raw_var, levels = c(\"low\", \"medium\", \"high\"), ordered=TRUE)\nmy_fact\n\n[1] low    low    medium low    high   high   medium\nLevels: low &lt; medium &lt; high"
+  },
+  {
+    "objectID": "slides/slides_class2.html#data-frames",
+    "href": "slides/slides_class2.html#data-frames",
+    "title": "Introduction to R - Part 2",
+    "section": "Data frames",
+    "text": "Data frames\n\nMatrices in R constrain all columns to have data of the same type (all numeric, all character, etc…).\nData frames are more convenient objects where to store your data.\n\n\nvar1 &lt;- c(\"pop-up\", \"banner\", \"video\")\nvar2 &lt;- c(56, 23, 321)\nvar3 &lt;- c(7,2,25)\nvar4 &lt;- c(TRUE, FALSE, FALSE)\nmy_df &lt;- data.frame(\n    \"ad_type\"= var1, \n    \"n_clicks\"=var2, \n    \"sales\"=var3, \n    \"weekend\"=var4)\nmy_df\n\n  ad_type n_clicks sales weekend\n1  pop-up       56     7    TRUE\n2  banner       23     2   FALSE\n3   video      321    25   FALSE"
+  },
+  {
+    "objectID": "slides/slides_class2.html#additional-types-of-objects-i",
+    "href": "slides/slides_class2.html#additional-types-of-objects-i",
+    "title": "Introduction to R - Part 2",
+    "section": "Additional types of objects (i)",
+    "text": "Additional types of objects (i)\nLogical values: represent a TRUE/FALSEstatement\n\n# store in the object `my_logical` the answer to \"is 3 less than 4?\". \n# Can only take values TRUE/FALSE\nmy_logical = 3 &lt; 4  \nmy_logical\n\n[1] TRUE\n\n\n\nFactors: categorical variables with known levels\n\n# start from a raw vector of strings\nmy_raw_var &lt;- c(\"low\", \"low\", \"medium\", \"low\", \"high\", \"high\", \"medium\")\nmy_raw_var\n\n[1] \"low\"    \"low\"    \"medium\" \"low\"    \"high\"   \"high\"   \"medium\"\n\n\n\n\n\n# convert automatically to a factor via `as.factor()`\nmy_fact &lt;- as.factor(my_raw_var)\nmy_fact\n\n[1] low    low    medium low    high   high   medium\nLevels: high low medium\n\n\n\n\n\n# manual construction with `factor()` specifying levels ordering\nmy_fact &lt;- factor(my_raw_var, levels = c(\"low\", \"medium\", \"high\"), ordered=TRUE)\nmy_fact\n\n[1] low    low    medium low    high   high   medium\nLevels: low &lt; medium &lt; high"
+  },
+  {
+    "objectID": "slides/slides_class2.html#additional-types-of-objects-ii",
+    "href": "slides/slides_class2.html#additional-types-of-objects-ii",
+    "title": "Introduction to R - Part 2",
+    "section": "Additional types of objects (ii)",
+    "text": "Additional types of objects (ii)\nLists:\nList of objects of potentially different nature\n\nmy_list &lt;- list(          # use the `list()` function\n    \"A\"=c(0,1,2),\n    \"B\"= \"ciao\",\n    \"C\"= 2&lt;5\n)\nmy_list\n\n$A\n[1] 0 1 2\n\n$B\n[1] \"ciao\"\n\n$C\n[1] TRUE"
+  },
+  {
+    "objectID": "slides/slides_class2.html#data-frames-attributes",
+    "href": "slides/slides_class2.html#data-frames-attributes",
+    "title": "Introduction to R - Part 2",
+    "section": "Data frames attributes",
+    "text": "Data frames attributes\n\ncolnames(my_df) # get the column names from my_df\n\n[1] \"ad_type\"  \"n_clicks\" \"sales\"    \"weekend\" \n\n\n\n\ndim(my_df)       # get the dimensions of my_df\n\n[1] 3 4\n\n\n\n\n\nmy_df$ad_type    # access a column of my_df by name\n\n[1] \"pop-up\" \"banner\" \"video\" \n\n\n\n\n\nmy_df[ , 1]      # access a column by index\n\n[1] \"pop-up\" \"banner\" \"video\" \n\n\n\n\n\nmy_df[2 , ]      # acces a row by index\n\n  ad_type n_clicks sales weekend\n2  banner       23     2   FALSE"
+  },
+  {
+    "objectID": "class2.html",
+    "href": "class2.html",
+    "title": "Resources for Lab 2",
+    "section": "",
+    "text": "Practice:\n\n\n Download employees.xlsx\n\n\n\n\nDownload the employees.xlsx.\nCreate an R Project where to analyse the employees.xlsx dataset and move the xlsxfile within to the project directory.\nGet the path to the data using the here() function.\nImport the dataset in R with the read_xlsx() function.\n\n\nExercise 1Exercise 2Exercise 3Exercise 4Exercise 5Exercise 6\n\n\n\nHow many observations are collected in the dataset? Use the dim() function.\nWhat’s the average salary in the company? Use either the function mean()or summary()\n\n\n\n\nUse filter() and arrange() to show who are the three top earners in the I.T department.\nUse group_by(), summarise() and median() to get the median salary in the I.T. department.\n\nConstruct a scatterplot for salary and seniority, colored by department. Store it in my_plot. Try adding a theme to the plot, for example:\n\nmy_plot + theme_minimal()\n\nWhat happens?\n\nUse labs() to modify the labels of the plot. For example:\n\n\nmy_plot + theme_minimal() + labs(x=\"Seniority (years)\")\n\n\n\n\nHow many employees have just been hired in the company?\nHow many employees have just been hired in the I.T. department?\nCompute the average salary of employees from the Finance department with at least 8 years seniority.\n\n\n\nCompute a summary table where you report:\n\nthe median salary by department (using the function median()),\nthe number of employees by department (using the function n()),\nthe number of new hired by department.\n\nSave it as an excel file wit the write_xlsx() function.\n\n\nGiven the summary table in the previous exercise, reproduce the following, reproduce the following bar plot of the median salary by department (hint: use geom_col()).\n\n\n\n\n\n\n\n\n\n\n\nYou have been told to create an Excel file where employees from different department are collected in different sheets.\nIn R, you can create multi-sheets Excel files by feeding write_xlsx() with a list of datasets. Assume you stored the original dataset in the object dt, try running\n\nmy_departments &lt;- split(dt, dt$department)\n\n\nWhat does the split()function does? Run ?split()to read the documentation.\nWhat kind of object is stored in my_departments? Run typeof(my_departments) to investigate.\nFeed write_xlsx() with my_departmentsto create a multi-sheet Excel file."
+  },
+  {
+    "objectID": "slides/slides_class2.html#practice",
+    "href": "slides/slides_class2.html#practice",
+    "title": "Introduction to R - Part 2",
+    "section": "Practice",
+    "text": "Practice\n\nConnect to https://giuseppealfonzetti.github.io/LSM/\nClick on the “Material” (💻) icon corresponding to today lab.\nDownload the Excel file."
+  },
+  {
+    "objectID": "slides/slides_class2.html#workflow-basics",
+    "href": "slides/slides_class2.html#workflow-basics",
+    "title": "Introduction to R - Part 2",
+    "section": "Workflow basics",
+    "text": "Workflow basics\n\nCreate a folder on your laptop where to store all your future analysis;\nOpen Rstudio and create an R Project for today’s practice within that folder.\nFrom your file browser, move the downloaded .xlsx file in your project directory in a subdirectory called data.\nWithin the project, create an R Script file. Here you will write your R commands."
+  },
+  {
+    "objectID": "slides/slides_class2.html#loading-r-packages",
+    "href": "slides/slides_class2.html#loading-r-packages",
+    "title": "Introduction to R - Part 2",
+    "section": "Loading R packages",
+    "text": "Loading R packages\n\nOn top of your script file, list the library() commands needed to perform the analysis. Today we will use\n\n\nlibrary(tidyverse)  # data manipulation and plotting\nlibrary(here)       # utilities to easily manage directories paths\nlibrary(readxl)     # utilities to read Excel files\nlibrary(writexl)    # utilities to write Excel files\n\nAfter loading the R packages, we use the i_am() function from the here package to tell R where my script is located. If your script is called my_script.R, run\n\ni_am(\"my_script.R\")\n\nNow that R knows your position in the directory tree, we can read the xlsx file stored in the data folder with\n\npath_to_data &lt;- here(\"data\", \"employees.xlsx\") # get the exact location of the data\ndt &lt;- read_xlsx(path_to_data)                  # read the data"
+  },
+  {
+    "objectID": "slides/slides_class2.html#loading-r-packages-stylefont-size-0.5em",
+    "href": "slides/slides_class2.html#loading-r-packages-stylefont-size-0.5em",
+    "title": "Introduction to R - Part 2",
+    "section": "Loading R packages style=“font-size: 0.5em;”",
+    "text": "Loading R packages style=“font-size: 0.5em;”\n\nOn top of your script file, list the library() commands needed to perform the analysis. Today we will use\n\n\nlibrary(tidyverse)  # data manipulation and plotting\nlibrary(here)       # utilities to easily manage directories paths\nlibrary(readxl)     # utilities to read Excel files\nlibrary(writexl)    # utilities to write Excel files\n\nAfter loading the R packages, we use the i_am() function from the here package to tell R where my script is located. If your script is called my_script.R, run\n\ni_am(\"my_script.R\")\n\nNow that R knows your position in the directory tree, we can read the xlsx file stored in the data folder with\n\npath_to_data &lt;- here(\"data\", \"employees.xlsx\") # get the exact location of the data\ndt &lt;- read_xlsx(path_to_data)                  # read the data"
+  },
+  {
+    "objectID": "slides/slides_class2.html#setup-r-packages",
+    "href": "slides/slides_class2.html#setup-r-packages",
+    "title": "Introduction to R - Part 2",
+    "section": "Setup R packages",
+    "text": "Setup R packages\n\nOn top of your script file, list the library() commands needed to perform the analysis. Today we will use\n\n\nlibrary(tidyverse)  # data manipulation and plotting\nlibrary(here)       # utilities to easily manage directories paths\nlibrary(readxl)     # utilities to read Excel files\nlibrary(writexl)    # utilities to write Excel files\n\n\nAfter loading the R packages, use the i_am() function from the here package to tell R where your script is located. If your script is called my_script.R, run\n\ni_am(\"my_script.R\")\n\n\n\nNow that R knows your position in the directory tree, we can read the xlsx file stored in the data folder with\n\npath_to_data &lt;- here(\"data\", \"employees.xlsx\") # get the exact location of the data\ndt &lt;- read_xlsx(path_to_data)                  # read the data"
+  },
+  {
+    "objectID": "slides/slides_class2.html#setup",
+    "href": "slides/slides_class2.html#setup",
+    "title": "Introduction to R - Part 2",
+    "section": "Setup",
+    "text": "Setup\n\nOn top of your script file, list the library() commands needed to perform the analysis. Today we will use\n\n\nlibrary(tidyverse)  # data manipulation and plotting\nlibrary(here)       # utilities to easily manage directories paths\nlibrary(readxl)     # utilities to read Excel files\nlibrary(writexl)    # utilities to write Excel files\n\n\nAfter loading the R packages, use the i_am() function from the here package to tell R where your script is located. If your script is called my_script.R, run\n\ni_am(\"my_script.R\")\n\n\n\nNow that R knows your position in the directory tree of your laptop, we can read the xlsx file stored in the data folder with\n\npath_to_data &lt;- here(\"data\", \"employees.xlsx\") # get the exact location of the data\ndt &lt;- read_xlsx(path_to_data)                  # read the data\n\n\n\n# A tibble: 6 × 6\n  last_name first_name department seniority  salary    ID\n  &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;\n1 al-Harron Fikra      Marketing          4  72654.  1001\n2 Whitaker  Jalen      HR                15 164507.  1002\n3 Pillow    Cleevens   Sales              7 102665.  1003\n4 Holguin   Austin     I.T.               9 138793.  1004\n5 Bertsch   Damon      Sales             12 140699.  1005\n6 Thornock  Javonte    Accounting         6  81101.  1006"
+  },
+  {
+    "objectID": "slides/slides_class2.html#a-first-plot",
+    "href": "slides/slides_class2.html#a-first-plot",
+    "title": "Introduction to R - Part 2",
+    "section": "A first plot",
+    "text": "A first plot\n\nggplot(data = dt, aes(x=seniority, y=salary))"
+  },
+  {
+    "objectID": "slides/slides_class2.html#a-first-plot-1",
+    "href": "slides/slides_class2.html#a-first-plot-1",
+    "title": "Introduction to R - Part 2",
+    "section": "A first plot",
+    "text": "A first plot\n\nggplot(data = dt, aes(x=seniority, y=salary)) +\n    geom_point()"
+  },
+  {
+    "objectID": "slides/slides_class2.html#a-first-plot-2",
+    "href": "slides/slides_class2.html#a-first-plot-2",
+    "title": "Introduction to R - Part 2",
+    "section": "A first plot",
+    "text": "A first plot\n\nggplot(data = dt, aes(x=seniority, y=salary)) +\n    geom_point(aes(color=department))"
+  },
+  {
+    "objectID": "slides/slides_class2.html#export-results",
+    "href": "slides/slides_class2.html#export-results",
+    "title": "Introduction to R - Part 2",
+    "section": "Export results",
+    "text": "Export results\nLet’s say we want to export a summary table of the data and the scatterplot for salary and seniority:\n\nmy_summary &lt;- group_by(dt, department) |&gt; \n                summarise(total_salary = sum(salary))\n\nmy_plot &lt;- ggplot(dt, aes(x=seniority, y=salary))+\n              geom_point(aes(, col=department)) \n\n\n\nExport them as R objects:\n\n\nsave(my_summary, my_plot, file = here(\"my_results.rda\"))\n\n\n\n\nExport the table as an Excel file:\n\n\nwrite_xlsx(my_summary, path = here(\"my_table.xlsx\"))\n\n\n\n\nExport the plot as an image:\n\n\nggsave(my_plot, path = here(\"my_scatterplot.jpg\"))"
   }
 ]

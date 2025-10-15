@@ -23,7 +23,7 @@ highlight-style: tango
 
 ![](../assets/class2/rstudio.png){width=100% fig-align="center"}
 
-## Recap of R basics
+## Recap of R basics {style="font-size: 0.8em;"}
 
 **Basic math:** 
 
@@ -65,7 +65,7 @@ v1[2]   # access the second element of v1
 m[2,3]  # access the elemnt in the second row - third column cell
 ```
 
-## Additional types of objects (i)
+## Additional types of objects (i) {style="font-size: 0.8em;"}
 
 Logical values: represent a `TRUE/FALSE`statement
 
@@ -110,7 +110,7 @@ my_fact <- factor(my_raw_var, levels = c("low", "medium", "high"), ordered=TRUE)
 my_fact
 ```
 
-## Additional types of objects (ii)
+## Additional types of objects (ii) {style="font-size: 0.8em;"}
 
 **Lists:**
 
@@ -127,7 +127,7 @@ my_list <- list(          # use the `list()` function
 my_list
 ```
 
-## Data frames
+## Data frames {style="font-size: 0.8em;"}
 
 - Matrices in R constrain all columns to have data of the same type (all numeric, all character, etc...).
 - Data frames are more convenient objects where to store your data.
@@ -148,7 +148,7 @@ my_df <- data.frame(
 my_df
 ```
 
-## Data frames attributes
+## Data frames attributes {style="font-size: 0.8em;"}
 
 
 ```{r}
@@ -205,8 +205,9 @@ my_df[2 , ]      # acces a row by index
 - Open `Rstudio` and create an `R Project` for today's practice within that folder.
 - From your file browser, move the downloaded `.xlsx` file in your project directory in a subdirectory called `data`.
 - Within the project, create an `R Script` file. Here you will write your R commands.
+- Use the `here` package to manage file paths.
 
-## Setup {style="font-size: 0.8em;"}
+## Setup {style="font-size: 0.7em;"}
 - On top of your script file, list the `library()` commands needed to perform the analysis. Today we will use
 
 ```{r}
@@ -241,11 +242,13 @@ path_to_data <- here("data", "employees.xlsx") # get the exact location of the d
 dt <- read_xlsx(path_to_data)                  # read the data
 ```
 
+. . .
+
 ```{r}
 #| echo: FALSE
 #| eval: TRUE
 dt <- read_xlsx("../assets/class2/employees.xlsx")
-head(dt)
+head(dt, 4)
 ```
 
 ## A first plot
@@ -278,7 +281,7 @@ ggplot(data = dt, aes(x=seniority, y=salary)) +
     geom_point(aes(color=department))
 ```
 
-# Data manipulation {style="font-size: 0.7em;"}
+# Data manipulation {style="font-size: 0.6em;"}
 
 Visualise all employees in the Marketing department:
 

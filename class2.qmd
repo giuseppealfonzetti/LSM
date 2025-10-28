@@ -70,7 +70,7 @@ empl|>
 
 
 - Download the `employees.xlsx`.
-- Create an R Project where to analyse the `employees.xlsx` dataset and move the `xlsx`file within to the project directory.
+- Create an R Project where to analyse the `employees.xlsx` dataset and move the `xlsx` file within the project directory.
 - Get the path to the data using the `here()` function.
 - Import the dataset in R with the `read_xlsx()` function.
 
@@ -81,7 +81,7 @@ empl|>
 
 - What's the average salary in the company? Use either the function `mean()`or `summary()`
 
-##### Exercise 2
+<!-- ##### Exercise 2
 
 - Use `filter()` and `arrange()` to show who are the three top earners in the `I.T` department.
 
@@ -162,7 +162,7 @@ my_departments <- split(dt, dt$department)
 
 - What kind of object is stored in `my_departments`? Run `typeof(my_departments)` to investigate.
 
-- Feed `write_xlsx()` with `my_departments`to create a multi-sheet Excel file.
+- Feed `write_xlsx()` with `my_departments`to create a multi-sheet Excel file. -->
 
 :::
 :::

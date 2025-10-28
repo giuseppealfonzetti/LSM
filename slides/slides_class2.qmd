@@ -281,7 +281,7 @@ ggplot(data = dt, aes(x=seniority, y=salary)) +
     geom_point(aes(color=department))
 ```
 
-# Data manipulation {style="font-size: 0.6em;"}
+<!-- # Data manipulation {style="font-size: 0.6em;"}
 
 Visualise all employees in the Marketing department:
 
@@ -402,4 +402,4 @@ write_xlsx(my_summary, path = here("my_table.xlsx"))
 #| echo: TRUE
 #| eval: FALSE
 ggsave(my_plot, path = here("my_scatterplot.jpg"))
-```
+``` -->

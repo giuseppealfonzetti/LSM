@@ -1,0 +1,442 @@
+---
+title: "Data manipulation"
+subtitle: "Laboratory of Statistics and Mathematics 2025/2026"
+author: Giuseppe Alfonzetti
+format: 
+  revealjs:
+    slide-number: true
+    incremental: false   
+    footer: "Data manipulation"
+    theme: ../themes/slides_theme.scss
+    highlight-style: arrow-light
+    transition: convex
+    transition-speed: fast
+title-slide-attributes:
+    data-background-color: "#1565C0"
+    data-footer: " "
+embed-resources: true
+highlight-style: tango
+
+---
+
+## R basics - filtering {style="font-size: 0.5em;"}
+
+Consider the `data.frame`
+```{r}
+#| echo: FALSE
+#| eval: TRUE
+var0 <- 1:5
+var1 <- c("pop-up", "banner", "video", "banner", "pop-up")
+var2 <- c(56, 23, 321, 89, 10)
+var3 <- c(7,2,25, 10, 23)
+var4 <- c(TRUE, FALSE, FALSE, TRUE, TRUE)
+my_df <- data.frame(
+    "id" = var0,
+    "ad_type"= var1, 
+    "n_clicks"=var2, 
+    "sales"=var3, 
+    "weekend"=var4)
+```
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+my_df
+```
+
+. . .
+
+**Create a filter:**
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+my_filter = my_df$sales > 20
+my_filter
+```
+
+. . . 
+
+**View:**
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+my_df[my_filter, ]
+```
+
+. . .
+
+**Overwrite:**
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+my_df[my_filter, ]$ad_type = c("banner", "banner")
+my_df
+```
+
+## R basics - Missing values {style="font-size: 0.5em;"}
+
+Consider the `data.frame`
+
+```{r}
+var0 <- 1:5
+var1 <- c("pop-up", "banner", "video", "banner", "pop-up")
+var2 <- c(56, 23, 321, NA, 10)
+var3 <- c(7,NA,25, 10, 23)
+var4 <- c(TRUE, FALSE, FALSE, TRUE, TRUE)
+my_df <- data.frame(
+    "id" = var0,
+    "ad_type"= var1, 
+    "n_clicks"=var2, 
+    "sales"=var3, 
+    "weekend"=var4)
+```
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+my_df
+```
+
+. . .
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+summary(my_df)
+```
+
+
+## R basics - Missing values {style="font-size: 0.5em;"}
+
+Consider the `data.frame`
+
+```{r}
+var0 <- 1:5
+var1 <- c("pop-up", "banner", "video", "banner", "pop-up")
+var2 <- c(56, 23, 321, NA, 10)
+var3 <- c(7,NA,25, 10, 23)
+var4 <- c(TRUE, FALSE, FALSE, TRUE, TRUE)
+my_df <- data.frame(
+    "id" = var0,
+    "ad_type"= var1, 
+    "n_clicks"=var2, 
+    "sales"=var3, 
+    "weekend"=var4)
+```
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+my_df
+```
+
+
+**Locate:**
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+clicks_missing <- is.na(my_df$n_clicks)
+clicks_missing
+```
+
+. . .
+
+**Replace:**
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+my_df$n_clicks[clicks_missing] <- median(my_df$n_clicks, na.rm=TRUE)
+my_df
+```
+
+
+## Data manipulation with `tidyverse` {style="font-size: 0.5em;"}
+
+```{r}
+library(palmerpenguins)
+```
+
+Consider this dataset:
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+library(tidyverse)
+penguins
+```
+
+**Select:**
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+my_penguins <- select(penguins, species, island, sex, bill_length_mm, body_mass_g, year)
+my_penguins
+```
+
+## Data manipulation with `tidyverse` {style="font-size: 0.5em;"}
+
+**Filter:**
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+filter(my_penguins, sex=="female")
+```
+
+. . .
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+filter(my_penguins, sex=="female", island=="Biscoe")
+```
+
+## Data manipulation with `tidyverse` {style="font-size: 0.5em;"}
+
+**Mutate:**
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+mutate(my_penguins, body_mass_kg=body_mass_g/1000)
+```
+
+. . .
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+mutate(my_penguins, body_mass_g=body_mass_g+1)
+```
+
+## Data manipulation with `tidyverse` {style="font-size: 0.5em;"}
+
+**Mutate according to logical conditions:**
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+my_penguins
+```
+
+. . . 
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+mutate(
+    my_penguins, 
+    bill_length_mm = replace(bill_length_mm, bill_length_mm>39, 100)
+)
+```
+
+
+## Data manipulation with `tidyverse` {style="font-size: 0.5em;"}
+
+**Replace Missing values**
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+my_penguins
+```
+
+. . .
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+mutate(my_penguins, body_mass_g_filled = replace(body_mass_g, is.na(body_mass_g), median(body_mass_g, na.rm=TRUE)))
+```
+
+## Data manipulation with `tidyverse` {style="font-size: 0.5em;"}
+
+**Replace Missing values**
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+mutate(
+    my_penguins, 
+    body_mass_g = replace(body_mass_g, is.na(body_mass_g), median(body_mass_g, na.rm=TRUE)),
+    bill_length_mm = replace(bill_length_mm, is.na(bill_length_mm), median(bill_length_mm, na.rm=TRUE))
+)
+```
+
+## Data manipulation with `tidyverse` {style="font-size: 0.5em;"}
+
+**Pipes:**
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+penguins
+```
+
+. . .
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+#| code-line-numbers: "1|2|3|4|5|6"
+penguins |> 
+    select(species, island, sex, body_mass_g, bill_length_mm) |> 
+    mutate(body_mass_kg=body_mass_g/1000) |> 
+    filter(sex=="female") |> 
+    arrange(bill_length_mm) |> 
+    select(-body_mass_g)
+```
+
+. . .
+
+```{r}
+#| echo: FALSE
+#| eval: TRUE
+penguins |> 
+    select(species, island, sex, body_mass_g, bill_length_mm) |> 
+    mutate(body_mass_kg=body_mass_g/1000) |> 
+    filter(sex=="female") |> 
+    arrange(bill_length_mm)|> 
+    select(-body_mass_g)
+```
+
+
+## Groupwise manipulation {style="font-size: 0.5em;"}
+
+**Summarise by group:**
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+#| code-line-numbers: "1|2|3"
+penguins |> 
+    group_by(species) |> 
+    summarise(average_bill_length = mean(bill_length_mm))
+```
+
+. . .
+
+```{r}
+#| echo: FALSE
+#| eval: TRUE
+penguins |> 
+    group_by(species) |> 
+    summarise(average_bill_length = mean(bill_length_mm))
+```
+
+. . .
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+#| code-line-numbers: "3"
+penguins |> 
+    group_by(species) |> 
+    summarise(average_bill_length = mean(bill_length_mm, na.rm=TRUE))
+```
+
+. . .
+
+```{r}
+#| echo: FALSE
+#| eval: TRUE
+penguins |> 
+    group_by(species) |> 
+    summarise(average_bill_length = mean(bill_length_mm, na.rm=TRUE))
+```
+
+
+## Groupwise manipulation {style="font-size: 0.5em;"}
+
+**Mutate by group:**
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+#| code-line-numbers: "1|2|3|4"
+penguins |> 
+    select(species, island, bill_length_mm) |> 
+    group_by(species) |> 
+    mutate(species_average_bill_length = mean(bill_length_mm, na.rm=TRUE))
+```
+
+. . .
+
+```{r}
+#| echo: FALSE
+#| eval: TRUE
+penguins |> 
+    select(species, island, bill_length_mm) |> 
+    group_by(species) |> 
+    mutate(species_average_bill_length = mean(bill_length_mm, na.rm=TRUE))
+```
+
+. . .
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+#| code-line-numbers: "5|6"
+penguins |> 
+    select(species, island, bill_length_mm) |> 
+    group_by(species) |> 
+    mutate(
+        species_average_bill_length = mean(bill_length_mm, na.rm=TRUE),
+        dist_from_species_average = bill_length_mm - species_average_bill_length
+        )
+```
+
+. . .
+
+```{r}
+#| echo: FALSE
+#| eval: TRUE
+penguins |> 
+    select(species, island, bill_length_mm) |> 
+    group_by(species) |> 
+    mutate(
+        species_average_bill_length = mean(bill_length_mm, na.rm=TRUE),
+        dist_from_species_average = bill_length_mm - species_average_bill_length
+        )
+```
+
+
+## Save objects {style="font-size: 0.5em;"}
+
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+my_res <- penguins |> 
+    group_by(species) |> 
+    summarise(average_bill_length = mean(bill_length_mm, na.rm=TRUE))
+my_res
+```
+
+**Store as an `R` data object:**
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+# To save the object in your current project folder under the name "my_results.rda"
+save(my_res, here("my_results.rda"))
+
+# To load the object when you need it next time
+load(here("my_results.rda"))
+```
+
+. . .
+
+**Store as an `Excel` file:**
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+
+# To save the object in a spreadsheet in your current project folder under the name "my_results.rda"
+write_xlsx(my_res, path = here("my_results.xlsx"))
+```
+

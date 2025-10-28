@@ -1,0 +1,255 @@
+---
+title: "Resources for Lab 3"
+
+execute: 
+  warning: false
+  message: false
+---
+
+```{r}
+#| echo: FALSE
+knitr::opts_chunk$set(
+    out.width = "50%", #
+    fig.width = 4,     # reasonable size
+    fig.asp = 0.618,   # golden ratio
+    fig.align = "right" # mostly what I want
+)
+```
+
+
+
+::: {.cell .page-columns .page-full .column-screen .grey-section}
+
+### Practice 1
+
+```{r}
+#| echo: FALSE
+#| eval: TRUE
+library(tidyverse)
+library(downloadthis)
+
+
+library(randomNames)
+
+set.seed(1)
+n <- 150
+depts <- c('Marketing', 'Accounting', 'Sales', 'Finance', 'HR', 'I.T.')
+
+base_salary <- 50000
+
+salary_depts <- tibble(
+  department = depts, 
+  dept_base_salary = rnorm(length(depts), mean = base_salary, sd = 5000),
+  slope = runif(length(depts), 1000, 10000)  
+)
+
+empl <- tibble(full_name = randomNames(n)) |> 
+  distinct() |> 
+  separate(full_name, into = c("last_name", "first_name"), sep = ", ") |> 
+  mutate(
+    department = sample(depts, n, replace = TRUE),
+    seniority = sample(0:15, size = n, replace = TRUE)
+  ) |> 
+  left_join(salary_depts, by = "department") |> 
+  mutate(
+    salary = dept_base_salary + slope * seniority + rnorm(n, 0, 3000),
+    ID = 1000 + row_number()
+  ) |> 
+    select(-dept_base_salary, -slope)
+writexl::write_xlsx(empl, "assets/class2/employees.xlsx")
+
+empl|> 
+    download_this(
+    output_name = "employees",
+    output_extension = ".xlsx",
+    button_label = "Download employees.xlsx",
+    button_type = "success",
+    has_icon = TRUE,
+    icon = "fa fa-save",
+    class = "button_small"
+  )
+```
+
+
+- Download the `employees.xlsx`.
+- Create an R Project where to analyse the `employees.xlsx` dataset and move the `xlsx` file within the project directory.
+- Get the path to the data using the `here()` function.
+- Import the dataset in R with the `read_xlsx()` function.
+
+::: {.panel-tabset}
+##### Exercise 1
+
+- How many observations are collected in the dataset? Use the `dim()` function.
+
+- What's the average salary in the company? Use either the function `mean()`or `summary()`
+
+##### Exercise 2
+
+- Use `filter()` and `arrange()` to check who are the three top earners in the `I.T` department.
+
+- Use `group_by()`,  `summarise()` and `median()` to get the median salary in the `I.T.` department.
+
+Using `geom_point()`, construct a scatterplot for salary and seniority, colored by department. Store it in `my_plot`. Try adding a theme to the plot, for example:
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+my_plot + theme_minimal()
+```
+
+What happens?
+
+- Use `labs()` to modify the labels of the plot. For example:
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+my_plot + theme_minimal() + labs(x="Seniority (years)", y="Salary", color="Department:")
+```
+
+- Use `facet_grid()` to create a multi-window plot
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+my_plot + facet_grid(~deprtment)
+```
+
+
+##### Exercise 3
+
+- Use `group_by()` and `summarise()` to compute the average and total expenditure for salaries by department
+
+##### Exercise 4
+
+- How many employees have just been hired in the company?
+
+- How many employees have just been hired in the I.T. department?
+
+- Compute the average salary of employees from the Finance department with at least 8 years seniority.
+
+##### Exercise 5
+
+Create a summary table where you report:
+
+- the median salary by department (using the function `median()`), 
+
+- the number of employees by department (using the function `n()`), 
+
+- the number of new hired by department.
+
+Save it as an excel file via the `write_xlsx()` function.
+
+##### Exercise 6
+
+Given the summary table in the previous exercise, 
+reproduce the following bar plot of the median salary by department (hint: use `geom_col()`).
+
+```{r}
+#| echo: FALSE
+#| eval: TRUE
+#| fig-align: right
+#| fig-width: 4
+#| fig-height: 2
+
+empl |> 
+    group_by(department) |> 
+    summarise(median_salary=median(salary)) |> 
+    ggplot(aes(x=department, y=median_salary)) +
+    geom_col()
+```
+
+##### Exercise 7
+
+You have to create an Excel file where employees from different department are collected in different sheets.
+
+In R, you can create multi-sheets Excel files by feeding `write_xlsx()` with a list of datasets. Assume you stored the original `employees.xlsx`dataset in the dataframe `dt`. Now, try running
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+my_departments <- split(dt, dt$department)
+```
+
+- What does the `split()`function do? Run `?split()` to read the documentation.
+
+- What kind of object is stored in `my_departments`? Run `typeof(my_departments)` to investigate.
+
+- Feed `write_xlsx()` with `my_departments`to create a multi-sheet Excel file.
+
+:::
+:::
+
+
+::: {.cell .page-columns .page-full .column-screen .grey-section}
+
+### Practice 2
+
+```{r}
+#| echo: FALSE
+#| eval: TRUE
+library(tidyverse)
+library(downloadthis)
+
+
+library(randomNames)
+
+set.seed(3)
+n <- 200
+depts <- c('Marketing', 'Accounting', 'Sales', 'Finance', 'HR', 'I.T.')
+
+base_salary <- 50000
+
+salary_depts <- tibble(
+  department = depts, 
+  dept_base_salary = rnorm(length(depts), mean = base_salary, sd = 5000),
+  slope = runif(length(depts), 1000, 10000)  
+)
+
+empl <- tibble(full_name = randomNames(n)) |> 
+  distinct() |> 
+  separate(full_name, into = c("last_name", "first_name"), sep = ", ") |> 
+  mutate(
+    department = sample(depts, n, replace = TRUE),
+    seniority = sample(0:15, size = n, replace = TRUE)
+  ) |> 
+  left_join(salary_depts, by = "department") |> 
+  mutate(
+    salary = dept_base_salary + slope * seniority + rnorm(n, 0, 3000),
+    ID = 1000 + row_number()
+  ) |> 
+    select(-dept_base_salary, -slope) |> 
+    mutate(salary=map_dbl(salary, ~if_else(rbinom(1,1,.9)==0, NA, .x))) |> 
+    rename(`Last NAME`=last_name, `First-name`=first_name, `Seniority`=seniority)
+writexl::write_xlsx(empl, "assets/class3/raw_data_employees.xlsx")
+
+empl|> 
+    download_this(
+    output_name = "employees_company2",
+    output_extension = ".xlsx",
+    button_label = "Download employees_company2.xlsx",
+    button_type = "success",
+    has_icon = TRUE,
+    icon = "fa fa-save",
+    class = "button_small"
+  )
+```
+
+- The HR department sent you the employees file from a different company.
+- Download the `employees_company2.xlsx` and import it in R.
+- As you can see, the file has a structure that is very similar to the previous database. Nevertheless, it presents two critical issues:
+    - Column names do not follow a consistent notation. Sometimes they are capitalized, sometimes they are not. Some times they includes spaces, sometimes they do not. 
+    - There are missing values
+
+::: {.panel-tabset}
+##### Exercise 1
+
+Use the function `clean_names()` from the `janitor` package to tidy up column names automatically
+
+##### Exercise 2
+
+- How many missing values are present in the salary column? Use the `summary()` function.
+- Replace missing values with the median salary of department the missing value belongs to.
+
+:::
+:::

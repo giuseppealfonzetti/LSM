@@ -50,6 +50,14 @@ my_df
 ```{r}
 #| echo: TRUE
 #| eval: TRUE
+my_df$ad_type == "banner"
+```
+
+. . .
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
 my_filter = my_df$sales > 20
 my_filter
 ```

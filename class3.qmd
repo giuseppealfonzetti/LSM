@@ -112,9 +112,19 @@ my_plot + theme_minimal() + labs(x="Seniority (years)", y="Salary", color="Depar
 ```{r}
 #| echo: TRUE
 #| eval: FALSE
-my_plot + facet_grid(~deprtment)
+my_plot + facet_grid(~department)
 ```
 
+- Export your plot with the function `ggsave()`
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+my_great_plot <- my_plot + theme_minimal() + labs(x="Seniority (years)", y="Salary", color="Department:")+ facet_grid(~department)
+
+ggsave(my_great_plot, filename = here("great_plot.jpeg"))
+
+```
 
 ##### Exercise 3
 

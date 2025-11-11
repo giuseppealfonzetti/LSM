@@ -36,7 +36,7 @@ Then, we read the data.
 i_am("practice1.R")
 
 # construct the path to your data
-path <- here("data", "employees.xlsx")
+path <- here("data", "ecommerce.xlsx")
 
 # read the data and store it in dt
 dt <- read_xlsx(path=path)
@@ -234,7 +234,7 @@ salary_plot+
     scale_color_viridis_d()
 ```
 
-You can also use color palettes provided by external packages, such as `ggsci()` or `ggokabeito`
+You can also use color palettes provided by external packages, such as `ggsci` or `ggokabeito`
 
 ```{r}
 library(ggokabeito)
@@ -414,7 +414,7 @@ ggplot(report_table, aes(x=department, y=med_sal))+
 ```
 
 ### Exercise 7
-You can use the `split()` function to split a dataset according to grouping variable. Here, we want to split the original dataset in many smaller datasets, where each smaller dataset collects employees from a specific department
+You can use the `split()` function to split a dataset according to a grouping variable. Here, we want to split the original dataset in many smaller datasets, where each smaller dataset collects employees from a specific department
 
 ```{r}
 dt_by_dept <- split(dt, dt$department)
@@ -471,7 +471,7 @@ The new dataset is very similar to the previous one, but column names exhibit in
 dt2
 ```
 
-It is not a problem per se, but it might lead to syntax errors (for example, next time you'll need to extract the seniority variable from the dataset, will you remember that `Seniority` has capitalised first letter while that's not the case for `salary`?). To avoid confusion, it is convenient to stick to somo common naming standards, such as the [snake_case](https://en.wikipedia.org/wiki/Snake_case), where no capitalisation is allowed and spaces are replaced by underscores.
+It is not a problem per se, but it might lead to syntax errors (for example, next time you'll need to extract the seniority variable from the dataset, will you remember that `Seniority` has capitalised first letter while that's not the case for `salary`?). To avoid confusion, it is convenient to stick to some naming standards, such as the [snake_case](https://en.wikipedia.org/wiki/Snake_case), where no capitalisation is allowed and spaces are replaced by underscores.
 
 You can change a variable name manually
 
@@ -497,7 +497,7 @@ summary(dt2)
 
 On top of returning summary statistics such as mean and quantiles, the `summary()` function also returns you the number of missing values (`NA`) observed on each column. In this case, we get `{r} sum(is.na(dt2$salary))` `NA`s on the salary variable
 
-We are asked to impute them by using the median salary of the departmet of reference. We can do this by combining the `group_by()`, `mutate()` and `replace()`
+We are asked to impute them by using the median salary of the departmet of reference. We can do this by combining `group_by()`, `mutate()` and `replace()`
 
 
 ```{r}
@@ -507,7 +507,7 @@ dt2_imputed <- dt2 |>
 dt2_imputed
 ```
 
-This new version of the data, now has no missing values
+This new version of the data contains no missing values
 
 ```{r}
 summary(dt2_imputed)

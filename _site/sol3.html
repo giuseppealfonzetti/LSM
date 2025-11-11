@@ -558,7 +558,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>You can also use color palettes provided by external packages, such as <code>ggsci()</code> or <code>ggokabeito</code></p>
+<p>You can also use color palettes provided by external packages, such as <code>ggsci</code> or <code>ggokabeito</code></p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggokabeito)</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>salary_plot <span class="ot">&lt;-</span> salary_plot <span class="sc">+</span></span>
@@ -835,7 +835,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="exercise-7" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-7">Exercise 7</h3>
-<p>You can use the <code>split()</code> function to split a dataset according to grouping variable. Here, we want to split the original dataset in many smaller datasets, where each smaller dataset collects employees from a specific department</p>
+<p>You can use the <code>split()</code> function to split a dataset according to a grouping variable. Here, we want to split the original dataset in many smaller datasets, where each smaller dataset collects employees from a specific department</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>dt_by_dept <span class="ot">&lt;-</span> <span class="fu">split</span>(dt, dt<span class="sc">$</span>department)</span>
 <span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(dt_by_dept)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1002,7 +1002,7 @@ $Sales
 # ℹ 190 more rows</code></pre>
 </div>
 </div>
-<p>It is not a problem per se, but it might lead to syntax errors (for example, next time you’ll need to extract the seniority variable from the dataset, will you remember that <code>Seniority</code> has capitalised first letter while that’s not the case for <code>salary</code>?). To avoid confusion, it is convenient to stick to somo common naming standards, such as the <a href="https://en.wikipedia.org/wiki/Snake_case">snake_case</a>, where no capitalisation is allowed and spaces are replaced by underscores.</p>
+<p>It is not a problem per se, but it might lead to syntax errors (for example, next time you’ll need to extract the seniority variable from the dataset, will you remember that <code>Seniority</code> has capitalised first letter while that’s not the case for <code>salary</code>?). To avoid confusion, it is convenient to stick to some naming standards, such as the <a href="https://en.wikipedia.org/wiki/Snake_case">snake_case</a>, where no capitalisation is allowed and spaces are replaced by underscores.</p>
 <p>You can change a variable name manually</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>dt2 <span class="sc">|&gt;</span> </span>
@@ -1072,7 +1072,7 @@ $Sales
 </div>
 </div>
 <p>On top of returning summary statistics such as mean and quantiles, the <code>summary()</code> function also returns you the number of missing values (<code>NA</code>) observed on each column. In this case, we get 20 <code>NA</code>s on the salary variable</p>
-<p>We are asked to impute them by using the median salary of the departmet of reference. We can do this by combining the <code>group_by()</code>, <code>mutate()</code> and <code>replace()</code></p>
+<p>We are asked to impute them by using the median salary of the departmet of reference. We can do this by combining <code>group_by()</code>, <code>mutate()</code> and <code>replace()</code></p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>dt2_imputed <span class="ot">&lt;-</span> dt2 <span class="sc">|&gt;</span> </span>
 <span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(department) <span class="sc">|&gt;</span> </span>
@@ -1096,7 +1096,7 @@ $Sales
 # ℹ 190 more rows</code></pre>
 </div>
 </div>
-<p>This new version of the data, now has no missing values</p>
+<p>This new version of the data contains no missing values</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(dt2_imputed)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">

@@ -1,0 +1,157 @@
+---
+title: "Resources for Lab 4"
+
+execute: 
+  warning: false
+  message: false
+---
+
+```{r}
+#| echo: FALSE
+knitr::opts_chunk$set(
+    out.width = "50%", #
+    fig.width = 4,     # reasonable size
+    fig.asp = 0.618,   # golden ratio
+    fig.align = "right" # mostly what I want
+)
+```
+
+
+::: {.cell .page-columns .page-full .column-screen .grey-section}
+
+
+
+### Practice 1
+
+```{r}
+#| echo: FALSE
+#| eval: TRUE
+library(tidyverse)
+library(ids)
+library(downloadthis)
+
+set.seed(123)
+n_customers <- 200
+n_purchases <- 500
+unique_ids  <- uuid(n=n_customers)
+unique_products <- c("laptop_1", "laptop_2", "tablet", "e-reader", "smartphone_1","smartphone_2", "earphones")
+weights <- c(1,1,2,2,1,1,2)
+prices <- c(2139.99, 899.99, 519.99, 199.99, 499.99, 299.99, 89.99)
+prod_dict <- tibble(
+    PRODUCT=unique_products, `Price (Euro)`=prices
+)
+prods_vec <- sample(unique_products, size=n_purchases, prob=weights, replace=TRUE)
+ids_vec <- sample(unique_ids, size=n_purchases, prob = runif(n_customers), replace=TRUE)
+purchases_history <- tibble(`customer id` = ids_vec, product=prods_vec)
+my_list <- list(
+    "purchases_history"=purchases_history,
+    "products" = prod_dict
+)
+
+
+writexl::write_xlsx(my_list, "assets/class4/ecommerce.xlsx")
+
+my_list|> 
+    download_this(
+    output_name = "ecommerce",
+    output_extension = ".xlsx",
+    button_label = "Download ecommerce.xlsx",
+    button_type = "success",
+    has_icon = TRUE,
+    icon = "fa fa-save",
+    class = "button_small"
+  )
+```
+
+- Download the `ecommerce.xlsx` file and move it in the project folder. If you open it in Excel, you'll see it is made of two sheets, named "purchases_history" and "products".
+
+- You will need to import both sheets in `R`. 
+
+For importing, use the `read_xlsx()`function and specify the `sheet` argument.
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+
+# declare where you are in your project folder
+i_am("practice1.R")
+
+# construct the path to your data
+path <- here("data", "ecommerce.xlsx")
+
+# read the two sheets by specifying the "sheet" argument
+purchases <- read_xlsx(path = path, sheet = "purchases_history")
+products  <- read_xlsx(path = path, sheet = "products")
+```
+
+
+::: {.panel-tabset}
+
+#### Exercise 1
+
+- Clean the names of the two data frames by usign `clean_names()`from the `janitor` package.
+- Compute the number of sales by product
+
+#### Exercise 2
+
+Compute the total amount of sales by product in thousands of euros.
+
+:::
+:::
+
+
+### Practice 2
+
+```{r}
+#| echo: FALSE
+#| eval: TRUE
+library(tidyverse)
+library(ids)
+library(downloadthis)
+library(moderndive)
+set.seed(123)
+
+dt <- avocados |> 
+  select(date, type, average_price) |> 
+  group_by(date, type) |> 
+  summarise(avg_price = mean(average_price), .groups = "drop") |> 
+  pivot_wider(names_from = type, values_from = avg_price)
+
+dt |> 
+    download_this(
+    output_name = "avocados",
+    output_extension = ".xlsx",
+    button_label = "Download avocados.xlsx",
+    button_type = "success",
+    has_icon = TRUE,
+    icon = "fa fa-save",
+    class = "button_small"
+  )
+
+# dt |> 
+#   pivot_longer(cols=c(conventional, organic), names_to = "type", values_to = "av_price") |> 
+#   ggplot(aes(x=date, y=av_price, col=type))+
+#   geom_line()
+
+```
+
+- Download the `avocados.xlsx` file and move it in your project folder. 
+
+- The dataset contains the average prices ($) of conventional and organic avocados, collected from 2015-01-04 to 2018-03-25. 
+
+::: {.panel-tabset}
+#### Exercise 1
+
+Transform the data to match
+
+```{r}
+dt |> 
+  pivot_longer(cols=c(conventional, organic), names_to = "type", values_to = "avg_price") 
+
+```
+
+and then use `ggplot` and `geom_line()` to the plot average price trajectory across the years by type of avocado
+:::
+
+### Practice 3
+
+Organise the answers to [Lab 3 - Practice 1](class3.qmd) in a [R markdown](https://rmarkdown.rstudio.com/lesson-2.html) file.

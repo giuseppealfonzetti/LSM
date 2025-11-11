@@ -1,0 +1,514 @@
+---
+title: "Solutions Lab 3 practice"
+
+execute: 
+  warning: false
+  message: false
+---
+
+```{r}
+#| echo: FALSE
+
+knitr::opts_chunk$set(
+    out.width = "90%", 
+    fig.width = 8,     
+    fig.asp = 0.55,   
+    fig.align = "center" )
+```
+
+## Practice 1
+### Setup 
+I saved my R code in a script called `practice1.R` which is stored in the project folder. 
+
+First, we load all the packages that we are going to use
+```{r}
+library(tidyverse)
+library(here)
+library(readxl)
+library(writexl)
+```
+
+Then, we read the data. 
+```{r}
+#| eval: FALSE
+
+# declare where you are in your project folder
+i_am("practice1.R")
+
+# construct the path to your data
+path <- here("data", "employees.xlsx")
+
+# read the data and store it in dt
+dt <- read_xlsx(path=path)
+```
+
+```{r}
+#| echo: FALSE
+#| eval: TRUE
+dt <- read_xlsx("assets/class2/employees.xlsx")
+```
+
+### Exercise 1
+
+The function `dim()` returns the dimensions of the input. The first number is the number of rows. The second denotes the number of columns. 
+
+```{r}
+dim(dt)
+```
+
+Thus, the dataset stored in `dt` collects information about `r nrow(dt)` employees.
+
+You can extract the same dimensions by using the specialised functions `nrow()`and `ncol()`
+
+```{r}
+nrow(dt)
+ncol(dt)
+```
+
+A convenient way to quickly summarise the variables in your dataset is the function `summary()`. 
+
+```{r}
+summary(dt)
+```
+
+For each variable in your dataset, it returns some summary statistics. In case of numeric values, as for `seniority` and `salary`, it provides you with mean and quantiles. You can extract the same information by using the corresponding specialised functions (recall that the `$`operator allows you to access a given column from a `data.frame` object):
+
+```{r}
+mean(dt$seniority)
+median(dt$seniority)
+quantile(dt$seniority)
+```
+
+### Exercise 2
+
+#### Exercise 2.1
+
+We are interested in the top 3 earners from the I.T. deprtament.
+The `arrange()` function arranges values in ascending order by default. To switch to descending order you can either ask `arrange()` to sort according to `-salary` or wrap it in the `desc()` function:
+
+```{r}
+dt |> 
+    filter(department=="I.T.") |> 
+    arrange(-salary) 
+dt |> 
+    filter(department=="I.T.") |> 
+    arrange(desc(salary))
+```
+
+If you want to focus on the top three and drop all the other employess, you might want to leverage the function `row_number()`
+
+```{r}
+dt |> 
+    filter(department=="I.T.") |> 
+    arrange(desc(salary)) |> 
+    filter(row_number()<=3)   # after arranging, you retain only employees in the top 3 rows
+```
+
+#### Exercise 2.2
+We now want to compute the median salary of the I.T. department. There are many ways to do it. The most immediate is to use
+
+```{r}
+dt |> 
+    group_by(department) |> 
+    summarise(salary=median(salary))
+```
+
+which evaluates the median salary of each department, included the I.T. one.
+If you want to focus on the I.T department, you can use the `filter()` function. In this case, from a logical point of view, it is equivalent if you call `filter()` before or after `summarise()` 
+
+```{r}
+dt |> 
+    filter(department=="I.T.") |> 
+    group_by(department) |> 
+    summarise(salary=median(salary))
+
+dt |> 
+    group_by(department) |> 
+    summarise(salary=median(salary)) |> 
+    filter(department=="I.T.") 
+```
+
+#### Exercise 2.3
+The exercise asks to construct a scatterplot for salary and seniority, colored by department using the `ggplot2` package, which is automatically loaded with `tidyverse`
+
+```{r}
+salary_plot <- ggplot(dt, aes(x=seniority, y=salary, color=department))+
+                    geom_point()
+salary_plot
+```
+
+The `ggplot2` package is one of the most powerful plotting software available on the market, and provides the user with a wide set of tools to produce highly flexible and customisable graphs. 
+
+A very basic tweak you typically want to apply to your graph is to change its labels by using the `labs()` function
+
+```{r}
+salary_plot <- salary_plot +
+    labs(
+        x="Seniority (years since hiring)", 
+        y="Salary ($)", 
+        color="Department:"
+    )
+salary_plot               
+```
+
+The `labs()` function can also be used to set title and subtitle of the plot
+
+```{r}
+salary_plot <- salary_plot +
+    labs(
+        title="Does salary increase with seniority?",
+        subtitle="Department by department evaluation"
+    )
+salary_plot
+```
+
+When you compare across many groups, it might be more convenient to plot groups in separate panels. You produce such plots by using the `facet_grid()` or the `facet_wrap()` functions:
+
+```{r}
+salary_plot+
+    facet_grid(~department)
+```
+
+```{r}
+salary_plot <- salary_plot+
+    facet_wrap(~department)
+salary_plot
+```
+
+
+You can use preset themes to quickly modify the appearances of your plot. For example
+
+```{r}
+salary_plot + theme_bw()
+```
+
+```{r}
+salary_plot + theme_light()
+```
+
+```{r}
+salary_plot <- salary_plot + theme_minimal()
+salary_plot
+```
+
+You can further customise your plot by using the `theme()` function. See `?theme()` for the full list of options available. For example
+
+```{r}
+salary_plot +
+    theme(
+        legend.position="bottom",        # move the legend in a different position
+        panel.grid.minor=element_blank() # remove minor grid lines
+    )
+```
+
+Since we are using panels to differentiate across departments, the legend for colors is not really needed, thus, it might be sensible to remove it
+
+```{r}
+salary_plot <- salary_plot +
+    theme(
+        legend.position="none",  # remove the legend 
+        panel.grid.minor=element_blank() # declutter the plot by removing minor grid lines
+    )
+salary_plot
+```
+
+You can also customise the colors of the plots. For example, you can use a customised palette by specifying colors  via [hex codes](https://en.wikipedia.org/wiki/Web_colors),
+
+```{r}
+my_palette <- c(
+    "Accounting" = "#F7B1AB",
+    "Finance"    = "#807182",
+    "HR"         = "#E3DDDD",
+    "I.T"        = "#A45C3D",
+    "Sales"      = "#5c3410ff",
+    "Marketing"  = "#1C0221"
+    )
+salary_plot +
+    scale_color_manual(values=my_palette)
+```
+
+You can use ready-to-use color palettes provided by `ggplot2`
+
+```{r}
+salary_plot+
+    scale_color_viridis_d()
+```
+
+You can also use color palettes provided by external packages, such as `ggsci()` or `ggokabeito`
+
+```{r}
+library(ggokabeito)
+salary_plot <- salary_plot +
+    scale_color_okabe_ito()
+salary_plot
+```
+
+Nevertheless, there are many other possibilities of customisation. You can find a whole book in this regard in the [resources](resources.qmd) page.
+
+When you are satisfied with your plot, you can save it with the `ggsave()` function. See `?ggsave()` for a list of the exportable formats.
+
+
+```{r}
+#| eval: FALSE
+
+# You can save it in many different formats
+ggsave(salary_plot, path = here("salary_plot.jpg")) # save it in jpg format
+ggsave(salary_plot, path = here("salary_plot.pdf")) # save it in pdf format
+ggsave(salary_plot, path = here("salary_plot.png")) # save it in png format
+
+# You can also customise dimensions to better fit in your documents/slides
+ggsave(salary_plot, path = here("salary_plot_wide.jpg"), width=10, height = 5)
+ggsave(salary_plot, path = here("salary_plot_square.jpg"), width=8,  height = 8)
+
+```
+
+
+### Exercise 3
+
+
+```{r}
+dt |> 
+    group_by(department) |> 
+    summarise(
+        total=sum(salary),
+        average=mean(salary)
+    )
+```
+
+### Exercise 4
+
+#### Exercise 4.1
+To check how many employees have just been hired across all departments we can use the `filter()` function
+
+```{r}
+dt |> 
+    filter(seniority==0)
+```
+
+the command returns eleven rows, so we already know the number of new hired is 11. However, we might want to explicitely compute the exact number. In this case, we can use the `n()` function, which do nothing else but counting elements
+
+```{r}
+dt |> 
+    filter(seniority==0) |> 
+    summarise(new_hires = n())
+```
+
+See, however, that while you might expect to get a number, `R` is returning you a 1x1 `tibble`. If you need the numeric format, you can use
+
+```{r}
+dt |> 
+    filter(seniority==0) |> 
+    summarise(new_hires = n()) |> 
+    as.numeric()
+```
+
+#### Exercise 4.2
+
+To count the new hires by department, it is sufficient to add the specification of the grouping structure, that is
+
+
+```{r}
+new_hires_table <- dt |> 
+    group_by(department) |> 
+    filter(seniority==0) |> 
+    summarise(new_hires = n())
+new_hires_table
+```
+
+Obviously, if you sum the new hires by department, you still get `{r} sum(new_hires_table$new_hires)`, as expected
+
+```{r}
+sum(new_hires_table$new_hires)
+```
+
+If you want to extract the value for the I.T. department you can use `filter()`
+
+
+```{r}
+new_hires_table |> 
+    filter(department=="I.T.") 
+```
+
+and if you want to extract the numeric value only, you can use
+
+```{r}
+new_hires_table |> 
+    filter(department=="I.T.") |> 
+    select(new_hires) |> 
+    as.numeric()
+```
+
+#### Exercise 4.3
+
+We focus on employees of the Finance department with at least 8 years seniority. Thus, first we specify such conditions in the filtering function, and then we summarise the salary of the filtered rows
+
+```{r}
+dt |> 
+    filter(department=="Finance", seniority >= 8) |> 
+    summarise(average_salary = mean(salary))
+```
+
+If you want to do it by department, and at the same time checking how many employees satisfy the seniority condition, you can use
+
+
+```{r}
+dt |> 
+    filter(seniority >= 8) |> 
+    group_by(department) |> 
+    summarise(
+        average_salary = mean(salary), 
+        number_of_employees = n()
+        )
+```
+
+### Exercise 5
+We need to compute the median salary, the total number of employees and the number of new hires by department. To do everything it the same `summarise()` call, there a small "trick" for what concerns the new hires. Recall how comparisons work in terms of logical values. If you call
+
+```{r}
+dt$seniority==0
+```
+
+`R` returns a vector of `TRUE` and `FALSE`, where each element denotes if that specific row of the dataset is a new hire or not. If you call a function expecting a numeric input on such a vector, `R` will automatically consider `TRUE` as 1 and `FALSE` as 0. Thus
+
+```{r}
+sum(dt$seniority==0)
+```
+
+returns the number of `TRUE`s in the vector, that is the number of new hires in the company. Therefore, we can compute such number by department by using
+
+```{r}
+report_table <- dt |> 
+    group_by(department) |> 
+    summarise(
+        med_sal=median(salary),
+        total_n =n(),
+        new_hires= sum(seniority==0)
+    )
+report_table
+```
+
+Before exporting the table to Excel, you might want to rename columns in a more reader-friendly way. You can do this by means of the `rename()` function
+```{r}
+excel_table <- report_table |> 
+    rename(
+        "Department"=department, 
+        "Median salary" = med_sal,
+        "Total number of employees"=total_n,
+        "Number of new hires"= new_hires
+        )
+excel_table
+```
+
+When you are ready to export your table, you can call 
+
+```{r}
+#| eval: FALSE
+write_xlsx(excel_table, path = here("my_table.xlsx"))
+```
+
+### Exercise 6
+
+```{r}
+ggplot(report_table, aes(x=department, y=med_sal))+
+    geom_col()
+```
+
+### Exercise 7
+You can use the `split()` function to split a dataset according to grouping variable. Here, we want to split the original dataset in many smaller datasets, where each smaller dataset collects employees from a specific department
+
+```{r}
+dt_by_dept <- split(dt, dt$department)
+typeof(dt_by_dept)
+```
+
+the split() function returns you a list. In particular, it is a list of datasets, department by department, as you can see
+
+```{r}
+dt_by_dept
+```
+
+If you input a list in `write_xlsx()`, it creates an excel file with one sheet for each dataset in the list
+
+```{r}
+#| eval: FALSE
+write_xlsx(dt_by_dept, path=here("multi_sheet.xlsx"))
+```
+
+## Practice 2
+
+### Setup 
+
+I saved my R code in a script called `practice2.R` which is stored in the project folder. 
+```{r}
+#| eval: FALSE
+
+library(tidyverse)
+library(here)
+library(readxl)
+library(writexl)
+
+# declare where you are in your project folder
+i_am("practice2.R")
+
+# construct the path to the new data
+path2 <- here("data", "employees_company2.xlsx")
+
+# read the data and store it in dt2
+dt2 <- read_xlsx(path=path2)
+```
+
+```{r}
+#| echo: FALSE
+#| eval: TRUE
+dt2 <- read_xlsx("assets/class3/raw_data_employees.xlsx")
+```
+
+### Exercise 1
+
+The new dataset is very similar to the previous one, but column names exhibit inconsistencies: spaces, capitalised initial letters, capitalised words etc. 
+
+```{r}
+dt2
+```
+
+It is not a problem per se, but it might lead to syntax errors (for example, next time you'll need to extract the seniority variable from the dataset, will you remember that `Seniority` has capitalised first letter while that's not the case for `salary`?). To avoid confusion, it is convenient to stick to somo common naming standards, such as the [snake_case](https://en.wikipedia.org/wiki/Snake_case), where no capitalisation is allowed and spaces are replaced by underscores.
+
+You can change a variable name manually
+
+```{r}
+dt2 |> 
+    rename(last_name = `Last NAME`)
+```
+
+or you can leverage some convenient helper functions, such as the `clean_names()` function from the `janitor` package
+
+```{r}
+library(janitor)
+dt2 <- dt2 |> 
+    clean_names()
+dt2
+```
+
+### Exercise 2
+
+```{r}
+summary(dt2)
+```
+
+On top of returning summary statistics such as mean and quantiles, the `summary()` function also returns you the number of missing values (`NA`) observed on each column. In this case, we get `{r} sum(is.na(dt2$salary))` `NA`s on the salary variable
+
+We are asked to impute them by using the median salary of the departmet of reference. We can do this by combining the `group_by()`, `mutate()` and `replace()`
+
+
+```{r}
+dt2_imputed <- dt2 |> 
+    group_by(department) |> 
+    mutate(salary = replace(salary,  is.na(salary),  median(salary, na.rm=TRUE)))
+dt2_imputed
+```
+
+This new version of the data, now has no missing values
+
+```{r}
+summary(dt2_imputed)
+```

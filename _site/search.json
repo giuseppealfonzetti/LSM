@@ -763,5 +763,12 @@
     "title": "Solutions Lab 4 practice",
     "section": "Practice 2",
     "text": "Practice 2\n\nExercise 1\n\nlibrary(readxl)\nlibrary(tidyverse)\n\n# declare where you are in your project folder\ni_am(\"practice2.R\")\n\n# construct the path to your data\npath &lt;- here(\"data\", \"avocados.xlsx\")\n\navocados &lt;- read_xlsx(path = path)\n\nWe need to use pivot_longer() to reshape the data:\n\nnew_avo &lt;- avocados |&gt; \n  pivot_longer(\n    cols = c(conventional, organic), \n    names_to = \"type\", \n    values_to = \"avg_price\"\n    ) \nnew_avo\n\n# A tibble: 338 × 3\n   date                type         avg_price\n   &lt;dttm&gt;              &lt;chr&gt;            &lt;dbl&gt;\n 1 2015-01-04 00:00:00 conventional     1.01 \n 2 2015-01-04 00:00:00 organic          1.59 \n 3 2015-01-11 00:00:00 conventional     1.11 \n 4 2015-01-11 00:00:00 organic          1.63 \n 5 2015-01-18 00:00:00 conventional     1.13 \n 6 2015-01-18 00:00:00 organic          1.65 \n 7 2015-01-25 00:00:00 conventional     1.12 \n 8 2015-01-25 00:00:00 organic          1.68 \n 9 2015-02-01 00:00:00 conventional     0.962\n10 2015-02-01 00:00:00 organic          1.53 \n# ℹ 328 more rows\n\n\nOnce reshaped, we can plot the price trajectories over time:\n\nnew_avo |&gt; \n  ggplot(aes(x=date, y=avg_price, col=type))+\n  geom_line()\n\n\n\n\n\n\n\n\nAs always, we can customise the plots as we prefer:\n\nlibrary(ggokabeito)\nnew_avo |&gt; \n  ggplot(aes(x=date, y=avg_price, col=type))+\n  geom_line(linewidth=1) +\n  labs(x=\"\", y= \"Average price ($)\", color=\"Avocado origin:\")+\n  theme_bw() +\n  theme(\n    legend.position = \"top\", \n    panel.grid.minor = element_blank()\n    )+\n  scale_color_okabe_ito()"
+  },
+  {
+    "objectID": "class5.html",
+    "href": "class5.html",
+    "title": "Homework Lab 5",
+    "section": "",
+    "text": "Homework\n\nCreate a new project for this homework;\nDownload the .rmd homework document and move it in the new project folder.\n\nDownload homework1.rmd\n\nOpen it and write your name in the author field.\nRender the file and follow the instructions.\nDo not modify the code chunck before the Solutions section!"
   }
 ]

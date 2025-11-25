@@ -1,10 +1,5 @@
 ---
-title: "Untitled"
-format: html
----
-
----
-title: "Resources for Lab 5"
+title: "Homework Lab 5"
 
 execute: 
   warning: false
@@ -20,3 +15,15 @@ knitr::opts_chunk$set(
     fig.align = "right" # mostly what I want
 )
 ```
+
+# Homework
+
+- Create a new project for this homework;
+- Download the `.rmd` homework document and move it in the new project folder.
+
+[Download homework1.rmd](assets/class5/homework1.rmd){.btn .btn-primary download="homework1.rmd"}
+
+- Open it and write your name in the `author` field.
+- Render the file and follow the instructions.
+- Do not modify the code chunck before the `Solutions` section!
+

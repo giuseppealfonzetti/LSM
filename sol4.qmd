@@ -1,0 +1,174 @@
+---
+title: "Solutions Lab 4 practice"
+
+execute: 
+  warning: false
+  message: false
+---
+
+## Practice 1
+
+For importing, use the `read_xlsx()`function and specify the `sheet` argument.
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+library(readxl)
+library(tidyverse)
+
+# declare where you are in your project folder
+i_am("practice1.R")
+
+# construct the path to your data
+path <- here("data", "ecommerce.xlsx")
+
+# read the two sheets by specifying the "sheet" argument
+purchases <- read_xlsx(path = path, sheet = "purchases_history")
+products  <- read_xlsx(path = path, sheet = "products")
+```
+
+```{r}
+#| echo: FALSE
+#| eval: TRUE
+library(readxl)
+library(tidyverse)
+
+path <- "assets/class4/ecommerce.xlsx"
+purchases <- read_xlsx(path = path, sheet = "purchases_history")
+products  <- read_xlsx(path = path, sheet = "products")
+
+```
+
+### Exercise 1
+
+
+```{r}
+library(janitor)
+
+purchases <- purchases |> clean_names()
+products <- products |> clean_names()
+```
+
+To compute the total number of sales by product we can use the `group_by()` + `summarise()` combo. 
+
+```{r}
+purchases |> 
+    group_by(product) |> 
+    summarise(
+        number_of_sales = n()
+    )
+```
+
+There is even a faster way to count how many times the values of a given variable appear in the dataset. Literally, you can pipe the `count()` function
+
+```{r}
+purchases |> 
+    count(product)
+```
+
+
+### Exercise 2
+
+To compute the total amount of money spent on each product we first join the two datasets, 
+
+```{r}
+purchases |> 
+    left_join(products, by = "product") 
+```
+
+and then comput the totals,
+
+```{r}
+purchases |> 
+    left_join(products, by = "product") |> 
+    group_by(product) |> 
+    summarise(
+        total = sum(price_euro),
+        total_thousands = sum(price_euro)/1000
+        )
+```
+
+Equivalently, we can also first count how many items have been sold by product type, as in the previous exercise, and then join the resulting table with the price listings
+
+
+```{r}
+purchases |> 
+    count(product) |> 
+    left_join(products)
+```
+
+Once here, we need to compute total by product by multiplying their prices and quantities sold
+
+
+```{r}
+purchases |> 
+    count(product) |> 
+    left_join(products) |> 
+    mutate(
+        total_thousands = price_euro * n /1000
+    )
+```
+
+## Practice 2
+### Exercise 1
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+library(readxl)
+library(tidyverse)
+
+# declare where you are in your project folder
+i_am("practice2.R")
+
+# construct the path to your data
+path <- here("data", "avocados.xlsx")
+
+avocados <- read_xlsx(path = path)
+```
+
+```{r}
+#| echo: FALSE
+#| eval: TRUE
+library(readxl)
+library(tidyverse)
+
+path <- "assets/class4/avocados.xlsx"
+avocados <- read_xlsx(path = path)
+
+```
+
+We need to use `pivot_longer()` to reshape the data:
+
+```{r}
+new_avo <- avocados |> 
+  pivot_longer(
+    cols = c(conventional, organic), 
+    names_to = "type", 
+    values_to = "avg_price"
+    ) 
+new_avo
+```
+
+Once reshaped, we can plot the price trajectories over time:
+
+```{r}
+new_avo |> 
+  ggplot(aes(x=date, y=avg_price, col=type))+
+  geom_line()
+```
+
+As always, we can customise the plots as we prefer:
+
+```{r}
+library(ggokabeito)
+new_avo |> 
+  ggplot(aes(x=date, y=avg_price, col=type))+
+  geom_line(linewidth=1) +
+  labs(x="", y= "Average price ($)", color="Avocado origin:")+
+  theme_bw() +
+  theme(
+    legend.position = "top", 
+    panel.grid.minor = element_blank()
+    )+
+  scale_color_okabe_ito()
+```

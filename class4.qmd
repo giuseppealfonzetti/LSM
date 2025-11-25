@@ -126,6 +126,7 @@ dt |>
     icon = "fa fa-save",
     class = "button_small"
   )
+writexl::write_xlsx(dt, "assets/class4/avocados.xlsx")
 
 # dt |> 
 #   pivot_longer(cols=c(conventional, organic), names_to = "type", values_to = "av_price") |> 
@@ -144,12 +145,14 @@ dt |>
 Transform the data to match
 
 ```{r}
+#| echo: FALSE
+
 dt |> 
   pivot_longer(cols=c(conventional, organic), names_to = "type", values_to = "avg_price") 
 
 ```
 
-and then use `ggplot` and `geom_line()` to the plot average price trajectory across the years by type of avocado
+and then use `ggplot` and `geom_line()` to plot the average price trajectory across the years by type of avocado
 :::
 
 ### Practice 3

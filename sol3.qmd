@@ -36,7 +36,7 @@ Then, we read the data.
 i_am("practice1.R")
 
 # construct the path to your data
-path <- here("data", "ecommerce.xlsx")
+path <- here("data", "employees.xlsx")
 
 # read the data and store it in dt
 dt <- read_xlsx(path=path)

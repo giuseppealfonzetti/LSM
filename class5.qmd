@@ -1,0 +1,22 @@
+---
+title: "Untitled"
+format: html
+---
+
+---
+title: "Resources for Lab 5"
+
+execute: 
+  warning: false
+  message: false
+---
+
+```{r}
+#| echo: FALSE
+knitr::opts_chunk$set(
+    out.width = "50%", #
+    fig.width = 4,     # reasonable size
+    fig.asp = 0.618,   # golden ratio
+    fig.align = "right" # mostly what I want
+)
+```

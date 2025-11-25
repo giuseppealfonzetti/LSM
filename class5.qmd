@@ -16,8 +16,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Homework
-
 - Create a new project for this homework;
 - Download the `.rmd` homework document and move it in the new project folder.
 

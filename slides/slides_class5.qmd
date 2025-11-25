@@ -23,7 +23,7 @@ highlight-style: tango
 library(tidyverse)
 ```
 
-# Types of t-tests {style="font-size: 0.7em;"}
+# Types of t-tests {style="font-size: 0.6em;"}
 
 - One-sample t-test : Compare one mean vs a known/target value
 
@@ -35,7 +35,7 @@ library(tidyverse)
 
 - Paired t-test: Compare means on paired data (e.g. same people, before and after treatment)
 
-# Case study A {style="font-size: 0.7em;"}
+# Case study A {style="font-size: 0.6em;"}
 
 . . .
 
@@ -49,7 +49,7 @@ library(tidyverse)
 
 - You want to assess if your campaign performance is **significantly different** from your competitor benchmark.
 
-# Data {style="font-size: 0.7em;"}
+# Data {style="font-size: 0.6em;"}
 
 ```{r}
 set.seed(123)
@@ -79,7 +79,7 @@ landing_data <- landing_data |>
 landing_data
 ```
 
-# Plot {style="font-size: 0.7em;"}
+# Plot {style="font-size: 0.6em;"}
 ```{r}
 #| echo=TRUE
 landing_data |>
@@ -88,7 +88,7 @@ landing_data |>
     labs(x="", y="Time on page (s)")
 ```
 
-# Plot {style="font-size: 0.7em;"}
+# Plot {style="font-size: 0.6em;"}
 
 ```{r}
 #| echo: TRUE
@@ -100,7 +100,7 @@ landing_data |>
     labs(x="", y="Time on page (s)")
 ```
 
-# Plot {style="font-size: 0.7em;"}
+# Plot {style="font-size: 0.6em;"}
 
 ```{r}
 #| echo: TRUE
@@ -111,7 +111,7 @@ landing_data |>
     labs(x="", y="Time on page (s)")
 ```
 
-# Business question {style="font-size: 0.7em;"}
+# Business question {style="font-size: 0.6em;"}
 
 ::: {.columns}
 ::: {.column width="50%"}
@@ -147,7 +147,7 @@ t.test(
   )
 ```
 
-# Case study B {style="font-size: 0.7em;"}
+# Case study B {style="font-size: 0.6em;"}
 
 - You assessed that the data highlight a small underperformance of your company campaign compared to the competitor one. 
 
@@ -159,7 +159,7 @@ t.test(
 
 - You are interested to check if the modified landing page performs differently from the old one.
 
-# Case study B - Experiments {style="font-size: 0.7em;"}
+# Case study B - Experiments {style="font-size: 0.6em;"}
 
 Now you can choose between:
 
@@ -175,7 +175,7 @@ Now you can choose between:
 
 In the first case, you can compare the average time-on-page of the standard and modified landing pages using a **Two sample t-test**. In the second case, you have to rely on a **Paired t-test**.
 
-# Data {style="font-size: 0.7em;"}
+# Data {style="font-size: 0.6em;"}
 
 ```{r}
 #| echo: TRUE
@@ -192,7 +192,7 @@ full_data
 ```
 
 
-# Plot two groups {style="font-size: 0.7em;"}
+# Plot two groups {style="font-size: 0.6em;"}
 
 ```{r}
 #| echo=TRUE
@@ -202,7 +202,7 @@ full_data |>
     labs(x="", y="Time to event (s)")
 ```
 
-# Business question {style="font-size: 0.7em;"}
+# Business question {style="font-size: 0.6em;"}
 
 ::: {.columns}
 ::: {.column width="50%"}

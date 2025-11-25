@@ -107,7 +107,7 @@ Each row of the dataset represents a user. Columns denote:
 - `avg_delivery_time`: average delivery time to the user;
 
 ## Tasks
-You are asked to complete/answer the following tasks/questions. When answering a question or completing a task, always show the code and interpret the results.
+You are asked to complete/answer the following tasks/questions. When answering a question or completing a task, always show the code and interpret the results. When you consider it appropriate, use plots to highlight your results.
 
 - Data exploration:
   1. Produce a table showing the number and percentage of users who received the coupon. 
@@ -123,7 +123,7 @@ You are asked to complete/answer the following tasks/questions. When answering a
   4. Among users who placed at least one order, does the mean average order value differ between coupon and non-coupon users?
 - Summarise your results. Is there evidence that the campaign has been effective?
 
-**Hint:** for the inferential part, you are supposed to use the `t.test()` function to answer all questions.
+**Hint:** for the inferential part, you are supposed to use the `t.test()` function to answer all questions. 
 
 To answer the questions, you can directly use this `.rmd` file by providing your answers in the [Solutions](#solutions) section. Alternatively, after running this `.rmd` once, you'll find the two datasets already available on you machine as `.xlsx` in a newly created `report_data` folder living in the same folder where this file is located. You can use them as you prefer to produce the report in `Word` or similar programs. Nevertheless, you will still have to answer all questions and provide your code.
 

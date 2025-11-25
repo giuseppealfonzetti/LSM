@@ -38,303 +38,6 @@
     "text": "Practice 1\n\n\n Download ecommerce.xlsx\n\n\n\nDownload the ecommerce.xlsx file and move it in the project folder. If you open it in Excel, you’ll see it is made of two sheets, named “purchases_history” and “products”.\nYou will need to import both sheets in R.\n\nFor importing, use the read_xlsx()function and specify the sheet argument.\n\n# declare where you are in your project folder\ni_am(\"practice1.R\")\n\n# construct the path to your data\npath &lt;- here(\"data\", \"ecommerce.xlsx\")\n\n# read the two sheets by specifying the \"sheet\" argument\npurchases &lt;- read_xlsx(path = path, sheet = \"purchases_history\")\nproducts  &lt;- read_xlsx(path = path, sheet = \"products\")\n\n\nExercise 1Exercise 2\n\n\n\nClean the names of the two data frames by usign clean_names()from the janitor package.\nCompute the number of sales by product\n\n\n\nCompute the total amount of sales by product in thousands of euros.\n\n\n\n\n\nPractice 2\n\n\n Download avocados.xlsx\n\n\n\nDownload the avocados.xlsx file and move it in your project folder.\nThe dataset contains the average prices ($) of conventional and organic avocados, collected from 2015-01-04 to 2018-03-25.\n\n\nExercise 1\n\n\nTransform the data to match\n\ndt |&gt; \n  pivot_longer(cols=c(conventional, organic), names_to = \"type\", values_to = \"avg_price\") \n\n# A tibble: 338 × 3\n   date       type         avg_price\n   &lt;date&gt;     &lt;chr&gt;            &lt;dbl&gt;\n 1 2015-01-04 conventional     1.01 \n 2 2015-01-04 organic          1.59 \n 3 2015-01-11 conventional     1.11 \n 4 2015-01-11 organic          1.63 \n 5 2015-01-18 conventional     1.13 \n 6 2015-01-18 organic          1.65 \n 7 2015-01-25 conventional     1.12 \n 8 2015-01-25 organic          1.68 \n 9 2015-02-01 conventional     0.962\n10 2015-02-01 organic          1.53 \n# ℹ 328 more rows\n\n\nand then use ggplot and geom_line() to the plot average price trajectory across the years by type of avocado\n\n\n\n\n\nPractice 3\nOrganise the answers to Lab 3 - Practice 1 in a R markdown file."
   },
   {
-    "objectID": "slides/slides_class3.html#r-basics---filtering",
-    "href": "slides/slides_class3.html#r-basics---filtering",
-    "title": "Data manipulation",
-    "section": "R basics - filtering",
-    "text": "R basics - filtering\nConsider the data.frame\n\nmy_df\n\n  id ad_type n_clicks sales weekend\n1  1  pop-up       56     7    TRUE\n2  2  banner       23     2   FALSE\n3  3   video      321    25   FALSE\n4  4  banner       89    10    TRUE\n5  5  pop-up       10    23    TRUE\n\n\n\nCreate a filter:\n\nmy_df$ad_type == \"banner\"\n\n[1] FALSE  TRUE FALSE  TRUE FALSE\n\n\n\n\n\nmy_filter = my_df$sales &gt; 20\nmy_filter\n\n[1] FALSE FALSE  TRUE FALSE  TRUE\n\n\n\n\nView:\n\nmy_df[my_filter, ]\n\n  id ad_type n_clicks sales weekend\n3  3   video      321    25   FALSE\n5  5  pop-up       10    23    TRUE\n\n\n\n\nOverwrite:\n\nmy_df[my_filter, ]$ad_type = c(\"banner\", \"banner\")\nmy_df\n\n  id ad_type n_clicks sales weekend\n1  1  pop-up       56     7    TRUE\n2  2  banner       23     2   FALSE\n3  3  banner      321    25   FALSE\n4  4  banner       89    10    TRUE\n5  5  banner       10    23    TRUE"
-  },
-  {
-    "objectID": "slides/slides_class3.html#r-basics---missing-values",
-    "href": "slides/slides_class3.html#r-basics---missing-values",
-    "title": "Data manipulation",
-    "section": "R basics - Missing values",
-    "text": "R basics - Missing values\nConsider the data.frame\n\nmy_df\n\n  id ad_type n_clicks sales weekend\n1  1  pop-up       56     7    TRUE\n2  2  banner       23    NA   FALSE\n3  3   video      321    25   FALSE\n4  4  banner       NA    10    TRUE\n5  5  pop-up       10    23    TRUE\n\n\n\n\nsummary(my_df)\n\n       id      ad_type             n_clicks          sales      \n Min.   :1   Length:5           Min.   : 10.00   Min.   : 7.00  \n 1st Qu.:2   Class :character   1st Qu.: 19.75   1st Qu.: 9.25  \n Median :3   Mode  :character   Median : 39.50   Median :16.50  \n Mean   :3                      Mean   :102.50   Mean   :16.25  \n 3rd Qu.:4                      3rd Qu.:122.25   3rd Qu.:23.50  \n Max.   :5                      Max.   :321.00   Max.   :25.00  \n                                NA's   :1        NA's   :1      \n  weekend       \n Mode :logical  \n FALSE:2        \n TRUE :3"
-  },
-  {
-    "objectID": "slides/slides_class3.html#r-basics---missing-values-1",
-    "href": "slides/slides_class3.html#r-basics---missing-values-1",
-    "title": "Data manipulation",
-    "section": "R basics - Missing values",
-    "text": "R basics - Missing values\nConsider the data.frame\n\nmy_df\n\n  id ad_type n_clicks sales weekend\n1  1  pop-up       56     7    TRUE\n2  2  banner       23    NA   FALSE\n3  3   video      321    25   FALSE\n4  4  banner       NA    10    TRUE\n5  5  pop-up       10    23    TRUE\n\n\nLocate:\n\nclicks_missing &lt;- is.na(my_df$n_clicks)\nclicks_missing\n\n[1] FALSE FALSE FALSE  TRUE FALSE\n\n\n\nReplace:\n\nmy_df$n_clicks[clicks_missing] &lt;- median(my_df$n_clicks, na.rm=TRUE)\nmy_df\n\n  id ad_type n_clicks sales weekend\n1  1  pop-up     56.0     7    TRUE\n2  2  banner     23.0    NA   FALSE\n3  3   video    321.0    25   FALSE\n4  4  banner     39.5    10    TRUE\n5  5  pop-up     10.0    23    TRUE"
-  },
-  {
-    "objectID": "slides/slides_class3.html#data-manipulation-with-tidyverse",
-    "href": "slides/slides_class3.html#data-manipulation-with-tidyverse",
-    "title": "Data manipulation",
-    "section": "Data manipulation with tidyverse",
-    "text": "Data manipulation with tidyverse\nConsider this dataset:\n\nlibrary(tidyverse)\npenguins\n\n# A tibble: 344 × 8\n   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n 1 Adelie  Torgersen           39.1          18.7               181        3750\n 2 Adelie  Torgersen           39.5          17.4               186        3800\n 3 Adelie  Torgersen           40.3          18                 195        3250\n 4 Adelie  Torgersen           NA            NA                  NA          NA\n 5 Adelie  Torgersen           36.7          19.3               193        3450\n 6 Adelie  Torgersen           39.3          20.6               190        3650\n 7 Adelie  Torgersen           38.9          17.8               181        3625\n 8 Adelie  Torgersen           39.2          19.6               195        4675\n 9 Adelie  Torgersen           34.1          18.1               193        3475\n10 Adelie  Torgersen           42            20.2               190        4250\n# ℹ 334 more rows\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;\n\n\nSelect:\n\nmy_penguins &lt;- select(penguins, species, island, sex, bill_length_mm, body_mass_g, year)\nmy_penguins\n\n# A tibble: 344 × 6\n   species island    sex    bill_length_mm body_mass_g  year\n   &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt;           &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;\n 1 Adelie  Torgersen male             39.1        3750  2007\n 2 Adelie  Torgersen female           39.5        3800  2007\n 3 Adelie  Torgersen female           40.3        3250  2007\n 4 Adelie  Torgersen &lt;NA&gt;             NA            NA  2007\n 5 Adelie  Torgersen female           36.7        3450  2007\n 6 Adelie  Torgersen male             39.3        3650  2007\n 7 Adelie  Torgersen female           38.9        3625  2007\n 8 Adelie  Torgersen male             39.2        4675  2007\n 9 Adelie  Torgersen &lt;NA&gt;             34.1        3475  2007\n10 Adelie  Torgersen &lt;NA&gt;             42          4250  2007\n# ℹ 334 more rows"
-  },
-  {
-    "objectID": "slides/slides_class3.html#data-manipulation-with-tidyverse-1",
-    "href": "slides/slides_class3.html#data-manipulation-with-tidyverse-1",
-    "title": "Data manipulation",
-    "section": "Data manipulation with tidyverse",
-    "text": "Data manipulation with tidyverse\nFilter:\n\nfilter(my_penguins, sex==\"female\")\n\n# A tibble: 165 × 6\n   species island    sex    bill_length_mm body_mass_g  year\n   &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt;           &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;\n 1 Adelie  Torgersen female           39.5        3800  2007\n 2 Adelie  Torgersen female           40.3        3250  2007\n 3 Adelie  Torgersen female           36.7        3450  2007\n 4 Adelie  Torgersen female           38.9        3625  2007\n 5 Adelie  Torgersen female           41.1        3200  2007\n 6 Adelie  Torgersen female           36.6        3700  2007\n 7 Adelie  Torgersen female           38.7        3450  2007\n 8 Adelie  Torgersen female           34.4        3325  2007\n 9 Adelie  Biscoe    female           37.8        3400  2007\n10 Adelie  Biscoe    female           35.9        3800  2007\n# ℹ 155 more rows\n\n\n\n\nfilter(my_penguins, sex==\"female\", island==\"Biscoe\")\n\n# A tibble: 80 × 6\n   species island sex    bill_length_mm body_mass_g  year\n   &lt;fct&gt;   &lt;fct&gt;  &lt;fct&gt;           &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;\n 1 Adelie  Biscoe female           37.8        3400  2007\n 2 Adelie  Biscoe female           35.9        3800  2007\n 3 Adelie  Biscoe female           35.3        3800  2007\n 4 Adelie  Biscoe female           40.5        3200  2007\n 5 Adelie  Biscoe female           37.9        3150  2007\n 6 Adelie  Biscoe female           39.6        3500  2008\n 7 Adelie  Biscoe female           35          3450  2008\n 8 Adelie  Biscoe female           34.5        2900  2008\n 9 Adelie  Biscoe female           39          3550  2008\n10 Adelie  Biscoe female           36.5        2850  2008\n# ℹ 70 more rows"
-  },
-  {
-    "objectID": "slides/slides_class3.html#data-manipulation-with-tidyverse-2",
-    "href": "slides/slides_class3.html#data-manipulation-with-tidyverse-2",
-    "title": "Data manipulation",
-    "section": "Data manipulation with tidyverse",
-    "text": "Data manipulation with tidyverse\nMutate:\n\nmutate(my_penguins, body_mass_kg=body_mass_g/1000)\n\n# A tibble: 344 × 7\n   species island    sex    bill_length_mm body_mass_g  year body_mass_kg\n   &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt;           &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;        &lt;dbl&gt;\n 1 Adelie  Torgersen male             39.1        3750  2007         3.75\n 2 Adelie  Torgersen female           39.5        3800  2007         3.8 \n 3 Adelie  Torgersen female           40.3        3250  2007         3.25\n 4 Adelie  Torgersen &lt;NA&gt;             NA            NA  2007        NA   \n 5 Adelie  Torgersen female           36.7        3450  2007         3.45\n 6 Adelie  Torgersen male             39.3        3650  2007         3.65\n 7 Adelie  Torgersen female           38.9        3625  2007         3.62\n 8 Adelie  Torgersen male             39.2        4675  2007         4.68\n 9 Adelie  Torgersen &lt;NA&gt;             34.1        3475  2007         3.48\n10 Adelie  Torgersen &lt;NA&gt;             42          4250  2007         4.25\n# ℹ 334 more rows\n\n\n\n\nmutate(my_penguins, body_mass_g=body_mass_g+1)\n\n# A tibble: 344 × 6\n   species island    sex    bill_length_mm body_mass_g  year\n   &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt;           &lt;dbl&gt;       &lt;dbl&gt; &lt;int&gt;\n 1 Adelie  Torgersen male             39.1        3751  2007\n 2 Adelie  Torgersen female           39.5        3801  2007\n 3 Adelie  Torgersen female           40.3        3251  2007\n 4 Adelie  Torgersen &lt;NA&gt;             NA            NA  2007\n 5 Adelie  Torgersen female           36.7        3451  2007\n 6 Adelie  Torgersen male             39.3        3651  2007\n 7 Adelie  Torgersen female           38.9        3626  2007\n 8 Adelie  Torgersen male             39.2        4676  2007\n 9 Adelie  Torgersen &lt;NA&gt;             34.1        3476  2007\n10 Adelie  Torgersen &lt;NA&gt;             42          4251  2007\n# ℹ 334 more rows"
-  },
-  {
-    "objectID": "slides/slides_class3.html#data-manipulation-with-tidyverse-3",
-    "href": "slides/slides_class3.html#data-manipulation-with-tidyverse-3",
-    "title": "Data manipulation",
-    "section": "Data manipulation with tidyverse",
-    "text": "Data manipulation with tidyverse\nMutate according to logical conditions:\n\nmy_penguins\n\n# A tibble: 344 × 6\n   species island    sex    bill_length_mm body_mass_g  year\n   &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt;           &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;\n 1 Adelie  Torgersen male             39.1        3750  2007\n 2 Adelie  Torgersen female           39.5        3800  2007\n 3 Adelie  Torgersen female           40.3        3250  2007\n 4 Adelie  Torgersen &lt;NA&gt;             NA            NA  2007\n 5 Adelie  Torgersen female           36.7        3450  2007\n 6 Adelie  Torgersen male             39.3        3650  2007\n 7 Adelie  Torgersen female           38.9        3625  2007\n 8 Adelie  Torgersen male             39.2        4675  2007\n 9 Adelie  Torgersen &lt;NA&gt;             34.1        3475  2007\n10 Adelie  Torgersen &lt;NA&gt;             42          4250  2007\n# ℹ 334 more rows\n\n\n\n\nmutate(\n    my_penguins, \n    bill_length_mm = replace(bill_length_mm, bill_length_mm&gt;39, 100)\n)\n\n# A tibble: 344 × 6\n   species island    sex    bill_length_mm body_mass_g  year\n   &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt;           &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;\n 1 Adelie  Torgersen male            100          3750  2007\n 2 Adelie  Torgersen female          100          3800  2007\n 3 Adelie  Torgersen female          100          3250  2007\n 4 Adelie  Torgersen &lt;NA&gt;             NA            NA  2007\n 5 Adelie  Torgersen female           36.7        3450  2007\n 6 Adelie  Torgersen male            100          3650  2007\n 7 Adelie  Torgersen female           38.9        3625  2007\n 8 Adelie  Torgersen male            100          4675  2007\n 9 Adelie  Torgersen &lt;NA&gt;             34.1        3475  2007\n10 Adelie  Torgersen &lt;NA&gt;            100          4250  2007\n# ℹ 334 more rows"
-  },
-  {
-    "objectID": "slides/slides_class3.html#data-manipulation-with-tidyverse-4",
-    "href": "slides/slides_class3.html#data-manipulation-with-tidyverse-4",
-    "title": "Data manipulation",
-    "section": "Data manipulation with tidyverse",
-    "text": "Data manipulation with tidyverse\nReplace Missing values\n\nmy_penguins\n\n# A tibble: 344 × 6\n   species island    sex    bill_length_mm body_mass_g  year\n   &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt;           &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;\n 1 Adelie  Torgersen male             39.1        3750  2007\n 2 Adelie  Torgersen female           39.5        3800  2007\n 3 Adelie  Torgersen female           40.3        3250  2007\n 4 Adelie  Torgersen &lt;NA&gt;             NA            NA  2007\n 5 Adelie  Torgersen female           36.7        3450  2007\n 6 Adelie  Torgersen male             39.3        3650  2007\n 7 Adelie  Torgersen female           38.9        3625  2007\n 8 Adelie  Torgersen male             39.2        4675  2007\n 9 Adelie  Torgersen &lt;NA&gt;             34.1        3475  2007\n10 Adelie  Torgersen &lt;NA&gt;             42          4250  2007\n# ℹ 334 more rows\n\n\n\n\nmutate(my_penguins, body_mass_g_filled = replace(body_mass_g, is.na(body_mass_g), median(body_mass_g, na.rm=TRUE)))\n\n# A tibble: 344 × 7\n   species island    sex    bill_length_mm body_mass_g  year body_mass_g_filled\n   &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt;           &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;              &lt;dbl&gt;\n 1 Adelie  Torgersen male             39.1        3750  2007               3750\n 2 Adelie  Torgersen female           39.5        3800  2007               3800\n 3 Adelie  Torgersen female           40.3        3250  2007               3250\n 4 Adelie  Torgersen &lt;NA&gt;             NA            NA  2007               4050\n 5 Adelie  Torgersen female           36.7        3450  2007               3450\n 6 Adelie  Torgersen male             39.3        3650  2007               3650\n 7 Adelie  Torgersen female           38.9        3625  2007               3625\n 8 Adelie  Torgersen male             39.2        4675  2007               4675\n 9 Adelie  Torgersen &lt;NA&gt;             34.1        3475  2007               3475\n10 Adelie  Torgersen &lt;NA&gt;             42          4250  2007               4250\n# ℹ 334 more rows"
-  },
-  {
-    "objectID": "slides/slides_class3.html#data-manipulation-with-tidyverse-5",
-    "href": "slides/slides_class3.html#data-manipulation-with-tidyverse-5",
-    "title": "Data manipulation",
-    "section": "Data manipulation with tidyverse",
-    "text": "Data manipulation with tidyverse\nReplace Missing values\n\nmutate(\n    my_penguins, \n    body_mass_g = replace(body_mass_g, is.na(body_mass_g), median(body_mass_g, na.rm=TRUE)),\n    bill_length_mm = replace(bill_length_mm, is.na(bill_length_mm), median(bill_length_mm, na.rm=TRUE))\n)\n\n# A tibble: 344 × 6\n   species island    sex    bill_length_mm body_mass_g  year\n   &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt;           &lt;dbl&gt;       &lt;dbl&gt; &lt;int&gt;\n 1 Adelie  Torgersen male             39.1        3750  2007\n 2 Adelie  Torgersen female           39.5        3800  2007\n 3 Adelie  Torgersen female           40.3        3250  2007\n 4 Adelie  Torgersen &lt;NA&gt;             44.4        4050  2007\n 5 Adelie  Torgersen female           36.7        3450  2007\n 6 Adelie  Torgersen male             39.3        3650  2007\n 7 Adelie  Torgersen female           38.9        3625  2007\n 8 Adelie  Torgersen male             39.2        4675  2007\n 9 Adelie  Torgersen &lt;NA&gt;             34.1        3475  2007\n10 Adelie  Torgersen &lt;NA&gt;             42          4250  2007\n# ℹ 334 more rows"
-  },
-  {
-    "objectID": "slides/slides_class3.html#data-manipulation-with-tidyverse-6",
-    "href": "slides/slides_class3.html#data-manipulation-with-tidyverse-6",
-    "title": "Data manipulation",
-    "section": "Data manipulation with tidyverse",
-    "text": "Data manipulation with tidyverse\nPipes:\n\npenguins\n\n# A tibble: 344 × 8\n   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n 1 Adelie  Torgersen           39.1          18.7               181        3750\n 2 Adelie  Torgersen           39.5          17.4               186        3800\n 3 Adelie  Torgersen           40.3          18                 195        3250\n 4 Adelie  Torgersen           NA            NA                  NA          NA\n 5 Adelie  Torgersen           36.7          19.3               193        3450\n 6 Adelie  Torgersen           39.3          20.6               190        3650\n 7 Adelie  Torgersen           38.9          17.8               181        3625\n 8 Adelie  Torgersen           39.2          19.6               195        4675\n 9 Adelie  Torgersen           34.1          18.1               193        3475\n10 Adelie  Torgersen           42            20.2               190        4250\n# ℹ 334 more rows\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;\n\n\n\n\npenguins |&gt; \n    select(species, island, sex, body_mass_g, bill_length_mm) |&gt; \n    mutate(body_mass_kg=body_mass_g/1000) |&gt; \n    filter(sex==\"female\") |&gt; \n    arrange(bill_length_mm) |&gt; \n    select(-body_mass_g)\n\n\n\n\n\n# A tibble: 165 × 5\n   species island    sex    bill_length_mm body_mass_kg\n   &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt;           &lt;dbl&gt;        &lt;dbl&gt;\n 1 Adelie  Dream     female           32.1         3.05\n 2 Adelie  Dream     female           33.1         2.9 \n 3 Adelie  Torgersen female           33.5         3.6 \n 4 Adelie  Dream     female           34           3.4 \n 5 Adelie  Torgersen female           34.4         3.32\n 6 Adelie  Biscoe    female           34.5         2.9 \n 7 Adelie  Torgersen female           34.6         3.2 \n 8 Adelie  Biscoe    female           35           3.45\n 9 Adelie  Biscoe    female           35           3.72\n10 Adelie  Torgersen female           35.2         3.05\n# ℹ 155 more rows"
-  },
-  {
-    "objectID": "slides/slides_class3.html#groupwise-manipulation",
-    "href": "slides/slides_class3.html#groupwise-manipulation",
-    "title": "Data manipulation",
-    "section": "Groupwise manipulation",
-    "text": "Groupwise manipulation\nSummarise by group:\n\npenguins |&gt; \n    group_by(species) |&gt; \n    summarise(average_bill_length = mean(bill_length_mm))\n\n\n\n\n# A tibble: 3 × 2\n  species   average_bill_length\n  &lt;fct&gt;                   &lt;dbl&gt;\n1 Adelie                   NA  \n2 Chinstrap                48.8\n3 Gentoo                   NA  \n\n\n\n\n\npenguins |&gt; \n    group_by(species) |&gt; \n    summarise(average_bill_length = mean(bill_length_mm, na.rm=TRUE))\n\n\n\n\n\n# A tibble: 3 × 2\n  species   average_bill_length\n  &lt;fct&gt;                   &lt;dbl&gt;\n1 Adelie                   38.8\n2 Chinstrap                48.8\n3 Gentoo                   47.5"
-  },
-  {
-    "objectID": "slides/slides_class3.html#groupwise-manipulation-1",
-    "href": "slides/slides_class3.html#groupwise-manipulation-1",
-    "title": "Data manipulation",
-    "section": "Groupwise manipulation",
-    "text": "Groupwise manipulation\nMutate by group:\n\npenguins |&gt; \n    select(species, island, bill_length_mm) |&gt; \n    group_by(species) |&gt; \n    mutate(species_average_bill_length = mean(bill_length_mm, na.rm=TRUE))\n\n\n\n\n# A tibble: 344 × 4\n# Groups:   species [3]\n   species island    bill_length_mm species_average_bill_length\n   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;                       &lt;dbl&gt;\n 1 Adelie  Torgersen           39.1                        38.8\n 2 Adelie  Torgersen           39.5                        38.8\n 3 Adelie  Torgersen           40.3                        38.8\n 4 Adelie  Torgersen           NA                          38.8\n 5 Adelie  Torgersen           36.7                        38.8\n 6 Adelie  Torgersen           39.3                        38.8\n 7 Adelie  Torgersen           38.9                        38.8\n 8 Adelie  Torgersen           39.2                        38.8\n 9 Adelie  Torgersen           34.1                        38.8\n10 Adelie  Torgersen           42                          38.8\n# ℹ 334 more rows\n\n\n\n\n\npenguins |&gt; \n    select(species, island, bill_length_mm) |&gt; \n    group_by(species) |&gt; \n    mutate(\n        species_average_bill_length = mean(bill_length_mm, na.rm=TRUE),\n        dist_from_species_average = bill_length_mm - species_average_bill_length\n        )\n\n\n\n\n\n# A tibble: 344 × 5\n# Groups:   species [3]\n   species island   bill_length_mm species_average_bill…¹ dist_from_species_av…²\n   &lt;fct&gt;   &lt;fct&gt;             &lt;dbl&gt;                  &lt;dbl&gt;                  &lt;dbl&gt;\n 1 Adelie  Torgers…           39.1                   38.8                  0.309\n 2 Adelie  Torgers…           39.5                   38.8                  0.709\n 3 Adelie  Torgers…           40.3                   38.8                  1.51 \n 4 Adelie  Torgers…           NA                     38.8                 NA    \n 5 Adelie  Torgers…           36.7                   38.8                 -2.09 \n 6 Adelie  Torgers…           39.3                   38.8                  0.509\n 7 Adelie  Torgers…           38.9                   38.8                  0.109\n 8 Adelie  Torgers…           39.2                   38.8                  0.409\n 9 Adelie  Torgers…           34.1                   38.8                 -4.69 \n10 Adelie  Torgers…           42                     38.8                  3.21 \n# ℹ 334 more rows\n# ℹ abbreviated names: ¹​species_average_bill_length, ²​dist_from_species_average"
-  },
-  {
-    "objectID": "slides/slides_class3.html#save-objects",
-    "href": "slides/slides_class3.html#save-objects",
-    "title": "Data manipulation",
-    "section": "Save objects",
-    "text": "Save objects\n\nmy_res &lt;- penguins |&gt; \n    group_by(species) |&gt; \n    summarise(average_bill_length = mean(bill_length_mm, na.rm=TRUE))\nmy_res\n\n# A tibble: 3 × 2\n  species   average_bill_length\n  &lt;fct&gt;                   &lt;dbl&gt;\n1 Adelie                   38.8\n2 Chinstrap                48.8\n3 Gentoo                   47.5\n\n\nStore as an R data object:\n\n# To save the object in your current project folder under the name \"my_results.rda\"\nsave(my_res, here(\"my_results.rda\"))\n\n# To load the object when you need it next time\nload(here(\"my_results.rda\"))\n\n\nStore as an Excel file:\n\n# To save the object in a spreadsheet in your current project folder under the name \"my_results.rda\"\nwrite_xlsx(my_res, path = here(\"my_results.xlsx\"))"
-  },
-  {
-    "objectID": "slides/slides_class1.html#our-goal",
-    "href": "slides/slides_class1.html#our-goal",
-    "title": "Introduction to R",
-    "section": "Our goal",
-    "text": "Our goal\nThe data analysis pipeline:"
-  },
-  {
-    "objectID": "slides/slides_class1.html#import",
-    "href": "slides/slides_class1.html#import",
-    "title": "Introduction to R",
-    "section": "Import",
-    "text": "Import\nYou will learn how to read external data sources from R. In particular, we will focus on\n\nUniversal text formats, as .csv.\nProprietary spreadsheets formats, as Excel .xls and .xlsx;"
-  },
-  {
-    "objectID": "slides/slides_class1.html#tidy",
-    "href": "slides/slides_class1.html#tidy",
-    "title": "Introduction to R",
-    "section": "Tidy",
-    "text": "Tidy\nYou will know hot to store your data in a cosistent format.\n\nEach row is an observation;\nEach column a variable, with a unique name.\nEach variable has a specific type (numeric, chracter, logical, etc..).\n\n\n\n# A tibble: 234 × 7\n   manufacturer displ model      class     cyl trans        hwy\n   &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;   &lt;int&gt; &lt;chr&gt;      &lt;int&gt;\n 1 audi           1.8 a4         compact     4 auto(l5)      29\n 2 audi           1.8 a4         compact     4 manual(m5)    29\n 3 audi           2   a4         compact     4 manual(m6)    31\n 4 audi           2   a4         compact     4 auto(av)      30\n 5 audi           2.8 a4         compact     6 auto(l5)      26\n 6 audi           2.8 a4         compact     6 manual(m5)    26\n 7 audi           3.1 a4         compact     6 auto(av)      27\n 8 audi           1.8 a4 quattro compact     4 manual(m5)    26\n 9 audi           1.8 a4 quattro compact     4 auto(l5)      25\n10 audi           2   a4 quattro compact     4 manual(m6)    28\n# ℹ 224 more rows"
-  },
-  {
-    "objectID": "slides/slides_class1.html#transform",
-    "href": "slides/slides_class1.html#transform",
-    "title": "Introduction to R",
-    "section": "Transform",
-    "text": "Transform\nYou will learn how to transform the data at your willingness:\n\nSelect the variables of interest;\nCombine existing variables in new variables;\nFilter relevant observations;\nReshape data;\n\n\n\n# A tibble: 234 × 3\n   displ class     hwy\n   &lt;dbl&gt; &lt;chr&gt;   &lt;int&gt;\n 1   1.8 compact    29\n 2   1.8 compact    29\n 3   2   compact    31\n 4   2   compact    30\n 5   2.8 compact    26\n 6   2.8 compact    26\n 7   3.1 compact    27\n 8   1.8 compact    26\n 9   1.8 compact    25\n10   2   compact    28\n# ℹ 224 more rows"
-  },
-  {
-    "objectID": "slides/slides_class1.html#visualize",
-    "href": "slides/slides_class1.html#visualize",
-    "title": "Introduction to R",
-    "section": "Visualize",
-    "text": "Visualize\nYou will learn how to explore data patterns with visualisations."
-  },
-  {
-    "objectID": "slides/slides_class1.html#model",
-    "href": "slides/slides_class1.html#model",
-    "title": "Introduction to R",
-    "section": "Model",
-    "text": "Model\nIt’s the only step where “math” enters the game. Goes from simple descriptive statistics, to more elaborated modelling strategies. Often combined with visualisations."
-  },
-  {
-    "objectID": "slides/slides_class1.html#communicate",
-    "href": "slides/slides_class1.html#communicate",
-    "title": "Introduction to R",
-    "section": "Communicate",
-    "text": "Communicate\n\nWrite reports;\nChoose appropriate viasualizations;\nHighilight the results in terms of insights."
-  },
-  {
-    "objectID": "slides/slides_class1.html#why-r",
-    "href": "slides/slides_class1.html#why-r",
-    "title": "Introduction to R",
-    "section": "Why R?",
-    "text": "Why R?\n\n\nReplicability!"
-  },
-  {
-    "objectID": "slides/slides_class1.html#excel-vs-r",
-    "href": "slides/slides_class1.html#excel-vs-r",
-    "title": "Introduction to R",
-    "section": "Excel vs R",
-    "text": "Excel vs R\n\nConsider creating a new variable in your dataset:\n\n\n\n\nNow you share your spreadsheet with your colleague.\n\n\n\n\nShe will not know the formula within each cell unless she inspect all of them individually!"
-  },
-  {
-    "objectID": "slides/slides_class1.html#excel-vs-r-1",
-    "href": "slides/slides_class1.html#excel-vs-r-1",
-    "title": "Introduction to R",
-    "section": "Excel vs R",
-    "text": "Excel vs R\n\nConsider the same data in R, stored in the object my_data\n\n\nmy_data \n\n# A tibble: 4 × 2\n  QuantityA QuantityB\n      &lt;dbl&gt;     &lt;dbl&gt;\n1        50        20\n2        90        25\n3        10        45\n4        30        15\n\n\n\n\nYou can create the same Tot column you had before in Excel with\n\n\nmy_data |&gt; \n  mutate(Tot = QuantityA + QuantityB)\n\n# A tibble: 4 × 3\n  QuantityA QuantityB   Tot\n      &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;\n1        50        20    70\n2        90        25   115\n3        10        45    55\n4        30        15    45\n\n\n\n\n\nAnd now your colleague has no doubt about where those numbers come from!"
-  },
-  {
-    "objectID": "slides/slides_class1.html#excel-vs-r-2",
-    "href": "slides/slides_class1.html#excel-vs-r-2",
-    "title": "Introduction to R",
-    "section": "Excel VS R",
-    "text": "Excel VS R\n\nYou are interested in computing the total number of products sold by each representative:\n\n\n\n\nThat’s a lot of point-and-clicks!\n\n\n\n\nWill your colleague be able to reproduce your results?"
-  },
-  {
-    "objectID": "slides/slides_class1.html#excel-vs-r-3",
-    "href": "slides/slides_class1.html#excel-vs-r-3",
-    "title": "Introduction to R",
-    "section": "Excel VS R",
-    "text": "Excel VS R\nConsider the same dataset in R stored in the new object my_data2:\n\nmy_data2\n\n# A tibble: 10 × 4\n   SalesRepresentative Product QuantitySold Region\n   &lt;chr&gt;               &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; \n 1 Eleonor             A                 50 IT    \n 2 Elizabeth           B                 90 UK    \n 3 John                C                 10 FR    \n 4 Matt                A                 34 DE    \n 5 Eleonor             A                  5 IT    \n 6 Elizabeth           C                  8 IT    \n 7 John                B                 20 UK    \n 8 Matt                B                  5 UK    \n 9 Eleonor             A                 15 UK    \n10 Elizabeth           C                 45 DE    \n\n\n\nYou get the same results seen in Excel by running\n\nmy_data2 |&gt; \n  group_by(SalesRepresentative) |&gt; \n  summarise(Total = sum(QuantitySold))\n\n# A tibble: 4 × 2\n  SalesRepresentative Total\n  &lt;chr&gt;               &lt;dbl&gt;\n1 Eleonor                70\n2 Elizabeth             143\n3 John                   30\n4 Matt                   39"
-  },
-  {
-    "objectID": "slides/slides_class1.html#access-r-from-web",
-    "href": "slides/slides_class1.html#access-r-from-web",
-    "title": "Introduction to R",
-    "section": "Access R from Web",
-    "text": "Access R from Web\n\nConnect to https://giuseppealfonzetti.github.io/LSM/\nClick on the “Material” (💻) icon corresponding to today lab.\nAccess the interactive web console."
-  },
-  {
-    "objectID": "slides/slides_class1.html#basic-r-grammar",
-    "href": "slides/slides_class1.html#basic-r-grammar",
-    "title": "Introduction to R",
-    "section": "Basic R grammar",
-    "text": "Basic R grammar\n\nRun a command:\n\nGet the cursor on the line and press CTRL+ENTER on Windows, or CMD+ENTER on MacOS.\n\nAssign a value to an object\n\n\na = 1                            # numeric value assigned with = \nb &lt;- 2                           # numeric value assigne with &lt;- \nc &lt;- \"ciao\"                      # character value \nc                                # display the content stored in c\n\n[1] \"ciao\"\n\n\n\nBasic math\n\n\na+b                              # sum the values stored in a and b\n\n[1] 3\n\n\n\nCreate a vector\n\n\nv1 &lt;- c(1, 7, 2)                 # create the vector manually\nv2 &lt;- 1:10                       # create a sequence 1 to 10 automatically\nv3 &lt;- seq(1,10,by=2)             # create a sequence automatically with the seq() function\n\n\nSeek help\n\n\n?seq()                           # R will show you the documentation of the seq function\n\n\nCreate and inspect matrices\n\n\nm &lt;- matrix(1:6, nrow=2, ncol=3) # create a matrix\nnrow(m)                          # inspect the number of rows\n\n[1] 2\n\nncol(m)                          # inspect the number of columns\n\n[1] 3\n\nm[1,2]                           # display element on the first row, at the second column\n\n[1] 3"
-  },
-  {
-    "objectID": "slides/slides_class1.html#quick-visualization",
-    "href": "slides/slides_class1.html#quick-visualization",
-    "title": "Introduction to R",
-    "section": "Quick visualization",
-    "text": "Quick visualization\nSome test datasets are preloaded in R. That’s the case of iris, a famous dataset about iris flower dimensions\n\nhead(iris)\n\n  Sepal.Length Sepal.Width Petal.Length Petal.Width Species\n1          5.1         3.5          1.4         0.2  setosa\n2          4.9         3.0          1.4         0.2  setosa\n3          4.7         3.2          1.3         0.2  setosa\n4          4.6         3.1          1.5         0.2  setosa\n5          5.0         3.6          1.4         0.2  setosa\n6          5.4         3.9          1.7         0.4  setosa\n\n\nYou can easily visualise petal dimension distribution yourself by using the ggplot2package. Don’t worry about understanding the syntax for now!\n\nggplot(data=iris, aes(x=Petal.Length, y=Petal.Width)) + geom_point(aes(col=Species))"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Laboratory of Statistics and Mathematics",
-    "section": "",
-    "text": "Schedule and topics outline for the 2025/2026 lab classes\n💻\n\n\n\nDate\nClass\nTopic\nMaterial\nSlides\nSolutions\n\n\n\n\nOct 1\nLab 1\nIntroduction to R (Part 1)\n💻\n📖\n\n\n\nOct 15\nLab 2\nIntroduction to R (Part 2)\n💻\n📖\n\n\n\nOct 29\nLab 3\nData manipulation (Part 1)\n💻\n📖\n📝\n\n\nNov 12\nLab 4\nData manipulation (Part 2)\n💻\n📖\n\n\n\nOct 26\nLab 5\n\n\n\n\n\n\nDec 11\nLab 6",
-    "crumbs": [
-      "Schedule"
-    ]
-  },
-  {
-    "objectID": "class3.html",
-    "href": "class3.html",
-    "title": "Resources for Lab 3",
-    "section": "",
-    "text": "Practice 1\n\n\n Download employees.xlsx\n\n\n\nDownload the employees.xlsx.\nCreate an R Project where to analyse the employees.xlsx dataset and move the xlsx file within the project directory.\nGet the path to the data using the here() function.\nImport the dataset in R with the read_xlsx() function.\n\n\nExercise 1Exercise 2Exercise 3Exercise 4Exercise 5Exercise 6Exercise 7\n\n\n\nHow many observations are collected in the dataset? Use the dim() function.\nWhat’s the average salary in the company? Use either the function mean()or summary()\n\n\n\n\nUse filter() and arrange() to check who are the three top earners in the I.T department.\nUse group_by(), summarise() and median() to get the median salary in the I.T. department.\n\nUsing geom_point(), construct a scatterplot for salary and seniority, colored by department. Store it in my_plot. Try adding a theme to the plot, for example:\n\nmy_plot + theme_minimal()\n\nWhat happens?\n\nUse labs() to modify the labels of the plot. For example:\n\n\nmy_plot + theme_minimal() + labs(x=\"Seniority (years)\", y=\"Salary\", color=\"Department:\")\n\n\nUse facet_grid() to create a multi-window plot\n\n\nmy_plot + facet_grid(~department)\n\n\nExport your plot with the function ggsave()\n\n\nmy_great_plot &lt;- my_plot + theme_minimal() + labs(x=\"Seniority (years)\", y=\"Salary\", color=\"Department:\")+ facet_grid(~department)\n\nggsave(my_great_plot, filename = here(\"great_plot.jpeg\"))\n\n\n\n\nUse group_by() and summarise() to compute the average and total expenditure for salaries by department\n\n\n\n\nHow many employees have just been hired in the company?\nHow many employees have just been hired in the I.T. department?\nCompute the average salary of employees from the Finance department with at least 8 years seniority.\n\n\n\nCreate a summary table where you report:\n\nthe median salary by department (using the function median()),\nthe number of employees by department (using the function n()),\nthe number of new hired by department.\n\nSave it as an excel file via the write_xlsx() function.\n\n\nGiven the summary table in the previous exercise, reproduce the following bar plot of the median salary by department (hint: use geom_col()).\n\n\n\n\n\n\n\n\n\n\n\nYou have to create an Excel file where employees from different department are collected in different sheets.\nIn R, you can create multi-sheets Excel files by feeding write_xlsx() with a list of datasets. Assume you stored the original employees.xlsxdataset in the dataframe dt. Now, try running\n\nmy_departments &lt;- split(dt, dt$department)\n\n\nWhat does the split()function do? Run ?split() to read the documentation.\nWhat kind of object is stored in my_departments? Run typeof(my_departments) to investigate.\nFeed write_xlsx() with my_departmentsto create a multi-sheet Excel file.\n\n\n\n\n\n\nPractice 2\n\n\n Download employees_company2.xlsx\n\n\n\nThe HR department sent you the employees file from a different company.\nDownload the employees_company2.xlsx and import it in R.\nAs you can see, the file has a structure that is very similar to the previous database. Nevertheless, it presents two critical issues:\n\nColumn names do not follow a consistent notation. Sometimes they are capitalized, sometimes they are not. Some times they includes spaces, sometimes they do not.\nThere are missing values\n\n\n\nExercise 1Exercise 2\n\n\nUse the function clean_names() from the janitor package to tidy up column names automatically\n\n\n\nHow many missing values are present in the salary column? Use the summary() function.\nReplace missing values with the median salary of department the missing value belongs to."
-  },
-  {
-    "objectID": "slides/slides_class2.html#rstudio",
-    "href": "slides/slides_class2.html#rstudio",
-    "title": "Introduction to R - Part 2",
-    "section": "Rstudio",
-    "text": "Rstudio"
-  },
-  {
-    "objectID": "slides/slides_class2.html#recap-of-r-basics",
-    "href": "slides/slides_class2.html#recap-of-r-basics",
-    "title": "Introduction to R - Part 2",
-    "section": "Recap of R basics",
-    "text": "Recap of R basics\nBasic math:\n\na = 3                            # numeric value assigned with = \nb &lt;- 2                           # numeric value assigne with &lt;- \na+b                              # sum\na-b                              # difference\na*b                              # multiply\na/b                              # ratio\na^b                              # power\n\n\nR Functions: always called by name_of_the_function()\n\nv1 &lt;- c(1, 7, 2)          # create a vector with the function c()\nv2 &lt;- seq(0,10, by=0.5)   # create a vector with the function seq()\nm &lt;- matrix(c(0,7,9,2,4,10), nrow=2, ncol=3) # create a matrix by column\n\n\n\nAccessing elements: Access elements within vector and matrices with [ ].\n\nv1[2]   # access the second element of v1\n\n[1] 7\n\nm[2,3]  # access the elemnt in the second row - third column cell\n\n[1] 10"
-  },
-  {
-    "objectID": "slides/slides_class2.html#additional-types-of-objects-i",
-    "href": "slides/slides_class2.html#additional-types-of-objects-i",
-    "title": "Introduction to R - Part 2",
-    "section": "Additional types of objects (i)",
-    "text": "Additional types of objects (i)\nLogical values: represent a TRUE/FALSEstatement\n\n# store in the object `my_logical` the answer to \"is 3 less than 4?\". \n# Can only take values TRUE/FALSE\nmy_logical = 3 &lt; 4  \nmy_logical\n\n[1] TRUE\n\n\n\nFactors: categorical variables with known levels\n\n# start from a raw vector of strings\nmy_raw_var &lt;- c(\"low\", \"low\", \"medium\", \"low\", \"high\", \"high\", \"medium\")\nmy_raw_var\n\n[1] \"low\"    \"low\"    \"medium\" \"low\"    \"high\"   \"high\"   \"medium\"\n\n\n\n\n\n# convert automatically to a factor via `as.factor()`\nmy_fact &lt;- as.factor(my_raw_var)\nmy_fact\n\n[1] low    low    medium low    high   high   medium\nLevels: high low medium\n\n\n\n\n\n# manual construction with `factor()` specifying levels ordering\nmy_fact &lt;- factor(my_raw_var, levels = c(\"low\", \"medium\", \"high\"), ordered=TRUE)\nmy_fact\n\n[1] low    low    medium low    high   high   medium\nLevels: low &lt; medium &lt; high"
-  },
-  {
-    "objectID": "slides/slides_class2.html#additional-types-of-objects-ii",
-    "href": "slides/slides_class2.html#additional-types-of-objects-ii",
-    "title": "Introduction to R - Part 2",
-    "section": "Additional types of objects (ii)",
-    "text": "Additional types of objects (ii)\nLists:\nList of objects of potentially different nature\n\nmy_list &lt;- list(          # use the `list()` function\n    \"A\"=c(0,1,2),\n    \"B\"= \"ciao\",\n    \"C\"= 2&lt;5\n)\nmy_list\n\n$A\n[1] 0 1 2\n\n$B\n[1] \"ciao\"\n\n$C\n[1] TRUE"
-  },
-  {
-    "objectID": "slides/slides_class2.html#data-frames",
-    "href": "slides/slides_class2.html#data-frames",
-    "title": "Introduction to R - Part 2",
-    "section": "Data frames",
-    "text": "Data frames\n\nMatrices in R constrain all columns to have data of the same type (all numeric, all character, etc…).\nData frames are more convenient objects where to store your data.\n\n\nvar1 &lt;- c(\"pop-up\", \"banner\", \"video\")\nvar2 &lt;- c(56, 23, 321)\nvar3 &lt;- c(7,2,25)\nvar4 &lt;- c(TRUE, FALSE, FALSE)\nmy_df &lt;- data.frame(\n    \"ad_type\"= var1, \n    \"n_clicks\"=var2, \n    \"sales\"=var3, \n    \"weekend\"=var4)\nmy_df\n\n  ad_type n_clicks sales weekend\n1  pop-up       56     7    TRUE\n2  banner       23     2   FALSE\n3   video      321    25   FALSE"
-  },
-  {
-    "objectID": "slides/slides_class2.html#data-frames-attributes",
-    "href": "slides/slides_class2.html#data-frames-attributes",
-    "title": "Introduction to R - Part 2",
-    "section": "Data frames attributes",
-    "text": "Data frames attributes\n\ncolnames(my_df) # get the column names from my_df\n\n[1] \"ad_type\"  \"n_clicks\" \"sales\"    \"weekend\" \n\n\n\n\ndim(my_df)       # get the dimensions of my_df\n\n[1] 3 4\n\n\n\n\n\nmy_df$ad_type    # access a column of my_df by name\n\n[1] \"pop-up\" \"banner\" \"video\" \n\n\n\n\n\nmy_df[ , 1]      # access a column by index\n\n[1] \"pop-up\" \"banner\" \"video\" \n\n\n\n\n\nmy_df[2 , ]      # acces a row by index\n\n  ad_type n_clicks sales weekend\n2  banner       23     2   FALSE"
-  },
-  {
-    "objectID": "slides/slides_class2.html#practice",
-    "href": "slides/slides_class2.html#practice",
-    "title": "Introduction to R - Part 2",
-    "section": "Practice",
-    "text": "Practice\n\nConnect to https://giuseppealfonzetti.github.io/LSM/\nClick on the “Material” (💻) icon corresponding to today lab.\nDownload the Excel file."
-  },
-  {
-    "objectID": "slides/slides_class2.html#workflow-basics",
-    "href": "slides/slides_class2.html#workflow-basics",
-    "title": "Introduction to R - Part 2",
-    "section": "Workflow basics",
-    "text": "Workflow basics\n\nCreate a folder on your laptop where to store all your future analysis;\nOpen Rstudio and create an R Project for today’s practice within that folder.\nFrom your file browser, move the downloaded .xlsx file in your project directory in a subdirectory called data.\nWithin the project, create an R Script file. Here you will write your R commands.\nUse the here package to manage file paths."
-  },
-  {
-    "objectID": "slides/slides_class2.html#setup",
-    "href": "slides/slides_class2.html#setup",
-    "title": "Introduction to R - Part 2",
-    "section": "Setup",
-    "text": "Setup\n\nOn top of your script file, list the library() commands needed to perform the analysis. Today we will use\n\n\nlibrary(tidyverse)  # data manipulation and plotting\nlibrary(here)       # utilities to easily manage directories paths\nlibrary(readxl)     # utilities to read Excel files\nlibrary(writexl)    # utilities to write Excel files\n\n\nAfter loading the R packages, use the i_am() function from the here package to tell R where your script is located. If your script is called my_script.R, run\n\ni_am(\"my_script.R\")\n\n\n\nNow that R knows your position in the directory tree of your laptop, we can read the xlsx file stored in the data folder with\n\npath_to_data &lt;- here(\"data\", \"employees.xlsx\") # get the exact location of the data\ndt &lt;- read_xlsx(path_to_data)                  # read the data\n\n\n\n\n\n# A tibble: 4 × 6\n  last_name first_name department seniority  salary    ID\n  &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;\n1 al-Harron Fikra      Marketing          4  72654.  1001\n2 Whitaker  Jalen      HR                15 164507.  1002\n3 Pillow    Cleevens   Sales              7 102665.  1003\n4 Holguin   Austin     I.T.               9 138793.  1004"
-  },
-  {
-    "objectID": "slides/slides_class2.html#a-first-plot",
-    "href": "slides/slides_class2.html#a-first-plot",
-    "title": "Introduction to R - Part 2",
-    "section": "A first plot",
-    "text": "A first plot\n\nggplot(data = dt, aes(x=seniority, y=salary))"
-  },
-  {
-    "objectID": "slides/slides_class2.html#a-first-plot-1",
-    "href": "slides/slides_class2.html#a-first-plot-1",
-    "title": "Introduction to R - Part 2",
-    "section": "A first plot",
-    "text": "A first plot\n\nggplot(data = dt, aes(x=seniority, y=salary)) +\n    geom_point()"
-  },
-  {
-    "objectID": "slides/slides_class2.html#a-first-plot-2",
-    "href": "slides/slides_class2.html#a-first-plot-2",
-    "title": "Introduction to R - Part 2",
-    "section": "A first plot",
-    "text": "A first plot\n\nggplot(data = dt, aes(x=seniority, y=salary)) +\n    geom_point(aes(color=department))"
-  },
-  {
     "objectID": "slides/slides_class4.html#case-study",
     "href": "slides/slides_class4.html#case-study",
     "title": "Data manipulation",
@@ -459,6 +162,303 @@
     "title": "Data manipulation",
     "section": "Results",
     "text": "Results\n\npurchases |&gt; \n  left_join(prices)\n\n# A tibble: 6 × 4\n  customer_id item_no item         price\n        &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;        &lt;dbl&gt;\n1           1 item_1  bread         1   \n2           1 item_2  milk          0.8 \n3           1 item_3  banana        0.15\n4           2 item_1  milk          0.8 \n5           2 item_2  toilet paper  3   \n6           2 item_3  &lt;NA&gt;         NA"
+  },
+  {
+    "objectID": "slides/slides_class2.html#rstudio",
+    "href": "slides/slides_class2.html#rstudio",
+    "title": "Introduction to R - Part 2",
+    "section": "Rstudio",
+    "text": "Rstudio"
+  },
+  {
+    "objectID": "slides/slides_class2.html#recap-of-r-basics",
+    "href": "slides/slides_class2.html#recap-of-r-basics",
+    "title": "Introduction to R - Part 2",
+    "section": "Recap of R basics",
+    "text": "Recap of R basics\nBasic math:\n\na = 3                            # numeric value assigned with = \nb &lt;- 2                           # numeric value assigne with &lt;- \na+b                              # sum\na-b                              # difference\na*b                              # multiply\na/b                              # ratio\na^b                              # power\n\n\nR Functions: always called by name_of_the_function()\n\nv1 &lt;- c(1, 7, 2)          # create a vector with the function c()\nv2 &lt;- seq(0,10, by=0.5)   # create a vector with the function seq()\nm &lt;- matrix(c(0,7,9,2,4,10), nrow=2, ncol=3) # create a matrix by column\n\n\n\nAccessing elements: Access elements within vector and matrices with [ ].\n\nv1[2]   # access the second element of v1\n\n[1] 7\n\nm[2,3]  # access the elemnt in the second row - third column cell\n\n[1] 10"
+  },
+  {
+    "objectID": "slides/slides_class2.html#additional-types-of-objects-i",
+    "href": "slides/slides_class2.html#additional-types-of-objects-i",
+    "title": "Introduction to R - Part 2",
+    "section": "Additional types of objects (i)",
+    "text": "Additional types of objects (i)\nLogical values: represent a TRUE/FALSEstatement\n\n# store in the object `my_logical` the answer to \"is 3 less than 4?\". \n# Can only take values TRUE/FALSE\nmy_logical = 3 &lt; 4  \nmy_logical\n\n[1] TRUE\n\n\n\nFactors: categorical variables with known levels\n\n# start from a raw vector of strings\nmy_raw_var &lt;- c(\"low\", \"low\", \"medium\", \"low\", \"high\", \"high\", \"medium\")\nmy_raw_var\n\n[1] \"low\"    \"low\"    \"medium\" \"low\"    \"high\"   \"high\"   \"medium\"\n\n\n\n\n\n# convert automatically to a factor via `as.factor()`\nmy_fact &lt;- as.factor(my_raw_var)\nmy_fact\n\n[1] low    low    medium low    high   high   medium\nLevels: high low medium\n\n\n\n\n\n# manual construction with `factor()` specifying levels ordering\nmy_fact &lt;- factor(my_raw_var, levels = c(\"low\", \"medium\", \"high\"), ordered=TRUE)\nmy_fact\n\n[1] low    low    medium low    high   high   medium\nLevels: low &lt; medium &lt; high"
+  },
+  {
+    "objectID": "slides/slides_class2.html#additional-types-of-objects-ii",
+    "href": "slides/slides_class2.html#additional-types-of-objects-ii",
+    "title": "Introduction to R - Part 2",
+    "section": "Additional types of objects (ii)",
+    "text": "Additional types of objects (ii)\nLists:\nList of objects of potentially different nature\n\nmy_list &lt;- list(          # use the `list()` function\n    \"A\"=c(0,1,2),\n    \"B\"= \"ciao\",\n    \"C\"= 2&lt;5\n)\nmy_list\n\n$A\n[1] 0 1 2\n\n$B\n[1] \"ciao\"\n\n$C\n[1] TRUE"
+  },
+  {
+    "objectID": "slides/slides_class2.html#data-frames",
+    "href": "slides/slides_class2.html#data-frames",
+    "title": "Introduction to R - Part 2",
+    "section": "Data frames",
+    "text": "Data frames\n\nMatrices in R constrain all columns to have data of the same type (all numeric, all character, etc…).\nData frames are more convenient objects where to store your data.\n\n\nvar1 &lt;- c(\"pop-up\", \"banner\", \"video\")\nvar2 &lt;- c(56, 23, 321)\nvar3 &lt;- c(7,2,25)\nvar4 &lt;- c(TRUE, FALSE, FALSE)\nmy_df &lt;- data.frame(\n    \"ad_type\"= var1, \n    \"n_clicks\"=var2, \n    \"sales\"=var3, \n    \"weekend\"=var4)\nmy_df\n\n  ad_type n_clicks sales weekend\n1  pop-up       56     7    TRUE\n2  banner       23     2   FALSE\n3   video      321    25   FALSE"
+  },
+  {
+    "objectID": "slides/slides_class2.html#data-frames-attributes",
+    "href": "slides/slides_class2.html#data-frames-attributes",
+    "title": "Introduction to R - Part 2",
+    "section": "Data frames attributes",
+    "text": "Data frames attributes\n\ncolnames(my_df) # get the column names from my_df\n\n[1] \"ad_type\"  \"n_clicks\" \"sales\"    \"weekend\" \n\n\n\n\ndim(my_df)       # get the dimensions of my_df\n\n[1] 3 4\n\n\n\n\n\nmy_df$ad_type    # access a column of my_df by name\n\n[1] \"pop-up\" \"banner\" \"video\" \n\n\n\n\n\nmy_df[ , 1]      # access a column by index\n\n[1] \"pop-up\" \"banner\" \"video\" \n\n\n\n\n\nmy_df[2 , ]      # acces a row by index\n\n  ad_type n_clicks sales weekend\n2  banner       23     2   FALSE"
+  },
+  {
+    "objectID": "slides/slides_class2.html#practice",
+    "href": "slides/slides_class2.html#practice",
+    "title": "Introduction to R - Part 2",
+    "section": "Practice",
+    "text": "Practice\n\nConnect to https://giuseppealfonzetti.github.io/LSM/\nClick on the “Material” (💻) icon corresponding to today lab.\nDownload the Excel file."
+  },
+  {
+    "objectID": "slides/slides_class2.html#workflow-basics",
+    "href": "slides/slides_class2.html#workflow-basics",
+    "title": "Introduction to R - Part 2",
+    "section": "Workflow basics",
+    "text": "Workflow basics\n\nCreate a folder on your laptop where to store all your future analysis;\nOpen Rstudio and create an R Project for today’s practice within that folder.\nFrom your file browser, move the downloaded .xlsx file in your project directory in a subdirectory called data.\nWithin the project, create an R Script file. Here you will write your R commands.\nUse the here package to manage file paths."
+  },
+  {
+    "objectID": "slides/slides_class2.html#setup",
+    "href": "slides/slides_class2.html#setup",
+    "title": "Introduction to R - Part 2",
+    "section": "Setup",
+    "text": "Setup\n\nOn top of your script file, list the library() commands needed to perform the analysis. Today we will use\n\n\nlibrary(tidyverse)  # data manipulation and plotting\nlibrary(here)       # utilities to easily manage directories paths\nlibrary(readxl)     # utilities to read Excel files\nlibrary(writexl)    # utilities to write Excel files\n\n\nAfter loading the R packages, use the i_am() function from the here package to tell R where your script is located. If your script is called my_script.R, run\n\ni_am(\"my_script.R\")\n\n\n\nNow that R knows your position in the directory tree of your laptop, we can read the xlsx file stored in the data folder with\n\npath_to_data &lt;- here(\"data\", \"employees.xlsx\") # get the exact location of the data\ndt &lt;- read_xlsx(path_to_data)                  # read the data\n\n\n\n\n\n# A tibble: 4 × 6\n  last_name first_name department seniority  salary    ID\n  &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;\n1 al-Harron Fikra      Marketing          4  72654.  1001\n2 Whitaker  Jalen      HR                15 164507.  1002\n3 Pillow    Cleevens   Sales              7 102665.  1003\n4 Holguin   Austin     I.T.               9 138793.  1004"
+  },
+  {
+    "objectID": "slides/slides_class2.html#a-first-plot",
+    "href": "slides/slides_class2.html#a-first-plot",
+    "title": "Introduction to R - Part 2",
+    "section": "A first plot",
+    "text": "A first plot\n\nggplot(data = dt, aes(x=seniority, y=salary))"
+  },
+  {
+    "objectID": "slides/slides_class2.html#a-first-plot-1",
+    "href": "slides/slides_class2.html#a-first-plot-1",
+    "title": "Introduction to R - Part 2",
+    "section": "A first plot",
+    "text": "A first plot\n\nggplot(data = dt, aes(x=seniority, y=salary)) +\n    geom_point()"
+  },
+  {
+    "objectID": "slides/slides_class2.html#a-first-plot-2",
+    "href": "slides/slides_class2.html#a-first-plot-2",
+    "title": "Introduction to R - Part 2",
+    "section": "A first plot",
+    "text": "A first plot\n\nggplot(data = dt, aes(x=seniority, y=salary)) +\n    geom_point(aes(color=department))"
+  },
+  {
+    "objectID": "class3.html",
+    "href": "class3.html",
+    "title": "Resources for Lab 3",
+    "section": "",
+    "text": "Practice 1\n\n\n Download employees.xlsx\n\n\n\nDownload the employees.xlsx.\nCreate an R Project where to analyse the employees.xlsx dataset and move the xlsx file within the project directory.\nGet the path to the data using the here() function.\nImport the dataset in R with the read_xlsx() function.\n\n\nExercise 1Exercise 2Exercise 3Exercise 4Exercise 5Exercise 6Exercise 7\n\n\n\nHow many observations are collected in the dataset? Use the dim() function.\nWhat’s the average salary in the company? Use either the function mean()or summary()\n\n\n\n\nUse filter() and arrange() to check who are the three top earners in the I.T department.\nUse group_by(), summarise() and median() to get the median salary in the I.T. department.\n\nUsing geom_point(), construct a scatterplot for salary and seniority, colored by department. Store it in my_plot. Try adding a theme to the plot, for example:\n\nmy_plot + theme_minimal()\n\nWhat happens?\n\nUse labs() to modify the labels of the plot. For example:\n\n\nmy_plot + theme_minimal() + labs(x=\"Seniority (years)\", y=\"Salary\", color=\"Department:\")\n\n\nUse facet_grid() to create a multi-window plot\n\n\nmy_plot + facet_grid(~department)\n\n\nExport your plot with the function ggsave()\n\n\nmy_great_plot &lt;- my_plot + theme_minimal() + labs(x=\"Seniority (years)\", y=\"Salary\", color=\"Department:\")+ facet_grid(~department)\n\nggsave(my_great_plot, filename = here(\"great_plot.jpeg\"))\n\n\n\n\nUse group_by() and summarise() to compute the average and total expenditure for salaries by department\n\n\n\n\nHow many employees have just been hired in the company?\nHow many employees have just been hired in the I.T. department?\nCompute the average salary of employees from the Finance department with at least 8 years seniority.\n\n\n\nCreate a summary table where you report:\n\nthe median salary by department (using the function median()),\nthe number of employees by department (using the function n()),\nthe number of new hired by department.\n\nSave it as an excel file via the write_xlsx() function.\n\n\nGiven the summary table in the previous exercise, reproduce the following bar plot of the median salary by department (hint: use geom_col()).\n\n\n\n\n\n\n\n\n\n\n\nYou have to create an Excel file where employees from different department are collected in different sheets.\nIn R, you can create multi-sheets Excel files by feeding write_xlsx() with a list of datasets. Assume you stored the original employees.xlsxdataset in the dataframe dt. Now, try running\n\nmy_departments &lt;- split(dt, dt$department)\n\n\nWhat does the split()function do? Run ?split() to read the documentation.\nWhat kind of object is stored in my_departments? Run typeof(my_departments) to investigate.\nFeed write_xlsx() with my_departmentsto create a multi-sheet Excel file.\n\n\n\n\n\n\nPractice 2\n\n\n Download employees_company2.xlsx\n\n\n\nThe HR department sent you the employees file from a different company.\nDownload the employees_company2.xlsx and import it in R.\nAs you can see, the file has a structure that is very similar to the previous database. Nevertheless, it presents two critical issues:\n\nColumn names do not follow a consistent notation. Sometimes they are capitalized, sometimes they are not. Some times they includes spaces, sometimes they do not.\nThere are missing values\n\n\n\nExercise 1Exercise 2\n\n\nUse the function clean_names() from the janitor package to tidy up column names automatically\n\n\n\nHow many missing values are present in the salary column? Use the summary() function.\nReplace missing values with the median salary of department the missing value belongs to."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Laboratory of Statistics and Mathematics",
+    "section": "",
+    "text": "Schedule and topics outline for the 2025/2026 lab classes\n💻\n\n\n\nDate\nClass\nTopic\nMaterial\nSlides\nSolutions\n\n\n\n\nOct 1\nLab 1\nIntroduction to R (Part 1)\n💻\n📖\n\n\n\nOct 15\nLab 2\nIntroduction to R (Part 2)\n💻\n📖\n\n\n\nOct 29\nLab 3\nData manipulation (Part 1)\n💻\n📖\n📝\n\n\nNov 12\nLab 4\nData manipulation (Part 2)\n💻\n📖\n\n\n\nOct 26\nLab 5\n\n\n\n\n\n\nDec 11\nLab 6",
+    "crumbs": [
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "slides/slides_class1.html#our-goal",
+    "href": "slides/slides_class1.html#our-goal",
+    "title": "Introduction to R",
+    "section": "Our goal",
+    "text": "Our goal\nThe data analysis pipeline:"
+  },
+  {
+    "objectID": "slides/slides_class1.html#import",
+    "href": "slides/slides_class1.html#import",
+    "title": "Introduction to R",
+    "section": "Import",
+    "text": "Import\nYou will learn how to read external data sources from R. In particular, we will focus on\n\nUniversal text formats, as .csv.\nProprietary spreadsheets formats, as Excel .xls and .xlsx;"
+  },
+  {
+    "objectID": "slides/slides_class1.html#tidy",
+    "href": "slides/slides_class1.html#tidy",
+    "title": "Introduction to R",
+    "section": "Tidy",
+    "text": "Tidy\nYou will know hot to store your data in a cosistent format.\n\nEach row is an observation;\nEach column a variable, with a unique name.\nEach variable has a specific type (numeric, chracter, logical, etc..).\n\n\n\n# A tibble: 234 × 7\n   manufacturer displ model      class     cyl trans        hwy\n   &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;   &lt;int&gt; &lt;chr&gt;      &lt;int&gt;\n 1 audi           1.8 a4         compact     4 auto(l5)      29\n 2 audi           1.8 a4         compact     4 manual(m5)    29\n 3 audi           2   a4         compact     4 manual(m6)    31\n 4 audi           2   a4         compact     4 auto(av)      30\n 5 audi           2.8 a4         compact     6 auto(l5)      26\n 6 audi           2.8 a4         compact     6 manual(m5)    26\n 7 audi           3.1 a4         compact     6 auto(av)      27\n 8 audi           1.8 a4 quattro compact     4 manual(m5)    26\n 9 audi           1.8 a4 quattro compact     4 auto(l5)      25\n10 audi           2   a4 quattro compact     4 manual(m6)    28\n# ℹ 224 more rows"
+  },
+  {
+    "objectID": "slides/slides_class1.html#transform",
+    "href": "slides/slides_class1.html#transform",
+    "title": "Introduction to R",
+    "section": "Transform",
+    "text": "Transform\nYou will learn how to transform the data at your willingness:\n\nSelect the variables of interest;\nCombine existing variables in new variables;\nFilter relevant observations;\nReshape data;\n\n\n\n# A tibble: 234 × 3\n   displ class     hwy\n   &lt;dbl&gt; &lt;chr&gt;   &lt;int&gt;\n 1   1.8 compact    29\n 2   1.8 compact    29\n 3   2   compact    31\n 4   2   compact    30\n 5   2.8 compact    26\n 6   2.8 compact    26\n 7   3.1 compact    27\n 8   1.8 compact    26\n 9   1.8 compact    25\n10   2   compact    28\n# ℹ 224 more rows"
+  },
+  {
+    "objectID": "slides/slides_class1.html#visualize",
+    "href": "slides/slides_class1.html#visualize",
+    "title": "Introduction to R",
+    "section": "Visualize",
+    "text": "Visualize\nYou will learn how to explore data patterns with visualisations."
+  },
+  {
+    "objectID": "slides/slides_class1.html#model",
+    "href": "slides/slides_class1.html#model",
+    "title": "Introduction to R",
+    "section": "Model",
+    "text": "Model\nIt’s the only step where “math” enters the game. Goes from simple descriptive statistics, to more elaborated modelling strategies. Often combined with visualisations."
+  },
+  {
+    "objectID": "slides/slides_class1.html#communicate",
+    "href": "slides/slides_class1.html#communicate",
+    "title": "Introduction to R",
+    "section": "Communicate",
+    "text": "Communicate\n\nWrite reports;\nChoose appropriate viasualizations;\nHighilight the results in terms of insights."
+  },
+  {
+    "objectID": "slides/slides_class1.html#why-r",
+    "href": "slides/slides_class1.html#why-r",
+    "title": "Introduction to R",
+    "section": "Why R?",
+    "text": "Why R?\n\n\nReplicability!"
+  },
+  {
+    "objectID": "slides/slides_class1.html#excel-vs-r",
+    "href": "slides/slides_class1.html#excel-vs-r",
+    "title": "Introduction to R",
+    "section": "Excel vs R",
+    "text": "Excel vs R\n\nConsider creating a new variable in your dataset:\n\n\n\n\nNow you share your spreadsheet with your colleague.\n\n\n\n\nShe will not know the formula within each cell unless she inspect all of them individually!"
+  },
+  {
+    "objectID": "slides/slides_class1.html#excel-vs-r-1",
+    "href": "slides/slides_class1.html#excel-vs-r-1",
+    "title": "Introduction to R",
+    "section": "Excel vs R",
+    "text": "Excel vs R\n\nConsider the same data in R, stored in the object my_data\n\n\nmy_data \n\n# A tibble: 4 × 2\n  QuantityA QuantityB\n      &lt;dbl&gt;     &lt;dbl&gt;\n1        50        20\n2        90        25\n3        10        45\n4        30        15\n\n\n\n\nYou can create the same Tot column you had before in Excel with\n\n\nmy_data |&gt; \n  mutate(Tot = QuantityA + QuantityB)\n\n# A tibble: 4 × 3\n  QuantityA QuantityB   Tot\n      &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;\n1        50        20    70\n2        90        25   115\n3        10        45    55\n4        30        15    45\n\n\n\n\n\nAnd now your colleague has no doubt about where those numbers come from!"
+  },
+  {
+    "objectID": "slides/slides_class1.html#excel-vs-r-2",
+    "href": "slides/slides_class1.html#excel-vs-r-2",
+    "title": "Introduction to R",
+    "section": "Excel VS R",
+    "text": "Excel VS R\n\nYou are interested in computing the total number of products sold by each representative:\n\n\n\n\nThat’s a lot of point-and-clicks!\n\n\n\n\nWill your colleague be able to reproduce your results?"
+  },
+  {
+    "objectID": "slides/slides_class1.html#excel-vs-r-3",
+    "href": "slides/slides_class1.html#excel-vs-r-3",
+    "title": "Introduction to R",
+    "section": "Excel VS R",
+    "text": "Excel VS R\nConsider the same dataset in R stored in the new object my_data2:\n\nmy_data2\n\n# A tibble: 10 × 4\n   SalesRepresentative Product QuantitySold Region\n   &lt;chr&gt;               &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; \n 1 Eleonor             A                 50 IT    \n 2 Elizabeth           B                 90 UK    \n 3 John                C                 10 FR    \n 4 Matt                A                 34 DE    \n 5 Eleonor             A                  5 IT    \n 6 Elizabeth           C                  8 IT    \n 7 John                B                 20 UK    \n 8 Matt                B                  5 UK    \n 9 Eleonor             A                 15 UK    \n10 Elizabeth           C                 45 DE    \n\n\n\nYou get the same results seen in Excel by running\n\nmy_data2 |&gt; \n  group_by(SalesRepresentative) |&gt; \n  summarise(Total = sum(QuantitySold))\n\n# A tibble: 4 × 2\n  SalesRepresentative Total\n  &lt;chr&gt;               &lt;dbl&gt;\n1 Eleonor                70\n2 Elizabeth             143\n3 John                   30\n4 Matt                   39"
+  },
+  {
+    "objectID": "slides/slides_class1.html#access-r-from-web",
+    "href": "slides/slides_class1.html#access-r-from-web",
+    "title": "Introduction to R",
+    "section": "Access R from Web",
+    "text": "Access R from Web\n\nConnect to https://giuseppealfonzetti.github.io/LSM/\nClick on the “Material” (💻) icon corresponding to today lab.\nAccess the interactive web console."
+  },
+  {
+    "objectID": "slides/slides_class1.html#basic-r-grammar",
+    "href": "slides/slides_class1.html#basic-r-grammar",
+    "title": "Introduction to R",
+    "section": "Basic R grammar",
+    "text": "Basic R grammar\n\nRun a command:\n\nGet the cursor on the line and press CTRL+ENTER on Windows, or CMD+ENTER on MacOS.\n\nAssign a value to an object\n\n\na = 1                            # numeric value assigned with = \nb &lt;- 2                           # numeric value assigne with &lt;- \nc &lt;- \"ciao\"                      # character value \nc                                # display the content stored in c\n\n[1] \"ciao\"\n\n\n\nBasic math\n\n\na+b                              # sum the values stored in a and b\n\n[1] 3\n\n\n\nCreate a vector\n\n\nv1 &lt;- c(1, 7, 2)                 # create the vector manually\nv2 &lt;- 1:10                       # create a sequence 1 to 10 automatically\nv3 &lt;- seq(1,10,by=2)             # create a sequence automatically with the seq() function\n\n\nSeek help\n\n\n?seq()                           # R will show you the documentation of the seq function\n\n\nCreate and inspect matrices\n\n\nm &lt;- matrix(1:6, nrow=2, ncol=3) # create a matrix\nnrow(m)                          # inspect the number of rows\n\n[1] 2\n\nncol(m)                          # inspect the number of columns\n\n[1] 3\n\nm[1,2]                           # display element on the first row, at the second column\n\n[1] 3"
+  },
+  {
+    "objectID": "slides/slides_class1.html#quick-visualization",
+    "href": "slides/slides_class1.html#quick-visualization",
+    "title": "Introduction to R",
+    "section": "Quick visualization",
+    "text": "Quick visualization\nSome test datasets are preloaded in R. That’s the case of iris, a famous dataset about iris flower dimensions\n\nhead(iris)\n\n  Sepal.Length Sepal.Width Petal.Length Petal.Width Species\n1          5.1         3.5          1.4         0.2  setosa\n2          4.9         3.0          1.4         0.2  setosa\n3          4.7         3.2          1.3         0.2  setosa\n4          4.6         3.1          1.5         0.2  setosa\n5          5.0         3.6          1.4         0.2  setosa\n6          5.4         3.9          1.7         0.4  setosa\n\n\nYou can easily visualise petal dimension distribution yourself by using the ggplot2package. Don’t worry about understanding the syntax for now!\n\nggplot(data=iris, aes(x=Petal.Length, y=Petal.Width)) + geom_point(aes(col=Species))"
+  },
+  {
+    "objectID": "slides/slides_class3.html#r-basics---filtering",
+    "href": "slides/slides_class3.html#r-basics---filtering",
+    "title": "Data manipulation",
+    "section": "R basics - filtering",
+    "text": "R basics - filtering\nConsider the data.frame\n\nmy_df\n\n  id ad_type n_clicks sales weekend\n1  1  pop-up       56     7    TRUE\n2  2  banner       23     2   FALSE\n3  3   video      321    25   FALSE\n4  4  banner       89    10    TRUE\n5  5  pop-up       10    23    TRUE\n\n\n\nCreate a filter:\n\nmy_df$ad_type == \"banner\"\n\n[1] FALSE  TRUE FALSE  TRUE FALSE\n\n\n\n\n\nmy_filter = my_df$sales &gt; 20\nmy_filter\n\n[1] FALSE FALSE  TRUE FALSE  TRUE\n\n\n\n\nView:\n\nmy_df[my_filter, ]\n\n  id ad_type n_clicks sales weekend\n3  3   video      321    25   FALSE\n5  5  pop-up       10    23    TRUE\n\n\n\n\nOverwrite:\n\nmy_df[my_filter, ]$ad_type = c(\"banner\", \"banner\")\nmy_df\n\n  id ad_type n_clicks sales weekend\n1  1  pop-up       56     7    TRUE\n2  2  banner       23     2   FALSE\n3  3  banner      321    25   FALSE\n4  4  banner       89    10    TRUE\n5  5  banner       10    23    TRUE"
+  },
+  {
+    "objectID": "slides/slides_class3.html#r-basics---missing-values",
+    "href": "slides/slides_class3.html#r-basics---missing-values",
+    "title": "Data manipulation",
+    "section": "R basics - Missing values",
+    "text": "R basics - Missing values\nConsider the data.frame\n\nmy_df\n\n  id ad_type n_clicks sales weekend\n1  1  pop-up       56     7    TRUE\n2  2  banner       23    NA   FALSE\n3  3   video      321    25   FALSE\n4  4  banner       NA    10    TRUE\n5  5  pop-up       10    23    TRUE\n\n\n\n\nsummary(my_df)\n\n       id      ad_type             n_clicks          sales      \n Min.   :1   Length:5           Min.   : 10.00   Min.   : 7.00  \n 1st Qu.:2   Class :character   1st Qu.: 19.75   1st Qu.: 9.25  \n Median :3   Mode  :character   Median : 39.50   Median :16.50  \n Mean   :3                      Mean   :102.50   Mean   :16.25  \n 3rd Qu.:4                      3rd Qu.:122.25   3rd Qu.:23.50  \n Max.   :5                      Max.   :321.00   Max.   :25.00  \n                                NA's   :1        NA's   :1      \n  weekend       \n Mode :logical  \n FALSE:2        \n TRUE :3"
+  },
+  {
+    "objectID": "slides/slides_class3.html#r-basics---missing-values-1",
+    "href": "slides/slides_class3.html#r-basics---missing-values-1",
+    "title": "Data manipulation",
+    "section": "R basics - Missing values",
+    "text": "R basics - Missing values\nConsider the data.frame\n\nmy_df\n\n  id ad_type n_clicks sales weekend\n1  1  pop-up       56     7    TRUE\n2  2  banner       23    NA   FALSE\n3  3   video      321    25   FALSE\n4  4  banner       NA    10    TRUE\n5  5  pop-up       10    23    TRUE\n\n\nLocate:\n\nclicks_missing &lt;- is.na(my_df$n_clicks)\nclicks_missing\n\n[1] FALSE FALSE FALSE  TRUE FALSE\n\n\n\nReplace:\n\nmy_df$n_clicks[clicks_missing] &lt;- median(my_df$n_clicks, na.rm=TRUE)\nmy_df\n\n  id ad_type n_clicks sales weekend\n1  1  pop-up     56.0     7    TRUE\n2  2  banner     23.0    NA   FALSE\n3  3   video    321.0    25   FALSE\n4  4  banner     39.5    10    TRUE\n5  5  pop-up     10.0    23    TRUE"
+  },
+  {
+    "objectID": "slides/slides_class3.html#data-manipulation-with-tidyverse",
+    "href": "slides/slides_class3.html#data-manipulation-with-tidyverse",
+    "title": "Data manipulation",
+    "section": "Data manipulation with tidyverse",
+    "text": "Data manipulation with tidyverse\nConsider this dataset:\n\nlibrary(tidyverse)\npenguins\n\n# A tibble: 344 × 8\n   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n 1 Adelie  Torgersen           39.1          18.7               181        3750\n 2 Adelie  Torgersen           39.5          17.4               186        3800\n 3 Adelie  Torgersen           40.3          18                 195        3250\n 4 Adelie  Torgersen           NA            NA                  NA          NA\n 5 Adelie  Torgersen           36.7          19.3               193        3450\n 6 Adelie  Torgersen           39.3          20.6               190        3650\n 7 Adelie  Torgersen           38.9          17.8               181        3625\n 8 Adelie  Torgersen           39.2          19.6               195        4675\n 9 Adelie  Torgersen           34.1          18.1               193        3475\n10 Adelie  Torgersen           42            20.2               190        4250\n# ℹ 334 more rows\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;\n\n\nSelect:\n\nmy_penguins &lt;- select(penguins, species, island, sex, bill_length_mm, body_mass_g, year)\nmy_penguins\n\n# A tibble: 344 × 6\n   species island    sex    bill_length_mm body_mass_g  year\n   &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt;           &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;\n 1 Adelie  Torgersen male             39.1        3750  2007\n 2 Adelie  Torgersen female           39.5        3800  2007\n 3 Adelie  Torgersen female           40.3        3250  2007\n 4 Adelie  Torgersen &lt;NA&gt;             NA            NA  2007\n 5 Adelie  Torgersen female           36.7        3450  2007\n 6 Adelie  Torgersen male             39.3        3650  2007\n 7 Adelie  Torgersen female           38.9        3625  2007\n 8 Adelie  Torgersen male             39.2        4675  2007\n 9 Adelie  Torgersen &lt;NA&gt;             34.1        3475  2007\n10 Adelie  Torgersen &lt;NA&gt;             42          4250  2007\n# ℹ 334 more rows"
+  },
+  {
+    "objectID": "slides/slides_class3.html#data-manipulation-with-tidyverse-1",
+    "href": "slides/slides_class3.html#data-manipulation-with-tidyverse-1",
+    "title": "Data manipulation",
+    "section": "Data manipulation with tidyverse",
+    "text": "Data manipulation with tidyverse\nFilter:\n\nfilter(my_penguins, sex==\"female\")\n\n# A tibble: 165 × 6\n   species island    sex    bill_length_mm body_mass_g  year\n   &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt;           &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;\n 1 Adelie  Torgersen female           39.5        3800  2007\n 2 Adelie  Torgersen female           40.3        3250  2007\n 3 Adelie  Torgersen female           36.7        3450  2007\n 4 Adelie  Torgersen female           38.9        3625  2007\n 5 Adelie  Torgersen female           41.1        3200  2007\n 6 Adelie  Torgersen female           36.6        3700  2007\n 7 Adelie  Torgersen female           38.7        3450  2007\n 8 Adelie  Torgersen female           34.4        3325  2007\n 9 Adelie  Biscoe    female           37.8        3400  2007\n10 Adelie  Biscoe    female           35.9        3800  2007\n# ℹ 155 more rows\n\n\n\n\nfilter(my_penguins, sex==\"female\", island==\"Biscoe\")\n\n# A tibble: 80 × 6\n   species island sex    bill_length_mm body_mass_g  year\n   &lt;fct&gt;   &lt;fct&gt;  &lt;fct&gt;           &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;\n 1 Adelie  Biscoe female           37.8        3400  2007\n 2 Adelie  Biscoe female           35.9        3800  2007\n 3 Adelie  Biscoe female           35.3        3800  2007\n 4 Adelie  Biscoe female           40.5        3200  2007\n 5 Adelie  Biscoe female           37.9        3150  2007\n 6 Adelie  Biscoe female           39.6        3500  2008\n 7 Adelie  Biscoe female           35          3450  2008\n 8 Adelie  Biscoe female           34.5        2900  2008\n 9 Adelie  Biscoe female           39          3550  2008\n10 Adelie  Biscoe female           36.5        2850  2008\n# ℹ 70 more rows"
+  },
+  {
+    "objectID": "slides/slides_class3.html#data-manipulation-with-tidyverse-2",
+    "href": "slides/slides_class3.html#data-manipulation-with-tidyverse-2",
+    "title": "Data manipulation",
+    "section": "Data manipulation with tidyverse",
+    "text": "Data manipulation with tidyverse\nMutate:\n\nmutate(my_penguins, body_mass_kg=body_mass_g/1000)\n\n# A tibble: 344 × 7\n   species island    sex    bill_length_mm body_mass_g  year body_mass_kg\n   &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt;           &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;        &lt;dbl&gt;\n 1 Adelie  Torgersen male             39.1        3750  2007         3.75\n 2 Adelie  Torgersen female           39.5        3800  2007         3.8 \n 3 Adelie  Torgersen female           40.3        3250  2007         3.25\n 4 Adelie  Torgersen &lt;NA&gt;             NA            NA  2007        NA   \n 5 Adelie  Torgersen female           36.7        3450  2007         3.45\n 6 Adelie  Torgersen male             39.3        3650  2007         3.65\n 7 Adelie  Torgersen female           38.9        3625  2007         3.62\n 8 Adelie  Torgersen male             39.2        4675  2007         4.68\n 9 Adelie  Torgersen &lt;NA&gt;             34.1        3475  2007         3.48\n10 Adelie  Torgersen &lt;NA&gt;             42          4250  2007         4.25\n# ℹ 334 more rows\n\n\n\n\nmutate(my_penguins, body_mass_g=body_mass_g+1)\n\n# A tibble: 344 × 6\n   species island    sex    bill_length_mm body_mass_g  year\n   &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt;           &lt;dbl&gt;       &lt;dbl&gt; &lt;int&gt;\n 1 Adelie  Torgersen male             39.1        3751  2007\n 2 Adelie  Torgersen female           39.5        3801  2007\n 3 Adelie  Torgersen female           40.3        3251  2007\n 4 Adelie  Torgersen &lt;NA&gt;             NA            NA  2007\n 5 Adelie  Torgersen female           36.7        3451  2007\n 6 Adelie  Torgersen male             39.3        3651  2007\n 7 Adelie  Torgersen female           38.9        3626  2007\n 8 Adelie  Torgersen male             39.2        4676  2007\n 9 Adelie  Torgersen &lt;NA&gt;             34.1        3476  2007\n10 Adelie  Torgersen &lt;NA&gt;             42          4251  2007\n# ℹ 334 more rows"
+  },
+  {
+    "objectID": "slides/slides_class3.html#data-manipulation-with-tidyverse-3",
+    "href": "slides/slides_class3.html#data-manipulation-with-tidyverse-3",
+    "title": "Data manipulation",
+    "section": "Data manipulation with tidyverse",
+    "text": "Data manipulation with tidyverse\nMutate according to logical conditions:\n\nmy_penguins\n\n# A tibble: 344 × 6\n   species island    sex    bill_length_mm body_mass_g  year\n   &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt;           &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;\n 1 Adelie  Torgersen male             39.1        3750  2007\n 2 Adelie  Torgersen female           39.5        3800  2007\n 3 Adelie  Torgersen female           40.3        3250  2007\n 4 Adelie  Torgersen &lt;NA&gt;             NA            NA  2007\n 5 Adelie  Torgersen female           36.7        3450  2007\n 6 Adelie  Torgersen male             39.3        3650  2007\n 7 Adelie  Torgersen female           38.9        3625  2007\n 8 Adelie  Torgersen male             39.2        4675  2007\n 9 Adelie  Torgersen &lt;NA&gt;             34.1        3475  2007\n10 Adelie  Torgersen &lt;NA&gt;             42          4250  2007\n# ℹ 334 more rows\n\n\n\n\nmutate(\n    my_penguins, \n    bill_length_mm = replace(bill_length_mm, bill_length_mm&gt;39, 100)\n)\n\n# A tibble: 344 × 6\n   species island    sex    bill_length_mm body_mass_g  year\n   &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt;           &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;\n 1 Adelie  Torgersen male            100          3750  2007\n 2 Adelie  Torgersen female          100          3800  2007\n 3 Adelie  Torgersen female          100          3250  2007\n 4 Adelie  Torgersen &lt;NA&gt;             NA            NA  2007\n 5 Adelie  Torgersen female           36.7        3450  2007\n 6 Adelie  Torgersen male            100          3650  2007\n 7 Adelie  Torgersen female           38.9        3625  2007\n 8 Adelie  Torgersen male            100          4675  2007\n 9 Adelie  Torgersen &lt;NA&gt;             34.1        3475  2007\n10 Adelie  Torgersen &lt;NA&gt;            100          4250  2007\n# ℹ 334 more rows"
+  },
+  {
+    "objectID": "slides/slides_class3.html#data-manipulation-with-tidyverse-4",
+    "href": "slides/slides_class3.html#data-manipulation-with-tidyverse-4",
+    "title": "Data manipulation",
+    "section": "Data manipulation with tidyverse",
+    "text": "Data manipulation with tidyverse\nReplace Missing values\n\nmy_penguins\n\n# A tibble: 344 × 6\n   species island    sex    bill_length_mm body_mass_g  year\n   &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt;           &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;\n 1 Adelie  Torgersen male             39.1        3750  2007\n 2 Adelie  Torgersen female           39.5        3800  2007\n 3 Adelie  Torgersen female           40.3        3250  2007\n 4 Adelie  Torgersen &lt;NA&gt;             NA            NA  2007\n 5 Adelie  Torgersen female           36.7        3450  2007\n 6 Adelie  Torgersen male             39.3        3650  2007\n 7 Adelie  Torgersen female           38.9        3625  2007\n 8 Adelie  Torgersen male             39.2        4675  2007\n 9 Adelie  Torgersen &lt;NA&gt;             34.1        3475  2007\n10 Adelie  Torgersen &lt;NA&gt;             42          4250  2007\n# ℹ 334 more rows\n\n\n\n\nmutate(my_penguins, body_mass_g_filled = replace(body_mass_g, is.na(body_mass_g), median(body_mass_g, na.rm=TRUE)))\n\n# A tibble: 344 × 7\n   species island    sex    bill_length_mm body_mass_g  year body_mass_g_filled\n   &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt;           &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;              &lt;dbl&gt;\n 1 Adelie  Torgersen male             39.1        3750  2007               3750\n 2 Adelie  Torgersen female           39.5        3800  2007               3800\n 3 Adelie  Torgersen female           40.3        3250  2007               3250\n 4 Adelie  Torgersen &lt;NA&gt;             NA            NA  2007               4050\n 5 Adelie  Torgersen female           36.7        3450  2007               3450\n 6 Adelie  Torgersen male             39.3        3650  2007               3650\n 7 Adelie  Torgersen female           38.9        3625  2007               3625\n 8 Adelie  Torgersen male             39.2        4675  2007               4675\n 9 Adelie  Torgersen &lt;NA&gt;             34.1        3475  2007               3475\n10 Adelie  Torgersen &lt;NA&gt;             42          4250  2007               4250\n# ℹ 334 more rows"
+  },
+  {
+    "objectID": "slides/slides_class3.html#data-manipulation-with-tidyverse-5",
+    "href": "slides/slides_class3.html#data-manipulation-with-tidyverse-5",
+    "title": "Data manipulation",
+    "section": "Data manipulation with tidyverse",
+    "text": "Data manipulation with tidyverse\nReplace Missing values\n\nmutate(\n    my_penguins, \n    body_mass_g = replace(body_mass_g, is.na(body_mass_g), median(body_mass_g, na.rm=TRUE)),\n    bill_length_mm = replace(bill_length_mm, is.na(bill_length_mm), median(bill_length_mm, na.rm=TRUE))\n)\n\n# A tibble: 344 × 6\n   species island    sex    bill_length_mm body_mass_g  year\n   &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt;           &lt;dbl&gt;       &lt;dbl&gt; &lt;int&gt;\n 1 Adelie  Torgersen male             39.1        3750  2007\n 2 Adelie  Torgersen female           39.5        3800  2007\n 3 Adelie  Torgersen female           40.3        3250  2007\n 4 Adelie  Torgersen &lt;NA&gt;             44.4        4050  2007\n 5 Adelie  Torgersen female           36.7        3450  2007\n 6 Adelie  Torgersen male             39.3        3650  2007\n 7 Adelie  Torgersen female           38.9        3625  2007\n 8 Adelie  Torgersen male             39.2        4675  2007\n 9 Adelie  Torgersen &lt;NA&gt;             34.1        3475  2007\n10 Adelie  Torgersen &lt;NA&gt;             42          4250  2007\n# ℹ 334 more rows"
+  },
+  {
+    "objectID": "slides/slides_class3.html#data-manipulation-with-tidyverse-6",
+    "href": "slides/slides_class3.html#data-manipulation-with-tidyverse-6",
+    "title": "Data manipulation",
+    "section": "Data manipulation with tidyverse",
+    "text": "Data manipulation with tidyverse\nPipes:\n\npenguins\n\n# A tibble: 344 × 8\n   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n 1 Adelie  Torgersen           39.1          18.7               181        3750\n 2 Adelie  Torgersen           39.5          17.4               186        3800\n 3 Adelie  Torgersen           40.3          18                 195        3250\n 4 Adelie  Torgersen           NA            NA                  NA          NA\n 5 Adelie  Torgersen           36.7          19.3               193        3450\n 6 Adelie  Torgersen           39.3          20.6               190        3650\n 7 Adelie  Torgersen           38.9          17.8               181        3625\n 8 Adelie  Torgersen           39.2          19.6               195        4675\n 9 Adelie  Torgersen           34.1          18.1               193        3475\n10 Adelie  Torgersen           42            20.2               190        4250\n# ℹ 334 more rows\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;\n\n\n\n\npenguins |&gt; \n    select(species, island, sex, body_mass_g, bill_length_mm) |&gt; \n    mutate(body_mass_kg=body_mass_g/1000) |&gt; \n    filter(sex==\"female\") |&gt; \n    arrange(bill_length_mm) |&gt; \n    select(-body_mass_g)\n\n\n\n\n\n# A tibble: 165 × 5\n   species island    sex    bill_length_mm body_mass_kg\n   &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt;           &lt;dbl&gt;        &lt;dbl&gt;\n 1 Adelie  Dream     female           32.1         3.05\n 2 Adelie  Dream     female           33.1         2.9 \n 3 Adelie  Torgersen female           33.5         3.6 \n 4 Adelie  Dream     female           34           3.4 \n 5 Adelie  Torgersen female           34.4         3.32\n 6 Adelie  Biscoe    female           34.5         2.9 \n 7 Adelie  Torgersen female           34.6         3.2 \n 8 Adelie  Biscoe    female           35           3.45\n 9 Adelie  Biscoe    female           35           3.72\n10 Adelie  Torgersen female           35.2         3.05\n# ℹ 155 more rows"
+  },
+  {
+    "objectID": "slides/slides_class3.html#groupwise-manipulation",
+    "href": "slides/slides_class3.html#groupwise-manipulation",
+    "title": "Data manipulation",
+    "section": "Groupwise manipulation",
+    "text": "Groupwise manipulation\nSummarise by group:\n\npenguins |&gt; \n    group_by(species) |&gt; \n    summarise(average_bill_length = mean(bill_length_mm))\n\n\n\n\n# A tibble: 3 × 2\n  species   average_bill_length\n  &lt;fct&gt;                   &lt;dbl&gt;\n1 Adelie                   NA  \n2 Chinstrap                48.8\n3 Gentoo                   NA  \n\n\n\n\n\npenguins |&gt; \n    group_by(species) |&gt; \n    summarise(average_bill_length = mean(bill_length_mm, na.rm=TRUE))\n\n\n\n\n\n# A tibble: 3 × 2\n  species   average_bill_length\n  &lt;fct&gt;                   &lt;dbl&gt;\n1 Adelie                   38.8\n2 Chinstrap                48.8\n3 Gentoo                   47.5"
+  },
+  {
+    "objectID": "slides/slides_class3.html#groupwise-manipulation-1",
+    "href": "slides/slides_class3.html#groupwise-manipulation-1",
+    "title": "Data manipulation",
+    "section": "Groupwise manipulation",
+    "text": "Groupwise manipulation\nMutate by group:\n\npenguins |&gt; \n    select(species, island, bill_length_mm) |&gt; \n    group_by(species) |&gt; \n    mutate(species_average_bill_length = mean(bill_length_mm, na.rm=TRUE))\n\n\n\n\n# A tibble: 344 × 4\n# Groups:   species [3]\n   species island    bill_length_mm species_average_bill_length\n   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;                       &lt;dbl&gt;\n 1 Adelie  Torgersen           39.1                        38.8\n 2 Adelie  Torgersen           39.5                        38.8\n 3 Adelie  Torgersen           40.3                        38.8\n 4 Adelie  Torgersen           NA                          38.8\n 5 Adelie  Torgersen           36.7                        38.8\n 6 Adelie  Torgersen           39.3                        38.8\n 7 Adelie  Torgersen           38.9                        38.8\n 8 Adelie  Torgersen           39.2                        38.8\n 9 Adelie  Torgersen           34.1                        38.8\n10 Adelie  Torgersen           42                          38.8\n# ℹ 334 more rows\n\n\n\n\n\npenguins |&gt; \n    select(species, island, bill_length_mm) |&gt; \n    group_by(species) |&gt; \n    mutate(\n        species_average_bill_length = mean(bill_length_mm, na.rm=TRUE),\n        dist_from_species_average = bill_length_mm - species_average_bill_length\n        )\n\n\n\n\n\n# A tibble: 344 × 5\n# Groups:   species [3]\n   species island   bill_length_mm species_average_bill…¹ dist_from_species_av…²\n   &lt;fct&gt;   &lt;fct&gt;             &lt;dbl&gt;                  &lt;dbl&gt;                  &lt;dbl&gt;\n 1 Adelie  Torgers…           39.1                   38.8                  0.309\n 2 Adelie  Torgers…           39.5                   38.8                  0.709\n 3 Adelie  Torgers…           40.3                   38.8                  1.51 \n 4 Adelie  Torgers…           NA                     38.8                 NA    \n 5 Adelie  Torgers…           36.7                   38.8                 -2.09 \n 6 Adelie  Torgers…           39.3                   38.8                  0.509\n 7 Adelie  Torgers…           38.9                   38.8                  0.109\n 8 Adelie  Torgers…           39.2                   38.8                  0.409\n 9 Adelie  Torgers…           34.1                   38.8                 -4.69 \n10 Adelie  Torgers…           42                     38.8                  3.21 \n# ℹ 334 more rows\n# ℹ abbreviated names: ¹​species_average_bill_length, ²​dist_from_species_average"
+  },
+  {
+    "objectID": "slides/slides_class3.html#save-objects",
+    "href": "slides/slides_class3.html#save-objects",
+    "title": "Data manipulation",
+    "section": "Save objects",
+    "text": "Save objects\n\nmy_res &lt;- penguins |&gt; \n    group_by(species) |&gt; \n    summarise(average_bill_length = mean(bill_length_mm, na.rm=TRUE))\nmy_res\n\n# A tibble: 3 × 2\n  species   average_bill_length\n  &lt;fct&gt;                   &lt;dbl&gt;\n1 Adelie                   38.8\n2 Chinstrap                48.8\n3 Gentoo                   47.5\n\n\nStore as an R data object:\n\n# To save the object in your current project folder under the name \"my_results.rda\"\nsave(my_res, here(\"my_results.rda\"))\n\n# To load the object when you need it next time\nload(here(\"my_results.rda\"))\n\n\nStore as an Excel file:\n\n# To save the object in a spreadsheet in your current project folder under the name \"my_results.rda\"\nwrite_xlsx(my_res, path = here(\"my_results.xlsx\"))"
   },
   {
     "objectID": "class2.html",

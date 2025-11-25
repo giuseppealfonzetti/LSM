@@ -1,0 +1,241 @@
+---
+title: "Comparing means"
+subtitle: "Laboratory of Statistics and Mathematics 2025/2026"
+author: Giuseppe Alfonzetti
+format: 
+  revealjs:
+    slide-number: true
+    incremental: false   
+    footer: "Comparing means - the t-test"
+    theme: ../themes/slides_theme.scss
+    highlight-style: arrow-light
+    transition: convex
+    transition-speed: fast
+title-slide-attributes:
+    data-background-color: "#1565C0"
+    data-footer: " "
+embed-resources: true
+highlight-style: tango
+
+---
+
+```{r}
+library(tidyverse)
+```
+
+# Types of t-tests {style="font-size: 0.7em;"}
+
+- One-sample t-test : Compare one mean vs a known/target value
+
+. . . 
+
+- Two-sample t-test: Compare means of two independent groups
+
+. . .
+
+- Paired t-test: Compare means on paired data (e.g. same people, before and after treatment)
+
+# Case study A {style="font-size: 0.7em;"}
+
+. . .
+
+- Your company is running a **marketing campaign** and you are monitoring the performance of the landing page in terms of *time-on-page* (i.e. seconds spent by the user on the landing page) to **assess its effectiveness**. 
+
+. . .
+
+- Your direct competitor reached a time-on-page equal to $10$ seconds.
+
+. . .
+
+- You want to assess if your campaign performance is **significantly different** from your competitor benchmark.
+
+# Data {style="font-size: 0.7em;"}
+
+```{r}
+set.seed(123)
+n_obs <- 300
+landing_data <- tibble(
+  version = rep(c("standard_campaign", "modified_campaign"), each = n_obs/2),
+  time_on_page = c(
+      rnorm(n_obs/2, mean = 9.8, sd = 1.0),  
+      rnorm(n_obs/2, mean = 12, sd = 2.0)   
+    )
+)
+landing_data <- landing_data[sample(1:n_obs, n_obs),] |> 
+  mutate(
+    user_id = paste0("user_", 1:n_obs)
+  ) |> 
+  select(user_id, everything())
+
+modified_landing_data <- landing_data |> 
+  filter(version=="modified_campaign")
+
+landing_data <- landing_data |> 
+  filter(version=="standard_campaign")
+```
+
+```{r}
+#| echo=TRUE
+landing_data
+```
+
+# Plot {style="font-size: 0.7em;"}
+```{r}
+#| echo=TRUE
+landing_data |>
+  ggplot(aes(x = version, y = time_on_page)) +
+    geom_point() +
+    labs(x="", y="Time on page (s)")
+```
+
+# Plot {style="font-size: 0.7em;"}
+
+```{r}
+#| echo: TRUE
+#| code-line-numbers: "4"
+landing_data |>
+  ggplot(aes(x = version, y = time_on_page)) +
+    geom_point() +
+    stat_summary(fun = "mean", geom = "point", size = 4, color="red")+
+    labs(x="", y="Time on page (s)")
+```
+
+# Plot {style="font-size: 0.7em;"}
+
+```{r}
+#| echo: TRUE
+#| code-line-numbers: "3"
+landing_data |>
+  ggplot(aes(x = version, y = time_on_page)) +
+    geom_boxplot() +
+    labs(x="", y="Time on page (s)")
+```
+
+# Business question {style="font-size: 0.7em;"}
+
+::: {.columns}
+::: {.column width="50%"}
+Is the marketing campaign performing significantly different from the competitor benchmark, in terms of time-on-page?
+:::
+::: {.column width="50%"}
+```{r}
+#| echo=TRUE
+landing_data |>
+  group_by(version) |>
+  summarise(
+    n = n(),
+    mean_time = mean(time_on_page),
+    sd_time = sd(time_on_page)
+  )
+```
+:::
+:::
+
+. . .
+
+We can compare the average time-on-page to the benchmark with a t-test, using the `t.test()`function
+
+. . . 
+
+```{r}
+#| echo: TRUE
+#| code-line-numbers: "1,5|2|3|4"
+t.test(
+  x=landing_data$time_on_page, 
+  mu=10, 
+  alternative = "two.sided"
+  )
+```
+
+# Case study B {style="font-size: 0.7em;"}
+
+- You assessed that the data highlight a small underperformance of your company campaign compared to the competitor one. 
+
+. . .
+
+- The design team provided you with an alternative version of the landing page. 
+
+. . .
+
+- You are interested to check if the modified landing page performs differently from the old one.
+
+# Case study B - Experiments {style="font-size: 0.7em;"}
+
+Now you can choose between:
+
+. . . 
+
+- Bring to the new landing pege a *new sample of users* to monitor the **time-on-page**;
+
+. . .
+
+- Bring to the new landing page the *same users* who visited the old one. 
+
+. . .
+
+In the first case, you can compare the average time-on-page of the standard and modified landing pages using a **Two sample t-test**. In the second case, you have to rely on a **Paired t-test**.
+
+# Data {style="font-size: 0.7em;"}
+
+```{r}
+#| echo: TRUE
+modified_landing_data
+```
+
+. . .
+
+```{r}
+#| echo: TRUE
+full_data <- landing_data |> 
+  bind_rows(modified_landing_data)
+full_data
+```
+
+
+# Plot two groups {style="font-size: 0.7em;"}
+
+```{r}
+#| echo=TRUE
+full_data |>
+  ggplot(aes(x = version, y = time_on_page)) +
+    geom_boxplot() +
+    labs(x="", y="Time to event (s)")
+```
+
+# Business question {style="font-size: 0.7em;"}
+
+::: {.columns}
+::: {.column width="50%"}
+Is the modified landing page performing significantly different from the old one, in terms of time-on-page?
+:::
+::: {.column width="50%"}
+```{r}
+#| echo=TRUE
+full_data |>
+  group_by(version) |>
+  summarise(
+    n = n(),
+    mean_time = mean(time_on_page),
+    sd_time = sd(time_on_page)
+  )
+```
+:::
+:::
+
+. . . 
+
+We can compare the average time-on-page between standard and modified landing pages, using the `t.test()`function
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+t.test(time_on_page ~ version, data = full_data, paired=FALSE)
+```
+
+. . .
+
+```{r}
+#| echo: FALSE
+t.test(time_on_page ~ version, data = full_data)
+```
+

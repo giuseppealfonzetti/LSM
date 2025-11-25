@@ -1,0 +1,139 @@
+---
+title: "Laboratory of Statistics and Mathematics - Data analysis report A"
+format: html
+author: "Write here your name"
+---
+
+```{r echo=FALSE}
+# do not modify this!
+knitr::opts_chunk$set(
+    out.width = "50%", 
+    fig.width = 10,     
+    fig.asp = 9/16,   
+    fig.align = "center" 
+)
+```
+
+```{r dataset, echo=FALSE, warning=FALSE}
+# do not modify this!
+{
+  seed <- length(rmarkdown::metadata$author)
+  set.seed(seed)
+
+  library(tidyverse) |> suppressPackageStartupMessages()
+  n_users <- 1500
+  cities <- c("Udine", "Padova", "Milano", "Trieste", "Treviso", "Torino")
+  city <- sample(
+    cities,
+    size = n_users,
+    replace = TRUE,
+    prob = runif(cities)
+  )
+
+  device <- sample(
+    c("mobile", "desktop"),
+    size = n_users,
+    replace = TRUE,
+    prob = c(0.7, 0.3)
+  )
+
+  age <- round(rnorm(n_users, mean = 35, sd = 10))
+  age <- pmin(pmax(age, 18), 70)  
+  coupon_num <- rbinom(n_users, size = 1, prob = 0.3)
+  coupon <- factor(coupon_num, levels = c(0, 1),
+                  labels = c("no_coupon", "coupon"))
+  city_effect_orders <- runif(length(cities), 0, 2)
+  names(city_effect_orders) <- cities
+  eff <- c(runif(1), -runif(1))
+  device_effect_orders <- ifelse(device == "mobile", eff[1], eff[2])
+  log_mu_orders <- log(1.4) +
+    0.5 * coupon_num +                      
+    device_effect_orders +
+    unname(city_effect_orders[city])
+
+  mu_orders <- exp(log_mu_orders)
+  n_orders <- rnbinom(n_users, size=1, mu = mu_orders)
+  spend_base <- rlnorm(n_users, meanlog = log(25), sdlog = 0.35)
+  spend_per_order <- spend_base * if_else(coupon == "coupon", 0.9, 1.00)
+  spend_per_order <- spend_per_order * (1 + (age - 35) / 1000)
+  epsilon <- rnorm(n_users, mean = 0, sd = 0.10)  # random noise
+  total_spent <- n_orders * spend_per_order * exp(epsilon)
+  total_spent[n_orders == 0] <- 0
+  avg_delivery_time <- rnorm(n_users, mean = 35, sd = 7) +
+    ifelse(device == "mobile", -1, 1) 
+  avg_delivery_time <- pmax(avg_delivery_time, 15)
+  delivery_data <- tibble(
+    user_id          = as.character(1:n_users),
+    city             = city,
+    device           = device,
+    age              = age,
+    coupon           = coupon,
+    n_orders         = n_orders,
+    total_spent      = round(total_spent, 2),
+    avg_delivery_time = round(avg_delivery_time, 1)
+  )
+
+  user_data <- delivery_data |> select(user_id, age, city)
+  user_data <- user_data[sample(1:n_users, size = n_users), ]
+  delivery_data <- delivery_data |> select(-age, -city)
+  delivery_data <- delivery_data[sample(1:n_users, size = n_users), ]
+
+  dir.create("report_data")
+  writexl::write_xlsx(delivery_data, "report_data/user_data.xlsx")
+  writexl::write_xlsx(delivery_data, "report_data/delivery_data.xlsx")
+
+}
+
+```
+
+# Instructions
+## Intro
+This `.rmd` file gives you access to two datasets called `delivery_data` and `user_data`, which gather information about a coupon-discount campaign run by a food-delivery company. Data are collected during a one-month window across different cities. A share of the user received a discount coupon at the beginning of the month. The company needs to understand if the campaign has been effective from a business perspective.
+
+```{r glimpse}
+head(user_data)
+head(delivery_data)
+```
+
+Each row of the dataset represents a user. Columns denote:
+
+- `user_id`: the unique identifier assigned to the user;
+- `city`: city of reference for the specific user
+- `device`: user's most used device;
+- `age`: age of the user;
+- `coupon`: denotes if the user has received the coupon or not;
+- `n_orders`: number of orders placed by the user during the month;
+- `total_spent`: total amount of money spent by the user during the month;
+- `avg_delivery_time`: average delivery time to the user;
+
+## Tasks
+You are asked to complete/answer the following tasks/questions. When answering a question or completing a task, always show the code and interpret the results.
+
+- Data exploration:
+  1. Produce a table showing the number and percentage of users who received the coupon. 
+  2. Produce a table showing the number and percentage of users who received the coupon by city.
+  3. Does the share of users who placed at least one order changes according to wether the user received the coupon or not 
+  4. Among under/over 35 y.o. users, plot the shares of users who placed at least one order based on wether the user received the coupon or not.
+  5. Among users who placed at least one order, compute the mean and median of total expenditure for coupon and non-coupon users.
+  6. Among users who placed at least one order, report the percentage of heavy users (more the five orders each) for coupon and non-coupon users.
+- Inferential insights for business decisions:
+  1. Compare the mean number of orders between coupon and non-coupon users. Report the results and interpret
+  2. Compare the mean total expenditure between coupon and non-coupon users. Report the results and interpret
+  3. Among users who received the coupon, does the mean per-user expenditure change between under/over 35 y.o.?
+  4. Among users who placed at least one order, does the mean average order value differ between coupon and non-coupon users?
+- Summarise your results. Is there evidence that the campaign has been effective?
+
+**Hint:** for the inferential part, you are supposed to use the `t.test()` function to answer all questions.
+
+To answer the questions, you can directly use this `.rmd` file by providing your answers in the [Solutions](#solutions) section. Alternatively, after running this `.rmd` once, you'll find the two datasets already available on you machine as `.xlsx` in a newly created `report_data` folder living in the same folder where this file is located. You can use them as you prefer to produce the report in `Word` or similar programs. Nevertheless, you will still have to answer all questions and provide your code.
+
+# Solutions:
+
+```{r}
+library(tidyverse)
+```
+
+## Data exploration
+
+## Inference 
+

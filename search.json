@@ -10,6 +10,13 @@
     ]
   },
   {
+    "objectID": "class5.html",
+    "href": "class5.html",
+    "title": "Homework Lab 5",
+    "section": "",
+    "text": "Homework\n\nCreate a new project for this homework;\nDownload the .rmd homework document and move it in the new project folder.\n\nDownload homework1.rmd\n\nOpen it and write your name in the author field.\nRender the file and follow the instructions.\nDo not modify the code chunck before the Solutions section!"
+  },
+  {
     "objectID": "class2.html",
     "href": "class2.html",
     "title": "Resources for Lab 2",

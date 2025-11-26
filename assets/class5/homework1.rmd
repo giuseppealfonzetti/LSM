@@ -1,6 +1,6 @@
 ---
 title: "Laboratory of Statistics and Mathematics - Data analysis report A"
-format: pdf
+format: html
 author: "Write here your name"
 ---
 

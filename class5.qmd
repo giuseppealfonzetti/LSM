@@ -25,3 +25,4 @@ knitr::opts_chunk$set(
 - Render the file and follow the instructions.
 - Do not modify the code chunck before the `Solutions` section!
 
+[link to the rmd](https://github.com/giuseppealfonzetti/LSM/blob/main/assets/class5/homework1.rmd)

@@ -19,10 +19,9 @@ knitr::opts_chunk$set(
 - Create a new project for this homework;
 - Download the `.rmd` homework document and move it in the new project folder.
 
-[Download homework1.rmd](assets/class5/homework1.rmd){.btn .btn-primary download="homework1.rmd"}
+[link to the rmd](https://uniudamce.sharepoint.com/:u:/s/2025-LABORATORYOFSTATISTICSANDMATHEMATICSid.389714/EV8sU7q5DtBEoAiSQy_gJ2MBQnPbqyT6alKMxViYhcEbAQ?e=lC5YZt)
 
 - Open it and write your name in the `author` field.
 - Render the file and follow the instructions.
 - Do not modify the code chunck before the `Solutions` section!
 
-[link to the rmd](https://github.com/giuseppealfonzetti/LSM/blob/main/assets/class5/homework1.rmd)

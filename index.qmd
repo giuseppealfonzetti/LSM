@@ -13,5 +13,5 @@ Schedule and topics outline for the 2025/2026 lab classes
 | Oct 15 | Lab 2 | Introduction to R (Part 2)  | [💻](class2.qmd)      | [📖](slides/slides_class2.html)      |       |
 | Oct 29 | Lab 3 | Data manipulation (Part 1)  |  [💻](class3.qmd)      |  [📖](slides/slides_class3.html)   |  [📝](sol3.qmd)     |
 | Nov 12 | Lab 4 | Data manipulation (Part 2)  |  [💻](class4.qmd)     |  [📖](slides/slides_class4.html)   |  [📝](sol4.qmd)      |
-| Oct 26 | Lab 5 | Comparing means  | [💻](class5.qmd)  | [📖](slides/slides_class5.html) [📖](slides/slides_class5bis.html) |       |
-| Dec 11 | Lab 6 |                             |      |   |       |
+| Oct 26 | Lab 5 | t-test  | [💻](class5.qmd)  | [📖](slides/slides_class5.html) [📖](slides/slides_class5bis.html) |       |
+| Dec 11 | Lab 6 |  ANOVA                | [💻](class6.qmd)     | [📖](slides/slides_class6.html) |       |

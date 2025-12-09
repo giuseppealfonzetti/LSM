@@ -769,6 +769,153 @@
     "href": "class5.html",
     "title": "Homework Lab 5",
     "section": "",
-    "text": "Create a new project for this homework;\nDownload the .rmd homework document and move it in the new project folder.\n\nlink to the rmd\n\nOpen it and write your name in the author field.\nRender the file and follow the instructions.\nDo not modify the code chunck before the Solutions section!"
+    "text": "Create a new project for this homework;\nDownload the .rmd homework document and move it in the new project folder.\n\nlink to the rmd\n\nOpen it and write your name in the author field.\nRender the file and follow the instructions.\nDo not modify the code chunck before the Solutions section!\n\n\nHomework submission\nSend your rmd file at giuseppe.alfonzetti@uniud.it."
+  },
+  {
+    "objectID": "slides/slides_class6.html#the-business-question",
+    "href": "slides/slides_class6.html#the-business-question",
+    "title": "ANOVA",
+    "section": "The Business Question",
+    "text": "The Business Question\nA retail chain asks:\n\nDo customers from different cities spend differently in our stores?\n\nWe have: - city (Berlin, Paris, Madrid) - spend (total customer purchase amount)\nGoal:\n👉 Help marketing decide whether to adjust budgets by city."
+  },
+  {
+    "objectID": "slides/slides_class6.html#intuition-no-math",
+    "href": "slides/slides_class6.html#intuition-no-math",
+    "title": "Multiple groups comparison",
+    "section": "Intuition (No Math)",
+    "text": "Intuition (No Math)\nANOVA compares 3+ groups of averages.\nHere: Does average spending differ across Berlin / Paris / Madrid?\nConcept: - Between-city variation\n- Within-city variation\nIf between &gt; within → cities genuinely differ."
+  },
+  {
+    "objectID": "slides/slides_class6.html#simulated-data-for-the-lab-r",
+    "href": "slides/slides_class6.html#simulated-data-for-the-lab-r",
+    "title": "Multiple groups comparison",
+    "section": "Simulated Data for the Lab (R)",
+    "text": "Simulated Data for the Lab (R)"
+  },
+  {
+    "objectID": "slides/slides_class6.html#case-study-a",
+    "href": "slides/slides_class6.html#case-study-a",
+    "title": "Multiple groups comparison",
+    "section": "Case Study A",
+    "text": "Case Study A\nA retail chain asks:\n\nDo customers from different cities spend differently in our stores?\n\n\nDifferent cities (Milan, Paris, Madrid, Berlin);\nTotal purchase amount by customer.\n\n\nGoal:\n\nHelp the retail chain in which city to invest to open further stores."
+  },
+  {
+    "objectID": "slides/slides_class6.html#anova-tests",
+    "href": "slides/slides_class6.html#anova-tests",
+    "title": "Multiple groups comparison",
+    "section": "ANOVA tests",
+    "text": "ANOVA tests\nCompares averages of 3+ groups.\n\nDoes average spending differ across cities?\n\n\nIntuition: the ANOVA test compares\n\nWithin-city variation;\nBetween-city variation .\n\n\n\nIf between-city variation is “larger” than within-city variation, then group averages differ!\n\n\nStatistical Hypoteses:\n\n\\(H_0\\): all means are equal;\n\\(H_1\\): at least one mean differs;"
+  },
+  {
+    "objectID": "slides/slides_class6.html#case-study",
+    "href": "slides/slides_class6.html#case-study",
+    "title": "Multiple groups comparison",
+    "section": "Case Study",
+    "text": "Case Study\nA retail chain asks:\n\nDo customers from different cities spend differently in our stores?\n\n\nDifferent cities (Milan, Paris, Madrid, Berlin);\nTotal purchase amount by customer.\n\n\nGoal:\n\nHelp the retail chain understanding in which city customers spend more on average."
+  },
+  {
+    "objectID": "slides/slides_class6.html#visualise-case-a",
+    "href": "slides/slides_class6.html#visualise-case-a",
+    "title": "Multiple groups comparison",
+    "section": "Visualise case A",
+    "text": "Visualise case A"
+  },
+  {
+    "objectID": "slides/slides_class6.html#case-a",
+    "href": "slides/slides_class6.html#case-a",
+    "title": "Multiple groups comparison",
+    "section": "Case A",
+    "text": "Case A\n\n\n\ndfA\n\n# A tibble: 160 × 2\n   city  spend\n   &lt;chr&gt; &lt;dbl&gt;\n 1 Milan  38.8\n 2 Milan  45.4\n 3 Milan  81.2\n 4 Milan  51.4\n 5 Milan  52.6\n 6 Milan  84.3\n 7 Milan  59.2\n 8 Milan  24.7\n 9 Milan  36.3\n10 Milan  41.1\n# ℹ 150 more rows\n\n\n\ndfA |&gt; \n    group_by(city) |&gt; \n    summarise(\n        av_spend = mean(spend),\n        sd_spend = sd(spend),\n        n = n()\n        )\n\n# A tibble: 4 × 4\n  city   av_spend sd_spend     n\n  &lt;chr&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;int&gt;\n1 Berlin     50.7    27.1     40\n2 Madrid     53.9    10.5     40\n3 Milan      50.9    18.0     40\n4 Paris      60.1     8.44    40\n\n\n\n\ndfA |&gt; \n    ggplot(aes(x = city, y = spend, fill = city))+\n    geom_boxplot()+\n    theme_bw() +\n    theme(legend.position = \"none\")+\n    labs(x=\"\", y=\"Total expenditure by customer (€)\")\n\n\n\n\n\n\n\n\n\nanova_modelA &lt;- aov(spend~city, data=dfA)\nsummary(anova_modelA)\n\n             Df Sum Sq Mean Sq F value Pr(&gt;F)  \ncity          3   2298   765.9    2.48 0.0632 .\nResiduals   156  48183   308.9                 \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"
+  },
+  {
+    "objectID": "slides/slides_class6.html#anova-tests-1",
+    "href": "slides/slides_class6.html#anova-tests-1",
+    "title": "Multiple groups comparison",
+    "section": "ANOVA tests",
+    "text": "ANOVA tests\n\n\\(H_0\\): all means are equal;\n\\(H_1\\): at least one mean differs;"
+  },
+  {
+    "objectID": "slides/slides_class6.html#case-b",
+    "href": "slides/slides_class6.html#case-b",
+    "title": "Multiple groups comparison",
+    "section": "Case B",
+    "text": "Case B\n\n\n\ndfB\n\n# A tibble: 160 × 2\n   city  spend\n   &lt;chr&gt; &lt;dbl&gt;\n 1 Milan  48.3\n 2 Milan  49.3\n 3 Milan  54.7\n 4 Milan  50.2\n 5 Milan  50.4\n 6 Milan  55.2\n 7 Milan  51.4\n 8 Milan  46.2\n 9 Milan  47.9\n10 Milan  48.7\n# ℹ 150 more rows\n\n\n\ndfB |&gt; \n    group_by(city) |&gt; \n    summarise(\n        av_spend = mean(spend),\n        sd_spend = sd(spend),\n        n = n()\n        )\n\n# A tibble: 4 × 4\n  city   av_spend sd_spend     n\n  &lt;chr&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;int&gt;\n1 Berlin     50.0     3.84    40\n2 Madrid     54.5     5.24    40\n3 Milan      50.1     2.69    40\n4 Paris      60.0     4.22    40\n\n\n\n\ndfB |&gt; \n    ggplot(aes(x = city, y = spend, fill = city))+\n    geom_boxplot()+\n    theme_bw() +\n    theme(legend.position = \"none\")+\n    labs(x=\"\", y=\"Total expenditure by customer (€)\")\n\n\n\n\n\n\n\n\n\nanova_modelB &lt;- aov(spend~city, data=dfB)\nsummary(anova_modelB)\n\n             Df Sum Sq Mean Sq F value Pr(&gt;F)    \ncity          3   2695   898.3   53.44 &lt;2e-16 ***\nResiduals   156   2622    16.8                   \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"
+  },
+  {
+    "objectID": "slides/slides_class6.html#tukey",
+    "href": "slides/slides_class6.html#tukey",
+    "title": "Multiple groups comparison",
+    "section": "Tukey",
+    "text": "Tukey\n\n\n  Tukey multiple comparisons of means\n    95% family-wise confidence level\n\nFit: aov(formula = spend ~ city, data = dfB)\n\n$city\n                 diff       lwr       upr     p adj\nMadrid-Berlin  4.4980  2.117168  6.878832 0.0000137\nMilan-Berlin   0.1615 -2.219332  2.542332 0.9980504\nParis-Berlin  10.0660  7.685168 12.446832 0.0000000\nMilan-Madrid  -4.3365 -6.717332 -1.955668 0.0000294\nParis-Madrid   5.5680  3.187168  7.948832 0.0000001\nParis-Milan    9.9045  7.523668 12.285332 0.0000000"
+  },
+  {
+    "objectID": "slides/slides_class6.html#which-city-differs",
+    "href": "slides/slides_class6.html#which-city-differs",
+    "title": "Multiple groups comparison",
+    "section": "Which city differs?",
+    "text": "Which city differs?\n\n\nTukeyHSD(anova_modelA)\n\n  Tukey multiple comparisons of means\n    95% family-wise confidence level\n\nFit: aov(formula = spend ~ city, data = dfA)\n\n$city\n                  diff         lwr       upr     p adj\nMadrid-Berlin  3.24975  -6.9557295 13.455229 0.8416206\nMilan-Berlin   0.21175  -9.9937295 10.417229 0.9999436\nParis-Berlin   9.38625  -0.8192295 19.591729 0.0835101\nMilan-Madrid  -3.03800 -13.2434795  7.167479 0.8665177\nParis-Madrid   6.13650  -4.0689795 16.341979 0.4036555\nParis-Milan    9.17450  -1.0309795 19.379979 0.0946626\n\n\n\n\n\nTukeyHSD(anova_modelB)\n\n  Tukey multiple comparisons of means\n    95% family-wise confidence level\n\nFit: aov(formula = spend ~ city, data = dfB)\n\n$city\n                 diff       lwr       upr     p adj\nMadrid-Berlin  4.4980  2.117168  6.878832 0.0000137\nMilan-Berlin   0.1615 -2.219332  2.542332 0.9980504\nParis-Berlin  10.0660  7.685168 12.446832 0.0000000\nMilan-Madrid  -4.3365 -6.717332 -1.955668 0.0000294\nParis-Madrid   5.5680  3.187168  7.948832 0.0000001\nParis-Milan    9.9045  7.523668 12.285332 0.0000000"
+  },
+  {
+    "objectID": "assets/class6/homework2.html",
+    "href": "assets/class6/homework2.html",
+    "title": "Laboratory of Statistics and Mathematics - Data analysis report B",
+    "section": "",
+    "text": "In October, your company ran a variety of online ad campaigns across different platforms (Google, Facebook, Instagram, TikTok). Each campaign targeted one audience segments (Young, Adult, Senior), using one of 50 different ads.\nFor each campaign, you recorded impressions and clicks, allowing you to compute the click-through rate (CTR), a performance indicator that measures the ability of the ad to convert impressions in clicks. Some campaigns have missing click counts, representing tracking issues. Data are collected in:\n\nads_data\n\n# A tibble: 168 × 5\n   ad_id platform  audience impressions clicks\n   &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;  &lt;dbl&gt;\n 1     3 Facebook  Adult            370     13\n 2    45 Facebook  Young            331      4\n 3    14 Instagram Adult            620     47\n 4     8 Google    Adult            465     39\n 5    50 Facebook  Young            314      5\n 6     9 Google    Adult            428     20\n 7    21 Instagram Young            564     26\n 8    17 TikTok    Young            533     25\n 9     6 Google    Young            420     10\n10    40 Facebook  Young            289      7\n# ℹ 158 more rows\n\n\nIn November, the engineering team optimized your company servers to reduce the loading times of each ad. Thus, you now also have data about impressions and clicks performance of all your campaigns ran in November, which are collected in\n\nads_data_speedup\n\n# A tibble: 168 × 5\n   ad_id platform  audience impressions clicks\n   &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;  &lt;dbl&gt;\n 1    37 Facebook  Young            296      9\n 2    17 Google    Young            400     12\n 3    11 Facebook  Senior           489     11\n 4    21 Facebook  Senior           426     NA\n 5    38 Instagram Senior           748     31\n 6    49 Google    Senior           552     25\n 7     8 Instagram Senior           730     33\n 8     9 Instagram Adult            664     47\n 9    46 Instagram Senior           699     50\n10    16 Instagram Adult            694     50\n# ℹ 158 more rows"
+  },
+  {
+    "objectID": "assets/class6/homework2.html#intro",
+    "href": "assets/class6/homework2.html#intro",
+    "title": "Laboratory of Statistics and Mathematics - Data analysis report B",
+    "section": "",
+    "text": "In October, your company ran a variety of online ad campaigns across different platforms (Google, Facebook, Instagram, TikTok). Each campaign targeted one audience segments (Young, Adult, Senior), using one of 50 different ads.\nFor each campaign, you recorded impressions and clicks, allowing you to compute the click-through rate (CTR), a performance indicator that measures the ability of the ad to convert impressions in clicks. Some campaigns have missing click counts, representing tracking issues. Data are collected in:\n\nads_data\n\n# A tibble: 168 × 5\n   ad_id platform  audience impressions clicks\n   &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;  &lt;dbl&gt;\n 1     3 Facebook  Adult            370     13\n 2    45 Facebook  Young            331      4\n 3    14 Instagram Adult            620     47\n 4     8 Google    Adult            465     39\n 5    50 Facebook  Young            314      5\n 6     9 Google    Adult            428     20\n 7    21 Instagram Young            564     26\n 8    17 TikTok    Young            533     25\n 9     6 Google    Young            420     10\n10    40 Facebook  Young            289      7\n# ℹ 158 more rows\n\n\nIn November, the engineering team optimized your company servers to reduce the loading times of each ad. Thus, you now also have data about impressions and clicks performance of all your campaigns ran in November, which are collected in\n\nads_data_speedup\n\n# A tibble: 168 × 5\n   ad_id platform  audience impressions clicks\n   &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;  &lt;dbl&gt;\n 1    37 Facebook  Young            296      9\n 2    17 Google    Young            400     12\n 3    11 Facebook  Senior           489     11\n 4    21 Facebook  Senior           426     NA\n 5    38 Instagram Senior           748     31\n 6    49 Google    Senior           552     25\n 7     8 Instagram Senior           730     33\n 8     9 Instagram Adult            664     47\n 9    46 Instagram Senior           699     50\n10    16 Instagram Adult            694     50\n# ℹ 158 more rows"
+  },
+  {
+    "objectID": "assets/class6/homework2.html#tasks",
+    "href": "assets/class6/homework2.html#tasks",
+    "title": "Laboratory of Statistics and Mathematics - Data analysis report B",
+    "section": "Tasks",
+    "text": "Tasks\n\nHandle missing data;\nInvestigate CTR performance across platforms and target audiences. Use appropriate visualisations, summary statistics and statistical tests.\nInvestigate if server speedup affected CTR conversion ability. Use appropriate visualisations, summary statistics and statistical tests."
+  },
+  {
+    "objectID": "assets/class6/homework2.html#solutions",
+    "href": "assets/class6/homework2.html#solutions",
+    "title": "Laboratory of Statistics and Mathematics - Data analysis report B",
+    "section": "Solutions",
+    "text": "Solutions"
+  },
+  {
+    "objectID": "class5.html#intro",
+    "href": "class5.html#intro",
+    "title": "Laboratory of Statistics and Mathematics - Data analysis report B",
+    "section": "Intro",
+    "text": "Intro\nIn October, your company ran a variety of online ad campaigns across different platforms (Google, Facebook, Instagram, TikTok). Each campaign targeted one audience segments (Young, Adult, Senior), using one of 50 different ads.\nFor each campaign, you recorded impressions and clicks, allowing you to compute the click-through rate (CTR), a performance indicator that measures the ability of the ad to convert impressions in clicks. Some campaigns have missing click counts, representing tracking issues. Data are collected in:\n\nads_data\n\n# A tibble: 168 × 5\n   ad_id platform  audience impressions clicks\n   &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;  &lt;dbl&gt;\n 1     3 Facebook  Adult            370     13\n 2    45 Facebook  Young            331      4\n 3    14 Instagram Adult            620     47\n 4     8 Google    Adult            465     39\n 5    50 Facebook  Young            314      5\n 6     9 Google    Adult            428     20\n 7    21 Instagram Young            564     26\n 8    17 TikTok    Young            533     25\n 9     6 Google    Young            420     10\n10    40 Facebook  Young            289      7\n# ℹ 158 more rows\n\n\nIn November, the engineering team optimized your company servers to reduce the loading times of each ad. Thus, you now also have data about impressions and clicks performance of all your campaigns ran in November, which are collected in\n\nads_data_speedup\n\n# A tibble: 168 × 5\n   ad_id platform  audience impressions clicks\n   &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;  &lt;dbl&gt;\n 1    37 Facebook  Young            296      9\n 2    17 Google    Young            400     12\n 3    11 Facebook  Senior           489     11\n 4    21 Facebook  Senior           426     NA\n 5    38 Instagram Senior           748     31\n 6    49 Google    Senior           552     25\n 7     8 Instagram Senior           730     33\n 8     9 Instagram Adult            664     47\n 9    46 Instagram Senior           699     50\n10    16 Instagram Adult            694     50\n# ℹ 158 more rows"
+  },
+  {
+    "objectID": "class5.html#tasks",
+    "href": "class5.html#tasks",
+    "title": "Laboratory of Statistics and Mathematics - Data analysis report B",
+    "section": "Tasks",
+    "text": "Tasks\n\nHandle missing data;\nInvestigate CTR performance across platforms and target audiences. Use appropriate visualisations, summary statistics and statistical tests.\nInvestigate if server speedup affected CTR conversion ability. Use appropriate visualisations, summary statistics and statistical tests."
+  },
+  {
+    "objectID": "class5.html#solutions",
+    "href": "class5.html#solutions",
+    "title": "Laboratory of Statistics and Mathematics - Data analysis report B",
+    "section": "Solutions",
+    "text": "Solutions"
+  },
+  {
+    "objectID": "class6.html",
+    "href": "class6.html",
+    "title": "Homework Lab 6",
+    "section": "",
+    "text": "Create a new project for this homework;\nDownload the .rmd homework document and move it in the new project folder.\n\nlink to the rmd\n\nOpen it and write your name in the author field and in the first chunk.\nRender the file and follow the instructions.\nDo not modify the code chunck before the Solutions section!\n\n\nHomework submission\nSend your rmd file at giuseppe.alfonzetti@uniud.it."
+  },
+  {
+    "objectID": "assets/class6/homework2.html#instructions",
+    "href": "assets/class6/homework2.html#instructions",
+    "title": "Laboratory of Statistics and Mathematics - Data analysis report B",
+    "section": "Instructions",
+    "text": "Instructions\nTo answer the questions, you can directly use this .rmd file by providing your answers in the Solutions section. Alternatively, after running this .rmd once, you’ll find the two datasets already available on you machine as .xlsx in a newly created report_data folder living in the same folder where this file is located. You can use them as you prefer to produce the report in Word or similar programs. Nevertheless, you will still have to answer all questions and provide your code."
   }
 ]

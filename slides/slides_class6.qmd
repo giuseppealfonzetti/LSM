@@ -1,0 +1,198 @@
+---
+title: "Multiple groups comparison"
+subtitle: "Laboratory of Statistics and Mathematics 2025/2026"
+author: Giuseppe Alfonzetti
+format: 
+  revealjs:
+    slide-number: true
+    incremental: false   
+    footer: "ANOVA"
+    # theme: ../themes/slides_theme.scss
+    highlight-style: arrow-light
+    transition: convex
+    transition-speed: fast
+title-slide-attributes:
+    data-background-color: "#1565C0"
+    data-footer: " "
+embed-resources: true
+highlight-style: tango
+
+---
+
+## Case Study {style="font-size: 0.7em;"}
+
+A retail chain asks:
+
+> **Do customers from different cities spend differently in our stores?**
+
+- *Different cities* (Milan, Paris, Madrid, Berlin);
+- Total *purchase amount* by customer.
+
+. . .
+
+**Goal:**
+
+- Help the retail chain understanding **in which city** customers spend more on average.
+
+---
+
+## ANOVA tests {style="font-size: 0.7em;"}
+
+Compares averages of **3+ groups**.
+
+> Does average spending differ across **cities**?
+
+. . .
+
+*Intuition: the ANOVA test compares*
+
+- **Within-city variation**;
+- **Between-city variation** .
+
+. . .
+
+If *between-city variation* is "larger" than *within-city variation*, then group averages differ!
+
+. . . 
+
+Statistical Hypoteses:
+
+- $H_0$: all means are equal;
+- $H_1$: at least one mean differs;
+
+
+## Case A {style="font-size: 0.6em;"}
+
+
+```{r}
+library(ggplot2)
+library(tidyverse)
+set.seed(123)
+dfA <- tibble(
+  city = rep(c("Milan", "Berlin", "Paris", "Madrid"), each = 40),
+  spend = round(c(
+            rnorm(40, 50, 20),
+            rnorm(40, 50, 30),
+            rnorm(40, 60, 10),
+            rnorm(40, 55, 10)),2)
+)|> 
+    mutate(
+  spend = if_else(spend < 10, 10, spend))
+```
+
+::: {.columns}
+::: {.column width="40%"}
+```{r}
+#| echo: TRUE
+dfA
+```
+
+```{r}
+#| echo: TRUE
+dfA |> 
+    group_by(city) |> 
+    summarise(
+        av_spend = mean(spend),
+        sd_spend = sd(spend),
+        n = n()
+        )
+```
+
+:::
+::: {.column width="60%"}
+
+
+```{r}
+#| echo: TRUE
+dfA |> 
+    ggplot(aes(x = city, y = spend, fill = city))+
+    geom_boxplot()+
+    theme_bw() +
+    theme(legend.position = "none")+
+    labs(x="", y="Total expenditure by customer (€)")
+```
+
+```{r}
+#| echo: TRUE
+anova_modelA <- aov(spend~city, data=dfA)
+summary(anova_modelA)
+```
+
+:::
+
+
+:::
+
+## Case B {style="font-size: 0.6em;"}
+
+
+```{r}
+library(ggplot2)
+library(tidyverse)
+set.seed(123)
+dfB <- tibble(
+  city = rep(c("Milan", "Berlin", "Paris", "Madrid"), each = 40),
+  spend = round(c(
+            rnorm(40, 50, 3),
+            rnorm(40, 50, 4),
+            rnorm(40, 60, 5),
+            rnorm(40, 55, 5)),2)
+) |> 
+    mutate(
+  spend = if_else(spend < 10, 10, spend))
+```
+
+::: {.columns}
+::: {.column width="40%"}
+```{r}
+#| echo: TRUE
+dfB
+```
+
+```{r}
+#| echo: TRUE
+dfB |> 
+    group_by(city) |> 
+    summarise(
+        av_spend = mean(spend),
+        sd_spend = sd(spend),
+        n = n()
+        )
+```
+
+:::
+::: {.column width="60%"}
+```{r}
+#| echo: TRUE
+dfB |> 
+    ggplot(aes(x = city, y = spend, fill = city))+
+    geom_boxplot()+
+    theme_bw() +
+    theme(legend.position = "none")+
+    labs(x="", y="Total expenditure by customer (€)")
+```
+
+```{r}
+#| echo: TRUE
+anova_modelB <- aov(spend~city, data=dfB)
+summary(anova_modelB)
+```
+
+:::
+:::
+
+## Which city differs? {style="font-size: 0.7em;"}
+
+. . .
+
+```{r}
+#| echo: TRUE
+TukeyHSD(anova_modelA)
+```
+
+. . .
+
+```{r}
+#| echo: TRUE
+TukeyHSD(anova_modelB)
+```

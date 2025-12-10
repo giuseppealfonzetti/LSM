@@ -196,3 +196,25 @@ TukeyHSD(anova_modelA)
 #| echo: TRUE
 TukeyHSD(anova_modelB)
 ```
+
+
+## A special case of `lm()` {style="font-size: 0.6em;"}
+
+::: {.columns}
+::: {.column width="50%"}
+```{r}
+#| echo: TRUE
+summary(anova_modelA)
+```
+:::
+::: {.column width="50%"}
+```{r}
+#| echo: TRUE
+lm_modelA <- lm(spend ~ city, data = dfA)
+summary(lm_modelA)
+anova(lm_modelA)
+```
+:::
+
+
+

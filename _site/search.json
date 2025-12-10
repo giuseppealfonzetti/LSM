@@ -769,7 +769,7 @@
     "href": "class5.html",
     "title": "Homework Lab 5",
     "section": "",
-    "text": "Create a new project for this homework;\nDownload the .rmd homework document and move it in the new project folder.\n\nlink to the rmd\n\nOpen it and write your name in the author field.\nRender the file and follow the instructions.\nDo not modify the code chunck before the Solutions section!\n\n\nHomework submission\nSend your rmd file at giuseppe.alfonzetti@uniud.it."
+    "text": "Create a new project for this homework;\nDownload the .rmd homework document and move it in the new project folder.\n\nlink to the rmd\n\nOpen it and write your name in the author field.\nRender the file and follow the instructions.\nDo not modify the code chunck before the Solutions section!\n\n\nHomework submission\nSend your rmd file at giuseppe.alfonzetti@uniud.it by 15/01/2026."
   },
   {
     "objectID": "slides/slides_class6.html#the-business-question",
@@ -909,7 +909,7 @@
     "href": "class6.html",
     "title": "Homework Lab 6",
     "section": "",
-    "text": "Create a new project for this homework;\nDownload the .rmd homework document and move it in the new project folder.\n\nlink to the rmd\n\nOpen it and write your name in the author field and in the first chunk.\nRender the file and follow the instructions.\nDo not modify the code chunck before the Solutions section!\n\n\nHomework submission\nSend your rmd file at giuseppe.alfonzetti@uniud.it."
+    "text": "Create a new project for this homework;\nDownload the .rmd homework document and move it in the new project folder.\n\nlink to the rmd\n\nOpen it and write your name in the author field and in the first chunk.\nRender the file and follow the instructions.\nDo not modify the code chunck before the Solutions section!\n\n\nHomework submission\nSend your rmd file at giuseppe.alfonzetti@uniud.it by 15/01/2026."
   },
   {
     "objectID": "assets/class6/homework2.html#instructions",
@@ -917,5 +917,12 @@
     "title": "Laboratory of Statistics and Mathematics - Data analysis report B",
     "section": "Instructions",
     "text": "Instructions\nTo answer the questions, you can directly use this .rmd file by providing your answers in the Solutions section. Alternatively, after running this .rmd once, you’ll find the two datasets already available on you machine as .xlsx in a newly created report_data folder living in the same folder where this file is located. You can use them as you prefer to produce the report in Word or similar programs. Nevertheless, you will still have to answer all questions and provide your code."
+  },
+  {
+    "objectID": "slides/slides_class6.html#a-special-case-of-lm",
+    "href": "slides/slides_class6.html#a-special-case-of-lm",
+    "title": "Multiple groups comparison",
+    "section": "A special case of lm()",
+    "text": "A special case of lm()\n\n\n\nsummary(anova_modelA)\n\n             Df Sum Sq Mean Sq F value Pr(&gt;F)  \ncity          3   2298   765.9    2.48 0.0632 .\nResiduals   156  48183   308.9                 \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\n\n\nlm_modelA &lt;- lm(spend ~ city, data = dfA)\nsummary(lm_modelA)\n\n\nCall:\nlm(formula = spend ~ city, data = dfA)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-40.692  -9.652  -1.070   8.530  64.378 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)  50.6923     2.7788  18.243   &lt;2e-16 ***\ncityMadrid    3.2498     3.9298   0.827   0.4095    \ncityMilan     0.2118     3.9298   0.054   0.9571    \ncityParis     9.3863     3.9298   2.388   0.0181 *  \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 17.57 on 156 degrees of freedom\nMultiple R-squared:  0.04552,   Adjusted R-squared:  0.02716 \nF-statistic:  2.48 on 3 and 156 DF,  p-value: 0.0632\n\nanova(lm_modelA)\n\nAnalysis of Variance Table\n\nResponse: spend\n           Df Sum Sq Mean Sq F value Pr(&gt;F)  \ncity        3   2298  765.88  2.4796 0.0632 .\nResiduals 156  48183  308.87                 \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"
   }
 ]

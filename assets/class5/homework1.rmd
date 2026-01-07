@@ -1,8 +1,17 @@
 ---
 title: "Laboratory of Statistics and Mathematics - Data analysis report A"
-format: html
+format: 
+  html:
+    self-contained: true
+    toc: true
+    toc-location: right
 author: "Write here your name"
 ---
+
+```{r echo=FALSE}
+# write your name here too!
+author <- "Write here your name"
+```
 
 ```{r echo=FALSE}
 # do not modify this!
@@ -17,7 +26,7 @@ knitr::opts_chunk$set(
 ```{r dataset, echo=FALSE, warning=FALSE}
 # do not modify this!
 {
-  seed <- length(rmarkdown::metadata$author)
+  seed <- nchar(author)
   set.seed(seed)
 
   library(tidyverse) |> suppressPackageStartupMessages()
@@ -79,7 +88,7 @@ knitr::opts_chunk$set(
   delivery_data <- delivery_data[sample(1:n_users, size = n_users), ]
 
   dir.create("report_data")
-  writexl::write_xlsx(delivery_data, "report_data/user_data.xlsx")
+  writexl::write_xlsx(user_data, "report_data/user_data.xlsx")
   writexl::write_xlsx(delivery_data, "report_data/delivery_data.xlsx")
 
 }
@@ -136,4 +145,3 @@ library(tidyverse)
 ## Data exploration
 
 ## Inference 
-

@@ -1,0 +1,143 @@
+---
+title: "Laboratory of Statistics and Mathematics - Data analysis report B"
+format: 
+  html:
+    self-contained: true
+    toc: true
+    toc-location: right
+author: "Write here your name"
+---
+
+```{r echo=FALSE}
+# write your name here too!
+author <- "Write here your name"
+```
+
+
+
+
+```{r echo=FALSE}
+# do not modify this!
+knitr::opts_chunk$set(
+    out.width = "100%", 
+    fig.width = 10,     
+    fig.asp = 9/16,   
+    fig.align = "center" 
+)
+```
+
+
+```{r echo=FALSE}
+# do not modify this!
+
+library(tidyverse) |> suppressPackageStartupMessages()
+
+seed <- nchar(rmarkdown::metadata$author)
+seed <- if_else(seed==0, nchar(author), seed)
+set.seed(seed)
+plat_tib <- tibble(
+    platform = c("Google", "Facebook", "Instagram", "TikTok"),
+    baseline_ctr_plat = sample(c(0.04, 0.04, 0.02, 0.06), 4),
+    baseline_imp_plat = sample(c(400, 500, 600, 700), 4)
+)
+
+aud_tib <- tibble(
+    audience = c("Young", "Adult", "Senior"),
+    baseline_ctr_aud = sample(c(0.01, 0.0, 0.03), 3),
+    baseline_imp_aud = sample(c(-50, 50, -100), 3)
+)
+
+per_tib <- tibble(
+    period = c("Before", "After"),
+    per_ctr_baseline = c(0, 0.005)
+)
+
+n_campaigns <- 200  
+n_ads <- 50
+ads <- tibble(
+  ad_id = sample(1:n_ads, n_campaigns, replace=TRUE),
+  platform = sample(plat_tib$platform, n_campaigns, replace = TRUE),
+  audience = sample(aud_tib$audience, n_campaigns, replace = TRUE)
+  ) |> 
+    distinct()
+
+df <- ads |> 
+    expand_grid(period = per_tib$period) |> 
+    left_join(plat_tib, by="platform") |> 
+    left_join(aud_tib, by="audience") |> 
+    left_join(per_tib, by="period") |> 
+    mutate(
+        impressions = map2_dbl(
+            baseline_imp_plat, 
+            baseline_imp_aud,
+            ~rpois(1, lambda=.x+.y)),
+        ctr = pmap_dbl(
+            list(baseline_ctr_plat, baseline_ctr_aud, per_ctr_baseline),
+            function(ctr_plat, ctr_aud, ctr_per){
+                ctr_plat + ctr_aud + ctr_per
+                
+            }
+        ),
+        clicks = map2_dbl(
+            impressions,
+            ctr,
+            ~ if_else(
+                runif(1)<.05,
+                NA,
+                rpois(1, lambda=.x*.y)
+            )
+                
+        )
+    )
+
+ads_data <- df |> 
+    filter(period=="Before") |> 
+    select(ad_id, platform, audience, impressions, clicks)
+ads_data_speedup <- df |> 
+    filter(period=="After") |> 
+    select(ad_id, platform, audience, impressions, clicks) 
+ads_data_speedup <- ads_data_speedup[sample(1:nrow(ads_data_speedup), nrow(ads_data_speedup), replace=FALSE),]
+
+dir.create("report_data")
+  writexl::write_xlsx(ads_data, "report_data/ads_data.xlsx")
+  writexl::write_xlsx(ads_data_speedup, "report_data/ads_data_speedup.xlsx")
+```
+
+
+
+## Intro
+
+In October, your company ran a variety of online ad campaigns across different platforms (Google, Facebook, Instagram, TikTok).
+Each campaign targeted one audience segments (Young, Adult, Senior),
+using one of `r n_ads` different ads.
+
+For each campaign, you recorded *impressions* and *clicks*, allowing you to compute the [click-through rate (CTR)](https://en.wikipedia.org/wiki/Click-through_rate), a performance indicator that measures the ability of the ad to convert impressions in clicks.
+Some campaigns have missing click counts, representing tracking issues. Data are collected in:
+
+```{r}
+ads_data
+```
+
+In November, the engineering team optimized your company servers to reduce the loading times of each ad. Thus, you now also have data about impressions and clicks performance of all your campaigns ran in November, which are collected in 
+
+```{r}
+ads_data_speedup
+```
+
+```{r echo=FALSE}
+# do not modify this!
+rm(seed, plat_tib, aud_tib, per_tib, author, df, ads, n_ads, n_campaigns)
+```
+
+## Tasks
+
+1. Handle missing data;
+2. Investigate CTR performance across platforms and target audiences. Use appropriate visualisations, summary statistics and statistical tests.
+3. Investigate if server speedup affected CTR conversion ability. Use appropriate visualisations, summary statistics and statistical tests.
+
+## Instructions
+
+To answer the questions, you can directly use this `.rmd` file by providing your answers in the [Solutions](#solutions) section. Alternatively, after running this `.rmd` once, you'll find the two datasets already available on you machine as `.xlsx` in a newly created `report_data` folder living in the same folder where this file is located. You can use them as you prefer to produce the report in `Word` or similar programs. Nevertheless, you will still have to answer all questions and provide your code.
+
+
+## Solutions

@@ -8,7 +8,7 @@
 
 <meta name="author" content="Write here your name">
 
-<title>Laboratory of Statistics and Mathematics - Data analysis report A – Laboratory of Statistics and Mathematics 2025/2026</title>
+<title>Laboratory of Statistics and Mathematics - Data analysis report B – Laboratory of Statistics and Mathematics 2025/2026</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -3921,16 +3921,10 @@ color: #ffffff !important;
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#instructions" id="toc-instructions" class="nav-link active" data-scroll-target="#instructions">Instructions</a>
-  <ul class="collapse">
-  <li><a href="#intro" id="toc-intro" class="nav-link" data-scroll-target="#intro">Intro</a></li>
+  <li><a href="#intro" id="toc-intro" class="nav-link active" data-scroll-target="#intro">Intro</a></li>
   <li><a href="#tasks" id="toc-tasks" class="nav-link" data-scroll-target="#tasks">Tasks</a></li>
-  </ul></li>
-  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions">Solutions:</a>
-  <ul class="collapse">
-  <li><a href="#data-exploration" id="toc-data-exploration" class="nav-link" data-scroll-target="#data-exploration">Data exploration</a></li>
-  <li><a href="#inference" id="toc-inference" class="nav-link" data-scroll-target="#inference">Inference</a></li>
-  </ul></li>
+  <li><a href="#instructions" id="toc-instructions" class="nav-link" data-scroll-target="#instructions">Instructions</a></li>
+  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions">Solutions</a></li>
   </ul>
 </nav>
     </div>
@@ -3939,7 +3933,7 @@ color: #ffffff !important;
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Laboratory of Statistics and Mathematics - Data analysis report A</h1>
+<h1 class="title">Laboratory of Statistics and Mathematics - Data analysis report B</h1>
 </div>
 
 
@@ -3962,88 +3956,66 @@ color: #ffffff !important;
 </header>
 
 
-<section id="instructions" class="level1">
-<h1>Instructions</h1>
 <section id="intro" class="level2">
 <h2 class="anchored" data-anchor-id="intro">Intro</h2>
-<p>This <code>.rmd</code> file gives you access to two datasets called <code>delivery_data</code> and <code>user_data</code>, which gather information about a coupon-discount campaign run by a food-delivery company. Data are collected during a one-month window across different cities. A share of the user received a discount coupon at the beginning of the month. The company needs to understand if the campaign has been effective from a business perspective.</p>
+<p>In October, your company ran a variety of online ad campaigns across different platforms (Google, Facebook, Instagram, TikTok). Each campaign targeted one audience segments (Young, Adult, Senior), using one of 50 different ads.</p>
+<p>For each campaign, you recorded <em>impressions</em> and <em>clicks</em>, allowing you to compute the <a href="https://en.wikipedia.org/wiki/Click-through_rate">click-through rate (CTR)</a>, a performance indicator that measures the ability of the ad to convert impressions in clicks. Some campaigns have missing click counts, representing tracking issues. Data are collected in:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(user_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ads_data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 3
-  user_id   age city   
-  &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;  
-1 797        30 Treviso
-2 354        40 Padova 
-3 99         18 Udine  
-4 133        37 Torino 
-5 435        28 Treviso
-6 954        41 Milano </code></pre>
+<pre><code># A tibble: 168 × 5
+   ad_id platform  audience impressions clicks
+   &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;  &lt;dbl&gt;
+ 1     3 Facebook  Adult            370     13
+ 2    45 Facebook  Young            331      4
+ 3    14 Instagram Adult            620     47
+ 4     8 Google    Adult            465     39
+ 5    50 Facebook  Young            314      5
+ 6     9 Google    Adult            428     20
+ 7    21 Instagram Young            564     26
+ 8    17 TikTok    Young            533     25
+ 9     6 Google    Young            420     10
+10    40 Facebook  Young            289      7
+# ℹ 158 more rows</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(delivery_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>In November, the engineering team optimized your company servers to reduce the loading times of each ad. Thus, you now also have data about impressions and clicks performance of all your campaigns ran in November, which are collected in</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ads_data_speedup</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 6
-  user_id device  coupon    n_orders total_spent avg_delivery_time
-  &lt;chr&gt;   &lt;chr&gt;   &lt;fct&gt;        &lt;dbl&gt;       &lt;dbl&gt;             &lt;dbl&gt;
-1 436     mobile  no_coupon        6        110.              34.3
-2 335     mobile  no_coupon        0          0               36.6
-3 857     mobile  no_coupon       11        213.              41.8
-4 533     mobile  no_coupon        4        165.              38.4
-5 575     mobile  coupon           7        168.              27.5
-6 222     desktop no_coupon        0          0               43.1</code></pre>
+<pre><code># A tibble: 168 × 5
+   ad_id platform  audience impressions clicks
+   &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;  &lt;dbl&gt;
+ 1    37 Facebook  Young            296      9
+ 2    17 Google    Young            400     12
+ 3    11 Facebook  Senior           489     11
+ 4    21 Facebook  Senior           426     NA
+ 5    38 Instagram Senior           748     31
+ 6    49 Google    Senior           552     25
+ 7     8 Instagram Senior           730     33
+ 8     9 Instagram Adult            664     47
+ 9    46 Instagram Senior           699     50
+10    16 Instagram Adult            694     50
+# ℹ 158 more rows</code></pre>
 </div>
 </div>
-<p>Each row of the dataset represents a user. Columns denote:</p>
-<ul>
-<li><code>user_id</code>: the unique identifier assigned to the user;</li>
-<li><code>city</code>: city of reference for the specific user</li>
-<li><code>device</code>: user’s most used device;</li>
-<li><code>age</code>: age of the user;</li>
-<li><code>coupon</code>: denotes if the user has received the coupon or not;</li>
-<li><code>n_orders</code>: number of orders placed by the user during the month;</li>
-<li><code>total_spent</code>: total amount of money spent by the user during the month;</li>
-<li><code>avg_delivery_time</code>: average delivery time to the user;</li>
-</ul>
 </section>
 <section id="tasks" class="level2">
 <h2 class="anchored" data-anchor-id="tasks">Tasks</h2>
-<p>You are asked to complete/answer the following tasks/questions. When answering a question or completing a task, always show the code and interpret the results. When you consider it appropriate, use plots to highlight your results.</p>
-<ul>
-<li>Data exploration:
 <ol type="1">
-<li>Produce a table showing the number and percentage of users who received the coupon.</li>
-<li>Produce a table showing the number and percentage of users who received the coupon by city.</li>
-<li>Does the share of users who placed at least one order changes according to wether the user received the coupon or not</li>
-<li>Among under/over 35 y.o. users, plot the shares of users who placed at least one order based on wether the user received the coupon or not.</li>
-<li>Among users who placed at least one order, compute the mean and median of total expenditure for coupon and non-coupon users.</li>
-<li>Among users who placed at least one order, report the percentage of heavy users (more the five orders each) for coupon and non-coupon users.</li>
-</ol></li>
-<li>Inferential insights for business decisions:
-<ol type="1">
-<li>Compare the mean number of orders between coupon and non-coupon users. Report the results and interpret</li>
-<li>Compare the mean total expenditure between coupon and non-coupon users. Report the results and interpret</li>
-<li>Among users who received the coupon, does the mean per-user expenditure change between under/over 35 y.o.?</li>
-<li>Among users who placed at least one order, does the mean average order value differ between coupon and non-coupon users?</li>
-</ol></li>
-<li>Summarise your results. Is there evidence that the campaign has been effective?</li>
-</ul>
-<p><strong>Hint:</strong> for the inferential part, you are supposed to use the <code>t.test()</code> function to answer all questions.</p>
+<li>Handle missing data;</li>
+<li>Investigate CTR performance across platforms and target audiences. Use appropriate visualisations, summary statistics and statistical tests.</li>
+<li>Investigate if server speedup affected CTR conversion ability. Use appropriate visualisations, summary statistics and statistical tests.</li>
+</ol>
+</section>
+<section id="instructions" class="level2">
+<h2 class="anchored" data-anchor-id="instructions">Instructions</h2>
 <p>To answer the questions, you can directly use this <code>.rmd</code> file by providing your answers in the <a href="#solutions">Solutions</a> section. Alternatively, after running this <code>.rmd</code> once, you’ll find the two datasets already available on you machine as <code>.xlsx</code> in a newly created <code>report_data</code> folder living in the same folder where this file is located. You can use them as you prefer to produce the report in <code>Word</code> or similar programs. Nevertheless, you will still have to answer all questions and provide your code.</p>
 </section>
-</section>
-<section id="solutions" class="level1">
-<h1>Solutions:</h1>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<section id="data-exploration" class="level2">
-<h2 class="anchored" data-anchor-id="data-exploration">Data exploration</h2>
-</section>
-<section id="inference" class="level2">
-<h2 class="anchored" data-anchor-id="inference">Inference</h2>
+<section id="solutions" class="level2">
+<h2 class="anchored" data-anchor-id="solutions">Solutions</h2>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

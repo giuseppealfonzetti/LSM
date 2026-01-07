@@ -25,5 +25,6 @@ knitr::opts_chunk$set(
 - Render the file and follow the instructions.
 - Do not modify the code chunck before the `Solutions` section!
 
+
 ### Homework submission
 Send your `rmd` file at *giuseppe.alfonzetti@uniud.it* by 15/01/2026.

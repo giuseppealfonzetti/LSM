@@ -1,5 +1,54 @@
 [
   {
+    "objectID": "class5.html",
+    "href": "class5.html",
+    "title": "Homework Lab 5",
+    "section": "",
+    "text": "Create a new project for this homework;\nDownload the .rmd homework document and move it in the new project folder.\n\nlink to the rmd\n\nOpen it and write your name in the author field.\nRender the file and follow the instructions.\nDo not modify the code chunck before the Solutions section!\n\n\nHomework submission\nSend your rmd file at giuseppe.alfonzetti@uniud.it by 15/01/2026."
+  },
+  {
+    "objectID": "class1.html",
+    "href": "class1.html",
+    "title": "Resources for Lab 1",
+    "section": "",
+    "text": "The data analysis life cycle\n\n\n\n\n\n\n\nInteractive web console Basic R\nAccess the R web console for some basic R commands\n\n\nInteractive web console Dataset and Visualization\nAccess the R web console for a quick visualisation\n\n\nHomework:\n\nInstall R and Rstudio: install R and Rstudio on your personal laptop! For a guide, see for example this tutorial and get familiar with Rstudio interface. If you prefer a video tutorial, check it here.\nInstall useful packages:\n\ninstall.package() command.\nRun install.package(\"tidyverse\").\n\nRun head(mtcars)to visualise the first rows of the mtcars dataset.\nRun ?mtcars to check the meaning of the column in the mtcarsdataset.\nUse the summary()function on the mtcars dataset.\n\nWhat’s the highest Miles-Per-Gallon value?\nWhat’s the average number of carubretors?\n\n\n\n\nOther resources:\n\nWhy should I use R?"
+  },
+  {
+    "objectID": "assets/class6/homework2.html",
+    "href": "assets/class6/homework2.html",
+    "title": "Laboratory of Statistics and Mathematics - Data analysis report B",
+    "section": "",
+    "text": "In October, your company ran a variety of online ad campaigns across different platforms (Google, Facebook, Instagram, TikTok). Each campaign targeted one audience segments (Young, Adult, Senior), using one of 50 different ads.\nFor each campaign, you recorded impressions and clicks, allowing you to compute the click-through rate (CTR), a performance indicator that measures the ability of the ad to convert impressions in clicks. Some campaigns have missing click counts, representing tracking issues. Data are collected in:\n\nads_data\n\n# A tibble: 168 × 5\n   ad_id platform  audience impressions clicks\n   &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;  &lt;dbl&gt;\n 1     3 Facebook  Adult            370     13\n 2    45 Facebook  Young            331      4\n 3    14 Instagram Adult            620     47\n 4     8 Google    Adult            465     39\n 5    50 Facebook  Young            314      5\n 6     9 Google    Adult            428     20\n 7    21 Instagram Young            564     26\n 8    17 TikTok    Young            533     25\n 9     6 Google    Young            420     10\n10    40 Facebook  Young            289      7\n# ℹ 158 more rows\n\n\nIn November, the engineering team optimized your company servers to reduce the loading times of each ad. Thus, you now also have data about impressions and clicks performance of all your campaigns ran in November, which are collected in\n\nads_data_speedup\n\n# A tibble: 168 × 5\n   ad_id platform  audience impressions clicks\n   &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;  &lt;dbl&gt;\n 1    37 Facebook  Young            296      9\n 2    17 Google    Young            400     12\n 3    11 Facebook  Senior           489     11\n 4    21 Facebook  Senior           426     NA\n 5    38 Instagram Senior           748     31\n 6    49 Google    Senior           552     25\n 7     8 Instagram Senior           730     33\n 8     9 Instagram Adult            664     47\n 9    46 Instagram Senior           699     50\n10    16 Instagram Adult            694     50\n# ℹ 158 more rows"
+  },
+  {
+    "objectID": "assets/class6/homework2.html#intro",
+    "href": "assets/class6/homework2.html#intro",
+    "title": "Laboratory of Statistics and Mathematics - Data analysis report B",
+    "section": "",
+    "text": "In October, your company ran a variety of online ad campaigns across different platforms (Google, Facebook, Instagram, TikTok). Each campaign targeted one audience segments (Young, Adult, Senior), using one of 50 different ads.\nFor each campaign, you recorded impressions and clicks, allowing you to compute the click-through rate (CTR), a performance indicator that measures the ability of the ad to convert impressions in clicks. Some campaigns have missing click counts, representing tracking issues. Data are collected in:\n\nads_data\n\n# A tibble: 168 × 5\n   ad_id platform  audience impressions clicks\n   &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;  &lt;dbl&gt;\n 1     3 Facebook  Adult            370     13\n 2    45 Facebook  Young            331      4\n 3    14 Instagram Adult            620     47\n 4     8 Google    Adult            465     39\n 5    50 Facebook  Young            314      5\n 6     9 Google    Adult            428     20\n 7    21 Instagram Young            564     26\n 8    17 TikTok    Young            533     25\n 9     6 Google    Young            420     10\n10    40 Facebook  Young            289      7\n# ℹ 158 more rows\n\n\nIn November, the engineering team optimized your company servers to reduce the loading times of each ad. Thus, you now also have data about impressions and clicks performance of all your campaigns ran in November, which are collected in\n\nads_data_speedup\n\n# A tibble: 168 × 5\n   ad_id platform  audience impressions clicks\n   &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;  &lt;dbl&gt;\n 1    37 Facebook  Young            296      9\n 2    17 Google    Young            400     12\n 3    11 Facebook  Senior           489     11\n 4    21 Facebook  Senior           426     NA\n 5    38 Instagram Senior           748     31\n 6    49 Google    Senior           552     25\n 7     8 Instagram Senior           730     33\n 8     9 Instagram Adult            664     47\n 9    46 Instagram Senior           699     50\n10    16 Instagram Adult            694     50\n# ℹ 158 more rows"
+  },
+  {
+    "objectID": "assets/class6/homework2.html#tasks",
+    "href": "assets/class6/homework2.html#tasks",
+    "title": "Laboratory of Statistics and Mathematics - Data analysis report B",
+    "section": "Tasks",
+    "text": "Tasks\n\nHandle missing data;\nInvestigate CTR performance across platforms and target audiences. Use appropriate visualisations, summary statistics and statistical tests.\nInvestigate if server speedup affected CTR conversion ability. Use appropriate visualisations, summary statistics and statistical tests."
+  },
+  {
+    "objectID": "assets/class6/homework2.html#instructions",
+    "href": "assets/class6/homework2.html#instructions",
+    "title": "Laboratory of Statistics and Mathematics - Data analysis report B",
+    "section": "Instructions",
+    "text": "Instructions\nTo answer the questions, you can directly use this .rmd file by providing your answers in the Solutions section. Alternatively, after running this .rmd once, you’ll find the two datasets already available on you machine as .xlsx in a newly created report_data folder living in the same folder where this file is located. You can use them as you prefer to produce the report in Word or similar programs. Nevertheless, you will still have to answer all questions and provide your code."
+  },
+  {
+    "objectID": "assets/class6/homework2.html#solutions",
+    "href": "assets/class6/homework2.html#solutions",
+    "title": "Laboratory of Statistics and Mathematics - Data analysis report B",
+    "section": "Solutions",
+    "text": "Solutions"
+  },
+  {
     "objectID": "resources.html",
     "href": "resources.html",
     "title": "Resources",
@@ -10,39 +59,102 @@
     ]
   },
   {
-    "objectID": "class5.html",
-    "href": "class5.html",
-    "title": "Homework Lab 5",
+    "objectID": "class6.html",
+    "href": "class6.html",
+    "title": "Homework Lab 6",
     "section": "",
-    "text": "Create a new project for this homework;\nDownload the .rmd homework document and move it in the new project folder.\n\nlink to the rmd\n\nOpen it and write your name in the author field.\nRender the file and follow the instructions.\nDo not modify the code chunck before the Solutions section!\n\n\nHomework submission\nSend your rmd file at giuseppe.alfonzetti@uniud.it by 15/01/2026."
+    "text": "Create a new project for this homework;\nDownload the .rmd homework document and move it in the new project folder.\n\nlink to the rmd\n\nOpen it and write your name in the author field and in the first chunk.\nRender the file and follow the instructions.\nDo not modify the code chunck before the Solutions section!\n\n\nHomework submission\nSend your rmd file at giuseppe.alfonzetti@uniud.it by 15/01/2026."
   },
   {
-    "objectID": "class2.html",
-    "href": "class2.html",
-    "title": "Resources for Lab 2",
+    "objectID": "class4.html",
+    "href": "class4.html",
+    "title": "Resources for Lab 4",
     "section": "",
-    "text": "Practice:\n\n\n Download employees.xlsx\n\n\n\n\nDownload the employees.xlsx.\nCreate an R Project where to analyse the employees.xlsx dataset and move the xlsx file within the project directory.\nGet the path to the data using the here() function.\nImport the dataset in R with the read_xlsx() function.\n\n\nExercise 1\n\n\n\nHow many observations are collected in the dataset? Use the dim() function.\nWhat’s the average salary in the company? Use either the function mean()or summary()"
+    "text": "Practice 1\n\n\n Download ecommerce.xlsx\n\n\n\nDownload the ecommerce.xlsx file and move it in the project folder. If you open it in Excel, you’ll see it is made of two sheets, named “purchases_history” and “products”.\nYou will need to import both sheets in R.\n\nFor importing, use the read_xlsx()function and specify the sheet argument.\n\n# declare where you are in your project folder\ni_am(\"practice1.R\")\n\n# construct the path to your data\npath &lt;- here(\"data\", \"ecommerce.xlsx\")\n\n# read the two sheets by specifying the \"sheet\" argument\npurchases &lt;- read_xlsx(path = path, sheet = \"purchases_history\")\nproducts  &lt;- read_xlsx(path = path, sheet = \"products\")\n\n\nExercise 1Exercise 2\n\n\n\nClean the names of the two data frames by usign clean_names()from the janitor package.\nCompute the number of sales by product\n\n\n\nCompute the total amount of sales by product in thousands of euros.\n\n\n\n\n\nPractice 2\n\n\n Download avocados.xlsx\n\n\n\nDownload the avocados.xlsx file and move it in your project folder.\nThe dataset contains the average prices ($) of conventional and organic avocados, collected from 2015-01-04 to 2018-03-25.\n\n\nExercise 1\n\n\nTransform the data to match\n\n\n# A tibble: 338 × 3\n   date       type         avg_price\n   &lt;date&gt;     &lt;chr&gt;            &lt;dbl&gt;\n 1 2015-01-04 conventional     1.01 \n 2 2015-01-04 organic          1.59 \n 3 2015-01-11 conventional     1.11 \n 4 2015-01-11 organic          1.63 \n 5 2015-01-18 conventional     1.13 \n 6 2015-01-18 organic          1.65 \n 7 2015-01-25 conventional     1.12 \n 8 2015-01-25 organic          1.68 \n 9 2015-02-01 conventional     0.962\n10 2015-02-01 organic          1.53 \n# ℹ 328 more rows\n\n\nand then use ggplot and geom_line() to plot the average price trajectory across the years by type of avocado\n\n\n\n\n\nPractice 3\nOrganise the answers to Lab 3 - Practice 1 in a R markdown file."
   },
   {
-    "objectID": "sol4.html",
-    "href": "sol4.html",
-    "title": "Solutions Lab 4 practice",
-    "section": "",
-    "text": "For importing, use the read_xlsx()function and specify the sheet argument.\n\nlibrary(readxl)\nlibrary(tidyverse)\n\n# declare where you are in your project folder\ni_am(\"practice1.R\")\n\n# construct the path to your data\npath &lt;- here(\"data\", \"ecommerce.xlsx\")\n\n# read the two sheets by specifying the \"sheet\" argument\npurchases &lt;- read_xlsx(path = path, sheet = \"purchases_history\")\nproducts  &lt;- read_xlsx(path = path, sheet = \"products\")\n\n\n\n\nlibrary(janitor)\n\npurchases &lt;- purchases |&gt; clean_names()\nproducts &lt;- products |&gt; clean_names()\n\nTo compute the total number of sales by product we can use the group_by() + summarise() combo.\n\npurchases |&gt; \n    group_by(product) |&gt; \n    summarise(\n        number_of_sales = n()\n    )\n\n# A tibble: 7 × 2\n  product      number_of_sales\n  &lt;chr&gt;                  &lt;int&gt;\n1 e-reader                  96\n2 earphones                115\n3 laptop_1                  48\n4 laptop_2                  46\n5 smartphone_1              49\n6 smartphone_2              52\n7 tablet                    94\n\n\nThere is even a faster way to count how many times the values of a given variable appear in the dataset. Literally, you can pipe the count() function\n\npurchases |&gt; \n    count(product)\n\n# A tibble: 7 × 2\n  product          n\n  &lt;chr&gt;        &lt;int&gt;\n1 e-reader        96\n2 earphones      115\n3 laptop_1        48\n4 laptop_2        46\n5 smartphone_1    49\n6 smartphone_2    52\n7 tablet          94\n\n\n\n\n\nTo compute the total amount of money spent on each product we first join the two datasets,\n\npurchases |&gt; \n    left_join(products, by = \"product\") \n\n# A tibble: 500 × 3\n   customer_id                          product      price_euro\n   &lt;chr&gt;                                &lt;chr&gt;             &lt;dbl&gt;\n 1 1609fdd7-29c6-4678-84af-30684d709f0b earphones          90.0\n 2 1064a4dc-df76-4aba-8b74-953a4c66fa16 smartphone_1      500. \n 3 155e9331-3434-415f-9d66-67736534d80b e-reader          200. \n 4 105696b8-7c38-4fe5-92f5-3c6fb1268f48 laptop_2          900. \n 5 12175814-556e-4e1a-af05-0c38c13e98a0 laptop_1         2140. \n 6 80fb4c6d-d5f8-42ed-b3c7-8a10596dd382 tablet            520. \n 7 348651a5-8a5a-4311-b999-4dfba846a413 e-reader          200. \n 8 cea15e94-869f-417a-9ad4-a70aefc74f34 laptop_2          900. \n 9 8b0a0720-0487-44d2-9aae-32dfec5c4b5c e-reader          200. \n10 578ffa9d-ec4c-4a54-8a32-6f15ac4deb53 e-reader          200. \n# ℹ 490 more rows\n\n\nand then comput the totals,\n\npurchases |&gt; \n    left_join(products, by = \"product\") |&gt; \n    group_by(product) |&gt; \n    summarise(\n        total = sum(price_euro),\n        total_thousands = sum(price_euro)/1000\n        )\n\n# A tibble: 7 × 3\n  product        total total_thousands\n  &lt;chr&gt;          &lt;dbl&gt;           &lt;dbl&gt;\n1 e-reader      19199.            19.2\n2 earphones     10349.            10.3\n3 laptop_1     102720.           103. \n4 laptop_2      41400.            41.4\n5 smartphone_1  24500.            24.5\n6 smartphone_2  15599.            15.6\n7 tablet        48879.            48.9\n\n\nEquivalently, we can also first count how many items have been sold by product type, as in the previous exercise, and then join the resulting table with the price listings\n\npurchases |&gt; \n    count(product) |&gt; \n    left_join(products)\n\n# A tibble: 7 × 3\n  product          n price_euro\n  &lt;chr&gt;        &lt;int&gt;      &lt;dbl&gt;\n1 e-reader        96      200. \n2 earphones      115       90.0\n3 laptop_1        48     2140. \n4 laptop_2        46      900. \n5 smartphone_1    49      500. \n6 smartphone_2    52      300. \n7 tablet          94      520. \n\n\nOnce here, we need to compute total by product by multiplying their prices and quantities sold\n\npurchases |&gt; \n    count(product) |&gt; \n    left_join(products) |&gt; \n    mutate(\n        total_thousands = price_euro * n /1000\n    )\n\n# A tibble: 7 × 4\n  product          n price_euro total_thousands\n  &lt;chr&gt;        &lt;int&gt;      &lt;dbl&gt;           &lt;dbl&gt;\n1 e-reader        96      200.             19.2\n2 earphones      115       90.0            10.3\n3 laptop_1        48     2140.            103. \n4 laptop_2        46      900.             41.4\n5 smartphone_1    49      500.             24.5\n6 smartphone_2    52      300.             15.6\n7 tablet          94      520.             48.9"
+    "objectID": "slides/slides_class2.html#rstudio",
+    "href": "slides/slides_class2.html#rstudio",
+    "title": "Introduction to R - Part 2",
+    "section": "Rstudio",
+    "text": "Rstudio"
   },
   {
-    "objectID": "sol4.html#practice-1",
-    "href": "sol4.html#practice-1",
-    "title": "Solutions Lab 4 practice",
-    "section": "",
-    "text": "For importing, use the read_xlsx()function and specify the sheet argument.\n\nlibrary(readxl)\nlibrary(tidyverse)\n\n# declare where you are in your project folder\ni_am(\"practice1.R\")\n\n# construct the path to your data\npath &lt;- here(\"data\", \"ecommerce.xlsx\")\n\n# read the two sheets by specifying the \"sheet\" argument\npurchases &lt;- read_xlsx(path = path, sheet = \"purchases_history\")\nproducts  &lt;- read_xlsx(path = path, sheet = \"products\")\n\n\n\n\nlibrary(janitor)\n\npurchases &lt;- purchases |&gt; clean_names()\nproducts &lt;- products |&gt; clean_names()\n\nTo compute the total number of sales by product we can use the group_by() + summarise() combo.\n\npurchases |&gt; \n    group_by(product) |&gt; \n    summarise(\n        number_of_sales = n()\n    )\n\n# A tibble: 7 × 2\n  product      number_of_sales\n  &lt;chr&gt;                  &lt;int&gt;\n1 e-reader                  96\n2 earphones                115\n3 laptop_1                  48\n4 laptop_2                  46\n5 smartphone_1              49\n6 smartphone_2              52\n7 tablet                    94\n\n\nThere is even a faster way to count how many times the values of a given variable appear in the dataset. Literally, you can pipe the count() function\n\npurchases |&gt; \n    count(product)\n\n# A tibble: 7 × 2\n  product          n\n  &lt;chr&gt;        &lt;int&gt;\n1 e-reader        96\n2 earphones      115\n3 laptop_1        48\n4 laptop_2        46\n5 smartphone_1    49\n6 smartphone_2    52\n7 tablet          94\n\n\n\n\n\nTo compute the total amount of money spent on each product we first join the two datasets,\n\npurchases |&gt; \n    left_join(products, by = \"product\") \n\n# A tibble: 500 × 3\n   customer_id                          product      price_euro\n   &lt;chr&gt;                                &lt;chr&gt;             &lt;dbl&gt;\n 1 1609fdd7-29c6-4678-84af-30684d709f0b earphones          90.0\n 2 1064a4dc-df76-4aba-8b74-953a4c66fa16 smartphone_1      500. \n 3 155e9331-3434-415f-9d66-67736534d80b e-reader          200. \n 4 105696b8-7c38-4fe5-92f5-3c6fb1268f48 laptop_2          900. \n 5 12175814-556e-4e1a-af05-0c38c13e98a0 laptop_1         2140. \n 6 80fb4c6d-d5f8-42ed-b3c7-8a10596dd382 tablet            520. \n 7 348651a5-8a5a-4311-b999-4dfba846a413 e-reader          200. \n 8 cea15e94-869f-417a-9ad4-a70aefc74f34 laptop_2          900. \n 9 8b0a0720-0487-44d2-9aae-32dfec5c4b5c e-reader          200. \n10 578ffa9d-ec4c-4a54-8a32-6f15ac4deb53 e-reader          200. \n# ℹ 490 more rows\n\n\nand then comput the totals,\n\npurchases |&gt; \n    left_join(products, by = \"product\") |&gt; \n    group_by(product) |&gt; \n    summarise(\n        total = sum(price_euro),\n        total_thousands = sum(price_euro)/1000\n        )\n\n# A tibble: 7 × 3\n  product        total total_thousands\n  &lt;chr&gt;          &lt;dbl&gt;           &lt;dbl&gt;\n1 e-reader      19199.            19.2\n2 earphones     10349.            10.3\n3 laptop_1     102720.           103. \n4 laptop_2      41400.            41.4\n5 smartphone_1  24500.            24.5\n6 smartphone_2  15599.            15.6\n7 tablet        48879.            48.9\n\n\nEquivalently, we can also first count how many items have been sold by product type, as in the previous exercise, and then join the resulting table with the price listings\n\npurchases |&gt; \n    count(product) |&gt; \n    left_join(products)\n\n# A tibble: 7 × 3\n  product          n price_euro\n  &lt;chr&gt;        &lt;int&gt;      &lt;dbl&gt;\n1 e-reader        96      200. \n2 earphones      115       90.0\n3 laptop_1        48     2140. \n4 laptop_2        46      900. \n5 smartphone_1    49      500. \n6 smartphone_2    52      300. \n7 tablet          94      520. \n\n\nOnce here, we need to compute total by product by multiplying their prices and quantities sold\n\npurchases |&gt; \n    count(product) |&gt; \n    left_join(products) |&gt; \n    mutate(\n        total_thousands = price_euro * n /1000\n    )\n\n# A tibble: 7 × 4\n  product          n price_euro total_thousands\n  &lt;chr&gt;        &lt;int&gt;      &lt;dbl&gt;           &lt;dbl&gt;\n1 e-reader        96      200.             19.2\n2 earphones      115       90.0            10.3\n3 laptop_1        48     2140.            103. \n4 laptop_2        46      900.             41.4\n5 smartphone_1    49      500.             24.5\n6 smartphone_2    52      300.             15.6\n7 tablet          94      520.             48.9"
+    "objectID": "slides/slides_class2.html#recap-of-r-basics",
+    "href": "slides/slides_class2.html#recap-of-r-basics",
+    "title": "Introduction to R - Part 2",
+    "section": "Recap of R basics",
+    "text": "Recap of R basics\nBasic math:\n\na = 3                            # numeric value assigned with = \nb &lt;- 2                           # numeric value assigne with &lt;- \na+b                              # sum\na-b                              # difference\na*b                              # multiply\na/b                              # ratio\na^b                              # power\n\n\nR Functions: always called by name_of_the_function()\n\nv1 &lt;- c(1, 7, 2)          # create a vector with the function c()\nv2 &lt;- seq(0,10, by=0.5)   # create a vector with the function seq()\nm &lt;- matrix(c(0,7,9,2,4,10), nrow=2, ncol=3) # create a matrix by column\n\n\n\nAccessing elements: Access elements within vector and matrices with [ ].\n\nv1[2]   # access the second element of v1\n\n[1] 7\n\nm[2,3]  # access the elemnt in the second row - third column cell\n\n[1] 10"
   },
   {
-    "objectID": "sol4.html#practice-2",
-    "href": "sol4.html#practice-2",
-    "title": "Solutions Lab 4 practice",
-    "section": "Practice 2",
-    "text": "Practice 2\n\nExercise 1\n\nlibrary(readxl)\nlibrary(tidyverse)\n\n# declare where you are in your project folder\ni_am(\"practice2.R\")\n\n# construct the path to your data\npath &lt;- here(\"data\", \"avocados.xlsx\")\n\navocados &lt;- read_xlsx(path = path)\n\nWe need to use pivot_longer() to reshape the data:\n\nnew_avo &lt;- avocados |&gt; \n  pivot_longer(\n    cols = c(conventional, organic), \n    names_to = \"type\", \n    values_to = \"avg_price\"\n    ) \nnew_avo\n\n# A tibble: 338 × 3\n   date                type         avg_price\n   &lt;dttm&gt;              &lt;chr&gt;            &lt;dbl&gt;\n 1 2015-01-04 00:00:00 conventional     1.01 \n 2 2015-01-04 00:00:00 organic          1.59 \n 3 2015-01-11 00:00:00 conventional     1.11 \n 4 2015-01-11 00:00:00 organic          1.63 \n 5 2015-01-18 00:00:00 conventional     1.13 \n 6 2015-01-18 00:00:00 organic          1.65 \n 7 2015-01-25 00:00:00 conventional     1.12 \n 8 2015-01-25 00:00:00 organic          1.68 \n 9 2015-02-01 00:00:00 conventional     0.962\n10 2015-02-01 00:00:00 organic          1.53 \n# ℹ 328 more rows\n\n\nOnce reshaped, we can plot the price trajectories over time:\n\nnew_avo |&gt; \n  ggplot(aes(x=date, y=avg_price, col=type))+\n  geom_line()\n\n\n\n\n\n\n\n\nAs always, we can customise the plots as we prefer:\n\nlibrary(ggokabeito)\nnew_avo |&gt; \n  ggplot(aes(x=date, y=avg_price, col=type))+\n  geom_line(linewidth=1) +\n  labs(x=\"\", y= \"Average price ($)\", color=\"Avocado origin:\")+\n  theme_bw() +\n  theme(\n    legend.position = \"top\", \n    panel.grid.minor = element_blank()\n    )+\n  scale_color_okabe_ito()"
+    "objectID": "slides/slides_class2.html#additional-types-of-objects-i",
+    "href": "slides/slides_class2.html#additional-types-of-objects-i",
+    "title": "Introduction to R - Part 2",
+    "section": "Additional types of objects (i)",
+    "text": "Additional types of objects (i)\nLogical values: represent a TRUE/FALSEstatement\n\n# store in the object `my_logical` the answer to \"is 3 less than 4?\". \n# Can only take values TRUE/FALSE\nmy_logical = 3 &lt; 4  \nmy_logical\n\n[1] TRUE\n\n\n\nFactors: categorical variables with known levels\n\n# start from a raw vector of strings\nmy_raw_var &lt;- c(\"low\", \"low\", \"medium\", \"low\", \"high\", \"high\", \"medium\")\nmy_raw_var\n\n[1] \"low\"    \"low\"    \"medium\" \"low\"    \"high\"   \"high\"   \"medium\"\n\n\n\n\n\n# convert automatically to a factor via `as.factor()`\nmy_fact &lt;- as.factor(my_raw_var)\nmy_fact\n\n[1] low    low    medium low    high   high   medium\nLevels: high low medium\n\n\n\n\n\n# manual construction with `factor()` specifying levels ordering\nmy_fact &lt;- factor(my_raw_var, levels = c(\"low\", \"medium\", \"high\"), ordered=TRUE)\nmy_fact\n\n[1] low    low    medium low    high   high   medium\nLevels: low &lt; medium &lt; high"
+  },
+  {
+    "objectID": "slides/slides_class2.html#additional-types-of-objects-ii",
+    "href": "slides/slides_class2.html#additional-types-of-objects-ii",
+    "title": "Introduction to R - Part 2",
+    "section": "Additional types of objects (ii)",
+    "text": "Additional types of objects (ii)\nLists:\nList of objects of potentially different nature\n\nmy_list &lt;- list(          # use the `list()` function\n    \"A\"=c(0,1,2),\n    \"B\"= \"ciao\",\n    \"C\"= 2&lt;5\n)\nmy_list\n\n$A\n[1] 0 1 2\n\n$B\n[1] \"ciao\"\n\n$C\n[1] TRUE"
+  },
+  {
+    "objectID": "slides/slides_class2.html#data-frames",
+    "href": "slides/slides_class2.html#data-frames",
+    "title": "Introduction to R - Part 2",
+    "section": "Data frames",
+    "text": "Data frames\n\nMatrices in R constrain all columns to have data of the same type (all numeric, all character, etc…).\nData frames are more convenient objects where to store your data.\n\n\nvar1 &lt;- c(\"pop-up\", \"banner\", \"video\")\nvar2 &lt;- c(56, 23, 321)\nvar3 &lt;- c(7,2,25)\nvar4 &lt;- c(TRUE, FALSE, FALSE)\nmy_df &lt;- data.frame(\n    \"ad_type\"= var1, \n    \"n_clicks\"=var2, \n    \"sales\"=var3, \n    \"weekend\"=var4)\nmy_df\n\n  ad_type n_clicks sales weekend\n1  pop-up       56     7    TRUE\n2  banner       23     2   FALSE\n3   video      321    25   FALSE"
+  },
+  {
+    "objectID": "slides/slides_class2.html#data-frames-attributes",
+    "href": "slides/slides_class2.html#data-frames-attributes",
+    "title": "Introduction to R - Part 2",
+    "section": "Data frames attributes",
+    "text": "Data frames attributes\n\ncolnames(my_df) # get the column names from my_df\n\n[1] \"ad_type\"  \"n_clicks\" \"sales\"    \"weekend\" \n\n\n\n\ndim(my_df)       # get the dimensions of my_df\n\n[1] 3 4\n\n\n\n\n\nmy_df$ad_type    # access a column of my_df by name\n\n[1] \"pop-up\" \"banner\" \"video\" \n\n\n\n\n\nmy_df[ , 1]      # access a column by index\n\n[1] \"pop-up\" \"banner\" \"video\" \n\n\n\n\n\nmy_df[2 , ]      # acces a row by index\n\n  ad_type n_clicks sales weekend\n2  banner       23     2   FALSE"
+  },
+  {
+    "objectID": "slides/slides_class2.html#practice",
+    "href": "slides/slides_class2.html#practice",
+    "title": "Introduction to R - Part 2",
+    "section": "Practice",
+    "text": "Practice\n\nConnect to https://giuseppealfonzetti.github.io/LSM/\nClick on the “Material” (💻) icon corresponding to today lab.\nDownload the Excel file."
+  },
+  {
+    "objectID": "slides/slides_class2.html#workflow-basics",
+    "href": "slides/slides_class2.html#workflow-basics",
+    "title": "Introduction to R - Part 2",
+    "section": "Workflow basics",
+    "text": "Workflow basics\n\nCreate a folder on your laptop where to store all your future analysis;\nOpen Rstudio and create an R Project for today’s practice within that folder.\nFrom your file browser, move the downloaded .xlsx file in your project directory in a subdirectory called data.\nWithin the project, create an R Script file. Here you will write your R commands.\nUse the here package to manage file paths."
+  },
+  {
+    "objectID": "slides/slides_class2.html#setup",
+    "href": "slides/slides_class2.html#setup",
+    "title": "Introduction to R - Part 2",
+    "section": "Setup",
+    "text": "Setup\n\nOn top of your script file, list the library() commands needed to perform the analysis. Today we will use\n\n\nlibrary(tidyverse)  # data manipulation and plotting\nlibrary(here)       # utilities to easily manage directories paths\nlibrary(readxl)     # utilities to read Excel files\nlibrary(writexl)    # utilities to write Excel files\n\n\nAfter loading the R packages, use the i_am() function from the here package to tell R where your script is located. If your script is called my_script.R, run\n\ni_am(\"my_script.R\")\n\n\n\nNow that R knows your position in the directory tree of your laptop, we can read the xlsx file stored in the data folder with\n\npath_to_data &lt;- here(\"data\", \"employees.xlsx\") # get the exact location of the data\ndt &lt;- read_xlsx(path_to_data)                  # read the data\n\n\n\n\n\n# A tibble: 4 × 6\n  last_name first_name department seniority  salary    ID\n  &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;\n1 al-Harron Fikra      Marketing          4  72654.  1001\n2 Whitaker  Jalen      HR                15 164507.  1002\n3 Pillow    Cleevens   Sales              7 102665.  1003\n4 Holguin   Austin     I.T.               9 138793.  1004"
+  },
+  {
+    "objectID": "slides/slides_class2.html#a-first-plot",
+    "href": "slides/slides_class2.html#a-first-plot",
+    "title": "Introduction to R - Part 2",
+    "section": "A first plot",
+    "text": "A first plot\n\nggplot(data = dt, aes(x=seniority, y=salary))"
+  },
+  {
+    "objectID": "slides/slides_class2.html#a-first-plot-1",
+    "href": "slides/slides_class2.html#a-first-plot-1",
+    "title": "Introduction to R - Part 2",
+    "section": "A first plot",
+    "text": "A first plot\n\nggplot(data = dt, aes(x=seniority, y=salary)) +\n    geom_point()"
+  },
+  {
+    "objectID": "slides/slides_class2.html#a-first-plot-2",
+    "href": "slides/slides_class2.html#a-first-plot-2",
+    "title": "Introduction to R - Part 2",
+    "section": "A first plot",
+    "text": "A first plot\n\nggplot(data = dt, aes(x=seniority, y=salary)) +\n    geom_point(aes(color=department))"
   },
   {
     "objectID": "slides/slides_class3.html#r-basics---filtering",
@@ -178,289 +290,6 @@
     "text": "A special case of lm()\n\n\n\nsummary(anova_modelA)\n\n             Df Sum Sq Mean Sq F value Pr(&gt;F)  \ncity          3   2298   765.9    2.48 0.0632 .\nResiduals   156  48183   308.9                 \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\n\n\nlm_modelA &lt;- lm(spend ~ city, data = dfA)\nsummary(lm_modelA)\n\n\nCall:\nlm(formula = spend ~ city, data = dfA)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-40.692  -9.652  -1.070   8.530  64.378 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)  50.6922     2.7788  18.243   &lt;2e-16 ***\ncityMadrid    3.2498     3.9298   0.827   0.4095    \ncityMilan     0.2118     3.9298   0.054   0.9571    \ncityParis     9.3862     3.9298   2.388   0.0181 *  \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 17.57 on 156 degrees of freedom\nMultiple R-squared:  0.04552,   Adjusted R-squared:  0.02716 \nF-statistic:  2.48 on 3 and 156 DF,  p-value: 0.0632\n\nanova(lm_modelA)\n\nAnalysis of Variance Table\n\nResponse: spend\n           Df Sum Sq Mean Sq F value Pr(&gt;F)  \ncity        3   2298  765.88  2.4796 0.0632 .\nResiduals 156  48183  308.87                 \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"
   },
   {
-    "objectID": "assets/class6/homework2.html",
-    "href": "assets/class6/homework2.html",
-    "title": "Laboratory of Statistics and Mathematics - Data analysis report B",
-    "section": "",
-    "text": "In October, your company ran a variety of online ad campaigns across different platforms (Google, Facebook, Instagram, TikTok). Each campaign targeted one audience segments (Young, Adult, Senior), using one of 50 different ads.\nFor each campaign, you recorded impressions and clicks, allowing you to compute the click-through rate (CTR), a performance indicator that measures the ability of the ad to convert impressions in clicks. Some campaigns have missing click counts, representing tracking issues. Data are collected in:\n\nads_data\n\n# A tibble: 168 × 5\n   ad_id platform  audience impressions clicks\n   &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;  &lt;dbl&gt;\n 1     3 Facebook  Adult            370     13\n 2    45 Facebook  Young            331      4\n 3    14 Instagram Adult            620     47\n 4     8 Google    Adult            465     39\n 5    50 Facebook  Young            314      5\n 6     9 Google    Adult            428     20\n 7    21 Instagram Young            564     26\n 8    17 TikTok    Young            533     25\n 9     6 Google    Young            420     10\n10    40 Facebook  Young            289      7\n# ℹ 158 more rows\n\n\nIn November, the engineering team optimized your company servers to reduce the loading times of each ad. Thus, you now also have data about impressions and clicks performance of all your campaigns ran in November, which are collected in\n\nads_data_speedup\n\n# A tibble: 168 × 5\n   ad_id platform  audience impressions clicks\n   &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;  &lt;dbl&gt;\n 1    37 Facebook  Young            296      9\n 2    17 Google    Young            400     12\n 3    11 Facebook  Senior           489     11\n 4    21 Facebook  Senior           426     NA\n 5    38 Instagram Senior           748     31\n 6    49 Google    Senior           552     25\n 7     8 Instagram Senior           730     33\n 8     9 Instagram Adult            664     47\n 9    46 Instagram Senior           699     50\n10    16 Instagram Adult            694     50\n# ℹ 158 more rows"
-  },
-  {
-    "objectID": "assets/class6/homework2.html#intro",
-    "href": "assets/class6/homework2.html#intro",
-    "title": "Laboratory of Statistics and Mathematics - Data analysis report B",
-    "section": "",
-    "text": "In October, your company ran a variety of online ad campaigns across different platforms (Google, Facebook, Instagram, TikTok). Each campaign targeted one audience segments (Young, Adult, Senior), using one of 50 different ads.\nFor each campaign, you recorded impressions and clicks, allowing you to compute the click-through rate (CTR), a performance indicator that measures the ability of the ad to convert impressions in clicks. Some campaigns have missing click counts, representing tracking issues. Data are collected in:\n\nads_data\n\n# A tibble: 168 × 5\n   ad_id platform  audience impressions clicks\n   &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;  &lt;dbl&gt;\n 1     3 Facebook  Adult            370     13\n 2    45 Facebook  Young            331      4\n 3    14 Instagram Adult            620     47\n 4     8 Google    Adult            465     39\n 5    50 Facebook  Young            314      5\n 6     9 Google    Adult            428     20\n 7    21 Instagram Young            564     26\n 8    17 TikTok    Young            533     25\n 9     6 Google    Young            420     10\n10    40 Facebook  Young            289      7\n# ℹ 158 more rows\n\n\nIn November, the engineering team optimized your company servers to reduce the loading times of each ad. Thus, you now also have data about impressions and clicks performance of all your campaigns ran in November, which are collected in\n\nads_data_speedup\n\n# A tibble: 168 × 5\n   ad_id platform  audience impressions clicks\n   &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;  &lt;dbl&gt;\n 1    37 Facebook  Young            296      9\n 2    17 Google    Young            400     12\n 3    11 Facebook  Senior           489     11\n 4    21 Facebook  Senior           426     NA\n 5    38 Instagram Senior           748     31\n 6    49 Google    Senior           552     25\n 7     8 Instagram Senior           730     33\n 8     9 Instagram Adult            664     47\n 9    46 Instagram Senior           699     50\n10    16 Instagram Adult            694     50\n# ℹ 158 more rows"
-  },
-  {
-    "objectID": "assets/class6/homework2.html#tasks",
-    "href": "assets/class6/homework2.html#tasks",
-    "title": "Laboratory of Statistics and Mathematics - Data analysis report B",
-    "section": "Tasks",
-    "text": "Tasks\n\nHandle missing data;\nInvestigate CTR performance across platforms and target audiences. Use appropriate visualisations, summary statistics and statistical tests.\nInvestigate if server speedup affected CTR conversion ability. Use appropriate visualisations, summary statistics and statistical tests."
-  },
-  {
-    "objectID": "assets/class6/homework2.html#instructions",
-    "href": "assets/class6/homework2.html#instructions",
-    "title": "Laboratory of Statistics and Mathematics - Data analysis report B",
-    "section": "Instructions",
-    "text": "Instructions\nTo answer the questions, you can directly use this .rmd file by providing your answers in the Solutions section. Alternatively, after running this .rmd once, you’ll find the two datasets already available on you machine as .xlsx in a newly created report_data folder living in the same folder where this file is located. You can use them as you prefer to produce the report in Word or similar programs. Nevertheless, you will still have to answer all questions and provide your code."
-  },
-  {
-    "objectID": "assets/class6/homework2.html#solutions",
-    "href": "assets/class6/homework2.html#solutions",
-    "title": "Laboratory of Statistics and Mathematics - Data analysis report B",
-    "section": "Solutions",
-    "text": "Solutions"
-  },
-  {
-    "objectID": "class3.html",
-    "href": "class3.html",
-    "title": "Resources for Lab 3",
-    "section": "",
-    "text": "Practice 1\n\n\n Download employees.xlsx\n\n\n\nDownload the employees.xlsx.\nCreate an R Project where to analyse the employees.xlsx dataset and move the xlsx file within the project directory.\nGet the path to the data using the here() function.\nImport the dataset in R with the read_xlsx() function.\n\n\nExercise 1Exercise 2Exercise 3Exercise 4Exercise 5Exercise 6Exercise 7\n\n\n\nHow many observations are collected in the dataset? Use the dim() function.\nWhat’s the average salary in the company? Use either the function mean()or summary()\n\n\n\n\nUse filter() and arrange() to check who are the three top earners in the I.T department.\nUse group_by(), summarise() and median() to get the median salary in the I.T. department.\n\nUsing geom_point(), construct a scatterplot for salary and seniority, colored by department. Store it in my_plot. Try adding a theme to the plot, for example:\n\nmy_plot + theme_minimal()\n\nWhat happens?\n\nUse labs() to modify the labels of the plot. For example:\n\n\nmy_plot + theme_minimal() + labs(x=\"Seniority (years)\", y=\"Salary\", color=\"Department:\")\n\n\nUse facet_grid() to create a multi-window plot\n\n\nmy_plot + facet_grid(~department)\n\n\nExport your plot with the function ggsave()\n\n\nmy_great_plot &lt;- my_plot + theme_minimal() + labs(x=\"Seniority (years)\", y=\"Salary\", color=\"Department:\")+ facet_grid(~department)\n\nggsave(my_great_plot, filename = here(\"great_plot.jpeg\"))\n\n\n\n\nUse group_by() and summarise() to compute the average and total expenditure for salaries by department\n\n\n\n\nHow many employees have just been hired in the company?\nHow many employees have just been hired in the I.T. department?\nCompute the average salary of employees from the Finance department with at least 8 years seniority.\n\n\n\nCreate a summary table where you report:\n\nthe median salary by department (using the function median()),\nthe number of employees by department (using the function n()),\nthe number of new hired by department.\n\nSave it as an excel file via the write_xlsx() function.\n\n\nGiven the summary table in the previous exercise, reproduce the following bar plot of the median salary by department (hint: use geom_col()).\n\n\n\n\n\n\n\n\n\n\n\nYou have to create an Excel file where employees from different department are collected in different sheets.\nIn R, you can create multi-sheets Excel files by feeding write_xlsx() with a list of datasets. Assume you stored the original employees.xlsxdataset in the dataframe dt. Now, try running\n\nmy_departments &lt;- split(dt, dt$department)\n\n\nWhat does the split()function do? Run ?split() to read the documentation.\nWhat kind of object is stored in my_departments? Run typeof(my_departments) to investigate.\nFeed write_xlsx() with my_departmentsto create a multi-sheet Excel file.\n\n\n\n\n\n\nPractice 2\n\n\n Download employees_company2.xlsx\n\n\n\nThe HR department sent you the employees file from a different company.\nDownload the employees_company2.xlsx and import it in R.\nAs you can see, the file has a structure that is very similar to the previous database. Nevertheless, it presents two critical issues:\n\nColumn names do not follow a consistent notation. Sometimes they are capitalized, sometimes they are not. Some times they includes spaces, sometimes they do not.\nThere are missing values\n\n\n\nExercise 1Exercise 2\n\n\nUse the function clean_names() from the janitor package to tidy up column names automatically\n\n\n\nHow many missing values are present in the salary column? Use the summary() function.\nReplace missing values with the median salary of department the missing value belongs to."
-  },
-  {
-    "objectID": "class6.html",
-    "href": "class6.html",
-    "title": "Homework Lab 6",
-    "section": "",
-    "text": "Create a new project for this homework;\nDownload the .rmd homework document and move it in the new project folder.\n\nlink to the rmd\n\nOpen it and write your name in the author field and in the first chunk.\nRender the file and follow the instructions.\nDo not modify the code chunck before the Solutions section!\n\n\nHomework submission\nSend your rmd file at giuseppe.alfonzetti@uniud.it by 15/01/2026."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Laboratory of Statistics and Mathematics",
-    "section": "",
-    "text": "Schedule and topics outline for the 2025/2026 lab classes\n💻\n\n\n\nDate\nClass\nTopic\nMaterial\nSlides\nSolutions\n\n\n\n\nOct 1\nLab 1\nIntroduction to R (Part 1)\n💻\n📖\n\n\n\nOct 15\nLab 2\nIntroduction to R (Part 2)\n💻\n📖\n\n\n\nOct 29\nLab 3\nData manipulation (Part 1)\n💻\n📖\n📝\n\n\nNov 12\nLab 4\nData manipulation (Part 2)\n💻\n📖\n📝\n\n\nOct 26\nLab 5\nt-test\n💻\n📖 📖\n\n\n\nDec 11\nLab 6\nANOVA\n💻\n📖",
-    "crumbs": [
-      "Schedule"
-    ]
-  },
-  {
-    "objectID": "assets/class5/homework1.html",
-    "href": "assets/class5/homework1.html",
-    "title": "Laboratory of Statistics and Mathematics - Data analysis report A",
-    "section": "",
-    "text": "This .rmd file gives you access to two datasets called delivery_data and user_data, which gather information about a coupon-discount campaign run by a food-delivery company. Data are collected during a one-month window across different cities. A share of the user received a discount coupon at the beginning of the month. The company needs to understand if the campaign has been effective from a business perspective.\n\nhead(user_data)\n\n# A tibble: 6 × 3\n  user_id   age city   \n  &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;  \n1 797        30 Treviso\n2 354        40 Padova \n3 99         18 Udine  \n4 133        37 Torino \n5 435        28 Treviso\n6 954        41 Milano \n\nhead(delivery_data)\n\n# A tibble: 6 × 6\n  user_id device  coupon    n_orders total_spent avg_delivery_time\n  &lt;chr&gt;   &lt;chr&gt;   &lt;fct&gt;        &lt;dbl&gt;       &lt;dbl&gt;             &lt;dbl&gt;\n1 436     mobile  no_coupon        6        110.              34.3\n2 335     mobile  no_coupon        0          0               36.6\n3 857     mobile  no_coupon       11        213.              41.8\n4 533     mobile  no_coupon        4        165.              38.4\n5 575     mobile  coupon           7        168.              27.5\n6 222     desktop no_coupon        0          0               43.1\n\n\nEach row of the dataset represents a user. Columns denote:\n\nuser_id: the unique identifier assigned to the user;\ncity: city of reference for the specific user\ndevice: user’s most used device;\nage: age of the user;\ncoupon: denotes if the user has received the coupon or not;\nn_orders: number of orders placed by the user during the month;\ntotal_spent: total amount of money spent by the user during the month;\navg_delivery_time: average delivery time to the user;\n\n\n\n\nYou are asked to complete/answer the following tasks/questions. When answering a question or completing a task, always show the code and interpret the results. When you consider it appropriate, use plots to highlight your results.\n\nData exploration:\n\nProduce a table showing the number and percentage of users who received the coupon.\nProduce a table showing the number and percentage of users who received the coupon by city.\nDoes the share of users who placed at least one order changes according to wether the user received the coupon or not\nAmong under/over 35 y.o. users, plot the shares of users who placed at least one order based on wether the user received the coupon or not.\nAmong users who placed at least one order, compute the mean and median of total expenditure for coupon and non-coupon users.\nAmong users who placed at least one order, report the percentage of heavy users (more the five orders each) for coupon and non-coupon users.\n\nInferential insights for business decisions:\n\nCompare the mean number of orders between coupon and non-coupon users. Report the results and interpret\nCompare the mean total expenditure between coupon and non-coupon users. Report the results and interpret\nAmong users who received the coupon, does the mean per-user expenditure change between under/over 35 y.o.?\nAmong users who placed at least one order, does the mean average order value differ between coupon and non-coupon users?\n\nSummarise your results. Is there evidence that the campaign has been effective?\n\nHint: for the inferential part, you are supposed to use the t.test() function to answer all questions.\nTo answer the questions, you can directly use this .rmd file by providing your answers in the Solutions section. Alternatively, after running this .rmd once, you’ll find the two datasets already available on you machine as .xlsx in a newly created report_data folder living in the same folder where this file is located. You can use them as you prefer to produce the report in Word or similar programs. Nevertheless, you will still have to answer all questions and provide your code."
-  },
-  {
-    "objectID": "assets/class5/homework1.html#intro",
-    "href": "assets/class5/homework1.html#intro",
-    "title": "Laboratory of Statistics and Mathematics - Data analysis report A",
-    "section": "",
-    "text": "This .rmd file gives you access to two datasets called delivery_data and user_data, which gather information about a coupon-discount campaign run by a food-delivery company. Data are collected during a one-month window across different cities. A share of the user received a discount coupon at the beginning of the month. The company needs to understand if the campaign has been effective from a business perspective.\n\nhead(user_data)\n\n# A tibble: 6 × 3\n  user_id   age city   \n  &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;  \n1 797        30 Treviso\n2 354        40 Padova \n3 99         18 Udine  \n4 133        37 Torino \n5 435        28 Treviso\n6 954        41 Milano \n\nhead(delivery_data)\n\n# A tibble: 6 × 6\n  user_id device  coupon    n_orders total_spent avg_delivery_time\n  &lt;chr&gt;   &lt;chr&gt;   &lt;fct&gt;        &lt;dbl&gt;       &lt;dbl&gt;             &lt;dbl&gt;\n1 436     mobile  no_coupon        6        110.              34.3\n2 335     mobile  no_coupon        0          0               36.6\n3 857     mobile  no_coupon       11        213.              41.8\n4 533     mobile  no_coupon        4        165.              38.4\n5 575     mobile  coupon           7        168.              27.5\n6 222     desktop no_coupon        0          0               43.1\n\n\nEach row of the dataset represents a user. Columns denote:\n\nuser_id: the unique identifier assigned to the user;\ncity: city of reference for the specific user\ndevice: user’s most used device;\nage: age of the user;\ncoupon: denotes if the user has received the coupon or not;\nn_orders: number of orders placed by the user during the month;\ntotal_spent: total amount of money spent by the user during the month;\navg_delivery_time: average delivery time to the user;"
-  },
-  {
-    "objectID": "assets/class5/homework1.html#tasks",
-    "href": "assets/class5/homework1.html#tasks",
-    "title": "Laboratory of Statistics and Mathematics - Data analysis report A",
-    "section": "",
-    "text": "You are asked to complete/answer the following tasks/questions. When answering a question or completing a task, always show the code and interpret the results. When you consider it appropriate, use plots to highlight your results.\n\nData exploration:\n\nProduce a table showing the number and percentage of users who received the coupon.\nProduce a table showing the number and percentage of users who received the coupon by city.\nDoes the share of users who placed at least one order changes according to wether the user received the coupon or not\nAmong under/over 35 y.o. users, plot the shares of users who placed at least one order based on wether the user received the coupon or not.\nAmong users who placed at least one order, compute the mean and median of total expenditure for coupon and non-coupon users.\nAmong users who placed at least one order, report the percentage of heavy users (more the five orders each) for coupon and non-coupon users.\n\nInferential insights for business decisions:\n\nCompare the mean number of orders between coupon and non-coupon users. Report the results and interpret\nCompare the mean total expenditure between coupon and non-coupon users. Report the results and interpret\nAmong users who received the coupon, does the mean per-user expenditure change between under/over 35 y.o.?\nAmong users who placed at least one order, does the mean average order value differ between coupon and non-coupon users?\n\nSummarise your results. Is there evidence that the campaign has been effective?\n\nHint: for the inferential part, you are supposed to use the t.test() function to answer all questions.\nTo answer the questions, you can directly use this .rmd file by providing your answers in the Solutions section. Alternatively, after running this .rmd once, you’ll find the two datasets already available on you machine as .xlsx in a newly created report_data folder living in the same folder where this file is located. You can use them as you prefer to produce the report in Word or similar programs. Nevertheless, you will still have to answer all questions and provide your code."
-  },
-  {
-    "objectID": "assets/class5/homework1.html#data-exploration",
-    "href": "assets/class5/homework1.html#data-exploration",
-    "title": "Laboratory of Statistics and Mathematics - Data analysis report A",
-    "section": "Data exploration",
-    "text": "Data exploration"
-  },
-  {
-    "objectID": "assets/class5/homework1.html#inference",
-    "href": "assets/class5/homework1.html#inference",
-    "title": "Laboratory of Statistics and Mathematics - Data analysis report A",
-    "section": "Inference",
-    "text": "Inference"
-  },
-  {
-    "objectID": "slides/slides_class1.html#our-goal",
-    "href": "slides/slides_class1.html#our-goal",
-    "title": "Introduction to R",
-    "section": "Our goal",
-    "text": "Our goal\nThe data analysis pipeline:"
-  },
-  {
-    "objectID": "slides/slides_class1.html#import",
-    "href": "slides/slides_class1.html#import",
-    "title": "Introduction to R",
-    "section": "Import",
-    "text": "Import\nYou will learn how to read external data sources from R. In particular, we will focus on\n\nUniversal text formats, as .csv.\nProprietary spreadsheets formats, as Excel .xls and .xlsx;"
-  },
-  {
-    "objectID": "slides/slides_class1.html#tidy",
-    "href": "slides/slides_class1.html#tidy",
-    "title": "Introduction to R",
-    "section": "Tidy",
-    "text": "Tidy\nYou will know hot to store your data in a cosistent format.\n\nEach row is an observation;\nEach column a variable, with a unique name.\nEach variable has a specific type (numeric, chracter, logical, etc..).\n\n\n\n# A tibble: 234 × 7\n   manufacturer displ model      class     cyl trans        hwy\n   &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;   &lt;int&gt; &lt;chr&gt;      &lt;int&gt;\n 1 audi           1.8 a4         compact     4 auto(l5)      29\n 2 audi           1.8 a4         compact     4 manual(m5)    29\n 3 audi           2   a4         compact     4 manual(m6)    31\n 4 audi           2   a4         compact     4 auto(av)      30\n 5 audi           2.8 a4         compact     6 auto(l5)      26\n 6 audi           2.8 a4         compact     6 manual(m5)    26\n 7 audi           3.1 a4         compact     6 auto(av)      27\n 8 audi           1.8 a4 quattro compact     4 manual(m5)    26\n 9 audi           1.8 a4 quattro compact     4 auto(l5)      25\n10 audi           2   a4 quattro compact     4 manual(m6)    28\n# ℹ 224 more rows"
-  },
-  {
-    "objectID": "slides/slides_class1.html#transform",
-    "href": "slides/slides_class1.html#transform",
-    "title": "Introduction to R",
-    "section": "Transform",
-    "text": "Transform\nYou will learn how to transform the data at your willingness:\n\nSelect the variables of interest;\nCombine existing variables in new variables;\nFilter relevant observations;\nReshape data;\n\n\n\n# A tibble: 234 × 3\n   displ class     hwy\n   &lt;dbl&gt; &lt;chr&gt;   &lt;int&gt;\n 1   1.8 compact    29\n 2   1.8 compact    29\n 3   2   compact    31\n 4   2   compact    30\n 5   2.8 compact    26\n 6   2.8 compact    26\n 7   3.1 compact    27\n 8   1.8 compact    26\n 9   1.8 compact    25\n10   2   compact    28\n# ℹ 224 more rows"
-  },
-  {
-    "objectID": "slides/slides_class1.html#visualize",
-    "href": "slides/slides_class1.html#visualize",
-    "title": "Introduction to R",
-    "section": "Visualize",
-    "text": "Visualize\nYou will learn how to explore data patterns with visualisations."
-  },
-  {
-    "objectID": "slides/slides_class1.html#model",
-    "href": "slides/slides_class1.html#model",
-    "title": "Introduction to R",
-    "section": "Model",
-    "text": "Model\nIt’s the only step where “math” enters the game. Goes from simple descriptive statistics, to more elaborated modelling strategies. Often combined with visualisations."
-  },
-  {
-    "objectID": "slides/slides_class1.html#communicate",
-    "href": "slides/slides_class1.html#communicate",
-    "title": "Introduction to R",
-    "section": "Communicate",
-    "text": "Communicate\n\nWrite reports;\nChoose appropriate viasualizations;\nHighilight the results in terms of insights."
-  },
-  {
-    "objectID": "slides/slides_class1.html#why-r",
-    "href": "slides/slides_class1.html#why-r",
-    "title": "Introduction to R",
-    "section": "Why R?",
-    "text": "Why R?\n\n\nReplicability!"
-  },
-  {
-    "objectID": "slides/slides_class1.html#excel-vs-r",
-    "href": "slides/slides_class1.html#excel-vs-r",
-    "title": "Introduction to R",
-    "section": "Excel vs R",
-    "text": "Excel vs R\n\nConsider creating a new variable in your dataset:\n\n\n\n\nNow you share your spreadsheet with your colleague.\n\n\n\n\nShe will not know the formula within each cell unless she inspect all of them individually!"
-  },
-  {
-    "objectID": "slides/slides_class1.html#excel-vs-r-1",
-    "href": "slides/slides_class1.html#excel-vs-r-1",
-    "title": "Introduction to R",
-    "section": "Excel vs R",
-    "text": "Excel vs R\n\nConsider the same data in R, stored in the object my_data\n\n\nmy_data \n\n# A tibble: 4 × 2\n  QuantityA QuantityB\n      &lt;dbl&gt;     &lt;dbl&gt;\n1        50        20\n2        90        25\n3        10        45\n4        30        15\n\n\n\n\nYou can create the same Tot column you had before in Excel with\n\n\nmy_data |&gt; \n  mutate(Tot = QuantityA + QuantityB)\n\n# A tibble: 4 × 3\n  QuantityA QuantityB   Tot\n      &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;\n1        50        20    70\n2        90        25   115\n3        10        45    55\n4        30        15    45\n\n\n\n\n\nAnd now your colleague has no doubt about where those numbers come from!"
-  },
-  {
-    "objectID": "slides/slides_class1.html#excel-vs-r-2",
-    "href": "slides/slides_class1.html#excel-vs-r-2",
-    "title": "Introduction to R",
-    "section": "Excel VS R",
-    "text": "Excel VS R\n\nYou are interested in computing the total number of products sold by each representative:\n\n\n\n\nThat’s a lot of point-and-clicks!\n\n\n\n\nWill your colleague be able to reproduce your results?"
-  },
-  {
-    "objectID": "slides/slides_class1.html#excel-vs-r-3",
-    "href": "slides/slides_class1.html#excel-vs-r-3",
-    "title": "Introduction to R",
-    "section": "Excel VS R",
-    "text": "Excel VS R\nConsider the same dataset in R stored in the new object my_data2:\n\nmy_data2\n\n# A tibble: 10 × 4\n   SalesRepresentative Product QuantitySold Region\n   &lt;chr&gt;               &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; \n 1 Eleonor             A                 50 IT    \n 2 Elizabeth           B                 90 UK    \n 3 John                C                 10 FR    \n 4 Matt                A                 34 DE    \n 5 Eleonor             A                  5 IT    \n 6 Elizabeth           C                  8 IT    \n 7 John                B                 20 UK    \n 8 Matt                B                  5 UK    \n 9 Eleonor             A                 15 UK    \n10 Elizabeth           C                 45 DE    \n\n\n\nYou get the same results seen in Excel by running\n\nmy_data2 |&gt; \n  group_by(SalesRepresentative) |&gt; \n  summarise(Total = sum(QuantitySold))\n\n# A tibble: 4 × 2\n  SalesRepresentative Total\n  &lt;chr&gt;               &lt;dbl&gt;\n1 Eleonor                70\n2 Elizabeth             143\n3 John                   30\n4 Matt                   39"
-  },
-  {
-    "objectID": "slides/slides_class1.html#access-r-from-web",
-    "href": "slides/slides_class1.html#access-r-from-web",
-    "title": "Introduction to R",
-    "section": "Access R from Web",
-    "text": "Access R from Web\n\nConnect to https://giuseppealfonzetti.github.io/LSM/\nClick on the “Material” (💻) icon corresponding to today lab.\nAccess the interactive web console."
-  },
-  {
-    "objectID": "slides/slides_class1.html#basic-r-grammar",
-    "href": "slides/slides_class1.html#basic-r-grammar",
-    "title": "Introduction to R",
-    "section": "Basic R grammar",
-    "text": "Basic R grammar\n\nRun a command:\n\nGet the cursor on the line and press CTRL+ENTER on Windows, or CMD+ENTER on MacOS.\n\nAssign a value to an object\n\n\na = 1                            # numeric value assigned with = \nb &lt;- 2                           # numeric value assigne with &lt;- \nc &lt;- \"ciao\"                      # character value \nc                                # display the content stored in c\n\n[1] \"ciao\"\n\n\n\nBasic math\n\n\na+b                              # sum the values stored in a and b\n\n[1] 3\n\n\n\nCreate a vector\n\n\nv1 &lt;- c(1, 7, 2)                 # create the vector manually\nv2 &lt;- 1:10                       # create a sequence 1 to 10 automatically\nv3 &lt;- seq(1,10,by=2)             # create a sequence automatically with the seq() function\n\n\nSeek help\n\n\n?seq()                           # R will show you the documentation of the seq function\n\n\nCreate and inspect matrices\n\n\nm &lt;- matrix(1:6, nrow=2, ncol=3) # create a matrix\nnrow(m)                          # inspect the number of rows\n\n[1] 2\n\nncol(m)                          # inspect the number of columns\n\n[1] 3\n\nm[1,2]                           # display element on the first row, at the second column\n\n[1] 3"
-  },
-  {
-    "objectID": "slides/slides_class1.html#quick-visualization",
-    "href": "slides/slides_class1.html#quick-visualization",
-    "title": "Introduction to R",
-    "section": "Quick visualization",
-    "text": "Quick visualization\nSome test datasets are preloaded in R. That’s the case of iris, a famous dataset about iris flower dimensions\n\nhead(iris)\n\n  Sepal.Length Sepal.Width Petal.Length Petal.Width Species\n1          5.1         3.5          1.4         0.2  setosa\n2          4.9         3.0          1.4         0.2  setosa\n3          4.7         3.2          1.3         0.2  setosa\n4          4.6         3.1          1.5         0.2  setosa\n5          5.0         3.6          1.4         0.2  setosa\n6          5.4         3.9          1.7         0.4  setosa\n\n\nYou can easily visualise petal dimension distribution yourself by using the ggplot2package. Don’t worry about understanding the syntax for now!\n\nggplot(data=iris, aes(x=Petal.Length, y=Petal.Width)) + geom_point(aes(col=Species))"
-  },
-  {
-    "objectID": "slides/slides_class2.html#rstudio",
-    "href": "slides/slides_class2.html#rstudio",
-    "title": "Introduction to R - Part 2",
-    "section": "Rstudio",
-    "text": "Rstudio"
-  },
-  {
-    "objectID": "slides/slides_class2.html#recap-of-r-basics",
-    "href": "slides/slides_class2.html#recap-of-r-basics",
-    "title": "Introduction to R - Part 2",
-    "section": "Recap of R basics",
-    "text": "Recap of R basics\nBasic math:\n\na = 3                            # numeric value assigned with = \nb &lt;- 2                           # numeric value assigne with &lt;- \na+b                              # sum\na-b                              # difference\na*b                              # multiply\na/b                              # ratio\na^b                              # power\n\n\nR Functions: always called by name_of_the_function()\n\nv1 &lt;- c(1, 7, 2)          # create a vector with the function c()\nv2 &lt;- seq(0,10, by=0.5)   # create a vector with the function seq()\nm &lt;- matrix(c(0,7,9,2,4,10), nrow=2, ncol=3) # create a matrix by column\n\n\n\nAccessing elements: Access elements within vector and matrices with [ ].\n\nv1[2]   # access the second element of v1\n\n[1] 7\n\nm[2,3]  # access the elemnt in the second row - third column cell\n\n[1] 10"
-  },
-  {
-    "objectID": "slides/slides_class2.html#additional-types-of-objects-i",
-    "href": "slides/slides_class2.html#additional-types-of-objects-i",
-    "title": "Introduction to R - Part 2",
-    "section": "Additional types of objects (i)",
-    "text": "Additional types of objects (i)\nLogical values: represent a TRUE/FALSEstatement\n\n# store in the object `my_logical` the answer to \"is 3 less than 4?\". \n# Can only take values TRUE/FALSE\nmy_logical = 3 &lt; 4  \nmy_logical\n\n[1] TRUE\n\n\n\nFactors: categorical variables with known levels\n\n# start from a raw vector of strings\nmy_raw_var &lt;- c(\"low\", \"low\", \"medium\", \"low\", \"high\", \"high\", \"medium\")\nmy_raw_var\n\n[1] \"low\"    \"low\"    \"medium\" \"low\"    \"high\"   \"high\"   \"medium\"\n\n\n\n\n\n# convert automatically to a factor via `as.factor()`\nmy_fact &lt;- as.factor(my_raw_var)\nmy_fact\n\n[1] low    low    medium low    high   high   medium\nLevels: high low medium\n\n\n\n\n\n# manual construction with `factor()` specifying levels ordering\nmy_fact &lt;- factor(my_raw_var, levels = c(\"low\", \"medium\", \"high\"), ordered=TRUE)\nmy_fact\n\n[1] low    low    medium low    high   high   medium\nLevels: low &lt; medium &lt; high"
-  },
-  {
-    "objectID": "slides/slides_class2.html#additional-types-of-objects-ii",
-    "href": "slides/slides_class2.html#additional-types-of-objects-ii",
-    "title": "Introduction to R - Part 2",
-    "section": "Additional types of objects (ii)",
-    "text": "Additional types of objects (ii)\nLists:\nList of objects of potentially different nature\n\nmy_list &lt;- list(          # use the `list()` function\n    \"A\"=c(0,1,2),\n    \"B\"= \"ciao\",\n    \"C\"= 2&lt;5\n)\nmy_list\n\n$A\n[1] 0 1 2\n\n$B\n[1] \"ciao\"\n\n$C\n[1] TRUE"
-  },
-  {
-    "objectID": "slides/slides_class2.html#data-frames",
-    "href": "slides/slides_class2.html#data-frames",
-    "title": "Introduction to R - Part 2",
-    "section": "Data frames",
-    "text": "Data frames\n\nMatrices in R constrain all columns to have data of the same type (all numeric, all character, etc…).\nData frames are more convenient objects where to store your data.\n\n\nvar1 &lt;- c(\"pop-up\", \"banner\", \"video\")\nvar2 &lt;- c(56, 23, 321)\nvar3 &lt;- c(7,2,25)\nvar4 &lt;- c(TRUE, FALSE, FALSE)\nmy_df &lt;- data.frame(\n    \"ad_type\"= var1, \n    \"n_clicks\"=var2, \n    \"sales\"=var3, \n    \"weekend\"=var4)\nmy_df\n\n  ad_type n_clicks sales weekend\n1  pop-up       56     7    TRUE\n2  banner       23     2   FALSE\n3   video      321    25   FALSE"
-  },
-  {
-    "objectID": "slides/slides_class2.html#data-frames-attributes",
-    "href": "slides/slides_class2.html#data-frames-attributes",
-    "title": "Introduction to R - Part 2",
-    "section": "Data frames attributes",
-    "text": "Data frames attributes\n\ncolnames(my_df) # get the column names from my_df\n\n[1] \"ad_type\"  \"n_clicks\" \"sales\"    \"weekend\" \n\n\n\n\ndim(my_df)       # get the dimensions of my_df\n\n[1] 3 4\n\n\n\n\n\nmy_df$ad_type    # access a column of my_df by name\n\n[1] \"pop-up\" \"banner\" \"video\" \n\n\n\n\n\nmy_df[ , 1]      # access a column by index\n\n[1] \"pop-up\" \"banner\" \"video\" \n\n\n\n\n\nmy_df[2 , ]      # acces a row by index\n\n  ad_type n_clicks sales weekend\n2  banner       23     2   FALSE"
-  },
-  {
-    "objectID": "slides/slides_class2.html#practice",
-    "href": "slides/slides_class2.html#practice",
-    "title": "Introduction to R - Part 2",
-    "section": "Practice",
-    "text": "Practice\n\nConnect to https://giuseppealfonzetti.github.io/LSM/\nClick on the “Material” (💻) icon corresponding to today lab.\nDownload the Excel file."
-  },
-  {
-    "objectID": "slides/slides_class2.html#workflow-basics",
-    "href": "slides/slides_class2.html#workflow-basics",
-    "title": "Introduction to R - Part 2",
-    "section": "Workflow basics",
-    "text": "Workflow basics\n\nCreate a folder on your laptop where to store all your future analysis;\nOpen Rstudio and create an R Project for today’s practice within that folder.\nFrom your file browser, move the downloaded .xlsx file in your project directory in a subdirectory called data.\nWithin the project, create an R Script file. Here you will write your R commands.\nUse the here package to manage file paths."
-  },
-  {
-    "objectID": "slides/slides_class2.html#setup",
-    "href": "slides/slides_class2.html#setup",
-    "title": "Introduction to R - Part 2",
-    "section": "Setup",
-    "text": "Setup\n\nOn top of your script file, list the library() commands needed to perform the analysis. Today we will use\n\n\nlibrary(tidyverse)  # data manipulation and plotting\nlibrary(here)       # utilities to easily manage directories paths\nlibrary(readxl)     # utilities to read Excel files\nlibrary(writexl)    # utilities to write Excel files\n\n\nAfter loading the R packages, use the i_am() function from the here package to tell R where your script is located. If your script is called my_script.R, run\n\ni_am(\"my_script.R\")\n\n\n\nNow that R knows your position in the directory tree of your laptop, we can read the xlsx file stored in the data folder with\n\npath_to_data &lt;- here(\"data\", \"employees.xlsx\") # get the exact location of the data\ndt &lt;- read_xlsx(path_to_data)                  # read the data\n\n\n\n\n\n# A tibble: 4 × 6\n  last_name first_name department seniority  salary    ID\n  &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;\n1 al-Harron Fikra      Marketing          4  72654.  1001\n2 Whitaker  Jalen      HR                15 164507.  1002\n3 Pillow    Cleevens   Sales              7 102665.  1003\n4 Holguin   Austin     I.T.               9 138793.  1004"
-  },
-  {
-    "objectID": "slides/slides_class2.html#a-first-plot",
-    "href": "slides/slides_class2.html#a-first-plot",
-    "title": "Introduction to R - Part 2",
-    "section": "A first plot",
-    "text": "A first plot\n\nggplot(data = dt, aes(x=seniority, y=salary))"
-  },
-  {
-    "objectID": "slides/slides_class2.html#a-first-plot-1",
-    "href": "slides/slides_class2.html#a-first-plot-1",
-    "title": "Introduction to R - Part 2",
-    "section": "A first plot",
-    "text": "A first plot\n\nggplot(data = dt, aes(x=seniority, y=salary)) +\n    geom_point()"
-  },
-  {
-    "objectID": "slides/slides_class2.html#a-first-plot-2",
-    "href": "slides/slides_class2.html#a-first-plot-2",
-    "title": "Introduction to R - Part 2",
-    "section": "A first plot",
-    "text": "A first plot\n\nggplot(data = dt, aes(x=seniority, y=salary)) +\n    geom_point(aes(color=department))"
-  },
-  {
     "objectID": "slides/slides_class4.html#case-study",
     "href": "slides/slides_class4.html#case-study",
     "title": "Data manipulation",
@@ -587,11 +416,109 @@
     "text": "Results\n\npurchases |&gt; \n  left_join(prices)\n\n# A tibble: 6 × 4\n  customer_id item_no item         price\n        &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;        &lt;dbl&gt;\n1           1 item_1  bread         1   \n2           1 item_2  milk          0.8 \n3           1 item_3  banana        0.15\n4           2 item_1  milk          0.8 \n5           2 item_2  toilet paper  3   \n6           2 item_3  &lt;NA&gt;         NA"
   },
   {
-    "objectID": "class4.html",
-    "href": "class4.html",
-    "title": "Resources for Lab 4",
-    "section": "",
-    "text": "Practice 1\n\n\n Download ecommerce.xlsx\n\n\n\nDownload the ecommerce.xlsx file and move it in the project folder. If you open it in Excel, you’ll see it is made of two sheets, named “purchases_history” and “products”.\nYou will need to import both sheets in R.\n\nFor importing, use the read_xlsx()function and specify the sheet argument.\n\n# declare where you are in your project folder\ni_am(\"practice1.R\")\n\n# construct the path to your data\npath &lt;- here(\"data\", \"ecommerce.xlsx\")\n\n# read the two sheets by specifying the \"sheet\" argument\npurchases &lt;- read_xlsx(path = path, sheet = \"purchases_history\")\nproducts  &lt;- read_xlsx(path = path, sheet = \"products\")\n\n\nExercise 1Exercise 2\n\n\n\nClean the names of the two data frames by usign clean_names()from the janitor package.\nCompute the number of sales by product\n\n\n\nCompute the total amount of sales by product in thousands of euros.\n\n\n\n\n\nPractice 2\n\n\n Download avocados.xlsx\n\n\n\nDownload the avocados.xlsx file and move it in your project folder.\nThe dataset contains the average prices ($) of conventional and organic avocados, collected from 2015-01-04 to 2018-03-25.\n\n\nExercise 1\n\n\nTransform the data to match\n\n\n# A tibble: 338 × 3\n   date       type         avg_price\n   &lt;date&gt;     &lt;chr&gt;            &lt;dbl&gt;\n 1 2015-01-04 conventional     1.01 \n 2 2015-01-04 organic          1.59 \n 3 2015-01-11 conventional     1.11 \n 4 2015-01-11 organic          1.63 \n 5 2015-01-18 conventional     1.13 \n 6 2015-01-18 organic          1.65 \n 7 2015-01-25 conventional     1.12 \n 8 2015-01-25 organic          1.68 \n 9 2015-02-01 conventional     0.962\n10 2015-02-01 organic          1.53 \n# ℹ 328 more rows\n\n\nand then use ggplot and geom_line() to plot the average price trajectory across the years by type of avocado\n\n\n\n\n\nPractice 3\nOrganise the answers to Lab 3 - Practice 1 in a R markdown file."
+    "objectID": "slides/slides_class1.html#our-goal",
+    "href": "slides/slides_class1.html#our-goal",
+    "title": "Introduction to R",
+    "section": "Our goal",
+    "text": "Our goal\nThe data analysis pipeline:"
+  },
+  {
+    "objectID": "slides/slides_class1.html#import",
+    "href": "slides/slides_class1.html#import",
+    "title": "Introduction to R",
+    "section": "Import",
+    "text": "Import\nYou will learn how to read external data sources from R. In particular, we will focus on\n\nUniversal text formats, as .csv.\nProprietary spreadsheets formats, as Excel .xls and .xlsx;"
+  },
+  {
+    "objectID": "slides/slides_class1.html#tidy",
+    "href": "slides/slides_class1.html#tidy",
+    "title": "Introduction to R",
+    "section": "Tidy",
+    "text": "Tidy\nYou will know hot to store your data in a cosistent format.\n\nEach row is an observation;\nEach column a variable, with a unique name.\nEach variable has a specific type (numeric, chracter, logical, etc..).\n\n\n\n# A tibble: 234 × 7\n   manufacturer displ model      class     cyl trans        hwy\n   &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;   &lt;int&gt; &lt;chr&gt;      &lt;int&gt;\n 1 audi           1.8 a4         compact     4 auto(l5)      29\n 2 audi           1.8 a4         compact     4 manual(m5)    29\n 3 audi           2   a4         compact     4 manual(m6)    31\n 4 audi           2   a4         compact     4 auto(av)      30\n 5 audi           2.8 a4         compact     6 auto(l5)      26\n 6 audi           2.8 a4         compact     6 manual(m5)    26\n 7 audi           3.1 a4         compact     6 auto(av)      27\n 8 audi           1.8 a4 quattro compact     4 manual(m5)    26\n 9 audi           1.8 a4 quattro compact     4 auto(l5)      25\n10 audi           2   a4 quattro compact     4 manual(m6)    28\n# ℹ 224 more rows"
+  },
+  {
+    "objectID": "slides/slides_class1.html#transform",
+    "href": "slides/slides_class1.html#transform",
+    "title": "Introduction to R",
+    "section": "Transform",
+    "text": "Transform\nYou will learn how to transform the data at your willingness:\n\nSelect the variables of interest;\nCombine existing variables in new variables;\nFilter relevant observations;\nReshape data;\n\n\n\n# A tibble: 234 × 3\n   displ class     hwy\n   &lt;dbl&gt; &lt;chr&gt;   &lt;int&gt;\n 1   1.8 compact    29\n 2   1.8 compact    29\n 3   2   compact    31\n 4   2   compact    30\n 5   2.8 compact    26\n 6   2.8 compact    26\n 7   3.1 compact    27\n 8   1.8 compact    26\n 9   1.8 compact    25\n10   2   compact    28\n# ℹ 224 more rows"
+  },
+  {
+    "objectID": "slides/slides_class1.html#visualize",
+    "href": "slides/slides_class1.html#visualize",
+    "title": "Introduction to R",
+    "section": "Visualize",
+    "text": "Visualize\nYou will learn how to explore data patterns with visualisations."
+  },
+  {
+    "objectID": "slides/slides_class1.html#model",
+    "href": "slides/slides_class1.html#model",
+    "title": "Introduction to R",
+    "section": "Model",
+    "text": "Model\nIt’s the only step where “math” enters the game. Goes from simple descriptive statistics, to more elaborated modelling strategies. Often combined with visualisations."
+  },
+  {
+    "objectID": "slides/slides_class1.html#communicate",
+    "href": "slides/slides_class1.html#communicate",
+    "title": "Introduction to R",
+    "section": "Communicate",
+    "text": "Communicate\n\nWrite reports;\nChoose appropriate viasualizations;\nHighilight the results in terms of insights."
+  },
+  {
+    "objectID": "slides/slides_class1.html#why-r",
+    "href": "slides/slides_class1.html#why-r",
+    "title": "Introduction to R",
+    "section": "Why R?",
+    "text": "Why R?\n\n\nReplicability!"
+  },
+  {
+    "objectID": "slides/slides_class1.html#excel-vs-r",
+    "href": "slides/slides_class1.html#excel-vs-r",
+    "title": "Introduction to R",
+    "section": "Excel vs R",
+    "text": "Excel vs R\n\nConsider creating a new variable in your dataset:\n\n\n\n\nNow you share your spreadsheet with your colleague.\n\n\n\n\nShe will not know the formula within each cell unless she inspect all of them individually!"
+  },
+  {
+    "objectID": "slides/slides_class1.html#excel-vs-r-1",
+    "href": "slides/slides_class1.html#excel-vs-r-1",
+    "title": "Introduction to R",
+    "section": "Excel vs R",
+    "text": "Excel vs R\n\nConsider the same data in R, stored in the object my_data\n\n\nmy_data \n\n# A tibble: 4 × 2\n  QuantityA QuantityB\n      &lt;dbl&gt;     &lt;dbl&gt;\n1        50        20\n2        90        25\n3        10        45\n4        30        15\n\n\n\n\nYou can create the same Tot column you had before in Excel with\n\n\nmy_data |&gt; \n  mutate(Tot = QuantityA + QuantityB)\n\n# A tibble: 4 × 3\n  QuantityA QuantityB   Tot\n      &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;\n1        50        20    70\n2        90        25   115\n3        10        45    55\n4        30        15    45\n\n\n\n\n\nAnd now your colleague has no doubt about where those numbers come from!"
+  },
+  {
+    "objectID": "slides/slides_class1.html#excel-vs-r-2",
+    "href": "slides/slides_class1.html#excel-vs-r-2",
+    "title": "Introduction to R",
+    "section": "Excel VS R",
+    "text": "Excel VS R\n\nYou are interested in computing the total number of products sold by each representative:\n\n\n\n\nThat’s a lot of point-and-clicks!\n\n\n\n\nWill your colleague be able to reproduce your results?"
+  },
+  {
+    "objectID": "slides/slides_class1.html#excel-vs-r-3",
+    "href": "slides/slides_class1.html#excel-vs-r-3",
+    "title": "Introduction to R",
+    "section": "Excel VS R",
+    "text": "Excel VS R\nConsider the same dataset in R stored in the new object my_data2:\n\nmy_data2\n\n# A tibble: 10 × 4\n   SalesRepresentative Product QuantitySold Region\n   &lt;chr&gt;               &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; \n 1 Eleonor             A                 50 IT    \n 2 Elizabeth           B                 90 UK    \n 3 John                C                 10 FR    \n 4 Matt                A                 34 DE    \n 5 Eleonor             A                  5 IT    \n 6 Elizabeth           C                  8 IT    \n 7 John                B                 20 UK    \n 8 Matt                B                  5 UK    \n 9 Eleonor             A                 15 UK    \n10 Elizabeth           C                 45 DE    \n\n\n\nYou get the same results seen in Excel by running\n\nmy_data2 |&gt; \n  group_by(SalesRepresentative) |&gt; \n  summarise(Total = sum(QuantitySold))\n\n# A tibble: 4 × 2\n  SalesRepresentative Total\n  &lt;chr&gt;               &lt;dbl&gt;\n1 Eleonor                70\n2 Elizabeth             143\n3 John                   30\n4 Matt                   39"
+  },
+  {
+    "objectID": "slides/slides_class1.html#access-r-from-web",
+    "href": "slides/slides_class1.html#access-r-from-web",
+    "title": "Introduction to R",
+    "section": "Access R from Web",
+    "text": "Access R from Web\n\nConnect to https://giuseppealfonzetti.github.io/LSM/\nClick on the “Material” (💻) icon corresponding to today lab.\nAccess the interactive web console."
+  },
+  {
+    "objectID": "slides/slides_class1.html#basic-r-grammar",
+    "href": "slides/slides_class1.html#basic-r-grammar",
+    "title": "Introduction to R",
+    "section": "Basic R grammar",
+    "text": "Basic R grammar\n\nRun a command:\n\nGet the cursor on the line and press CTRL+ENTER on Windows, or CMD+ENTER on MacOS.\n\nAssign a value to an object\n\n\na = 1                            # numeric value assigned with = \nb &lt;- 2                           # numeric value assigne with &lt;- \nc &lt;- \"ciao\"                      # character value \nc                                # display the content stored in c\n\n[1] \"ciao\"\n\n\n\nBasic math\n\n\na+b                              # sum the values stored in a and b\n\n[1] 3\n\n\n\nCreate a vector\n\n\nv1 &lt;- c(1, 7, 2)                 # create the vector manually\nv2 &lt;- 1:10                       # create a sequence 1 to 10 automatically\nv3 &lt;- seq(1,10,by=2)             # create a sequence automatically with the seq() function\n\n\nSeek help\n\n\n?seq()                           # R will show you the documentation of the seq function\n\n\nCreate and inspect matrices\n\n\nm &lt;- matrix(1:6, nrow=2, ncol=3) # create a matrix\nnrow(m)                          # inspect the number of rows\n\n[1] 2\n\nncol(m)                          # inspect the number of columns\n\n[1] 3\n\nm[1,2]                           # display element on the first row, at the second column\n\n[1] 3"
+  },
+  {
+    "objectID": "slides/slides_class1.html#quick-visualization",
+    "href": "slides/slides_class1.html#quick-visualization",
+    "title": "Introduction to R",
+    "section": "Quick visualization",
+    "text": "Quick visualization\nSome test datasets are preloaded in R. That’s the case of iris, a famous dataset about iris flower dimensions\n\nhead(iris)\n\n  Sepal.Length Sepal.Width Petal.Length Petal.Width Species\n1          5.1         3.5          1.4         0.2  setosa\n2          4.9         3.0          1.4         0.2  setosa\n3          4.7         3.2          1.3         0.2  setosa\n4          4.6         3.1          1.5         0.2  setosa\n5          5.0         3.6          1.4         0.2  setosa\n6          5.4         3.9          1.7         0.4  setosa\n\n\nYou can easily visualise petal dimension distribution yourself by using the ggplot2package. Don’t worry about understanding the syntax for now!\n\nggplot(data=iris, aes(x=Petal.Length, y=Petal.Width)) + geom_point(aes(col=Species))"
   },
   {
     "objectID": "sol3.html",
@@ -615,10 +542,83 @@
     "text": "Practice 2\n\nSetup\nI saved my R code in a script called practice2.R which is stored in the project folder.\n\nlibrary(tidyverse)\nlibrary(here)\nlibrary(readxl)\nlibrary(writexl)\n\n# declare where you are in your project folder\ni_am(\"practice2.R\")\n\n# construct the path to the new data\npath2 &lt;- here(\"data\", \"employees_company2.xlsx\")\n\n# read the data and store it in dt2\ndt2 &lt;- read_xlsx(path=path2)\n\n\n\nExercise 1\nThe new dataset is very similar to the previous one, but column names exhibit inconsistencies: spaces, capitalised initial letters, capitalised words etc.\n\ndt2\n\n# A tibble: 200 × 6\n   `Last NAME` `First-name` department Seniority  salary    ID\n   &lt;chr&gt;       &lt;chr&gt;        &lt;chr&gt;          &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;\n 1 Sandoval    Jerika       Sales              1  62222.  1001\n 2 Lucas       Mark         HR                11  73847.  1002\n 3 Pasang      Taylor       Sales              9 126987.  1003\n 4 Peters      Christopher  Sales              2  70845.  1004\n 5 Thomas      Noel         HR                10     NA   1005\n 6 Geshick     Angel        HR                 6  58865.  1006\n 7 White       Alton        HR                12  72237.  1007\n 8 Parkhill    Seth         Marketing         15 133987.  1008\n 9 Balogh      Joshua       Finance           10 136700.  1009\n10 al-Shahin   Tuhfa        Marketing         13 119953.  1010\n# ℹ 190 more rows\n\n\nIt is not a problem per se, but it might lead to syntax errors (for example, next time you’ll need to extract the seniority variable from the dataset, will you remember that Seniority has capitalised first letter while that’s not the case for salary?). To avoid confusion, it is convenient to stick to some naming standards, such as the snake_case, where no capitalisation is allowed and spaces are replaced by underscores.\nYou can change a variable name manually\n\ndt2 |&gt; \n    rename(last_name = `Last NAME`)\n\n# A tibble: 200 × 6\n   last_name `First-name` department Seniority  salary    ID\n   &lt;chr&gt;     &lt;chr&gt;        &lt;chr&gt;          &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;\n 1 Sandoval  Jerika       Sales              1  62222.  1001\n 2 Lucas     Mark         HR                11  73847.  1002\n 3 Pasang    Taylor       Sales              9 126987.  1003\n 4 Peters    Christopher  Sales              2  70845.  1004\n 5 Thomas    Noel         HR                10     NA   1005\n 6 Geshick   Angel        HR                 6  58865.  1006\n 7 White     Alton        HR                12  72237.  1007\n 8 Parkhill  Seth         Marketing         15 133987.  1008\n 9 Balogh    Joshua       Finance           10 136700.  1009\n10 al-Shahin Tuhfa        Marketing         13 119953.  1010\n# ℹ 190 more rows\n\n\nor you can leverage some convenient helper functions, such as the clean_names() function from the janitor package\n\nlibrary(janitor)\ndt2 &lt;- dt2 |&gt; \n    clean_names()\ndt2\n\n# A tibble: 200 × 6\n   last_name first_name  department seniority  salary    id\n   &lt;chr&gt;     &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;\n 1 Sandoval  Jerika      Sales              1  62222.  1001\n 2 Lucas     Mark        HR                11  73847.  1002\n 3 Pasang    Taylor      Sales              9 126987.  1003\n 4 Peters    Christopher Sales              2  70845.  1004\n 5 Thomas    Noel        HR                10     NA   1005\n 6 Geshick   Angel       HR                 6  58865.  1006\n 7 White     Alton       HR                12  72237.  1007\n 8 Parkhill  Seth        Marketing         15 133987.  1008\n 9 Balogh    Joshua      Finance           10 136700.  1009\n10 al-Shahin Tuhfa       Marketing         13 119953.  1010\n# ℹ 190 more rows\n\n\n\n\nExercise 2\n\nsummary(dt2)\n\n  last_name          first_name         department          seniority     \n Length:200         Length:200         Length:200         Min.   : 0.000  \n Class :character   Class :character   Class :character   1st Qu.: 4.000  \n Mode  :character   Mode  :character   Mode  :character   Median : 8.000  \n                                                          Mean   : 7.665  \n                                                          3rd Qu.:11.000  \n                                                          Max.   :15.000  \n                                                                          \n     salary             id      \n Min.   : 44817   Min.   :1001  \n 1st Qu.: 70802   1st Qu.:1051  \n Median : 98066   Median :1100  \n Mean   : 98716   Mean   :1100  \n 3rd Qu.:121850   3rd Qu.:1150  \n Max.   :187488   Max.   :1200  \n NA's   :20                     \n\n\nOn top of returning summary statistics such as mean and quantiles, the summary() function also returns you the number of missing values (NA) observed on each column. In this case, we get 20 NAs on the salary variable\nWe are asked to impute them by using the median salary of the departmet of reference. We can do this by combining group_by(), mutate() and replace()\n\ndt2_imputed &lt;- dt2 |&gt; \n    group_by(department) |&gt; \n    mutate(salary = replace(salary,  is.na(salary),  median(salary, na.rm=TRUE)))\ndt2_imputed\n\n# A tibble: 200 × 6\n# Groups:   department [6]\n   last_name first_name  department seniority  salary    id\n   &lt;chr&gt;     &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;\n 1 Sandoval  Jerika      Sales              1  62222.  1001\n 2 Lucas     Mark        HR                11  73847.  1002\n 3 Pasang    Taylor      Sales              9 126987.  1003\n 4 Peters    Christopher Sales              2  70845.  1004\n 5 Thomas    Noel        HR                10  66857.  1005\n 6 Geshick   Angel       HR                 6  58865.  1006\n 7 White     Alton       HR                12  72237.  1007\n 8 Parkhill  Seth        Marketing         15 133987.  1008\n 9 Balogh    Joshua      Finance           10 136700.  1009\n10 al-Shahin Tuhfa       Marketing         13 119953.  1010\n# ℹ 190 more rows\n\n\nThis new version of the data contains no missing values\n\nsummary(dt2_imputed)\n\n  last_name          first_name         department          seniority     \n Length:200         Length:200         Length:200         Min.   : 0.000  \n Class :character   Class :character   Class :character   1st Qu.: 4.000  \n Mode  :character   Mode  :character   Mode  :character   Median : 8.000  \n                                                          Mean   : 7.665  \n                                                          3rd Qu.:11.000  \n                                                          Max.   :15.000  \n     salary             id      \n Min.   : 44817   Min.   :1001  \n 1st Qu.: 72020   1st Qu.:1051  \n Median :100575   Median :1100  \n Mean   : 99095   Mean   :1100  \n 3rd Qu.:120793   3rd Qu.:1150  \n Max.   :187488   Max.   :1200"
   },
   {
-    "objectID": "class1.html",
-    "href": "class1.html",
-    "title": "Resources for Lab 1",
+    "objectID": "class2.html",
+    "href": "class2.html",
+    "title": "Resources for Lab 2",
     "section": "",
-    "text": "The data analysis life cycle\n\n\n\n\n\n\n\nInteractive web console Basic R\nAccess the R web console for some basic R commands\n\n\nInteractive web console Dataset and Visualization\nAccess the R web console for a quick visualisation\n\n\nHomework:\n\nInstall R and Rstudio: install R and Rstudio on your personal laptop! For a guide, see for example this tutorial and get familiar with Rstudio interface. If you prefer a video tutorial, check it here.\nInstall useful packages:\n\ninstall.package() command.\nRun install.package(\"tidyverse\").\n\nRun head(mtcars)to visualise the first rows of the mtcars dataset.\nRun ?mtcars to check the meaning of the column in the mtcarsdataset.\nUse the summary()function on the mtcars dataset.\n\nWhat’s the highest Miles-Per-Gallon value?\nWhat’s the average number of carubretors?\n\n\n\n\nOther resources:\n\nWhy should I use R?"
+    "text": "Practice:\n\n\n Download employees.xlsx\n\n\n\n\nDownload the employees.xlsx.\nCreate an R Project where to analyse the employees.xlsx dataset and move the xlsx file within the project directory.\nGet the path to the data using the here() function.\nImport the dataset in R with the read_xlsx() function.\n\n\nExercise 1\n\n\n\nHow many observations are collected in the dataset? Use the dim() function.\nWhat’s the average salary in the company? Use either the function mean()or summary()"
+  },
+  {
+    "objectID": "class3.html",
+    "href": "class3.html",
+    "title": "Resources for Lab 3",
+    "section": "",
+    "text": "Practice 1\n\n\n Download employees.xlsx\n\n\n\nDownload the employees.xlsx.\nCreate an R Project where to analyse the employees.xlsx dataset and move the xlsx file within the project directory.\nGet the path to the data using the here() function.\nImport the dataset in R with the read_xlsx() function.\n\n\nExercise 1Exercise 2Exercise 3Exercise 4Exercise 5Exercise 6Exercise 7\n\n\n\nHow many observations are collected in the dataset? Use the dim() function.\nWhat’s the average salary in the company? Use either the function mean()or summary()\n\n\n\n\nUse filter() and arrange() to check who are the three top earners in the I.T department.\nUse group_by(), summarise() and median() to get the median salary in the I.T. department.\n\nUsing geom_point(), construct a scatterplot for salary and seniority, colored by department. Store it in my_plot. Try adding a theme to the plot, for example:\n\nmy_plot + theme_minimal()\n\nWhat happens?\n\nUse labs() to modify the labels of the plot. For example:\n\n\nmy_plot + theme_minimal() + labs(x=\"Seniority (years)\", y=\"Salary\", color=\"Department:\")\n\n\nUse facet_grid() to create a multi-window plot\n\n\nmy_plot + facet_grid(~department)\n\n\nExport your plot with the function ggsave()\n\n\nmy_great_plot &lt;- my_plot + theme_minimal() + labs(x=\"Seniority (years)\", y=\"Salary\", color=\"Department:\")+ facet_grid(~department)\n\nggsave(my_great_plot, filename = here(\"great_plot.jpeg\"))\n\n\n\n\nUse group_by() and summarise() to compute the average and total expenditure for salaries by department\n\n\n\n\nHow many employees have just been hired in the company?\nHow many employees have just been hired in the I.T. department?\nCompute the average salary of employees from the Finance department with at least 8 years seniority.\n\n\n\nCreate a summary table where you report:\n\nthe median salary by department (using the function median()),\nthe number of employees by department (using the function n()),\nthe number of new hired by department.\n\nSave it as an excel file via the write_xlsx() function.\n\n\nGiven the summary table in the previous exercise, reproduce the following bar plot of the median salary by department (hint: use geom_col()).\n\n\n\n\n\n\n\n\n\n\n\nYou have to create an Excel file where employees from different department are collected in different sheets.\nIn R, you can create multi-sheets Excel files by feeding write_xlsx() with a list of datasets. Assume you stored the original employees.xlsxdataset in the dataframe dt. Now, try running\n\nmy_departments &lt;- split(dt, dt$department)\n\n\nWhat does the split()function do? Run ?split() to read the documentation.\nWhat kind of object is stored in my_departments? Run typeof(my_departments) to investigate.\nFeed write_xlsx() with my_departmentsto create a multi-sheet Excel file.\n\n\n\n\n\n\nPractice 2\n\n\n Download employees_company2.xlsx\n\n\n\nThe HR department sent you the employees file from a different company.\nDownload the employees_company2.xlsx and import it in R.\nAs you can see, the file has a structure that is very similar to the previous database. Nevertheless, it presents two critical issues:\n\nColumn names do not follow a consistent notation. Sometimes they are capitalized, sometimes they are not. Some times they includes spaces, sometimes they do not.\nThere are missing values\n\n\n\nExercise 1Exercise 2\n\n\nUse the function clean_names() from the janitor package to tidy up column names automatically\n\n\n\nHow many missing values are present in the salary column? Use the summary() function.\nReplace missing values with the median salary of department the missing value belongs to."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Laboratory of Statistics and Mathematics",
+    "section": "",
+    "text": "Schedule and topics outline for the 2026/2027 lab classes\n\n\n\nDate\nClass\nTopic\nMaterial\nSlides\nSolutions\n\n\n\n\nSept 16\nLab 1\nIntroduction to R\n💻\n📖\n\n\n\nSept 23\nLab 2\nData manipulation and visualisation\n💻\n📖\n\n\n\nSept 30\nLab 3\nAutomatic reporting\n💻\n📖\n📝",
+    "crumbs": [
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "assets/class5/homework1.html",
+    "href": "assets/class5/homework1.html",
+    "title": "Laboratory of Statistics and Mathematics - Data analysis report A",
+    "section": "",
+    "text": "This .rmd file gives you access to two datasets called delivery_data and user_data, which gather information about a coupon-discount campaign run by a food-delivery company. Data are collected during a one-month window across different cities. A share of the user received a discount coupon at the beginning of the month. The company needs to understand if the campaign has been effective from a business perspective.\n\nhead(user_data)\n\n# A tibble: 6 × 3\n  user_id   age city   \n  &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;  \n1 797        30 Treviso\n2 354        40 Padova \n3 99         18 Udine  \n4 133        37 Torino \n5 435        28 Treviso\n6 954        41 Milano \n\nhead(delivery_data)\n\n# A tibble: 6 × 6\n  user_id device  coupon    n_orders total_spent avg_delivery_time\n  &lt;chr&gt;   &lt;chr&gt;   &lt;fct&gt;        &lt;dbl&gt;       &lt;dbl&gt;             &lt;dbl&gt;\n1 436     mobile  no_coupon        6        110.              34.3\n2 335     mobile  no_coupon        0          0               36.6\n3 857     mobile  no_coupon       11        213.              41.8\n4 533     mobile  no_coupon        4        165.              38.4\n5 575     mobile  coupon           7        168.              27.5\n6 222     desktop no_coupon        0          0               43.1\n\n\nEach row of the dataset represents a user. Columns denote:\n\nuser_id: the unique identifier assigned to the user;\ncity: city of reference for the specific user\ndevice: user’s most used device;\nage: age of the user;\ncoupon: denotes if the user has received the coupon or not;\nn_orders: number of orders placed by the user during the month;\ntotal_spent: total amount of money spent by the user during the month;\navg_delivery_time: average delivery time to the user;\n\n\n\n\nYou are asked to complete/answer the following tasks/questions. When answering a question or completing a task, always show the code and interpret the results. When you consider it appropriate, use plots to highlight your results.\n\nData exploration:\n\nProduce a table showing the number and percentage of users who received the coupon.\nProduce a table showing the number and percentage of users who received the coupon by city.\nDoes the share of users who placed at least one order changes according to wether the user received the coupon or not\nAmong under/over 35 y.o. users, plot the shares of users who placed at least one order based on wether the user received the coupon or not.\nAmong users who placed at least one order, compute the mean and median of total expenditure for coupon and non-coupon users.\nAmong users who placed at least one order, report the percentage of heavy users (more the five orders each) for coupon and non-coupon users.\n\nInferential insights for business decisions:\n\nCompare the mean number of orders between coupon and non-coupon users. Report the results and interpret\nCompare the mean total expenditure between coupon and non-coupon users. Report the results and interpret\nAmong users who received the coupon, does the mean per-user expenditure change between under/over 35 y.o.?\nAmong users who placed at least one order, does the mean average order value differ between coupon and non-coupon users?\n\nSummarise your results. Is there evidence that the campaign has been effective?\n\nHint: for the inferential part, you are supposed to use the t.test() function to answer all questions.\nTo answer the questions, you can directly use this .rmd file by providing your answers in the Solutions section. Alternatively, after running this .rmd once, you’ll find the two datasets already available on you machine as .xlsx in a newly created report_data folder living in the same folder where this file is located. You can use them as you prefer to produce the report in Word or similar programs. Nevertheless, you will still have to answer all questions and provide your code."
+  },
+  {
+    "objectID": "assets/class5/homework1.html#intro",
+    "href": "assets/class5/homework1.html#intro",
+    "title": "Laboratory of Statistics and Mathematics - Data analysis report A",
+    "section": "",
+    "text": "This .rmd file gives you access to two datasets called delivery_data and user_data, which gather information about a coupon-discount campaign run by a food-delivery company. Data are collected during a one-month window across different cities. A share of the user received a discount coupon at the beginning of the month. The company needs to understand if the campaign has been effective from a business perspective.\n\nhead(user_data)\n\n# A tibble: 6 × 3\n  user_id   age city   \n  &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;  \n1 797        30 Treviso\n2 354        40 Padova \n3 99         18 Udine  \n4 133        37 Torino \n5 435        28 Treviso\n6 954        41 Milano \n\nhead(delivery_data)\n\n# A tibble: 6 × 6\n  user_id device  coupon    n_orders total_spent avg_delivery_time\n  &lt;chr&gt;   &lt;chr&gt;   &lt;fct&gt;        &lt;dbl&gt;       &lt;dbl&gt;             &lt;dbl&gt;\n1 436     mobile  no_coupon        6        110.              34.3\n2 335     mobile  no_coupon        0          0               36.6\n3 857     mobile  no_coupon       11        213.              41.8\n4 533     mobile  no_coupon        4        165.              38.4\n5 575     mobile  coupon           7        168.              27.5\n6 222     desktop no_coupon        0          0               43.1\n\n\nEach row of the dataset represents a user. Columns denote:\n\nuser_id: the unique identifier assigned to the user;\ncity: city of reference for the specific user\ndevice: user’s most used device;\nage: age of the user;\ncoupon: denotes if the user has received the coupon or not;\nn_orders: number of orders placed by the user during the month;\ntotal_spent: total amount of money spent by the user during the month;\navg_delivery_time: average delivery time to the user;"
+  },
+  {
+    "objectID": "assets/class5/homework1.html#tasks",
+    "href": "assets/class5/homework1.html#tasks",
+    "title": "Laboratory of Statistics and Mathematics - Data analysis report A",
+    "section": "",
+    "text": "You are asked to complete/answer the following tasks/questions. When answering a question or completing a task, always show the code and interpret the results. When you consider it appropriate, use plots to highlight your results.\n\nData exploration:\n\nProduce a table showing the number and percentage of users who received the coupon.\nProduce a table showing the number and percentage of users who received the coupon by city.\nDoes the share of users who placed at least one order changes according to wether the user received the coupon or not\nAmong under/over 35 y.o. users, plot the shares of users who placed at least one order based on wether the user received the coupon or not.\nAmong users who placed at least one order, compute the mean and median of total expenditure for coupon and non-coupon users.\nAmong users who placed at least one order, report the percentage of heavy users (more the five orders each) for coupon and non-coupon users.\n\nInferential insights for business decisions:\n\nCompare the mean number of orders between coupon and non-coupon users. Report the results and interpret\nCompare the mean total expenditure between coupon and non-coupon users. Report the results and interpret\nAmong users who received the coupon, does the mean per-user expenditure change between under/over 35 y.o.?\nAmong users who placed at least one order, does the mean average order value differ between coupon and non-coupon users?\n\nSummarise your results. Is there evidence that the campaign has been effective?\n\nHint: for the inferential part, you are supposed to use the t.test() function to answer all questions.\nTo answer the questions, you can directly use this .rmd file by providing your answers in the Solutions section. Alternatively, after running this .rmd once, you’ll find the two datasets already available on you machine as .xlsx in a newly created report_data folder living in the same folder where this file is located. You can use them as you prefer to produce the report in Word or similar programs. Nevertheless, you will still have to answer all questions and provide your code."
+  },
+  {
+    "objectID": "assets/class5/homework1.html#data-exploration",
+    "href": "assets/class5/homework1.html#data-exploration",
+    "title": "Laboratory of Statistics and Mathematics - Data analysis report A",
+    "section": "Data exploration",
+    "text": "Data exploration"
+  },
+  {
+    "objectID": "assets/class5/homework1.html#inference",
+    "href": "assets/class5/homework1.html#inference",
+    "title": "Laboratory of Statistics and Mathematics - Data analysis report A",
+    "section": "Inference",
+    "text": "Inference"
+  },
+  {
+    "objectID": "sol4.html",
+    "href": "sol4.html",
+    "title": "Solutions Lab 4 practice",
+    "section": "",
+    "text": "For importing, use the read_xlsx()function and specify the sheet argument.\n\nlibrary(readxl)\nlibrary(tidyverse)\n\n# declare where you are in your project folder\ni_am(\"practice1.R\")\n\n# construct the path to your data\npath &lt;- here(\"data\", \"ecommerce.xlsx\")\n\n# read the two sheets by specifying the \"sheet\" argument\npurchases &lt;- read_xlsx(path = path, sheet = \"purchases_history\")\nproducts  &lt;- read_xlsx(path = path, sheet = \"products\")\n\n\n\n\nlibrary(janitor)\n\npurchases &lt;- purchases |&gt; clean_names()\nproducts &lt;- products |&gt; clean_names()\n\nTo compute the total number of sales by product we can use the group_by() + summarise() combo.\n\npurchases |&gt; \n    group_by(product) |&gt; \n    summarise(\n        number_of_sales = n()\n    )\n\n# A tibble: 7 × 2\n  product      number_of_sales\n  &lt;chr&gt;                  &lt;int&gt;\n1 e-reader                  96\n2 earphones                115\n3 laptop_1                  48\n4 laptop_2                  46\n5 smartphone_1              49\n6 smartphone_2              52\n7 tablet                    94\n\n\nThere is even a faster way to count how many times the values of a given variable appear in the dataset. Literally, you can pipe the count() function\n\npurchases |&gt; \n    count(product)\n\n# A tibble: 7 × 2\n  product          n\n  &lt;chr&gt;        &lt;int&gt;\n1 e-reader        96\n2 earphones      115\n3 laptop_1        48\n4 laptop_2        46\n5 smartphone_1    49\n6 smartphone_2    52\n7 tablet          94\n\n\n\n\n\nTo compute the total amount of money spent on each product we first join the two datasets,\n\npurchases |&gt; \n    left_join(products, by = \"product\") \n\n# A tibble: 500 × 3\n   customer_id                          product      price_euro\n   &lt;chr&gt;                                &lt;chr&gt;             &lt;dbl&gt;\n 1 e1691984-d065-4a1e-8217-f533dde4853c earphones          90.0\n 2 6b5a24be-898a-4197-a83a-f7976e9a1839 smartphone_1      500. \n 3 2e53df82-7e57-40a7-ae44-6df554cfca5a e-reader          200. \n 4 ce4e65cb-1c1f-4831-b553-f8d284fa8ea3 laptop_2          900. \n 5 12951f6a-4d72-41ad-a20b-ea13aadc662d laptop_1         2140. \n 6 9c969014-b0e2-4033-aaa2-2c9b1d6ef300 tablet            520. \n 7 da16515b-e132-4135-8419-e9679f676fe1 e-reader          200. \n 8 24761856-7984-427a-b6ba-fc21360c221b laptop_2          900. \n 9 ad5fa95d-4da9-4f43-a117-8a80dbf11185 e-reader          200. \n10 f4ce7537-0b4d-4955-8d5b-f4a58b6ebeeb e-reader          200. \n# ℹ 490 more rows\n\n\nand then comput the totals,\n\npurchases |&gt; \n    left_join(products, by = \"product\") |&gt; \n    group_by(product) |&gt; \n    summarise(\n        total = sum(price_euro),\n        total_thousands = sum(price_euro)/1000\n        )\n\n# A tibble: 7 × 3\n  product        total total_thousands\n  &lt;chr&gt;          &lt;dbl&gt;           &lt;dbl&gt;\n1 e-reader      19199.            19.2\n2 earphones     10349.            10.3\n3 laptop_1     102720.           103. \n4 laptop_2      41400.            41.4\n5 smartphone_1  24500.            24.5\n6 smartphone_2  15599.            15.6\n7 tablet        48879.            48.9\n\n\nEquivalently, we can also first count how many items have been sold by product type, as in the previous exercise, and then join the resulting table with the price listings\n\npurchases |&gt; \n    count(product) |&gt; \n    left_join(products)\n\n# A tibble: 7 × 3\n  product          n price_euro\n  &lt;chr&gt;        &lt;int&gt;      &lt;dbl&gt;\n1 e-reader        96      200. \n2 earphones      115       90.0\n3 laptop_1        48     2140. \n4 laptop_2        46      900. \n5 smartphone_1    49      500. \n6 smartphone_2    52      300. \n7 tablet          94      520. \n\n\nOnce here, we need to compute total by product by multiplying their prices and quantities sold\n\npurchases |&gt; \n    count(product) |&gt; \n    left_join(products) |&gt; \n    mutate(\n        total_thousands = price_euro * n /1000\n    )\n\n# A tibble: 7 × 4\n  product          n price_euro total_thousands\n  &lt;chr&gt;        &lt;int&gt;      &lt;dbl&gt;           &lt;dbl&gt;\n1 e-reader        96      200.             19.2\n2 earphones      115       90.0            10.3\n3 laptop_1        48     2140.            103. \n4 laptop_2        46      900.             41.4\n5 smartphone_1    49      500.             24.5\n6 smartphone_2    52      300.             15.6\n7 tablet          94      520.             48.9"
+  },
+  {
+    "objectID": "sol4.html#practice-1",
+    "href": "sol4.html#practice-1",
+    "title": "Solutions Lab 4 practice",
+    "section": "",
+    "text": "For importing, use the read_xlsx()function and specify the sheet argument.\n\nlibrary(readxl)\nlibrary(tidyverse)\n\n# declare where you are in your project folder\ni_am(\"practice1.R\")\n\n# construct the path to your data\npath &lt;- here(\"data\", \"ecommerce.xlsx\")\n\n# read the two sheets by specifying the \"sheet\" argument\npurchases &lt;- read_xlsx(path = path, sheet = \"purchases_history\")\nproducts  &lt;- read_xlsx(path = path, sheet = \"products\")\n\n\n\n\nlibrary(janitor)\n\npurchases &lt;- purchases |&gt; clean_names()\nproducts &lt;- products |&gt; clean_names()\n\nTo compute the total number of sales by product we can use the group_by() + summarise() combo.\n\npurchases |&gt; \n    group_by(product) |&gt; \n    summarise(\n        number_of_sales = n()\n    )\n\n# A tibble: 7 × 2\n  product      number_of_sales\n  &lt;chr&gt;                  &lt;int&gt;\n1 e-reader                  96\n2 earphones                115\n3 laptop_1                  48\n4 laptop_2                  46\n5 smartphone_1              49\n6 smartphone_2              52\n7 tablet                    94\n\n\nThere is even a faster way to count how many times the values of a given variable appear in the dataset. Literally, you can pipe the count() function\n\npurchases |&gt; \n    count(product)\n\n# A tibble: 7 × 2\n  product          n\n  &lt;chr&gt;        &lt;int&gt;\n1 e-reader        96\n2 earphones      115\n3 laptop_1        48\n4 laptop_2        46\n5 smartphone_1    49\n6 smartphone_2    52\n7 tablet          94\n\n\n\n\n\nTo compute the total amount of money spent on each product we first join the two datasets,\n\npurchases |&gt; \n    left_join(products, by = \"product\") \n\n# A tibble: 500 × 3\n   customer_id                          product      price_euro\n   &lt;chr&gt;                                &lt;chr&gt;             &lt;dbl&gt;\n 1 e1691984-d065-4a1e-8217-f533dde4853c earphones          90.0\n 2 6b5a24be-898a-4197-a83a-f7976e9a1839 smartphone_1      500. \n 3 2e53df82-7e57-40a7-ae44-6df554cfca5a e-reader          200. \n 4 ce4e65cb-1c1f-4831-b553-f8d284fa8ea3 laptop_2          900. \n 5 12951f6a-4d72-41ad-a20b-ea13aadc662d laptop_1         2140. \n 6 9c969014-b0e2-4033-aaa2-2c9b1d6ef300 tablet            520. \n 7 da16515b-e132-4135-8419-e9679f676fe1 e-reader          200. \n 8 24761856-7984-427a-b6ba-fc21360c221b laptop_2          900. \n 9 ad5fa95d-4da9-4f43-a117-8a80dbf11185 e-reader          200. \n10 f4ce7537-0b4d-4955-8d5b-f4a58b6ebeeb e-reader          200. \n# ℹ 490 more rows\n\n\nand then comput the totals,\n\npurchases |&gt; \n    left_join(products, by = \"product\") |&gt; \n    group_by(product) |&gt; \n    summarise(\n        total = sum(price_euro),\n        total_thousands = sum(price_euro)/1000\n        )\n\n# A tibble: 7 × 3\n  product        total total_thousands\n  &lt;chr&gt;          &lt;dbl&gt;           &lt;dbl&gt;\n1 e-reader      19199.            19.2\n2 earphones     10349.            10.3\n3 laptop_1     102720.           103. \n4 laptop_2      41400.            41.4\n5 smartphone_1  24500.            24.5\n6 smartphone_2  15599.            15.6\n7 tablet        48879.            48.9\n\n\nEquivalently, we can also first count how many items have been sold by product type, as in the previous exercise, and then join the resulting table with the price listings\n\npurchases |&gt; \n    count(product) |&gt; \n    left_join(products)\n\n# A tibble: 7 × 3\n  product          n price_euro\n  &lt;chr&gt;        &lt;int&gt;      &lt;dbl&gt;\n1 e-reader        96      200. \n2 earphones      115       90.0\n3 laptop_1        48     2140. \n4 laptop_2        46      900. \n5 smartphone_1    49      500. \n6 smartphone_2    52      300. \n7 tablet          94      520. \n\n\nOnce here, we need to compute total by product by multiplying their prices and quantities sold\n\npurchases |&gt; \n    count(product) |&gt; \n    left_join(products) |&gt; \n    mutate(\n        total_thousands = price_euro * n /1000\n    )\n\n# A tibble: 7 × 4\n  product          n price_euro total_thousands\n  &lt;chr&gt;        &lt;int&gt;      &lt;dbl&gt;           &lt;dbl&gt;\n1 e-reader        96      200.             19.2\n2 earphones      115       90.0            10.3\n3 laptop_1        48     2140.            103. \n4 laptop_2        46      900.             41.4\n5 smartphone_1    49      500.             24.5\n6 smartphone_2    52      300.             15.6\n7 tablet          94      520.             48.9"
+  },
+  {
+    "objectID": "sol4.html#practice-2",
+    "href": "sol4.html#practice-2",
+    "title": "Solutions Lab 4 practice",
+    "section": "Practice 2",
+    "text": "Practice 2\n\nExercise 1\n\nlibrary(readxl)\nlibrary(tidyverse)\n\n# declare where you are in your project folder\ni_am(\"practice2.R\")\n\n# construct the path to your data\npath &lt;- here(\"data\", \"avocados.xlsx\")\n\navocados &lt;- read_xlsx(path = path)\n\nWe need to use pivot_longer() to reshape the data:\n\nnew_avo &lt;- avocados |&gt; \n  pivot_longer(\n    cols = c(conventional, organic), \n    names_to = \"type\", \n    values_to = \"avg_price\"\n    ) \nnew_avo\n\n# A tibble: 338 × 3\n   date                type         avg_price\n   &lt;dttm&gt;              &lt;chr&gt;            &lt;dbl&gt;\n 1 2015-01-04 00:00:00 conventional     1.01 \n 2 2015-01-04 00:00:00 organic          1.59 \n 3 2015-01-11 00:00:00 conventional     1.11 \n 4 2015-01-11 00:00:00 organic          1.63 \n 5 2015-01-18 00:00:00 conventional     1.13 \n 6 2015-01-18 00:00:00 organic          1.65 \n 7 2015-01-25 00:00:00 conventional     1.12 \n 8 2015-01-25 00:00:00 organic          1.68 \n 9 2015-02-01 00:00:00 conventional     0.962\n10 2015-02-01 00:00:00 organic          1.53 \n# ℹ 328 more rows\n\n\nOnce reshaped, we can plot the price trajectories over time:\n\nnew_avo |&gt; \n  ggplot(aes(x=date, y=avg_price, col=type))+\n  geom_line()\n\n\n\n\n\n\n\n\nAs always, we can customise the plots as we prefer:\n\nlibrary(ggokabeito)\nnew_avo |&gt; \n  ggplot(aes(x=date, y=avg_price, col=type))+\n  geom_line(linewidth=1) +\n  labs(x=\"\", y= \"Average price ($)\", color=\"Avocado origin:\")+\n  theme_bw() +\n  theme(\n    legend.position = \"top\", \n    panel.grid.minor = element_blank()\n    )+\n  scale_color_okabe_ito()"
   }
 ]

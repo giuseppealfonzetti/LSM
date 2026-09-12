@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Solutions Lab 3 practice – Laboratory of Statistics and Mathematics 2025/2026</title>
+<title>Solutions Lab 3 practice – Laboratory of Statistics and Mathematics 2026/2027</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-a7a00e467221de7eb4a0c30195f4d419.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-f12303d246777abe7ee6a72ed5ab9ebc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -122,7 +122,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
-      Laboratory of Statistics and Mathematics 2025/2026
+      Laboratory of Statistics and Mathematics 2026/2027
       </li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
@@ -138,7 +138,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-center sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Laboratory of Statistics and Mathematics 2025/2026</a> 
+      <a href="./">Laboratory of Statistics and Mathematics 2026/2027</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -339,7 +339,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 # ℹ 15 more rows</code></pre>
 </div>
 </div>
-<p>If you want to focus on the top three and drop all the other employess, you might want to leverage the function <code>row_number()</code></p>
+<p>If you want to focus on the top three and drop all the other employess, you might want to use the function <code>row_number()</code></p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>dt <span class="sc">|&gt;</span> </span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(department<span class="sc">==</span><span class="st">"I.T."</span>) <span class="sc">|&gt;</span> </span>
@@ -413,7 +413,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>The <code>ggplot2</code> package is one of the most powerful plotting software available on the market, and provides the user with a wide set of tools to produce highly flexible and customisable graphs.</p>
+<p>The <code>ggplot2</code> package offers many options for customising your plots.</p>
 <p>A very basic tweak you typically want to apply to your graph is to change its labels by using the <code>labs()</code> function</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>salary_plot <span class="ot">&lt;-</span> salary_plot <span class="sc">+</span></span>
@@ -1032,7 +1032,7 @@ $Sales
 # ℹ 190 more rows</code></pre>
 </div>
 </div>
-<p>or you can leverage some convenient helper functions, such as the <code>clean_names()</code> function from the <code>janitor</code> package</p>
+<p>or you can use some convenient helper functions, such as the <code>clean_names()</code> function from the <code>janitor</code> package</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
 <span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>dt2 <span class="ot">&lt;-</span> dt2 <span class="sc">|&gt;</span> </span>

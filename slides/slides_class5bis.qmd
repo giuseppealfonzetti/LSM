@@ -7,7 +7,7 @@ format:
     slide-number: true
     incremental: false   
     footer: "LLMs"
-    # theme: ../themes/slides_theme.scss
+    theme: ../themes/slides_theme.scss
     highlight-style: arrow-light
     transition: convex
     transition-speed: fast

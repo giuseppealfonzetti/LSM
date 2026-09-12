@@ -6,27 +6,236 @@ title: "Resources for Lab 1"
 
 ![](assets/ds_life_cycle.png){width=100% fig-align="center"}
 
-### Interactive web console Basic R
 
-Access the [R web](https://webr.sh/#code=eJydkr9u2zAQh4dsfIpDvNioWocy0ABBjL5DgE5FUZyoc0WAf1zyaNdzl659h2x9g%2B59rxwtB3GLxEHCQYIgft%2F9eMdfP24Devr9MbBlR71%2Bd3O7Rh7%2BzIfoab6l7kvJlObH%2F3tk%2FHv2E2EJGk6sCYTiKVkDG3SFAHO2XwP1sLU8CKw6uH4L7csNo0BYZerz3FiM508ZzIAJDVM6OIR5Zk2gt3ntcAc8EJgYmAJD5pgkuw1gFL7pnlPk4vf4vmg%2BohEw9NCpja7ZzVQ3cNlAO3sseiJkGjVkxAAeQ0HndmrTVlpf6YsnExxohEzfCgVDMi2OIAQWjh7ZmlG1qCrZJFH0RdPtlv%2BFeUz1j2KcR41ZLTNYlWDYxqA%2BjN%2Bn%2BnQjsHOQh7iFXSx7Sx%2BNjD0wVgnE1b36QexrZKmf7PepvnrfQEhxu2zlbaJbLmbHmcdtqu6Y%2BhNhJjKdvJY%2B78vJxevkzkhx4bKq3lfRwhUfsvKfdNN%2BPtmK%2B1tHjurpQc5eXSubMtcUDSAfWiGXsj%2Bo1R2TqwX3)  console for some basic R commands
+::: {.cell .page-columns .page-full .column-screen .grey-section}
 
-### Interactive web console Dataset and Visualization
+### Practice 1: R basics
 
-Access the [R web](https://webr.sh/#code=eJxlkE1OwzAQRsU2pxipLBJRteIAvQELVIRYVhN7mozq2JZnktA1J%2BAO3XED9twLO7AoYuef73vzNO9vF48DfTx7ZXVk7zf7S0TtP7d9GGg7U3sYhdL2%2Bt%2Bi4tfNtAL2ougcoLfgAlqQ3IGcP44OIpoTdiSV4zZhOtfK9jxREmqqagU9TgSYa%2BEEqKA9wZGTKKQwC4Tj8lImCSlUPaGtObEs3YllRMdCECkLgCPfab9ozGzzybJo4nZUDh7QpCACEslw1um66ILWBb0rxDUgSf26eyyozcOCWsP59%2F5SeE1z11EYDjGw17rETXC7px9gsyihMZSHFOmWnTtkJcihcfBVGXJ7TS95E4Y4Ki2FvImUNwV%2FMgOhr%2F9VG%2FgGx5ObnQ%3D%3D) console for a quick visualisation 
+::: {.panel-tabset}
 
-### Homework:
+##### Exercise 1
 
-- Install R and Rstudio: install R and Rstudio on your personal laptop! For a guide, see for example [this tutorial](https://moderndive.com/v2/getting-started.html) and get familiar with Rstudio interface. If you prefer a video tutorial, check it [here](https://www.youtube.com/playlist?list=PLRPB0ZzEYegOZivdelOuEn-R-XUN-DOjd).
+**Vectors and arithmetic**
 
-- Install useful packages:
-    - `install.package()` command.
-    - Run `install.package("tidyverse")`.
+Imagine you work for a small retail company. You have the prices and quantities sold for 5 products:
 
-- Run `head(mtcars)`to visualise the first rows of the `mtcars` dataset.
-- Run `?mtcars` to check the meaning of the column in the `mtcars`dataset.
-- Use the `summary()`function on the `mtcars` dataset. 
-    - What's the highest Miles-Per-Gallon value?
-    - What's the average number of carubretors?
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+prices     <- c(12.5, 8.0, 23.99, 5.50, 15.0)
+quantities <- c(3, 10, 1, 25, 7)
+```
+
+- Compute the total revenue across all products: use `sum(prices * quantities)`.
+- How many products are there? Use `length(prices)`.
+- What's the most expensive product? Use `max(prices)`.
+- What's the cheapest? Use `min(prices)`.
+
+- What is `prices[3]`? What is `prices[c(1, 4)]`?
+
+- Use `seq()` to create a vector of discount percentages from 5% to 50% in steps of 5%.
+
+##### Exercise 2
+
+**Missing values and help**
+
+You have monthly sales data, but two months are missing:
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+monthly_sales <- c(120, 95, NA, 210, NA, 180)
+```
+
+- Try `mean(monthly_sales)`. What happens?
+- Use `?mean` to find the argument that ignores missing values. Compute the mean without `NA`s.
+- How many values are missing? Use `is.na()` and `sum()`.
+- Use `?max`. Compute the maximum sale ignoring `NA`s.
+
+- Run `?seq`. What does the `length.out` argument do? Use it to create a vector of 7 evenly spaced values between 0 and 1.
+
+##### Exercise 3
+
+**Data frames**
+
+Build a data frame from the vectors you created in Exercise 1:
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+products <- data.frame(
+  name     = c("Pen", "Notebook", "Backpack", "Eraser", "Marker"),
+  price    = prices,
+  quantity = quantities
+)
+```
+
+- Use `dim(products)`. How many rows and columns?
+- Use `colnames(products)` and `str(products)` to inspect the data frame.
+- Access the `price` column with `products$price`.
+- Access the 3rd row with `products[3, ]`.
+- What element is in row 2, column 3?
+- Use `summary(products)`. What's the average price?
+- Show only products with `quantity > 5`: use `products[products$quantity > 5, ]`.
+
+
+##### Exercise 4
+
+**Fix the code**
+
+Each code snippet below contains a mistake. Copy it, run it, read the error message, then fix it.
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+my_vec <- c(1, 2, 3
+```
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+maen(my_vec)
+```
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+My_Vec
+```
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+matrix(1:6, nrow = 2, ncol = 4)
+```
+
+:::
+:::
+
+
+::: {.cell .page-columns .page-full .column-screen .grey-section}
+
+### Practice 2: Visualisation with `txhousing`
+
+The `txhousing` dataset is included in the `tidyverse`. Load it with:
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+library(tidyverse)
+```
+
+Then type `txhousing` to see it. It contains monthly housing sales data for 46 Texas cities (2000–2015).
+
+::: {.panel-tabset}
+
+##### Exercise 5
+
+**Explore the data**
+
+- Run `head(txhousing)` and `str(txhousing)`.
+- How many observations are there? Use `dim()`.
+- Run `summary(txhousing)`. What is the range of median house prices? Are there missing values?
+- Compute the average median house price with `mean()`. Remember `na.rm`!
+
+##### Exercise 6
+
+**Your first scatterplot**
+
+1. Build a scatterplot of `sales` (y-axis) vs `listings` (x-axis):
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+ggplot(data = txhousing, aes(x = listings, y = sales)) +
+  geom_point()
+```
+
+2. Add labels with `labs()`:
+    - x-axis: `"Active listings"`
+    - y-axis: `"Number of sales"`
+    - title: `"Texas housing market"`
+
+3. Apply `theme_minimal()`.
+
+4. Store the final plot in an object called `my_plot`.
+
+##### Exercise 7
+
+**Distributions**
+
+1. Build a histogram of `median` (median house price):
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+ggplot(data = txhousing, aes(x = median)) +
+  geom_histogram()
+```
+
+   Try `bins = 10`, `bins = 30`, and `bins = 100`. What happens with very few vs very many bins?
+
+2. Build a bar chart showing how many records there are per `year`:
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+ggplot(data = txhousing, aes(x = year)) +
+  geom_bar()
+```
+
+3. Add `labs()` to both plots.
+
+##### Exercise 8
+
+**Comparing across groups**
+
+1. Build a boxplot of median house price by month:
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+ggplot(data = txhousing, aes(x = factor(month), y = median)) +
+  geom_boxplot()
+```
+
+   Which month has the highest median prices? The most spread?
+
+2. Build a boxplot of `sales` by `month`. Is there a seasonal pattern?
+
+3. Use `?geom_boxplot`. Can you find an argument to change the fill color of the boxes? Try it!
+
+4. Add `labs()` and `theme_minimal()`.
+
+##### Exercise 9
+
+**Bonus**
+
+- Build a scatterplot of `volume` (y) vs `sales` (x), colored by `year`:
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+ggplot(data = txhousing, aes(x = sales, y = volume, color = year)) +
+  geom_point()
+```
+
+- What trend do you see?
+- Add `facet_wrap(~month)`. Does the pattern change across months?
+- Add labels and a theme.
+
+:::
+:::
+
+
+### Backup: R from the browser
+
+If you don't have R installed on your machine, you can use these interactive web consoles:
+
+- [R web console: Basic R](https://webr.sh/#code=eJydkr9u2zAQh4dsfIpDvNioWocy0ABBjL5DgE5FUZyoc0WAf1zyaNdzl659h2x9g%2B59rxwtB3GLxEHCQYIgft%2F9eMdfP24Devr9MbBlR71%2Bd3O7Rh7%2BzIfoab6l7kvJlObH%2F3tk%2FHv2E2EJGk6sCYTiKVkDG3SFAHO2XwP1sLU8CKw6uH4L7csNo0BYZerz3FiM508ZzIAJDVM6OIR5Zk2gt3ntcAc8EJgYmAJD5pgkuw1gFL7pnlPk4vf4vmg%2BohEw9NCpja7ZzVQ3cNlAO3sseiJkGjVkxAAeQ0HndmrTVlpf6YsnExxohEzfCgVDMi2OIAQWjh7ZmlG1qCrZJFH0RdPtlv%2BFeUx1j2KcR41ZLTNYlWDYxqA%2BjN%2Bn%2BnQjsHOQh7iFXSx7Sx%2BNjD0wVgnE1b36QexrZKmf7PepvnrfQEhxu2zlbaJbLmbHmcdtqu6Y%2BhNhJjKdvJY%2B78vJxevkzkhx4bKq3lfRwhUfsvKfdNN%2BPtmK%2B1tHjurpQc5eXSubMtcUDSAfWiGXsj%2Bo1R2TqwX3)
+
+- [R web console: Dataset and Visualization](https://webr.sh/#code=eJxlkE1OwzAQRsU2pxipLBJRteIAvQELVIRYVhN7mozq2JZnktA1J%2BAO3XED9twLO7AoYuef73vzNO9vF48DfTx7ZXVk7zf7S0TtP7d9GGg7U3sYhdL2%2Bt%2Bi4tfNtAL2ougcoLfgAlqQ3IGcP44OIpoTdiSV4zZhOtfK9jxREmqqagU9TgSYa%2BEEqKA9wZGTKKQwC4Tj8lImCSlUPaGtObEs3YllRMdCECkLgCPfab9ozGzzybJo4nZUDh7QpCACEslw1um66ILWBb0rxDUgSf26eyyozcOCWsP59%2F5SeE1z11EYDjGw17rETXC7px9gsyihMZSHFOmWnTtkJcihcfBVGXJ7TS95E4Y4Ki2FvImUNwV%2FMgOhr%2F9VG%2FgGx5ObnQ%3D%3D)
+
 
 ### Other resources:
 - [Why should I use R?](https://www.jumpingrivers.com/blog/comparing-r-excel-data-wrangling/)

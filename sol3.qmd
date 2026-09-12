@@ -95,7 +95,7 @@ dt |>
     arrange(desc(salary))
 ```
 
-If you want to focus on the top three and drop all the other employess, you might want to leverage the function `row_number()`
+If you want to focus on the top three and drop all the other employess, you might want to use the function `row_number()`
 
 ```{r}
 dt |> 
@@ -137,7 +137,7 @@ salary_plot <- ggplot(dt, aes(x=seniority, y=salary, color=department))+
 salary_plot
 ```
 
-The `ggplot2` package is one of the most powerful plotting software available on the market, and provides the user with a wide set of tools to produce highly flexible and customisable graphs. 
+The `ggplot2` package offers many options for customising your plots. 
 
 A very basic tweak you typically want to apply to your graph is to change its labels by using the `labs()` function
 
@@ -480,7 +480,7 @@ dt2 |>
     rename(last_name = `Last NAME`)
 ```
 
-or you can leverage some convenient helper functions, such as the `clean_names()` function from the `janitor` package
+or you can use some convenient helper functions, such as the `clean_names()` function from the `janitor` package
 
 ```{r}
 library(janitor)

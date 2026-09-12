@@ -2,7 +2,7 @@ project:
   type: website
 
 website:
-  title: "Laboratory of Statistics and Mathematics 2025/2026"
+  title: "Laboratory of Statistics and Mathematics 2026/2027"
   page-navigation: true
   sidebar: 
     background: "#1565C0"

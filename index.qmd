@@ -6,8 +6,10 @@ Schedule and topics outline for the 2026/2027 lab classes
 
 
 
-| Date   | Class | Topic                       | Material | Slides | Solutions |
+| Date   | Schedule | Class | Topic                       | Material | Slides | Solutions |
 |--------|-------|-----------------------------|----------|--------|-------|
-| Sept 16  | Lab 1 | Introduction to R  | [💻]()       | [📖]()    |       |
-| Sept 23 | Lab 2 | Data manipulation and visualisation  | [💻]()      | [📖]()      |       |
-| Sept 30 | Lab 3 | Automatic reporting  |  [💻]()      |  [📖]()   |  [📝]()     | 
+| Sept 16  |08:30-11:45| Lab 1 | Introduction to R  | [💻]()       | [📖]()    |       |
+| Sept 23 |08:30-11:45| Lab 2 | Data manipulation  | [💻]()      | [📖]()      |       |
+| Sept 30 |08:30-11:45| Lab 3 | Automatic reporting  |  [💻]()      |  [📖]()   |  [📝]()     | 
+
+

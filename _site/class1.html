@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -163,10 +129,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#the-data-analysis-life-cycle" id="toc-the-data-analysis-life-cycle" class="nav-link active" data-scroll-target="#the-data-analysis-life-cycle">The data analysis life cycle</a></li>
-  <li><a href="#practice-1-r-basics" id="toc-practice-1-r-basics" class="nav-link" data-scroll-target="#practice-1-r-basics">Practice 1: R basics</a></li>
-  <li><a href="#practice-2-visualisation-with-txhousing" id="toc-practice-2-visualisation-with-txhousing" class="nav-link" data-scroll-target="#practice-2-visualisation-with-txhousing">Practice 2: Visualisation with <code>txhousing</code></a></li>
-  <li><a href="#backup-r-from-the-browser" id="toc-backup-r-from-the-browser" class="nav-link" data-scroll-target="#backup-r-from-the-browser">Backup: R from the browser</a></li>
-  <li><a href="#other-resources" id="toc-other-resources" class="nav-link" data-scroll-target="#other-resources">Other resources:</a></li>
   </ul>
 </nav>
     </div>
@@ -192,197 +154,318 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="the-data-analysis-life-cycle" class="level3">
+<section id="the-data-analysis-life-cycle" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="the-data-analysis-life-cycle">The data analysis life cycle</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="assets/ds_life_cycle.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
-</section>
-<section id="practice-1-r-basics" class="level3 cell page-columns page-full column-screen grey-section">
-<h3 class="anchored" data-anchor-id="practice-1-r-basics">Practice 1: R basics</h3>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Exercise 1</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Exercise 2</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Exercise 3</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">Exercise 4</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<p><strong>Vectors and arithmetic</strong></p>
-<p>Imagine you work for a small retail company. You have the prices and quantities sold for 5 products:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>prices     <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">12.5</span>, <span class="fl">8.0</span>, <span class="fl">23.99</span>, <span class="fl">5.50</span>, <span class="fl">15.0</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>quantities <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">10</span>, <span class="dv">1</span>, <span class="dv">25</span>, <span class="dv">7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li><p>Compute the total revenue across all products: use <code>sum(prices * quantities)</code>.</p></li>
-<li><p>How many products are there? Use <code>length(prices)</code>.</p></li>
-<li><p>What’s the most expensive product? Use <code>max(prices)</code>.</p></li>
-<li><p>What’s the cheapest? Use <code>min(prices)</code>.</p></li>
-<li><p>What is <code>prices[3]</code>? What is <code>prices[c(1, 4)]</code>?</p></li>
-<li><p>Use <code>seq()</code> to create a vector of discount percentages from 5% to 50% in steps of 5%.</p></li>
-</ul>
-</div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<p><strong>Missing values and help</strong></p>
-<p>You have monthly sales data, but two months are missing:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>monthly_sales <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">120</span>, <span class="dv">95</span>, <span class="cn">NA</span>, <span class="dv">210</span>, <span class="cn">NA</span>, <span class="dv">180</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li><p>Try <code>mean(monthly_sales)</code> — what happens?</p></li>
-<li><p>Use <code>?mean</code> to find the argument that ignores missing values. Compute the mean without <code>NA</code>s.</p></li>
-<li><p>How many values are missing? Use <code>is.na()</code> and <code>sum()</code>.</p></li>
-<li><p>Use <code>?max</code> — compute the maximum sale ignoring <code>NA</code>s.</p></li>
-<li><p>Run <code>?seq</code> — what does the <code>length.out</code> argument do? Use it to create a vector of 7 evenly spaced values between 0 and 1.</p></li>
-</ul>
-</div>
-<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<p><strong>Data frames</strong></p>
-<p>Build a data frame from the vectors you created in Exercise 1:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>products <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">name     =</span> <span class="fu">c</span>(<span class="st">"Pen"</span>, <span class="st">"Notebook"</span>, <span class="st">"Backpack"</span>, <span class="st">"Eraser"</span>, <span class="st">"Marker"</span>),</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">price    =</span> prices,</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">quantity =</span> quantities</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li>Use <code>dim(products)</code> — how many rows and columns?</li>
-<li>Use <code>colnames(products)</code> and <code>str(products)</code> to inspect the data frame.</li>
-<li>Access the <code>price</code> column with <code>products$price</code>.</li>
-<li>Access the 3rd row with <code>products[3, ]</code>.</li>
-<li>What element is in row 2, column 3?</li>
-<li>Use <code>summary(products)</code> — what’s the average price?</li>
-<li>Show only products with <code>quantity &gt; 5</code>: use <code>products[products$quantity &gt; 5, ]</code>.</li>
-</ul>
-</div>
-<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
-<p><strong>Fix the code</strong></p>
-<p>Each code snippet below contains a mistake. Copy it, run it, read the error message, then fix it.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>my_vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">maen</span>(my_vec)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>My_Vec</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="practice-2-visualisation-with-txhousing" class="level3 cell page-columns page-full column-screen grey-section">
-<h3 class="anchored" data-anchor-id="practice-2-visualisation-with-txhousing">Practice 2: Visualisation with <code>txhousing</code></h3>
-<p>The <code>txhousing</code> dataset is included in the <code>tidyverse</code>. Load it with:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Then type <code>txhousing</code> to see it. It contains monthly housing sales data for 46 Texas cities (2000–2015).</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Exercise 5</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Exercise 6</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">Exercise 7</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" role="tab" aria-controls="tabset-2-4" aria-selected="false">Exercise 8</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-5" role="tab" aria-controls="tabset-2-5" aria-selected="false">Exercise 9</a></li></ul>
-<div class="tab-content">
-<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
-<p><strong>Explore the data</strong></p>
-<ul>
-<li>Run <code>head(txhousing)</code> and <code>str(txhousing)</code>.</li>
-<li>How many observations are there? Use <code>dim()</code>.</li>
-<li>Run <code>summary(txhousing)</code> — what is the range of median house prices? Are there missing values?</li>
-<li>Compute the average median house price with <code>mean()</code>. Remember <code>na.rm</code>!</li>
-</ul>
-</div>
-<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
-<p><strong>Your first scatterplot</strong></p>
-<ol type="1">
-<li>Build a scatterplot of <code>sales</code> (y-axis) vs <code>listings</code> (x-axis):</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> txhousing, <span class="fu">aes</span>(<span class="at">x =</span> listings, <span class="at">y =</span> sales)) <span class="sc">+</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="2" type="1">
-<li><p>Add labels with <code>labs()</code>:</p>
-<ul>
-<li>x-axis: <code>"Active listings"</code></li>
-<li>y-axis: <code>"Number of sales"</code></li>
-<li>title: <code>"Texas housing market"</code></li>
-</ul></li>
-<li><p>Apply <code>theme_minimal()</code>.</p></li>
-<li><p>Store the final plot in an object called <code>my_plot</code>.</p></li>
-</ol>
-</div>
-<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
-<p><strong>Distributions</strong></p>
-<ol type="1">
-<li>Build a histogram of <code>median</code> (median house price):</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> txhousing, <span class="fu">aes</span>(<span class="at">x =</span> median)) <span class="sc">+</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Try <code>bins = 10</code>, <code>bins = 30</code>, and <code>bins = 100</code>. What happens with very few vs very many bins?</p>
-<ol start="2" type="1">
-<li>Build a bar chart showing how many records there are per <code>year</code>:</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> txhousing, <span class="fu">aes</span>(<span class="at">x =</span> year)) <span class="sc">+</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="3" type="1">
-<li>Add <code>labs()</code> to both plots.</li>
-</ol>
-</div>
-<div id="tabset-2-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-4-tab">
-<p><strong>Comparing across groups</strong></p>
-<ol type="1">
-<li>Build a boxplot of median house price by month:</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> txhousing, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(month), <span class="at">y =</span> median)) <span class="sc">+</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Which month has the highest median prices? The most spread?</p>
-<ol start="2" type="1">
-<li><p>Build a boxplot of <code>sales</code> by <code>month</code> — is there a seasonal pattern?</p></li>
-<li><p>Use <code>?geom_boxplot</code> — can you find an argument to change the fill color of the boxes? Try it!</p></li>
-<li><p>Add <code>labs()</code> and <code>theme_minimal()</code>.</p></li>
-</ol>
-</div>
-<div id="tabset-2-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-5-tab">
-<p><strong>Bonus</strong></p>
-<ul>
-<li>Build a scatterplot of <code>volume</code> (y) vs <code>sales</code> (x), colored by <code>year</code>:</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> txhousing, <span class="fu">aes</span>(<span class="at">x =</span> sales, <span class="at">y =</span> volume, <span class="at">color =</span> year)) <span class="sc">+</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li>What trend do you see?</li>
-<li>Add <code>facet_wrap(~month)</code> — does the pattern change across months?</li>
-<li>Add labels and a theme.</li>
-</ul>
-</div>
-</div>
-</div>
-</section>
-<section id="backup-r-from-the-browser" class="level3">
-<h3 class="anchored" data-anchor-id="backup-r-from-the-browser">Backup: R from the browser</h3>
-<p>If you don’t have R installed on your machine, you can use these interactive web consoles:</p>
-<ul>
-<li><p><a href="https://webr.sh/#code=eJydkr9u2zAQh4dsfIpDvNioWocy0ABBjL5DgE5FUZyoc0WAf1zyaNdzl659h2x9g%2B59rxwtB3GLxEHCQYIgft%2F9eMdfP24Devr9MbBlR71%2Bd3O7Rh7%2BzIfoab6l7kvJlObH%2F3tk%2FHv2E2EJGk6sCYTiKVkDG3SFAHO2XwP1sLU8CKw6uH4L7csNo0BYZerz3FiM508ZzIAJDVM6OIR5Zk2gt3ntcAc8EJgYmAJD5pgkuw1gFL7pnlPk4vf4vmg%2BohEw9NCpja7ZzVQ3cNlAO3sseiJkGjVkxAAeQ0HndmrTVlpf6YsnExxohEzfCgVDMi2OIAQWjh7ZmlG1qCrZJFH0RdPtlv%2BFeUx1j2KcR41ZLTNYlWDYxqA%2BjN%2Bn%2BnQjsHOQh7iFXSx7Sx%2BNjD0wVgnE1b36QexrZKmf7PepvnrfQEhxu2zlbaJbLmbHmcdtqu6Y%2BhNhJjKdvJY%2B78vJxevkzkhx4bKq3lfRwhUfsvKfdNN%2BPtmK%2B1tHjurpQc5eXSubMtcUDSAfWiGXsj%2Bo1R2TqwX3">R web console: Basic R</a></p></li>
-<li><p><a href="https://webr.sh/#code=eJxlkE1OwzAQRsU2pxipLBJRteIAvQELVIRYVhN7mozq2JZnktA1J%2BAO3XED9twLO7AoYuef73vzNO9vF48DfTx7ZXVk7zf7S0TtP7d9GGg7U3sYhdL2%2Bt%2Bi4tfNtAL2ougcoLfgAlqQ3IGcP44OIpoTdiSV4zZhOtfK9jxREmqqagU9TgSYa%2BEEqKA9wZGTKKQwC4Tj8lImCSlUPaGtObEs3YllRMdCECkLgCPfab9ozGzzybJo4nZUDh7QpCACEslw1um66ILWBb0rxDUgSf26eyyozcOCWsP59%2F5SeE1z11EYDjGw17rETXC7px9gsyihMZSHFOmWnTtkJcihcfBVGXJ7TS95E4Y4Ki2FvImUNwV%2FMgOhr%2F9VG%2FgGx5ObnQ%3D%3D">R web console: Dataset and Visualization</a></p></li>
-</ul>
-</section>
-<section id="other-resources" class="level3">
-<h3 class="anchored" data-anchor-id="other-resources">Other resources:</h3>
-<ul>
-<li><a href="https://www.jumpingrivers.com/blog/comparing-r-excel-data-wrangling/">Why should I use R?</a></li>
-</ul>
+<div class="cell page-columns page-full column-screen grey-section">
+<!-- ### Practice 1: R basics
+
+::: {.panel-tabset}
+
+##### Exercise 1
+
+**Vectors and arithmetic**
+
+Imagine you work for a small retail company. You have the prices and quantities sold for 5 products:
 
 
+
+
+::: {.cell}
+
+```{.r .cell-code}
+prices     <- c(12.5, 8.0, 23.99, 5.50, 15.0)
+quantities <- c(3, 10, 1, 25, 7)
+```
+:::
+
+
+
+
+- Compute the total revenue across all products: use `sum(prices * quantities)`.
+- How many products are there? Use `length(prices)`.
+- What's the most expensive product? Use `max(prices)`.
+- What's the cheapest? Use `min(prices)`.
+
+- What is `prices[3]`? What is `prices[c(1, 4)]`?
+
+- Use `seq()` to create a vector of discount percentages from 5% to 50% in steps of 5%.
+
+##### Exercise 2
+
+**Missing values and help**
+
+You have monthly sales data, but two months are missing:
+
+
+
+
+::: {.cell}
+
+```{.r .cell-code}
+monthly_sales <- c(120, 95, NA, 210, NA, 180)
+```
+:::
+
+
+
+
+- Try `mean(monthly_sales)`. What happens?
+- Use `?mean` to find the argument that ignores missing values. Compute the mean without `NA`s.
+- How many values are missing? Use `is.na()` and `sum()`.
+- Use `?max`. Compute the maximum sale ignoring `NA`s.
+
+- Run `?seq`. What does the `length.out` argument do? Use it to create a vector of 7 evenly spaced values between 0 and 1.
+
+##### Exercise 3
+
+**Data frames**
+
+Build a data frame from the vectors you created in Exercise 1:
+
+
+
+
+::: {.cell}
+
+```{.r .cell-code}
+products <- data.frame(
+  name     = c("Pen", "Notebook", "Backpack", "Eraser", "Marker"),
+  price    = prices,
+  quantity = quantities
+)
+```
+:::
+
+
+
+
+- Use `dim(products)`. How many rows and columns?
+- Use `colnames(products)` and `str(products)` to inspect the data frame.
+- Access the `price` column with `products$price`.
+- Access the 3rd row with `products[3, ]`.
+- What element is in row 2, column 3?
+- Use `summary(products)`. What's the average price?
+- Show only products with `quantity > 5`: use `products[products$quantity > 5, ]`.
+
+
+##### Exercise 4
+
+**Fix the code**
+
+Each code snippet below contains a mistake. Copy it, run it, read the error message, then fix it.
+
+
+
+
+::: {.cell}
+
+```{.r .cell-code}
+my_vec <- c(1, 2, 3
+```
+:::
+
+::: {.cell}
+
+```{.r .cell-code}
+maen(my_vec)
+```
+:::
+
+::: {.cell}
+
+```{.r .cell-code}
+My_Vec
+```
+:::
+
+::: {.cell}
+
+```{.r .cell-code}
+matrix(1:6, nrow = 2, ncol = 4)
+```
+:::
+
+
+
+
+:::
+:::
+
+
+::: {.cell .page-columns .page-full .column-screen .grey-section}
+
+### Practice 2: Visualisation with `txhousing`
+
+The `txhousing` dataset is included in the `tidyverse`. Load it with:
+
+
+
+
+::: {.cell}
+
+```{.r .cell-code}
+library(tidyverse)
+```
+:::
+
+
+
+
+Then type `txhousing` to see it. It contains monthly housing sales data for 46 Texas cities (2000–2015).
+
+::: {.panel-tabset}
+
+##### Exercise 5
+
+**Explore the data**
+
+- Run `head(txhousing)` and `str(txhousing)`.
+- How many observations are there? Use `dim()`.
+- Run `summary(txhousing)`. What is the range of median house prices? Are there missing values?
+- Compute the average median house price with `mean()`. Remember `na.rm`!
+
+##### Exercise 6
+
+**Your first scatterplot**
+
+1. Build a scatterplot of `sales` (y-axis) vs `listings` (x-axis):
+
+
+
+
+::: {.cell}
+
+```{.r .cell-code}
+ggplot(data = txhousing, aes(x = listings, y = sales)) +
+  geom_point()
+```
+:::
+
+
+
+
+2. Add labels with `labs()`:
+    - x-axis: `"Active listings"`
+    - y-axis: `"Number of sales"`
+    - title: `"Texas housing market"`
+
+3. Apply `theme_minimal()`.
+
+4. Store the final plot in an object called `my_plot`.
+
+##### Exercise 7
+
+**Distributions**
+
+1. Build a histogram of `median` (median house price):
+
+
+
+
+::: {.cell}
+
+```{.r .cell-code}
+ggplot(data = txhousing, aes(x = median)) +
+  geom_histogram()
+```
+:::
+
+
+
+
+   Try `bins = 10`, `bins = 30`, and `bins = 100`. What happens with very few vs very many bins?
+
+2. Build a bar chart showing how many records there are per `year`:
+
+
+
+
+::: {.cell}
+
+```{.r .cell-code}
+ggplot(data = txhousing, aes(x = year)) +
+  geom_bar()
+```
+:::
+
+
+
+
+3. Add `labs()` to both plots.
+
+##### Exercise 8
+
+**Comparing across groups**
+
+1. Build a boxplot of median house price by month:
+
+
+
+
+::: {.cell}
+
+```{.r .cell-code}
+ggplot(data = txhousing, aes(x = factor(month), y = median)) +
+  geom_boxplot()
+```
+:::
+
+
+
+
+   Which month has the highest median prices? The most spread?
+
+2. Build a boxplot of `sales` by `month`. Is there a seasonal pattern?
+
+3. Use `?geom_boxplot`. Can you find an argument to change the fill color of the boxes? Try it!
+
+4. Add `labs()` and `theme_minimal()`.
+
+##### Exercise 9
+
+**Bonus**
+
+- Build a scatterplot of `volume` (y) vs `sales` (x), colored by `year`:
+
+
+
+
+::: {.cell}
+
+```{.r .cell-code}
+ggplot(data = txhousing, aes(x = sales, y = volume, color = year)) +
+  geom_point()
+```
+:::
+
+
+
+
+- What trend do you see?
+- Add `facet_wrap(~month)`. Does the pattern change across months?
+- Add labels and a theme.
+
+:::
+:::
+
+
+### Backup: R from the browser
+
+If you don't have R installed on your machine, you can use these interactive web consoles:
+
+- [R web console: Basic R](https://webr.sh/#code=eJydkr9u2zAQh4dsfIpDvNioWocy0ABBjL5DgE5FUZyoc0WAf1zyaNdzl659h2x9g%2B59rxwtB3GLxEHCQYIgft%2F9eMdfP24Devr9MbBlR71%2Bd3O7Rh7%2BzIfoab6l7kvJlObH%2F3tk%2FHv2E2EJGk6sCYTiKVkDG3SFAHO2XwP1sLU8CKw6uH4L7csNo0BYZerz3FiM508ZzIAJDVM6OIR5Zk2gt3ntcAc8EJgYmAJD5pgkuw1gFL7pnlPk4vf4vmg%2BohEw9NCpja7ZzVQ3cNlAO3sseiJkGjVkxAAeQ0HndmrTVlpf6YsnExxohEzfCgVDMi2OIAQWjh7ZmlG1qCrZJFH0RdPtlv%2BFeUx1j2KcR41ZLTNYlWDYxqA%2BjN%2Bn%2BnQjsHOQh7iFXSx7Sx%2BNjD0wVgnE1b36QexrZKmf7PepvnrfQEhxu2zlbaJbLmbHmcdtqu6Y%2BhNhJjKdvJY%2B78vJxevkzkhx4bKq3lfRwhUfsvKfdNN%2BPtmK%2B1tHjurpQc5eXSubMtcUDSAfWiGXsj%2Bo1R2TqwX3)
+
+- [R web console: Dataset and Visualization](https://webr.sh/#code=eJxlkE1OwzAQRsU2pxipLBJRteIAvQELVIRYVhN7mozq2JZnktA1J%2BAO3XED9twLO7AoYuef73vzNO9vF48DfTx7ZXVk7zf7S0TtP7d9GGg7U3sYhdL2%2Bt%2Bi4tfNtAL2ougcoLfgAlqQ3IGcP44OIpoTdiSV4zZhOtfK9jxREmqqagU9TgSYa%2BEEqKA9wZGTKKQwC4Tj8lImCSlUPaGtObEs3YllRMdCECkLgCPfab9ozGzzybJo4nZUDh7QpCACEslw1um66ILWBb0rxDUgSf26eyyozcOCWsP59%2F5SeE1z11EYDjGw17rETXC7px9gsyihMZSHFOmWnTtkJcihcfBVGXJ7TS95E4Y4Ki2FvImUNwV%2FMgOhr%2F9VG%2FgGx5ObnQ%3D%3D)
+
+ -->
+
+
+</div>
 </section>
 
 </main> <!-- /main -->

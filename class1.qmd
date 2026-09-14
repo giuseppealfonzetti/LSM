@@ -9,7 +9,7 @@ title: "Resources for Lab 1"
 
 ::: {.cell .page-columns .page-full .column-screen .grey-section}
 
-### Practice 1: R basics
+<!-- ### Practice 1: R basics
 
 ::: {.panel-tabset}
 
@@ -236,6 +236,4 @@ If you don't have R installed on your machine, you can use these interactive web
 
 - [R web console: Dataset and Visualization](https://webr.sh/#code=eJxlkE1OwzAQRsU2pxipLBJRteIAvQELVIRYVhN7mozq2JZnktA1J%2BAO3XED9twLO7AoYuef73vzNO9vF48DfTx7ZXVk7zf7S0TtP7d9GGg7U3sYhdL2%2Bt%2Bi4tfNtAL2ougcoLfgAlqQ3IGcP44OIpoTdiSV4zZhOtfK9jxREmqqagU9TgSYa%2BEEqKA9wZGTKKQwC4Tj8lImCSlUPaGtObEs3YllRMdCECkLgCPfab9ozGzzybJo4nZUDh7QpCACEslw1um66ILWBb0rxDUgSf26eyyozcOCWsP59%2F5SeE1z11EYDjGw17rETXC7px9gsyihMZSHFOmWnTtkJcihcfBVGXJ7TS95E4Y4Ki2FvImUNwV%2FMgOhr%2F9VG%2FgGx5ObnQ%3D%3D)
 
-
-### Other resources:
-- [Why should I use R?](https://www.jumpingrivers.com/blog/comparing-r-excel-data-wrangling/)
+ -->

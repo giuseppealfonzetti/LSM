@@ -224,14 +224,14 @@
     "href": "class1.html",
     "title": "Resources for Lab 1",
     "section": "",
-    "text": "The data analysis life cycle"
+    "text": "The data analysis life cycle\n\n\n\n\n\n\n\nPractice 1: R basics\n\nExercise 1Exercise 2Exercise 3Exercise 4Exercise 5Exercise 6Exercise 7Exercise 8Exercise 9Exercise 10\n\n\nVectors and arithmetic\nImagine you work for a small retail company. You have the prices and quantities sold for 5 products:\n\nprices     &lt;- c(12.5, 8.0, 23.99, 5.50, 15.0)\nquantities &lt;- c(3, 10, 1, 25, 7)\n\n\nCompute the total revenue across all products: use sum(prices * quantities).\nHow many products are there? Use length(prices).\nWhat’s the most expensive product? Use max(prices).\nWhat’s the cheapest? Use min(prices).\nWhat is prices[3]? What is prices[c(1, 4)]?\nUse seq() to create a vector of discount percentages from 5% to 50% in steps of 5%.\n\n\n\nMissing values and help\nYou have monthly sales data, but two months are missing:\n\nmonthly_sales &lt;- c(120, 95, NA, 210, NA, 180)\n\n\nTry mean(monthly_sales). What happens?\nUse ?mean to find the argument that ignores missing values. Compute the mean without NAs.\nHow many values are missing? Use is.na() and sum().\nUse ?max. Compute the maximum sale ignoring NAs.\nRun ?seq. What does the length.out argument do? Use it to create a vector of 7 evenly spaced values between 0 and 1.\n\n\n\nData frames\nBuild a data frame from the vectors you created in Exercise 1:\n\nproducts &lt;- data.frame(\n  name     = c(\"Pen\", \"Notebook\", \"Backpack\", \"Eraser\", \"Marker\"),\n  price    = prices,\n  quantity = quantities\n)\n\n\nUse dim(products). How many rows and columns?\nUse colnames(products) and str(products) to inspect the data frame.\nAccess the price column with products$price.\nAccess the 3rd row with products[3, ].\nWhat element is in row 2, column 3?\nUse summary(products). What’s the average price?\nShow only products with quantity &gt; 5: use products[products$quantity &gt; 5, ].\n\n\n\nFix the code\nEach code snippet below contains a mistake. Copy it, run it, read the error message, then fix it.\n\nmy_vec &lt;- c(1, 2, 3\n\n\nmaen(my_vec)\n\n\nMy_Vec\n\n\nmatrix(1:6, nrow = 2, ncol = 4)\n\n\n\nLogical values and comparisons\nYou recorded daily temperatures for a week:\n\ntemps &lt;- c(18, 22, 25, 30, 28, 35, 20)\n\n\nWhich days were above 25°C? Use temps &gt; 25. What type of object is the result?\nHow many days were above 25°C? Use sum() on the logical vector.\nUse which(temps &gt; 25) to get the positions of the hot days.\nWhich days were between 20 and 30 (inclusive)? Combine conditions with &: temps &gt;= 20 & temps &lt;= 30.\nWere there any days below 15 or above 34? Use |.\n\n\n\nFactors\nA survey records education levels:\n\nedu &lt;- c(\"high school\", \"bachelor\", \"master\", \"bachelor\", \"high school\", \"PhD\", \"master\")\n\n\nConvert edu to a factor with as.factor(edu). How does it print differently from the original vector?\nUse levels() and nlevels() to inspect the factor.\nNow create an ordered factor with factor(), specifying levels = c(\"high school\", \"bachelor\", \"master\", \"PhD\") and ordered = TRUE.\nRun sort() on the original character vector and on the ordered factor. What is the difference?\nUse table(edu) to count how many respondents fall in each category.\n\n\n\nSequences and repetitions\n\nUse seq(0, 1, by = 0.1) to create a vector from 0 to 1 in steps of 0.1. How many elements does it have?\nUse seq(0, 100, length.out = 5) to create exactly 5 evenly spaced values between 0 and 100.\nUse rep(\"A\", times = 4) to repeat \"A\" four times.\nUse rep(c(\"A\", \"B\"), times = 3) and rep(c(\"A\", \"B\"), each = 3). What is the difference?\nCombine: create a vector with the numbers 1 to 3 repeated 4 times each, followed by the value 99. Use c(), rep(), and a scalar.\n\n\n\nMatrices\nBuild a 3x4 matrix of the numbers 1 to 12:\n\nm &lt;- matrix(1:12, nrow = 3, ncol = 4)\n\n\nPrint m. Does R fill the matrix by columns or by rows?\nUse nrow(m), ncol(m), and dim(m).\nExtract the element in row 2, column 3. Extract the entire second row. Extract the entire fourth column.\nUse colSums(m) and rowSums(m). Verify one result by hand.\nTry matrix(1:12, nrow = 3, ncol = 4, byrow = TRUE). What changes?\n\n\n\nLists\nCreate a list that stores information about a student:\n\nstudent &lt;- list(\n  name   = \"Alice\",\n  grades = c(28, 30, 25, 27),\n  passed = TRUE\n)\n\n\nPrint student. How does it differ from a vector?\nAccess the name with student$name and with student[[\"name\"]].\nCompute the average grade: mean(student$grades).\nUse names(student) and length(student).\nAdd a new element: student$university &lt;- \"Milano\". Print the list again.\n\n\n\nPutting it all together\nBuild a small dataset about 5 cities:\n\ncities &lt;- data.frame(\n  name       = c(\"Milan\", \"Rome\", \"Naples\", \"Turin\", \"Bologna\"),\n  population = c(1396000, 2873000, 967000, 886000, 395000),\n  north      = c(TRUE, FALSE, FALSE, TRUE, TRUE)\n)\n\n\nInspect the data frame with str() and summary().\nShow only northern cities: cities[cities$north == TRUE, ].\nAdd a new column density that equals population / 100 (a made-up simplification). Use cities$density &lt;- ....\nWhich city has the highest population? Use which.max(cities$population) to get its row index, then extract the city name.\nSort the data frame by population in decreasing order: cities[order(cities$population, decreasing = TRUE), ].\n\n\n\n\n\n\nPractice 2: Visualisation with txhousing\nThe txhousing dataset is included in the tidyverse. Load it with:\n\nlibrary(tidyverse)\n\nThen type txhousing to see it. It contains monthly housing sales data for 46 Texas cities (2000–2015).\n\nExercise 1Exercise 2Exercise 3Exercise 4Exercise 5Exercise 6Exercise 7Exercise 8Exercise 9Exercise 10\n\n\nExplore the data\n\nRun head(txhousing) and str(txhousing).\nHow many observations are there? Use dim().\nRun summary(txhousing). What is the range of median house prices? Are there missing values?\nCompute the average median house price with mean(). Remember na.rm!\n\n\n\nYour first scatterplot\n\nBuild a scatterplot of sales (y-axis) vs listings (x-axis):\n\n\nggplot(data = txhousing, aes(x = listings, y = sales)) +\n  geom_point()\n\n\nAdd labels with labs():\n\nx-axis: \"Active listings\"\ny-axis: \"Number of sales\"\ntitle: \"Texas housing market\"\n\nApply theme_minimal().\nStore the final plot in an object called my_plot.\n\n\n\nDistributions\n\nBuild a histogram of median (median house price):\n\n\nggplot(data = txhousing, aes(x = median)) +\n  geom_histogram()\n\nTry bins = 10, bins = 30, and bins = 100. What happens with very few vs very many bins?\n\nBuild a bar chart showing how many records there are per year:\n\n\nggplot(data = txhousing, aes(x = year)) +\n  geom_bar()\n\n\nAdd labs() to both plots.\n\n\n\nComparing across groups\n\nBuild a boxplot of median house price by month:\n\n\nggplot(data = txhousing, aes(x = factor(month), y = median)) +\n  geom_boxplot()\n\nWhich month has the highest median prices? The most spread?\n\nBuild a boxplot of sales by month. Is there a seasonal pattern?\nUse ?geom_boxplot. Can you find an argument to change the fill color of the boxes? Try it!\nAdd labs() and theme_minimal().\n\n\n\nColor and facets\n\nBuild a scatterplot of volume (y) vs sales (x), colored by year:\n\n\nggplot(data = txhousing, aes(x = sales, y = volume, color = year)) +\n  geom_point()\n\n\nWhat trend do you see?\nAdd facet_wrap(~month). Does the pattern change across months?\nAdd labels and a theme.\n\n\n\nNumeric vs factor color\n\nBuild a scatterplot of listings vs sales, coloring points by month:\n\n\nggplot(data = txhousing, aes(x = listings, y = sales, color = month)) +\n  geom_point()\n\nWhat kind of color scale do you get (continuous gradient or discrete palette)?\n\nNow convert month to a factor inside the aes():\n\n\nggplot(data = txhousing, aes(x = listings, y = sales, color = factor(month))) +\n  geom_point()\n\nHow does the legend change? Which version is more informative for this variable?\n\nAdd labs(color = \"Month\") and theme_minimal() to the second version.\n\n\n\nSubsetting before plotting\n\nCreate a subset of txhousing containing only Houston, Dallas and Austin:\n\n\nthree_cities &lt;- txhousing[txhousing$city %in% c(\"Houston\", \"Dallas\", \"Austin\"), ]\n\n\nHow many rows does three_cities have? Use dim().\nBuild a scatterplot of listings vs sales using three_cities, colored by city:\n\n\nggplot(data = three_cities, aes(x = listings, y = sales, color = city)) +\n  geom_point()\n\n\nAdd facet_wrap(~city) to separate each city into its own panel. Add labels and a theme.\nTry adding San Antonio to the subset and re-run the plot. Does the pattern change?\n\n\n\nCreating new variables and plotting\n\nCompute the average price per sale and add it as a new column:\n\n\ntxhousing$price_per_sale &lt;- txhousing$volume / txhousing$sales\n\n\nCheck the result: head(txhousing$price_per_sale). Are there NAs? Why?\nBuild a histogram of price_per_sale:\n\n\nggplot(data = txhousing, aes(x = price_per_sale)) +\n  geom_histogram(bins = 40)\n\n\nBuild a boxplot of price_per_sale by year. Use factor(year) on the x-axis so each year gets its own box. Is the average price per sale increasing over time?\nAdd appropriate labels and theme_minimal().\n\n\n\nCombining logical filters with ggplot\n\nCreate a logical vector that identifies summer 2010+ observations:\n\n\nis_summer_recent &lt;- txhousing$year &gt;= 2010 & txhousing$month %in% c(6, 7, 8)\n\n\nHow many TRUE values are there? Use sum().\nSubset the data: summer_recent &lt;- txhousing[is_summer_recent, ].\nBuild a scatterplot of median (y) vs listings (x), colored by factor(year):\n\n\nggplot(data = summer_recent, aes(x = listings, y = median, color = factor(year))) +\n  geom_point()\n\n\nAdd facet_wrap(~month) to separate June, July, and August. Add labels and a theme.\n\n\n\nChanging color palettes\nStart from the scatterplot of Exercise 6 with discrete month colors:\n\nggplot(data = txhousing, aes(x = listings, y = sales, color = factor(month))) +\n  geom_point()\n\n\nApply a ready-made palette with scale_color_brewer(palette = \"Set3\"). Try also \"Paired\" and \"Dark2\". Which one do you find most readable?\nNow use a manual palette. Define your own vector of 12 colors (one per month) and apply it:\n\n\nmy_colors &lt;- c(\"Jan\" = \"#1f77b4\", \"Feb\" = \"#ff7f0e\", \"Mar\" = \"#2ca02c\",\n                \"Apr\" = \"#d62728\", \"May\" = \"#9467bd\", \"Jun\" = \"#8c564b\",\n                \"Jul\" = \"#e377c2\", \"Aug\" = \"#7f7f7f\", \"Sep\" = \"#bcbd22\",\n                \"Oct\" = \"#17becf\", \"Nov\" = \"#aec7e8\", \"Dec\" = \"#ffbb78\")\n\nTo use named colors you first need to label the months. Create a labeled factor:\n\ntxhousing$month_name &lt;- factor(txhousing$month,\n                               levels = 1:12,\n                               labels = c(\"Jan\",\"Feb\",\"Mar\",\"Apr\",\"May\",\"Jun\",\n                                          \"Jul\",\"Aug\",\"Sep\",\"Oct\",\"Nov\",\"Dec\"))\n\nThen plot with color = month_name and add scale_color_manual(values = my_colors).\n\nTry the continuous version: plot color = median (a numeric variable) and apply scale_color_gradient(low = \"blue\", high = \"red\"). How does it differ from the discrete palettes?\nAdd labs() and theme_minimal() to your favourite version.\n\n\n\n\n\n\nBackup: R from the browser\nIf you don’t have R installed on your machine, you can use these interactive web console for today\n\nR web console"
   },
   {
     "objectID": "resources.html",
     "href": "resources.html",
     "title": "Resources",
     "section": "",
-    "text": "Install R, Rstudio, and R packages\n\nInstall R and Rstudio: install R and Rstudio on your personal laptop! For a guide, see for example this tutorial (Sections 1.1-1.3) and get familiar with Rstudio interface. If you prefer a video tutorial, check it here. `in\nIn R console, install useful packages, with the install.packages() command. Run\n\n\ninstall.packages(\"tidyverse\")\n\n\n\nTextbooks about R\n\n\n\nR for Data Science, 2e\nWickham, H., Çetinkaya-Rundel, M., and Grolemund, G.\nO’Reilly, 2nd edition, 2022\n\n\nStatistical Inference via Data Science\nIsmay, C., Kim, A., Y. and Valdivia, A.\nCRC Press, 2nd edition, 2025\n\n\nggplot2: Elegant Graphics for Data Analysis\nWickham, H., Navarro, D., Lin Pedersen, T.\nSpringer, 3rd edition, 2025\n\n\n\n\n\nOther resources:\n\nWhy should I use R?",
+    "text": "Install R, Rstudio, and R packages\n\nInstall R and Rstudio: install R and Rstudio on your personal laptop! For a guide, see for example this tutorial (Sections 1.1-1.3) and get familiar with Rstudio interface. If you prefer a video tutorial, check it here. `in\nIn R console, install useful packages, with the install.packages() command. Run\n\n\ninstall.packages(\"tidyverse\")\n\n\n\nTextbooks about R\n\n\n\nR for Data Science, 2e\nWickham, H., Çetinkaya-Rundel, M., and Grolemund, G.\nO’Reilly, 2nd edition, 2022\n\n\nStatistical Inference via Data Science\nIsmay, C., Kim, A., Y. and Valdivia, A.\nCRC Press, 2nd edition, 2025\n\n\nggplot2: Elegant Graphics for Data Analysis\nWickham, H., Navarro, D., Lin Pedersen, T.\nSpringer, 3rd edition, 2025\n\n\n\n\n\nOther resources:\n\nWhy should I use R?\nR-graph-gallery",
     "crumbs": [
       "Resources"
     ]
@@ -451,14 +451,14 @@
     "href": "slides/slides_class1.html#excel-vs-r",
     "title": "Introduction to R",
     "section": "Excel vs R",
-    "text": "Excel vs R\n\nConsider creating a new variable in your dataset:\n\n\n\n\nNow you share your spreadsheet with your colleague.\n\n\n\n\nShe will not know the formula within each cell unless she inspect all of them individually!"
+    "text": "Excel vs R\n\nConsider creating a new variable in your dataset:\n\n\n\n\nNow you share your spreadsheet with your colleagues.\n\n\n\n\nThey will not know the formula within each cell unless they inspect all of them individually!"
   },
   {
     "objectID": "slides/slides_class1.html#excel-vs-r-1",
     "href": "slides/slides_class1.html#excel-vs-r-1",
     "title": "Introduction to R",
     "section": "Excel vs R",
-    "text": "Excel vs R\n\nConsider the same data in R, stored in the object my_data\n\n\nmy_data\n\n# A tibble: 4 × 2\n  QuantityA QuantityB\n      &lt;dbl&gt;     &lt;dbl&gt;\n1        50        20\n2        90        25\n3        10        45\n4        30        15\n\n\n\n\nYou can create the same Tot column you had before in Excel with\n\n\nmy_data |&gt;\n  mutate(Tot = QuantityA + QuantityB)\n\n# A tibble: 4 × 3\n  QuantityA QuantityB   Tot\n      &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;\n1        50        20    70\n2        90        25   115\n3        10        45    55\n4        30        15    45\n\n\n\n\n\nAnd now your colleague has no doubt about where those numbers come from!"
+    "text": "Excel vs R\n\nConsider the same data in R, stored in the object my_data\n\n\nmy_data\n\n# A tibble: 4 × 2\n  QuantityA QuantityB\n      &lt;dbl&gt;     &lt;dbl&gt;\n1        50        20\n2        90        25\n3        10        45\n4        30        15\n\n\n\n\nYou can create the same Tot column you had before in Excel with\n\n\nmy_data |&gt;\n  mutate(Tot = QuantityA + QuantityB)\n\n# A tibble: 4 × 3\n  QuantityA QuantityB   Tot\n      &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;\n1        50        20    70\n2        90        25   115\n3        10        45    55\n4        30        15    45\n\n\n\n\n\nAnd now your colleagues have no doubt about where those numbers come from!"
   },
   {
     "objectID": "slides/slides_class1.html#excel-vs-r-2",
@@ -486,7 +486,28 @@
     "href": "slides/slides_class1.html#basic-r-grammar",
     "title": "Introduction to R",
     "section": "Basic R grammar",
-    "text": "Basic R grammar\n\nRun a command:\n\nGet the cursor on the line and press CTRL+ENTER on Windows, or CMD+ENTER on MacOS.\n\nAssign a value to an object\n\n\na = 1                            # numeric value assigned with =\nb &lt;- 2                           # numeric value assigned with &lt;-\nc &lt;- \"ciao\"                      # character value\nc                                # display the content stored in c\n\n[1] \"ciao\"\n\n\n\nBasic math\n\n\na+b                              # sum the values stored in a and b\n\n[1] 3\n\n\n\nCreate a vector\n\n\nv1 &lt;- c(1, 7, 2)                 # create the vector manually\nv2 &lt;- 1:10                       # create a sequence 1 to 10 automatically\nv3 &lt;- seq(1,10,by=2)             # create a sequence automatically with the seq() function\n\n\nCreate and inspect matrices\n\n\nm &lt;- matrix(1:6, nrow=2, ncol=3) # create a matrix\nnrow(m)                          # inspect the number of rows\n\n[1] 2\n\nncol(m)                          # inspect the number of columns\n\n[1] 3\n\nm[1,2]                           # display element on the first row, at the second column\n\n[1] 3"
+    "text": "Basic R grammar\n\nRun a command:\n\nGet the cursor on the line and press CTRL+ENTER on Windows, or CMD+ENTER on MacOS.\n\nAssign a value to an object\n\n\na = 1                            # numeric value assigned with =\nb &lt;- 2                           # numeric value assigned with &lt;-\nc &lt;- \"ciao\"                      # character value\nc                                # display the content stored in c\n\n[1] \"ciao\"\n\n\n\nBasic math\n\n\na+b                              # sum the values stored in a and b\n\n[1] 3"
+  },
+  {
+    "objectID": "slides/slides_class1.html#basic-r-grammar-1",
+    "href": "slides/slides_class1.html#basic-r-grammar-1",
+    "title": "Introduction to R",
+    "section": "Basic R grammar",
+    "text": "Basic R grammar\n\nCreate a vector\n\n\nv1 &lt;- c(1, 7, 2)                 # create the vector manually\nv2 &lt;- 1:10                       # create a sequence 1 to 10 automatically\nv3 &lt;- seq(1,10,by=2)             # create a sequence automatically with the seq() function\n\n\nCreate and inspect matrices\n\n\nm &lt;- matrix(1:6, nrow=2, ncol=3) # create a matrix\nnrow(m)                          # inspect the number of rows\n\n[1] 2\n\nncol(m)                          # inspect the number of columns\n\n[1] 3\n\nm[1,2]                           # display element on the first row, at the second column\n\n[1] 3"
+  },
+  {
+    "objectID": "slides/slides_class1.html#rstudio-tips",
+    "href": "slides/slides_class1.html#rstudio-tips",
+    "title": "Introduction to R",
+    "section": "RStudio tips",
+    "text": "RStudio tips\n\nTab completion: start typing a function or object name, press Tab\nInsert &lt;-: press Alt + - (Windows) or Option + - (Mac)\nRun current line: Ctrl+Enter (Windows) or Cmd+Enter (Mac)\nEnvironment pane (top-right): shows all objects you have created\nHelp pane (bottom-right): displays documentation when you run ?function_name"
+  },
+  {
+    "objectID": "slides/slides_class1.html#seeking-help",
+    "href": "slides/slides_class1.html#seeking-help",
+    "title": "Introduction to R",
+    "section": "Seeking help",
+    "text": "Seeking help\nUse ? or help() to open the documentation of any function:\n\n?mean\nhelp(mean)\n\n\nA help page has several sections. Focus on:\n\nArguments: what inputs the function accepts\nExamples: runnable code at the bottom of the page\n\n\n\nExample: “How do I ignore NAs in mean()?”\n\nRun ?mean\nScroll to Arguments and find na.rm\nIt says: “a logical value indicating whether NA values should be stripped …”\nUse mean(x, na.rm = TRUE)"
   },
   {
     "objectID": "slides/slides_class1.html#missing-values",
@@ -496,25 +517,11 @@
     "text": "Missing values\nIn real datasets, some values are often missing. R represents them as NA.\n\nx &lt;- c(10, 20, NA, 40)\nmean(x)\n\n[1] NA\n\n\n\nNA is contagious: any operation involving NA returns NA.\nTo ignore missing values, use the na.rm argument:\n\nmean(x, na.rm = TRUE)\n\n[1] 23.33333\n\n\n\n\nMost summary functions accept na.rm: sum(), max(), min(), sd()\n\n\nTo detect missing values:\n\nis.na(x)\n\n[1] FALSE FALSE  TRUE FALSE\n\nsum(is.na(x))\n\n[1] 1"
   },
   {
-    "objectID": "slides/slides_class1.html#seeking-help",
-    "href": "slides/slides_class1.html#seeking-help",
+    "objectID": "slides/slides_class1.html#naming-conventions-and-common-mistakes",
+    "href": "slides/slides_class1.html#naming-conventions-and-common-mistakes",
     "title": "Introduction to R",
-    "section": "Seeking help",
-    "text": "Seeking help\nUse ? or help() to open the documentation of any function:\n\n?mean\nhelp(mean)\n\n\nA help page has several sections. Focus on:\n\nArguments: what inputs the function accepts\nExamples: runnable code at the bottom of the page\n\n\n\nExample: “How do I ignore NAs in mean()?”\n\nRun ?mean\nScroll to Arguments → find na.rm\nIt says: “a logical value indicating whether NA values should be stripped”\nUse mean(x, na.rm = TRUE)"
-  },
-  {
-    "objectID": "slides/slides_class1.html#naming-common-mistakes",
-    "href": "slides/slides_class1.html#naming-common-mistakes",
-    "title": "Introduction to R",
-    "section": "Naming & common mistakes",
-    "text": "Naming & common mistakes\nNaming conventions:\n\nUse snake_case for object names: my_data, total_sales\nR is case-sensitive: Salary and salary are different objects\n\n\nCommon mistakes:\n\nmean(c(1, 2, 3)\n\nMissing closing ). R shows + and waits. Press Esc to cancel.\n\n\n\nmaen(x)\n\nTypo in function name. Error: could not find function \"maen\"\n\n\n\nMy_Vec\n\nWrong case. Error: object 'My_Vec' not found (you defined my_vec)"
-  },
-  {
-    "objectID": "slides/slides_class1.html#rstudio-tips",
-    "href": "slides/slides_class1.html#rstudio-tips",
-    "title": "Introduction to R",
-    "section": "RStudio tips",
-    "text": "RStudio tips\n\nTab completion: start typing a function or object name, press Tab\nInsert &lt;-: press Alt + - (Windows) or Option + - (Mac)\nRun current line: Ctrl+Enter (Windows) or Cmd+Enter (Mac)\nEnvironment pane (top-right): shows all objects you have created\nHelp pane (bottom-right): displays documentation when you run ?function_name"
+    "section": "Naming conventions and common mistakes",
+    "text": "Naming conventions and common mistakes\nNaming conventions: Since R is case-sensitive (e.g.Salary and salary are different objects), stick to consistent naming conventions:\n\nUse snake_case for object names: my_data, total_sales\nUse camelCase for object names: myData, totalSales\nUse PascalCase for object names: MyData, TotalSales\n\n\nCommon mistakes:\n\nmean(c(1, 2, 3)\n\nMissing closing ). R shows + and waits. Press Esc to cancel.\n\n\n\nmaen(x)\n\nTypo in function name. Error: could not find function \"maen\"\n\n\n\nmy_vec &lt;- c(10, 20, 40)\nMyVec\n\nError: object 'MyVec' not found"
   },
   {
     "objectID": "slides/slides_class1.html#additional-types-of-objects-i",
@@ -545,6 +552,20 @@
     "text": "Data frames attributes\n\ncolnames(my_df) # get the column names from my_df\n\n[1] \"ad_type\"  \"n_clicks\" \"sales\"    \"weekend\" \n\n\n\n\ndim(my_df)       # get the dimensions of my_df\n\n[1] 3 4\n\n\n\n\n\nmy_df$ad_type    # access a column of my_df by name\n\n[1] \"pop-up\" \"banner\" \"video\" \n\n\n\n\n\nmy_df[ , 1]      # access a column by index\n\n[1] \"pop-up\" \"banner\" \"video\" \n\n\n\n\n\nmy_df[2 , ]      # acces a row by index\n\n  ad_type n_clicks sales weekend\n2  banner       23     2   FALSE"
   },
   {
+    "objectID": "slides/slides_class1.html#logical-comparisons",
+    "href": "slides/slides_class1.html#logical-comparisons",
+    "title": "Introduction to R",
+    "section": "Logical comparisons",
+    "text": "Logical comparisons\n\n\n\nOperator\nMeaning\nExample\n\n\n\n\n==\nequal to\n3 == 3 → TRUE\n\n\n!=\nnot equal to\n3 != 4 → TRUE\n\n\n&lt;, &gt;\nless / greater than\n5 &gt; 2 → TRUE\n\n\n&lt;=, &gt;=\nless/greater or equal\n3 &gt;= 3 → TRUE\n\n\n%in%\nis element in a set\n\"a\" %in% c(\"a\",\"b\") → TRUE\n\n\n\n\nCombine conditions with & (and), | (or), ! (not):\n\nx &lt;- c(10, 25, 5, 40, 15)\nx &gt; 10 & x &lt; 30\n\n[1] FALSE  TRUE FALSE FALSE  TRUE\n\n\n\n\n\nx %in% c(5, 15, 100)\n\n[1] FALSE FALSE  TRUE FALSE  TRUE"
+  },
+  {
+    "objectID": "slides/slides_class1.html#filtering-data.frames",
+    "href": "slides/slides_class1.html#filtering-data.frames",
+    "title": "Introduction to R",
+    "section": "Filtering data.frames",
+    "text": "Filtering data.frames\nUse df[condition, ] to keep only the rows where the condition is TRUE:\n\nmy_df[my_df$n_clicks &gt; 30, ]\n\n  ad_type n_clicks sales weekend\n1  pop-up       56     7    TRUE\n3   video      321    25   FALSE\n\n\n\nUse %in% to match against several values at once:\n\nmy_df[my_df$ad_type %in% c(\"banner\", \"video\"), ]\n\n  ad_type n_clicks sales weekend\n2  banner       23     2   FALSE\n3   video      321    25   FALSE\n\n\n\n\nYou can combine conditions:\n\nmy_df[my_df$n_clicks &gt; 10 & my_df$weekend == FALSE, ]\n\n  ad_type n_clicks sales weekend\n2  banner       23     2   FALSE\n3   video      321    25   FALSE"
+  },
+  {
     "objectID": "slides/slides_class1.html#the-txhousing-dataset",
     "href": "slides/slides_class1.html#the-txhousing-dataset",
     "title": "Introduction to R",
@@ -559,6 +580,13 @@
     "text": "Exploring a dataset\n\nstr(txhousing)\n\ntibble [8,602 × 9] (S3: tbl_df/tbl/data.frame)\n $ city     : chr [1:8602] \"Abilene\" \"Abilene\" \"Abilene\" \"Abilene\" ...\n $ year     : int [1:8602] 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 ...\n $ month    : int [1:8602] 1 2 3 4 5 6 7 8 9 10 ...\n $ sales    : num [1:8602] 72 98 130 98 141 156 152 131 104 101 ...\n $ volume   : num [1:8602] 5380000 6505000 9285000 9730000 10590000 ...\n $ median   : num [1:8602] 71400 58700 58100 68600 67300 66900 73500 75000 64500 59300 ...\n $ listings : num [1:8602] 701 746 784 785 794 780 742 765 771 764 ...\n $ inventory: num [1:8602] 6.3 6.6 6.8 6.9 6.8 6.6 6.2 6.4 6.5 6.6 ...\n $ date     : num [1:8602] 2000 2000 2000 2000 2000 ...\n\n\n\n\nsummary(txhousing$median)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's \n  50000  100000  123800  128131  150000  304200     616 \n\n\nNote: NA's : 616. There are missing values!"
   },
   {
+    "objectID": "slides/slides_class1.html#a-first-plot-the-axis",
+    "href": "slides/slides_class1.html#a-first-plot-the-axis",
+    "title": "Introduction to R",
+    "section": "A first plot: the axis",
+    "text": "A first plot: the axis\n\nggplot(data = txhousing, aes(x = listings, y = sales))"
+  },
+  {
     "objectID": "slides/slides_class1.html#a-first-plot-scatterplot",
     "href": "slides/slides_class1.html#a-first-plot-scatterplot",
     "title": "Introduction to R",
@@ -570,35 +598,84 @@
     "href": "slides/slides_class1.html#adding-color",
     "title": "Introduction to R",
     "section": "Adding color",
-    "text": "Adding color\n\nggplot(data = txhousing, aes(x = listings, y = sales)) +\n  geom_point(aes(color = city), show.legend = FALSE)\n\n\n46 cities = too many colors! We’ll learn how to filter data next class."
+    "text": "Adding color\n\nggplot(data = txhousing, aes(x = listings, y = sales)) +\n  geom_point(aes(color = city))\n\n\n46 cities = too many colors!"
   },
   {
-    "objectID": "slides/slides_class1.html#labeling-your-plot",
-    "href": "slides/slides_class1.html#labeling-your-plot",
+    "objectID": "slides/slides_class1.html#pre-process",
+    "href": "slides/slides_class1.html#pre-process",
     "title": "Introduction to R",
-    "section": "Labeling your plot",
-    "text": "Labeling your plot\n\nggplot(data = txhousing, aes(x = listings, y = sales)) +\n  geom_point() +\n  labs(\n    title = \"Texas housing market\",\n    x = \"Active listings\",\n    y = \"Number of sales\"\n  )"
+    "section": "Pre process",
+    "text": "Pre process\n\nnew_txhousing &lt;- txhousing[txhousing$city %in% c(\"Abilene\", \"Garland\", \"El Paso\"), ]\nggplot(data = new_txhousing, aes(x = listings, y = sales)) +\n  geom_point(aes(color = city))"
   },
   {
-    "objectID": "slides/slides_class1.html#choosing-the-right-plot",
-    "href": "slides/slides_class1.html#choosing-the-right-plot",
+    "objectID": "slides/slides_class1.html#modify-your-plot-labels",
+    "href": "slides/slides_class1.html#modify-your-plot-labels",
     "title": "Introduction to R",
-    "section": "Choosing the right plot",
-    "text": "Choosing the right plot\n\n\n\nQuestion\nVariable types\nGeom\n\n\n\n\nHow is the price distributed?\n1 numerical\ngeom_histogram()\n\n\nHow many sales per year?\n1 categorical\ngeom_bar()\n\n\nPrice vs listings?\n2 numerical\ngeom_point()\n\n\nPrice across months?\nnumerical + categorical\ngeom_boxplot()"
+    "section": "Modify your plot labels",
+    "text": "Modify your plot labels\n\nnew_txhousing &lt;- txhousing[txhousing$city %in% c(\"Abilene\", \"Garland\", \"El Paso\"), ]\nggplot(data = new_txhousing, aes(x = listings, y = sales)) +\n  geom_point(aes(color = city)) +\n  labs(\n    title = \"Texas housing market\",\n    x = \"Active listings\",\n    y = \"Number of sales\"\n  )"
   },
   {
     "objectID": "slides/slides_class1.html#visualizing-distributions-geom_histogram",
     "href": "slides/slides_class1.html#visualizing-distributions-geom_histogram",
     "title": "Introduction to R",
     "section": "Visualizing distributions: geom_histogram()",
-    "text": "Visualizing distributions: geom_histogram()\n\nggplot(data = txhousing, aes(x = median)) +\n  geom_histogram(bins = 30) +\n  labs(x = \"Median house price ($)\", y = \"Count\")\n\n\nTry changing bins to 10 or 100. What happens?"
+    "text": "Visualizing distributions: geom_histogram()\n\nggplot(data = txhousing, aes(x = median)) +\n  geom_histogram(bins = 30) +\n  labs(x = \"Median house price ($)\", y = \"Count\")"
+  },
+  {
+    "objectID": "slides/slides_class1.html#visualizing-distributions-geom_histogram-1",
+    "href": "slides/slides_class1.html#visualizing-distributions-geom_histogram-1",
+    "title": "Introduction to R",
+    "section": "Visualizing distributions: geom_histogram()",
+    "text": "Visualizing distributions: geom_histogram()\n\nggplot(data = txhousing, aes(x = median)) +\n  geom_histogram(bins = 30) +\n  labs(x = \"Median house price on log scale ($)\", y = \"Count\") +\n  scale_x_log10()"
+  },
+  {
+    "objectID": "slides/slides_class1.html#visualizing-distributions-geom_histogram-2",
+    "href": "slides/slides_class1.html#visualizing-distributions-geom_histogram-2",
+    "title": "Introduction to R",
+    "section": "Visualizing distributions: geom_histogram()",
+    "text": "Visualizing distributions: geom_histogram()\n\nggplot(data = txhousing, aes(x = median)) +\n  geom_histogram(bins = 30) +\n  labs(x = \"Median house price on log scale ($)\", y = \"Count\") +\n  scale_x_log10(breaks = seq(10000, 30000000, by = 25000))"
+  },
+  {
+    "objectID": "slides/slides_class1.html#visualizing-distributions-geom_histogram-3",
+    "href": "slides/slides_class1.html#visualizing-distributions-geom_histogram-3",
+    "title": "Introduction to R",
+    "section": "Visualizing distributions: geom_histogram()",
+    "text": "Visualizing distributions: geom_histogram()\n\nggplot(data = txhousing, aes(x = median)) +\n  geom_histogram(bins = 30) +\n  labs(x = \"Median house price on log scale ($)\", y = \"Count\") +\n  scale_x_log10(breaks = seq(10000, 30000000, by = 25000)) +\n  theme(axis.text.x = element_text(angle = 45, hjust = 1))"
+  },
+  {
+    "objectID": "slides/slides_class1.html#visualizing-distributions-geom_histogram-4",
+    "href": "slides/slides_class1.html#visualizing-distributions-geom_histogram-4",
+    "title": "Introduction to R",
+    "section": "Visualizing distributions: geom_histogram()",
+    "text": "Visualizing distributions: geom_histogram()\n\nggplot(data = txhousing, aes(x = median)) +\n  geom_histogram(bins = 30) +\n  labs(x = \"Median house price on log scale ($)\", y = \"Count\") +\n  scale_x_log10(breaks = seq(10000, 30000000, by = 25000)) +\n  theme_bw() +\n  theme(axis.text.x = element_text(angle = 45, hjust = 1))"
+  },
+  {
+    "objectID": "slides/slides_class1.html#visualizing-distributions-geom_histogram-5",
+    "href": "slides/slides_class1.html#visualizing-distributions-geom_histogram-5",
+    "title": "Introduction to R",
+    "section": "Visualizing distributions: geom_histogram()",
+    "text": "Visualizing distributions: geom_histogram()\n\nggplot(data = txhousing, aes(x = median)) +\n  geom_histogram(bins = 30, fill = \"coral3\") +\n  labs(x = \"Median house price on log scale ($)\", y = \"Count\") +\n  scale_x_log10(breaks = seq(10000, 30000000, by = 25000)) +\n  theme_bw() +\n  theme(axis.text.x = element_text(angle = 45, hjust = 1))"
+  },
+  {
+    "objectID": "slides/slides_class1.html#visualizing-distributions-geom_histogram-6",
+    "href": "slides/slides_class1.html#visualizing-distributions-geom_histogram-6",
+    "title": "Introduction to R",
+    "section": "Visualizing distributions: geom_histogram()",
+    "text": "Visualizing distributions: geom_histogram()\n\nggplot(data = txhousing, aes(x = median)) +\n  geom_histogram(bins = 30, fill = \"coral3\", alpha =.5) +\n  labs(x = \"Median house price on log scale ($)\", y = \"Count\") +\n  scale_x_log10(breaks = seq(10000, 30000000, by = 25000)) +\n  theme_bw() +\n  theme(axis.text.x = element_text(angle = 45, hjust = 1))"
   },
   {
     "objectID": "slides/slides_class1.html#visualizing-categories-geom_bar",
     "href": "slides/slides_class1.html#visualizing-categories-geom_bar",
     "title": "Introduction to R",
     "section": "Visualizing categories: geom_bar()",
-    "text": "Visualizing categories: geom_bar()\n\nggplot(data = txhousing, aes(x = year)) +\n  geom_bar() +\n  labs(x = \"Year\", y = \"Number of monthly records\")\n\n\ngeom_bar() counts for you, you only need to map x."
+    "text": "Visualizing categories: geom_bar()\n\nggplot(data = txhousing, aes(x = factor(year))) +\n  geom_bar() +\n  labs(x = \"Year\", y = \"Number of monthly records\")\n\n\ngeom_bar() counts for you."
+  },
+  {
+    "objectID": "slides/slides_class1.html#visualizing-categories-geom_bar-1",
+    "href": "slides/slides_class1.html#visualizing-categories-geom_bar-1",
+    "title": "Introduction to R",
+    "section": "Visualizing categories: geom_bar()",
+    "text": "Visualizing categories: geom_bar()\n\nggplot(data = txhousing, aes(x = factor(year), y = sales)) +\n  geom_col() +\n  labs(x = \"Year\", y = \"Number of monthly records\")\n\n\ngeom_bar() counts for you."
   },
   {
     "objectID": "slides/slides_class1.html#comparing-groups-geom_boxplot",
@@ -615,18 +692,18 @@
     "text": "Multiple panels: facet_wrap()\n\nbig_cities &lt;- txhousing[txhousing$city %in% c(\"Houston\", \"Dallas\", \"Austin\", \"San Antonio\"), ]\nggplot(data = big_cities, aes(x = listings, y = sales)) +\n  geom_point() +\n  facet_wrap(~city) +\n  labs(x = \"Active listings\", y = \"Number of sales\")\n\n\nOne panel per group, easier to compare patterns."
   },
   {
-    "objectID": "slides/slides_class1.html#applying-a-theme",
-    "href": "slides/slides_class1.html#applying-a-theme",
+    "objectID": "slides/slides_class1.html#choosing-the-right-plot",
+    "href": "slides/slides_class1.html#choosing-the-right-plot",
     "title": "Introduction to R",
-    "section": "Applying a theme",
-    "text": "Applying a theme\n\nggplot(data = txhousing, aes(x = listings, y = sales)) +\n  geom_point() +\n  labs(title = \"Texas housing market\", x = \"Active listings\", y = \"Number of sales\") +\n  theme_minimal()\n\n\nOther options: theme_bw(), theme_classic(), theme_light()"
+    "section": "Choosing the right plot",
+    "text": "Choosing the right plot\nCheck out the interactive decision tree at data-to-viz.com"
   },
   {
     "objectID": "slides/slides_class1.html#the-ggplot-recipe",
     "href": "slides/slides_class1.html#the-ggplot-recipe",
     "title": "Introduction to R",
     "section": "The ggplot recipe",
-    "text": "The ggplot recipe\nEvery plot follows the same pattern:\n\nggplot(data = ___, aes(x = ___, y = ___)) +\n  geom_???() +\n  labs(title = ___, x = ___, y = ___) +\n  theme_minimal()\n\n\nYou now know 4 geoms:\n\n\n\nGeom\nUse for\n\n\n\n\ngeom_point()\nScatterplots (2 numerical variables)\n\n\ngeom_histogram()\nDistribution of 1 numerical variable\n\n\ngeom_bar()\nCounts of 1 categorical variable\n\n\ngeom_boxplot()\nCompare a numerical variable across groups\n\n\n\nNext class: data manipulation, importing files, and more plots."
+    "text": "The ggplot recipe\nEvery plot follows the same pattern:\n\nggplot(data = ___, aes(x = ___, y = ___)) +\n  geom_???() +\n  labs(title = ___, x = ___, y = ___) +\n  theme_???() +\n  ???\n\n\nYou now know 4 geoms:\n\n\n\nGeom\nUse for\n\n\n\n\ngeom_point()\nScatterplots (2 numerical variables)\n\n\ngeom_histogram()\nDistribution of 1 numerical variable\n\n\ngeom_bar()\nCounts of 1 categorical variable\n\n\ngeom_boxplot()\nCompare a numerical variable across groups\n\n\n\nNext class: data manipulation, importing files, and more plots."
   },
   {
     "objectID": "slides/slides_class1.html#practice",

@@ -15,7 +15,6 @@ title-slide-attributes:
     data-footer: " "
 embed-resources: true
 highlight-style: tango
-
 ---
 
 
@@ -31,14 +30,14 @@ library(tidyverse)
 
 ![](../assets/ds_life_cycle.png){width=100% fig-align="center"}
 
-## Import
+## Import {style="font-size: 0.6em;"}
 
 You will learn how to read external data sources from R. In particular, we will focus on
 
 - Universal text formats, as .csv.
 - Proprietary spreadsheets formats, as Excel .xls and .xlsx;
 
-## Tidy {style="font-size: 0.8em;"}
+## Tidy {style="font-size: 0.6em;"}
 
 You will know how to store your data in a consistent format.
 
@@ -51,7 +50,7 @@ mpg |> select(manufacturer, displ, model, class, cyl, trans, hwy)
 ```
 
 
-## Transform {style="font-size: 0.8em;"}
+## Transform {style="font-size: 0.6em;"}
 
 You will learn how to transform the data at your willingness:
 
@@ -65,7 +64,7 @@ mpg |>
   select(displ, class, hwy)
 ```
 
-## Visualize {style="font-size: 0.8em;"}
+## Visualize {style="font-size: 0.6em;"}
 
 You will learn how to explore data patterns with visualisations.
 
@@ -78,7 +77,7 @@ mpg |>
   labs(y="Fuel efficiency (miles per gallon)", x="Engine size (liters)", col ="Car Type:" )
 ```
 
-## Model {style="font-size: 0.8em;"}
+## Model {style="font-size: 0.6em;"}
 
 It's the only step where "math" enters the game. Goes from simple descriptive statistics, to more elaborated modelling strategies.
 Often combined with visualisations.
@@ -92,7 +91,7 @@ mpg |>
   theme_minimal()+
   labs(y="Fuel efficiency (miles per gallon)", x="Engine size (liters)", col ="Car Type:" )
 ```
-## Communicate
+## Communicate {style="font-size: 0.6em;"}
 
 
 - Write reports;
@@ -101,7 +100,7 @@ mpg |>
 
 
 
-## Why R?
+## Why R? {style="font-size: 0.6em;"}
 
 . . .
 
@@ -118,11 +117,11 @@ Replicability!
 
 . . .
 
-- Now you share your spreadsheet with your colleague.
+- Now you share your spreadsheet with your colleagues.
 
 . . .
 
-- She will not know the formula within each cell unless she inspect all of them individually!
+- They will not know the formula within each cell unless they inspect all of them individually!
 
 ## Excel vs R {style="font-size: 0.6em;"}
 
@@ -148,7 +147,7 @@ my_data |>
 
 . . .
 
-- And now your colleague has no doubt about where those numbers come from!
+- And now your colleagues have no doubt about where those numbers come from!
 
 ## Excel VS R {style="font-size: 0.6em;"}
 
@@ -191,11 +190,11 @@ my_data2 |>
   summarise(Total = sum(QuantitySold))
 ```
 
-## RStudio
+## RStudio {style="font-size: 0.6em;"}
 
 ![](../assets/class2/rstudio.png){width=100% fig-align="center"}
 
-## Basic R grammar {style="font-size: 0.5em;"}
+## Basic R grammar {style="font-size: 0.6em;"}
 - Run a command:
   - Get the cursor on the line and press CTRL+ENTER on Windows, or CMD+ENTER on MacOS.
 
@@ -214,8 +213,10 @@ c                                # display the content stored in c
 a+b                              # sum the values stored in a and b
 ```
 
-- Create a vector
 
+## Basic R grammar {style="font-size: 0.6em;"}
+
+- Create a vector
 
 ```{r echo = TRUE}
 v1 <- c(1, 7, 2)                 # create the vector manually
@@ -225,7 +226,6 @@ v3 <- seq(1,10,by=2)             # create a sequence automatically with the seq(
 
 - Create and inspect matrices
 
-
 ```{r echo=TRUE}
 m <- matrix(1:6, nrow=2, ncol=3) # create a matrix
 nrow(m)                          # inspect the number of rows
@@ -234,7 +234,50 @@ m[1,2]                           # display element on the first row, at the seco
 ```
 
 
-## Missing values {style="font-size: 0.7em;"}
+## RStudio tips {style="font-size: 0.6em;"}
+
+- **Tab completion**: start typing a function or object name, press `Tab`
+
+- **Insert `<-`**: press `Alt + -` (Windows) or `Option + -` (Mac)
+
+- **Run current line**: `Ctrl+Enter` (Windows) or `Cmd+Enter` (Mac)
+
+- **Environment pane** (top-right): shows all objects you have created
+
+- **Help pane** (bottom-right): displays documentation when you run `?function_name`
+
+
+
+
+## Seeking help {style="font-size: 0.6em;"}
+
+Use `?` or `help()` to open the documentation of any function:
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+?mean
+help(mean)
+```
+
+. . .
+
+A help page has several sections. Focus on:
+
+- **Arguments**: what inputs the function accepts
+- **Examples**: runnable code at the bottom of the page
+
+. . .
+
+Example: "How do I ignore `NA`s in `mean()`?"
+
+1. Run `?mean`
+2. Scroll to **Arguments** and find `na.rm`
+3. It says: *"a logical value indicating whether NA values should be stripped ..."*
+4. Use `mean(x, na.rm = TRUE)`
+
+
+## Missing values {style="font-size: 0.6em;"}
 
 In real datasets, some values are often missing. R represents them as `NA`.
 
@@ -272,39 +315,15 @@ is.na(x)
 sum(is.na(x))
 ```
 
-## Seeking help {style="font-size: 0.7em;"}
 
-Use `?` or `help()` to open the documentation of any function:
-
-```{r}
-#| echo: TRUE
-#| eval: FALSE
-?mean
-help(mean)
-```
-
-. . .
-
-A help page has several sections. Focus on:
-
-- **Arguments**: what inputs the function accepts
-- **Examples**: runnable code at the bottom of the page
-
-. . .
-
-Example: "How do I ignore `NA`s in `mean()`?"
-
-1. Run `?mean`
-2. Scroll to **Arguments** → find `na.rm`
-3. It says: *"a logical value indicating whether NA values should be stripped"*
-4. Use `mean(x, na.rm = TRUE)`
-
-## Naming & common mistakes {style="font-size: 0.7em;"}
+## Naming conventions and common mistakes {style="font-size: 0.6em;"}
 
 **Naming conventions:**
+Since R is case-sensitive (e.g.`Salary` and `salary` are different objects), stick to consistent naming conventions:
 
 - Use `snake_case` for object names: `my_data`, `total_sales`
-- R is case-sensitive: `Salary` and `salary` are different objects
+- Use `camelCase` for object names: `myData`, `totalSales`
+- Use `PascalCase` for object names: `MyData`, `TotalSales`
 
 . . .
 
@@ -331,25 +350,16 @@ Typo in function name. `Error: could not find function "maen"`
 ```{r}
 #| echo: TRUE
 #| eval: FALSE
-My_Vec
+
+my_vec <- c(10, 20, 40)
+MyVec
 ```
-Wrong case. `Error: object 'My_Vec' not found` (you defined `my_vec`)
+`Error: object 'MyVec' not found`
 
 
-## RStudio tips {style="font-size: 0.8em;"}
-
-- **Tab completion**: start typing a function or object name, press `Tab`
-
-- **Insert `<-`**: press `Alt + -` (Windows) or `Option + -` (Mac)
-
-- **Run current line**: `Ctrl+Enter` (Windows) or `Cmd+Enter` (Mac)
-
-- **Environment pane** (top-right): shows all objects you have created
-
-- **Help pane** (bottom-right): displays documentation when you run `?function_name`
 
 
-## Additional types of objects (i) {style="font-size: 0.8em;"}
+## Additional types of objects (i) {style="font-size: 0.6em;"}
 
 Logical values: represent a `TRUE/FALSE`statement
 
@@ -394,7 +404,7 @@ my_fact <- factor(my_raw_var, levels = c("low", "medium", "high"), ordered=TRUE)
 my_fact
 ```
 
-## Additional types of objects (ii) {style="font-size: 0.8em;"}
+## Additional types of objects (ii) {style="font-size: 0.6em;"}
 
 **Lists:**
 
@@ -411,7 +421,7 @@ my_list <- list(          # use the `list()` function
 my_list
 ```
 
-## Data frames {style="font-size: 0.8em;"}
+## Data frames {style="font-size: 0.6em;"}
 
 - Matrices in R constrain all columns to have data of the same type (all numeric, all character, etc...).
 - Data frames are more convenient objects where to store your data.
@@ -432,7 +442,7 @@ my_df <- data.frame(
 my_df
 ```
 
-## Data frames attributes {style="font-size: 0.8em;"}
+## Data frames attributes {style="font-size: 0.6em;"}
 
 
 ```{r}
@@ -474,6 +484,68 @@ my_df[ , 1]      # access a column by index
 my_df[2 , ]      # acces a row by index
 ```
 
+
+## Logical comparisons {style="font-size: 0.6em;"}
+
+| Operator | Meaning | Example |
+|----------|---------|---------|
+| `==` | equal to | `3 == 3` → `TRUE` |
+| `!=` | not equal to | `3 != 4` → `TRUE` |
+| `<`, `>` | less / greater than | `5 > 2` → `TRUE` |
+| `<=`, `>=` | less/greater or equal | `3 >= 3` → `TRUE` |
+| `%in%` | is element in a set | `"a" %in% c("a","b")` → `TRUE` |
+
+. . .
+
+Combine conditions with `&` (and), `|` (or), `!` (not):
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+x <- c(10, 25, 5, 40, 15)
+x > 10 & x < 30
+```
+
+. . .
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+x %in% c(5, 15, 100)
+```
+
+
+## Filtering data.frames {style="font-size: 0.6em;"}
+
+Use `df[condition, ]` to keep only the rows where the condition is `TRUE`:
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+my_df[my_df$n_clicks > 30, ]
+```
+
+. . .
+
+Use `%in%` to match against several values at once:
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+my_df[my_df$ad_type %in% c("banner", "video"), ]
+```
+
+. . .
+
+You can combine conditions:
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+my_df[my_df$n_clicks > 10 & my_df$weekend == FALSE, ]
+```
+
+
 ## The `txhousing` dataset {style="font-size: 0.7em;"}
 
 R comes with several built-in datasets. Today we will use `txhousing` from the `ggplot2` package: monthly housing market data for 46 Texas cities (2000-2015).
@@ -506,35 +578,57 @@ summary(txhousing$median)
 
 Note: `NA's : 616`. There are missing values!
 
-## A first plot: scatterplot {style="font-size: 0.7em;"}
+## A first plot: the axis {style="font-size: 0.6em;"}
 
 ```{r}
 #| echo: TRUE
 #| eval: TRUE
-ggplot(data = txhousing, aes(x = listings, y = sales)) +
-  geom_point()
+ggplot(data = txhousing, aes(x = listings, y = sales)) 
 ```
 
-## Adding color {style="font-size: 0.7em;"}
+## A first plot: scatterplot {style="font-size: 0.6em;"}
 
 ```{r}
 #| echo: TRUE
 #| eval: TRUE
 #| code-line-numbers: "2"
 ggplot(data = txhousing, aes(x = listings, y = sales)) +
-  geom_point(aes(color = city), show.legend = FALSE)
+  geom_point()
 ```
 
-46 cities = too many colors! We'll learn how to filter data next class.
-
-## Labeling your plot {style="font-size: 0.7em;"}
+## Adding color {style="font-size: 0.6em;"}
 
 ```{r}
 #| echo: TRUE
 #| eval: TRUE
-#| code-line-numbers: "3,4,5,6"
+#| code-line-numbers: "2"
 ggplot(data = txhousing, aes(x = listings, y = sales)) +
-  geom_point() +
+  geom_point(aes(color = city))
+```
+
+46 cities = too many colors!
+
+
+## Pre process {style="font-size: 0.6em;"}
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+#| code-line-numbers: "1|2"
+new_txhousing <- txhousing[txhousing$city %in% c("Abilene", "Garland", "El Paso"), ]
+ggplot(data = new_txhousing, aes(x = listings, y = sales)) +
+  geom_point(aes(color = city))
+```
+
+## Modify your plot labels {style="font-size: 0.6em;"}
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+#| code-line-numbers: "4,5,6,7,8"
+new_txhousing <- txhousing[txhousing$city %in% c("Abilene", "Garland", "El Paso"), ]
+ggplot(data = new_txhousing, aes(x = listings, y = sales)) +
+  geom_point(aes(color = city)) +
   labs(
     title = "Texas housing market",
     x = "Active listings",
@@ -542,38 +636,122 @@ ggplot(data = txhousing, aes(x = listings, y = sales)) +
   )
 ```
 
-## Choosing the right plot {style="font-size: 0.8em;"}
+## Visualizing distributions: `geom_histogram()` {style="font-size: 0.7em;"}
 
-| Question | Variable types | Geom |
-|----------|---------------|------|
-| How is the price distributed? | 1 numerical | `geom_histogram()` |
-| How many sales per year? | 1 categorical | `geom_bar()` |
-| Price vs listings? | 2 numerical | `geom_point()` |
-| Price across months? | numerical + categorical | `geom_boxplot()` |
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+#| code-line-numbers: "2"
+ggplot(data = txhousing, aes(x = median)) +
+  geom_histogram(bins = 30) +
+  labs(x = "Median house price ($)", y = "Count")
+```
 
 ## Visualizing distributions: `geom_histogram()` {style="font-size: 0.7em;"}
 
 ```{r}
 #| echo: TRUE
 #| eval: TRUE
+#| code-line-numbers: "4"
 ggplot(data = txhousing, aes(x = median)) +
   geom_histogram(bins = 30) +
-  labs(x = "Median house price ($)", y = "Count")
+  labs(x = "Median house price on log scale ($)", y = "Count") +
+  scale_x_log10()
 ```
 
-Try changing `bins` to 10 or 100. What happens?
+## Visualizing distributions: `geom_histogram()` {style="font-size: 0.7em;"}
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+#| code-line-numbers: "4"
+ggplot(data = txhousing, aes(x = median)) +
+  geom_histogram(bins = 30) +
+  labs(x = "Median house price on log scale ($)", y = "Count") +
+  scale_x_log10(breaks = seq(10000, 30000000, by = 25000))
+```
+
+## Visualizing distributions: `geom_histogram()` {style="font-size: 0.7em;"}
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+#| code-line-numbers: "5"
+ggplot(data = txhousing, aes(x = median)) +
+  geom_histogram(bins = 30) +
+  labs(x = "Median house price on log scale ($)", y = "Count") +
+  scale_x_log10(breaks = seq(10000, 30000000, by = 25000)) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+## Visualizing distributions: `geom_histogram()` {style="font-size: 0.7em;"}
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+#| code-line-numbers: "5"
+ggplot(data = txhousing, aes(x = median)) +
+  geom_histogram(bins = 30) +
+  labs(x = "Median house price on log scale ($)", y = "Count") +
+  scale_x_log10(breaks = seq(10000, 30000000, by = 25000)) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+```
+
+## Visualizing distributions: `geom_histogram()` {style="font-size: 0.7em;"}
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+#| code-line-numbers: "2"
+ggplot(data = txhousing, aes(x = median)) +
+  geom_histogram(bins = 30, fill = "coral3") +
+  labs(x = "Median house price on log scale ($)", y = "Count") +
+  scale_x_log10(breaks = seq(10000, 30000000, by = 25000)) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+```
+
+## Visualizing distributions: `geom_histogram()` {style="font-size: 0.7em;"}
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+#| code-line-numbers: "2"
+ggplot(data = txhousing, aes(x = median)) +
+  geom_histogram(bins = 30, fill = "coral3", alpha =.5) +
+  labs(x = "Median house price on log scale ($)", y = "Count") +
+  scale_x_log10(breaks = seq(10000, 30000000, by = 25000)) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+```
 
 ## Visualizing categories: `geom_bar()` {style="font-size: 0.7em;"}
 
 ```{r}
 #| echo: TRUE
 #| eval: TRUE
-ggplot(data = txhousing, aes(x = year)) +
+#| code-line-numbers: "2"
+ggplot(data = txhousing, aes(x = factor(year))) +
   geom_bar() +
   labs(x = "Year", y = "Number of monthly records")
 ```
 
-`geom_bar()` counts for you, you only need to map `x`.
+`geom_bar()` counts for you.
+
+
+## Visualizing categories: `geom_bar()` {style="font-size: 0.7em;"}
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+#| code-line-numbers: "2"
+ggplot(data = txhousing, aes(x = factor(year), y = sales)) +
+  geom_col() +
+  labs(x = "Year", y = "Number of monthly records")
+```
+
+`geom_bar()` counts for you.
+
 
 ## Comparing groups: `geom_boxplot()` {style="font-size: 0.7em;"}
 
@@ -602,21 +780,12 @@ ggplot(data = big_cities, aes(x = listings, y = sales)) +
 
 One panel per group, easier to compare patterns.
 
-## Applying a theme {style="font-size: 0.7em;"}
+## Choosing the right plot
 
-```{r}
-#| echo: TRUE
-#| eval: TRUE
-#| code-line-numbers: "4"
-ggplot(data = txhousing, aes(x = listings, y = sales)) +
-  geom_point() +
-  labs(title = "Texas housing market", x = "Active listings", y = "Number of sales") +
-  theme_minimal()
-```
+Check out the interactive decision tree at [data-to-viz.com](https://www.data-to-viz.com)
 
-Other options: `theme_bw()`, `theme_classic()`, `theme_light()`
 
-## The ggplot recipe {style="font-size: 0.8em;"}
+## The ggplot recipe {style="font-size: 0.6em;"}
 
 Every plot follows the same pattern:
 
@@ -626,7 +795,8 @@ Every plot follows the same pattern:
 ggplot(data = ___, aes(x = ___, y = ___)) +
   geom_???() +
   labs(title = ___, x = ___, y = ___) +
-  theme_minimal()
+  theme_???() +
+  ???
 ```
 
 . . .

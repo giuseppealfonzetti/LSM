@@ -9,7 +9,7 @@ title: "Resources for Lab 1"
 
 ::: {.cell .page-columns .page-full .column-screen .grey-section}
 
-<!-- ### Practice 1: R basics
+### Practice 1: R basics
 
 ::: {.panel-tabset}
 
@@ -109,6 +109,114 @@ My_Vec
 matrix(1:6, nrow = 2, ncol = 4)
 ```
 
+##### Exercise 5
+
+**Logical values and comparisons**
+
+You recorded daily temperatures for a week:
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+temps <- c(18, 22, 25, 30, 28, 35, 20)
+```
+
+- Which days were above 25°C? Use `temps > 25`. What type of object is the result?
+- How many days were above 25°C? Use `sum()` on the logical vector.
+- Use `which(temps > 25)` to get the **positions** of the hot days.
+- Which days were between 20 and 30 (inclusive)? Combine conditions with `&`: `temps >= 20 & temps <= 30`.
+- Were there any days below 15 or above 34? Use `|`.
+
+##### Exercise 6
+
+**Factors**
+
+A survey records education levels:
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+edu <- c("high school", "bachelor", "master", "bachelor", "high school", "PhD", "master")
+```
+
+- Convert `edu` to a factor with `as.factor(edu)`. How does it print differently from the original vector?
+- Use `levels()` and `nlevels()` to inspect the factor.
+- Now create an **ordered** factor with `factor()`, specifying `levels = c("high school", "bachelor", "master", "PhD")` and `ordered = TRUE`.
+- Run `sort()` on the original character vector and on the ordered factor. What is the difference?
+- Use `table(edu)` to count how many respondents fall in each category.
+
+##### Exercise 7
+
+**Sequences and repetitions**
+
+- Use `seq(0, 1, by = 0.1)` to create a vector from 0 to 1 in steps of 0.1. How many elements does it have?
+- Use `seq(0, 100, length.out = 5)` to create exactly 5 evenly spaced values between 0 and 100.
+- Use `rep("A", times = 4)` to repeat `"A"` four times.
+- Use `rep(c("A", "B"), times = 3)` and `rep(c("A", "B"), each = 3)`. What is the difference?
+- Combine: create a vector with the numbers 1 to 3 repeated 4 times each, followed by the value 99. Use `c()`, `rep()`, and a scalar.
+
+##### Exercise 8
+
+**Matrices**
+
+Build a 3x4 matrix of the numbers 1 to 12:
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+m <- matrix(1:12, nrow = 3, ncol = 4)
+```
+
+- Print `m`. Does R fill the matrix by columns or by rows?
+- Use `nrow(m)`, `ncol(m)`, and `dim(m)`.
+- Extract the element in row 2, column 3. Extract the entire second row. Extract the entire fourth column.
+- Use `colSums(m)` and `rowSums(m)`. Verify one result by hand.
+- Try `matrix(1:12, nrow = 3, ncol = 4, byrow = TRUE)`. What changes?
+
+##### Exercise 9
+
+**Lists**
+
+Create a list that stores information about a student:
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+student <- list(
+  name   = "Alice",
+  grades = c(28, 30, 25, 27),
+  passed = TRUE
+)
+```
+
+- Print `student`. How does it differ from a vector?
+- Access the name with `student$name` and with `student[["name"]]`.
+- Compute the average grade: `mean(student$grades)`.
+- Use `names(student)` and `length(student)`.
+- Add a new element: `student$university <- "Milano"`. Print the list again.
+
+##### Exercise 10
+
+**Putting it all together**
+
+Build a small dataset about 5 cities:
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+cities <- data.frame(
+  name       = c("Milan", "Rome", "Naples", "Turin", "Bologna"),
+  population = c(1396000, 2873000, 967000, 886000, 395000),
+  north      = c(TRUE, FALSE, FALSE, TRUE, TRUE)
+)
+```
+
+- Inspect the data frame with `str()` and `summary()`.
+- Show only **northern** cities: `cities[cities$north == TRUE, ]`.
+- Add a new column `density` that equals `population / 100` (a made-up simplification). Use `cities$density <- ...`.
+- Which city has the highest population? Use `which.max(cities$population)` to get its row index, then extract the city name.
+- Sort the data frame by population in decreasing order: `cities[order(cities$population, decreasing = TRUE), ]`.
+
 :::
 :::
 
@@ -129,7 +237,7 @@ Then type `txhousing` to see it. It contains monthly housing sales data for 46 T
 
 ::: {.panel-tabset}
 
-##### Exercise 5
+##### Exercise 1
 
 **Explore the data**
 
@@ -138,7 +246,7 @@ Then type `txhousing` to see it. It contains monthly housing sales data for 46 T
 - Run `summary(txhousing)`. What is the range of median house prices? Are there missing values?
 - Compute the average median house price with `mean()`. Remember `na.rm`!
 
-##### Exercise 6
+##### Exercise 2
 
 **Your first scatterplot**
 
@@ -160,7 +268,7 @@ ggplot(data = txhousing, aes(x = listings, y = sales)) +
 
 4. Store the final plot in an object called `my_plot`.
 
-##### Exercise 7
+##### Exercise 3
 
 **Distributions**
 
@@ -186,7 +294,7 @@ ggplot(data = txhousing, aes(x = year)) +
 
 3. Add `labs()` to both plots.
 
-##### Exercise 8
+##### Exercise 4
 
 **Comparing across groups**
 
@@ -207,9 +315,9 @@ ggplot(data = txhousing, aes(x = factor(month), y = median)) +
 
 4. Add `labs()` and `theme_minimal()`.
 
-##### Exercise 9
+##### Exercise 5
 
-**Bonus**
+**Color and facets**
 
 - Build a scatterplot of `volume` (y) vs `sales` (x), colored by `year`:
 
@@ -224,16 +332,167 @@ ggplot(data = txhousing, aes(x = sales, y = volume, color = year)) +
 - Add `facet_wrap(~month)`. Does the pattern change across months?
 - Add labels and a theme.
 
+##### Exercise 6
+
+**Numeric vs factor color**
+
+1. Build a scatterplot of `listings` vs `sales`, coloring points by `month`:
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+ggplot(data = txhousing, aes(x = listings, y = sales, color = month)) +
+  geom_point()
+```
+
+   What kind of color scale do you get (continuous gradient or discrete palette)?
+
+2. Now convert `month` to a factor **inside** the `aes()`:
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+ggplot(data = txhousing, aes(x = listings, y = sales, color = factor(month))) +
+  geom_point()
+```
+
+   How does the legend change? Which version is more informative for this variable?
+
+3. Add `labs(color = "Month")` and `theme_minimal()` to the second version.
+
+##### Exercise 7
+
+**Subsetting before plotting**
+
+1. Create a subset of `txhousing` containing only Houston, Dallas and Austin:
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+three_cities <- txhousing[txhousing$city %in% c("Houston", "Dallas", "Austin"), ]
+```
+
+2. How many rows does `three_cities` have? Use `dim()`.
+
+3. Build a scatterplot of `listings` vs `sales` using `three_cities`, colored by `city`:
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+ggplot(data = three_cities, aes(x = listings, y = sales, color = city)) +
+  geom_point()
+```
+
+4. Add `facet_wrap(~city)` to separate each city into its own panel. Add labels and a theme.
+
+5. Try adding San Antonio to the subset and re-run the plot. Does the pattern change?
+
+##### Exercise 8
+
+**Creating new variables and plotting**
+
+1. Compute the average price per sale and add it as a new column:
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+txhousing$price_per_sale <- txhousing$volume / txhousing$sales
+```
+
+2. Check the result: `head(txhousing$price_per_sale)`. Are there `NA`s? Why?
+
+3. Build a histogram of `price_per_sale`:
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+ggplot(data = txhousing, aes(x = price_per_sale)) +
+  geom_histogram(bins = 40)
+```
+
+4. Build a boxplot of `price_per_sale` by `year`. Use `factor(year)` on the x-axis so each year gets its own box. Is the average price per sale increasing over time?
+
+5. Add appropriate labels and `theme_minimal()`.
+
+##### Exercise 9
+
+**Combining logical filters with ggplot**
+
+1. Create a logical vector that identifies summer 2010+ observations:
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+is_summer_recent <- txhousing$year >= 2010 & txhousing$month %in% c(6, 7, 8)
+```
+
+2. How many `TRUE` values are there? Use `sum()`.
+
+3. Subset the data: `summer_recent <- txhousing[is_summer_recent, ]`.
+
+4. Build a scatterplot of `median` (y) vs `listings` (x), colored by `factor(year)`:
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+ggplot(data = summer_recent, aes(x = listings, y = median, color = factor(year))) +
+  geom_point()
+```
+
+5. Add `facet_wrap(~month)` to separate June, July, and August. Add labels and a theme.
+
+##### Exercise 10
+
+**Changing color palettes**
+
+Start from the scatterplot of Exercise 6 with discrete month colors:
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+ggplot(data = txhousing, aes(x = listings, y = sales, color = factor(month))) +
+  geom_point()
+```
+
+1. Apply a ready-made palette with `scale_color_brewer(palette = "Set3")`. Try also `"Paired"` and `"Dark2"`. Which one do you find most readable?
+
+2. Now use a **manual** palette. Define your own vector of 12 colors (one per month) and apply it:
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+my_colors <- c("Jan" = "#1f77b4", "Feb" = "#ff7f0e", "Mar" = "#2ca02c",
+                "Apr" = "#d62728", "May" = "#9467bd", "Jun" = "#8c564b",
+                "Jul" = "#e377c2", "Aug" = "#7f7f7f", "Sep" = "#bcbd22",
+                "Oct" = "#17becf", "Nov" = "#aec7e8", "Dec" = "#ffbb78")
+```
+
+   To use named colors you first need to label the months. Create a labeled factor:
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+txhousing$month_name <- factor(txhousing$month,
+                               levels = 1:12,
+                               labels = c("Jan","Feb","Mar","Apr","May","Jun",
+                                          "Jul","Aug","Sep","Oct","Nov","Dec"))
+```
+
+   Then plot with `color = month_name` and add `scale_color_manual(values = my_colors)`.
+
+3. Try the continuous version: plot `color = median` (a numeric variable) and apply `scale_color_gradient(low = "blue", high = "red")`. How does it differ from the discrete palettes?
+
+4. Add `labs()` and `theme_minimal()` to your favourite version.
+
 :::
 :::
 
 
 ### Backup: R from the browser
 
-If you don't have R installed on your machine, you can use these interactive web consoles:
+If you don't have R installed on your machine, you can use these interactive web console for today
 
-- [R web console: Basic R](https://webr.sh/#code=eJydkr9u2zAQh4dsfIpDvNioWocy0ABBjL5DgE5FUZyoc0WAf1zyaNdzl659h2x9g%2B59rxwtB3GLxEHCQYIgft%2F9eMdfP24Devr9MbBlR71%2Bd3O7Rh7%2BzIfoab6l7kvJlObH%2F3tk%2FHv2E2EJGk6sCYTiKVkDG3SFAHO2XwP1sLU8CKw6uH4L7csNo0BYZerz3FiM508ZzIAJDVM6OIR5Zk2gt3ntcAc8EJgYmAJD5pgkuw1gFL7pnlPk4vf4vmg%2BohEw9NCpja7ZzVQ3cNlAO3sseiJkGjVkxAAeQ0HndmrTVlpf6YsnExxohEzfCgVDMi2OIAQWjh7ZmlG1qCrZJFH0RdPtlv%2BFeUx1j2KcR41ZLTNYlWDYxqA%2BjN%2Bn%2BnQjsHOQh7iFXSx7Sx%2BNjD0wVgnE1b36QexrZKmf7PepvnrfQEhxu2zlbaJbLmbHmcdtqu6Y%2BhNhJjKdvJY%2B78vJxevkzkhx4bKq3lfRwhUfsvKfdNN%2BPtmK%2B1tHjurpQc5eXSubMtcUDSAfWiGXsj%2Bo1R2TqwX3)
+- [R web console](https://webr.sh/#code=eJyb2LwkLzE3dXVoXklmSU5qiqFe0JKCxJKMXfoZ%2Bbmp%2BuWpSfGlxalF%2BsjyKYkliUcYANJJF5g%3D)
 
-- [R web console: Dataset and Visualization](https://webr.sh/#code=eJxlkE1OwzAQRsU2pxipLBJRteIAvQELVIRYVhN7mozq2JZnktA1J%2BAO3XED9twLO7AoYuef73vzNO9vF48DfTx7ZXVk7zf7S0TtP7d9GGg7U3sYhdL2%2Bt%2Bi4tfNtAL2ougcoLfgAlqQ3IGcP44OIpoTdiSV4zZhOtfK9jxREmqqagU9TgSYa%2BEEqKA9wZGTKKQwC4Tj8lImCSlUPaGtObEs3YllRMdCECkLgCPfab9ozGzzybJo4nZUDh7QpCACEslw1um66ILWBb0rxDUgSf26eyyozcOCWsP59%2F5SeE1z11EYDjGw17rETXC7px9gsyihMZSHFOmWnTtkJcihcfBVGXJ7TS95E4Y4Ki2FvImUNwV%2FMgOhr%2F9VG%2FgGx5ObnQ%3D%3D)
 
- -->
+

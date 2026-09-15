@@ -6,7 +6,7 @@ format:
   revealjs:
     slide-number: true
     incremental: false
-    footer: "Course Introduction"
+    footer: "Introduction to R"
     theme: ../themes/slides_theme.scss
     transition: convex
     transition-speed: fast

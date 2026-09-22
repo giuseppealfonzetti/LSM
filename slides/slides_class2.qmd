@@ -493,8 +493,7 @@ An Excel file can contain **several sheets**. Pick one with the `sheet` argument
 ```{r}
 #| echo: TRUE
 #| eval: FALSE
-purchases <- read_xlsx(path = path, sheet = "purchases_history")
-products  <- read_xlsx(path = path, sheet = "products")
+data <- read_xlsx(path = my_path, sheet = "sheet_name")
 ```
 
 ## Save your results {style="font-size: 0.5em;"}

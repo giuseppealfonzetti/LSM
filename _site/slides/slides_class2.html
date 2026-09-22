@@ -1710,36 +1710,19 @@ Giuseppe Alfonzetti
 </ul>
 </div>
 </section>
-<section id="reading-text-files-read_csv" class="slide level2" style="font-size: 0.6em;">
-<h2>Reading text files: <code>read_csv()</code></h2>
-<p><code>.csv</code> is the universal text format. Read it with <code>read_csv()</code> from the <code>readr</code> package (loaded with the <code>tidyverse</code>):</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a></a>customers <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;assets/class4/customers.csv&quot;</span>))</span>
-<span id="cb59-2"><a></a>customers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 4
-  customer_id item_1 item_2       item_3
-        &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;        &lt;chr&gt; 
-1           1 bread  milk         banana
-2           2 milk   toilet paper &lt;NA&gt;  </code></pre>
-</div>
-</div>
-<p>R tells you the type it guessed for each column.</p>
-</section>
 <section id="reading-excel-files-read_xlsx" class="slide level2" style="font-size: 0.6em;">
 <h2>Reading Excel files: <code>read_xlsx()</code></h2>
 <p>Proprietary spreadsheets (<code>.xls</code>, <code>.xlsx</code>) need the <code>readxl</code> package:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a></a><span class="fu">library</span>(readxl)</span>
-<span id="cb61-2"><a></a></span>
-<span id="cb61-3"><a></a>path <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;employees.xlsx&quot;</span>)</span>
-<span id="cb61-4"><a></a>dt <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="at">path =</span> path)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a></a><span class="fu">library</span>(readxl)</span>
+<span id="cb59-2"><a></a></span>
+<span id="cb59-3"><a></a>path <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;employees.xlsx&quot;</span>)</span>
+<span id="cb59-4"><a></a>dt <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="at">path =</span> path)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <p>An Excel file can contain <strong>several sheets</strong>. Pick one with the <code>sheet</code> argument:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a></a>purchases <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="at">path =</span> path, <span class="at">sheet =</span> <span class="st">&quot;purchases_history&quot;</span>)</span>
-<span id="cb62-2"><a></a>products  <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="at">path =</span> path, <span class="at">sheet =</span> <span class="st">&quot;products&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a></a>data <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="at">path =</span> my_path, <span class="at">sheet =</span> <span class="st">&quot;sheet_name&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -1747,10 +1730,10 @@ Giuseppe Alfonzetti
 <h2>Save your results</h2>
 <p>Use <code>here()</code> to write files into your project too. Take a result like:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a></a>my_res <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
-<span id="cb63-2"><a></a>    <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
-<span id="cb63-3"><a></a>    <span class="fu">summarise</span>(<span class="at">average_bill_length =</span> <span class="fu">mean</span>(bill_length_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb63-4"><a></a>my_res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a></a>my_res <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
+<span id="cb61-2"><a></a>    <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
+<span id="cb61-3"><a></a>    <span class="fu">summarise</span>(<span class="at">average_bill_length =</span> <span class="fu">mean</span>(bill_length_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb61-4"><a></a>my_res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 2
   species   average_bill_length
@@ -1762,13 +1745,13 @@ Giuseppe Alfonzetti
 </div>
 <p><strong>As an R data object:</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a></a><span class="fu">save</span>(my_res, <span class="at">file =</span> <span class="fu">here</span>(<span class="st">&quot;my_results.rda&quot;</span>))  <span class="co"># save</span></span>
-<span id="cb65-2"><a></a><span class="fu">load</span>(<span class="fu">here</span>(<span class="st">&quot;my_results.rda&quot;</span>))                 <span class="co"># load next time</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a></a><span class="fu">save</span>(my_res, <span class="at">file =</span> <span class="fu">here</span>(<span class="st">&quot;my_results.rda&quot;</span>))  <span class="co"># save</span></span>
+<span id="cb63-2"><a></a><span class="fu">load</span>(<span class="fu">here</span>(<span class="st">&quot;my_results.rda&quot;</span>))                 <span class="co"># load next time</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>As an Excel file:</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a></a><span class="fu">library</span>(writexl)</span>
-<span id="cb66-2"><a></a><span class="fu">write_xlsx</span>(my_res, <span class="at">path =</span> <span class="fu">here</span>(<span class="st">&quot;my_results.xlsx&quot;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a></a><span class="fu">library</span>(writexl)</span>
+<span id="cb64-2"><a></a><span class="fu">write_xlsx</span>(my_res, <span class="at">path =</span> <span class="fu">here</span>(<span class="st">&quot;my_results.xlsx&quot;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section>
 <section>
@@ -1780,11 +1763,11 @@ Giuseppe Alfonzetti
 <h2>Inconsistent column names</h2>
 <p>Real files rarely have tidy names: spaces, random capitalisation, dots…</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a></a>raw <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">`</span><span class="at">Last NAME</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;Curie&quot;</span>, <span class="st">&quot;Franklin&quot;</span>),</span>
-<span id="cb67-2"><a></a>                  <span class="st">`</span><span class="at">First-name</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;Marie&quot;</span>, <span class="st">&quot;Rosalind&quot;</span>),</span>
-<span id="cb67-3"><a></a>                  <span class="st">`</span><span class="at">Seniority</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">7</span>),</span>
-<span id="cb67-4"><a></a>                  <span class="at">check.names =</span> <span class="cn">FALSE</span>)  <span class="co"># keep the messy names as-is</span></span>
-<span id="cb67-5"><a></a>raw</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a></a>raw <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">`</span><span class="at">Last NAME</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;Curie&quot;</span>, <span class="st">&quot;Franklin&quot;</span>),</span>
+<span id="cb65-2"><a></a>                  <span class="st">`</span><span class="at">First-name</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;Marie&quot;</span>, <span class="st">&quot;Rosalind&quot;</span>),</span>
+<span id="cb65-3"><a></a>                  <span class="st">`</span><span class="at">Seniority</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">7</span>),</span>
+<span id="cb65-4"><a></a>                  <span class="at">check.names =</span> <span class="cn">FALSE</span>)  <span class="co"># keep the messy names as-is</span></span>
+<span id="cb65-5"><a></a>raw</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Last NAME First-name Seniority
 1     Curie      Marie        12
@@ -1794,8 +1777,8 @@ Giuseppe Alfonzetti
 <div class="fragment">
 <p><code>clean_names()</code> from the <code>janitor</code> package standardises them to <code>snake_case</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a></a><span class="fu">library</span>(janitor)</span>
-<span id="cb69-2"><a></a><span class="fu">clean_names</span>(raw)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a></a><span class="fu">library</span>(janitor)</span>
+<span id="cb67-2"><a></a><span class="fu">clean_names</span>(raw)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  last_name first_name seniority
 1     Curie      Marie        12
@@ -1808,7 +1791,7 @@ Giuseppe Alfonzetti
 <h2>Missing values</h2>
 <p>Missing entries are stored as <code>NA</code>. <code>summary()</code> reports them column by column:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a></a>my_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a></a>my_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  id ad_type n_clicks sales
 1  1  pop-up       56     7
@@ -1821,7 +1804,7 @@ Giuseppe Alfonzetti
 <div class="fragment">
 <p><strong>Locate</strong> them with <code>is.na()</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a></a><span class="fu">is.na</span>(my_df<span class="sc">$</span>n_clicks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a></a><span class="fu">is.na</span>(my_df<span class="sc">$</span>n_clicks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE FALSE FALSE  TRUE FALSE</code></pre>
 </div>
@@ -1832,9 +1815,9 @@ Giuseppe Alfonzetti
 <h2>Missing values: imputation</h2>
 <p>A common fix is to <strong>replace</strong> missing values with a summary of the column, e.g. its median. With the tidyverse, combine <code>mutate()</code> and <code>replace()</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a></a>my_df <span class="sc">|&gt;</span></span>
-<span id="cb75-2"><a></a>  <span class="fu">mutate</span>(<span class="at">n_clicks =</span> <span class="fu">replace</span>(n_clicks, <span class="fu">is.na</span>(n_clicks),</span>
-<span id="cb75-3"><a></a>                            <span class="fu">median</span>(n_clicks, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a></a>my_df <span class="sc">|&gt;</span></span>
+<span id="cb73-2"><a></a>  <span class="fu">mutate</span>(<span class="at">n_clicks =</span> <span class="fu">replace</span>(n_clicks, <span class="fu">is.na</span>(n_clicks),</span>
+<span id="cb73-3"><a></a>                            <span class="fu">median</span>(n_clicks, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  id ad_type n_clicks sales
 1  1  pop-up     56.0     7

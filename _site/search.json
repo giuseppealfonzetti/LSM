@@ -1266,7 +1266,7 @@
     "href": "slides/slides_class2.html#reading-excel-files-read_xlsx",
     "title": "Data manipulation",
     "section": "Reading Excel files: read_xlsx()",
-    "text": "Reading Excel files: read_xlsx()\nProprietary spreadsheets (.xls, .xlsx) need the readxl package:\n\nlibrary(readxl)\n\npath &lt;- here(\"data\", \"employees.xlsx\")\ndt &lt;- read_xlsx(path = path)\n\n\nAn Excel file can contain several sheets. Pick one with the sheet argument:\n\npurchases &lt;- read_xlsx(path = path, sheet = \"purchases_history\")\nproducts  &lt;- read_xlsx(path = path, sheet = \"products\")"
+    "text": "Reading Excel files: read_xlsx()\nProprietary spreadsheets (.xls, .xlsx) need the readxl package:\n\nlibrary(readxl)\n\npath &lt;- here(\"data\", \"employees.xlsx\")\ndt &lt;- read_xlsx(path = path)\n\n\nAn Excel file can contain several sheets. Pick one with the sheet argument:\n\ndata &lt;- read_xlsx(path = my_path, sheet = \"sheet_name\")"
   },
   {
     "objectID": "slides/slides_class2.html#inconsistent-column-names",

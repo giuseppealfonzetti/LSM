@@ -1,71 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://giuseppealfonzetti.github.io/LSM/assets/class5/homework1.html</loc>
-    <lastmod>2026-09-15T20:25:23.057Z</lastmod>
-  </url>
-  <url>
-    <loc>https://giuseppealfonzetti.github.io/LSM/class6.html</loc>
-    <lastmod>2026-09-15T20:25:23.060Z</lastmod>
-  </url>
-  <url>
-    <loc>https://giuseppealfonzetti.github.io/LSM/slides/slides_class5.html</loc>
-    <lastmod>2026-09-15T20:25:23.072Z</lastmod>
-  </url>
-  <url>
-    <loc>https://giuseppealfonzetti.github.io/LSM/slides/slides_class6.html</loc>
-    <lastmod>2026-09-15T20:25:23.073Z</lastmod>
-  </url>
-  <url>
-    <loc>https://giuseppealfonzetti.github.io/LSM/slides/slides_class3.html</loc>
-    <lastmod>2026-09-15T20:25:23.063Z</lastmod>
-  </url>
-  <url>
-    <loc>https://giuseppealfonzetti.github.io/LSM/class4.html</loc>
-    <lastmod>2026-09-15T20:25:23.060Z</lastmod>
-  </url>
-  <url>
-    <loc>https://giuseppealfonzetti.github.io/LSM/sol3.html</loc>
-    <lastmod>2026-09-15T20:25:23.073Z</lastmod>
-  </url>
-  <url>
-    <loc>https://giuseppealfonzetti.github.io/LSM/class5.html</loc>
-    <lastmod>2026-09-15T20:25:23.060Z</lastmod>
-  </url>
-  <url>
-    <loc>https://giuseppealfonzetti.github.io/LSM/index.html</loc>
-    <lastmod>2026-09-15T20:25:23.061Z</lastmod>
-  </url>
-  <url>
-    <loc>https://giuseppealfonzetti.github.io/LSM/class1.html</loc>
-    <lastmod>2026-09-15T20:25:23.060Z</lastmod>
-  </url>
-  <url>
     <loc>https://giuseppealfonzetti.github.io/LSM/resources.html</loc>
-    <lastmod>2026-09-15T20:25:23.062Z</lastmod>
+    <lastmod>2026-09-22T17:08:23.988Z</lastmod>
   </url>
   <url>
-    <loc>https://giuseppealfonzetti.github.io/LSM/sol4.html</loc>
-    <lastmod>2026-09-15T20:25:23.073Z</lastmod>
+    <loc>https://giuseppealfonzetti.github.io/LSM/sol2.html</loc>
+    <lastmod>2026-09-22T17:08:23.999Z</lastmod>
   </url>
   <url>
     <loc>https://giuseppealfonzetti.github.io/LSM/class3.html</loc>
-    <lastmod>2026-09-15T20:25:23.060Z</lastmod>
-  </url>
-  <url>
-    <loc>https://giuseppealfonzetti.github.io/LSM/slides/slides_class4.html</loc>
-    <lastmod>2026-09-15T20:25:23.072Z</lastmod>
-  </url>
-  <url>
-    <loc>https://giuseppealfonzetti.github.io/LSM/slides/slides_class5bis.html</loc>
-    <lastmod>2026-09-15T20:25:23.072Z</lastmod>
-  </url>
-  <url>
-    <loc>https://giuseppealfonzetti.github.io/LSM/slides/slides_class1.html</loc>
-    <lastmod>2026-09-15T20:25:23.062Z</lastmod>
+    <lastmod>2026-09-22T17:08:23.933Z</lastmod>
   </url>
   <url>
     <loc>https://giuseppealfonzetti.github.io/LSM/assets/class6/homework2.html</loc>
-    <lastmod>2026-09-15T20:25:23.060Z</lastmod>
+    <lastmod>2026-09-22T17:08:23.932Z</lastmod>
+  </url>
+  <url>
+    <loc>https://giuseppealfonzetti.github.io/LSM/sol4.html</loc>
+    <lastmod>2026-09-22T17:08:23.999Z</lastmod>
+  </url>
+  <url>
+    <loc>https://giuseppealfonzetti.github.io/LSM/past_homework.html</loc>
+    <lastmod>2026-09-22T17:08:23.985Z</lastmod>
+  </url>
+  <url>
+    <loc>https://giuseppealfonzetti.github.io/LSM/slides/slides_class3.html</loc>
+    <lastmod>2026-09-22T17:08:23.988Z</lastmod>
+  </url>
+  <url>
+    <loc>https://giuseppealfonzetti.github.io/LSM/slides/slides_class5bis.html</loc>
+    <lastmod>2026-09-22T17:08:23.998Z</lastmod>
+  </url>
+  <url>
+    <loc>https://giuseppealfonzetti.github.io/LSM/slides/slides_class2.html</loc>
+    <lastmod>2026-09-22T17:08:23.988Z</lastmod>
+  </url>
+  <url>
+    <loc>https://giuseppealfonzetti.github.io/LSM/slides/slides_class6.html</loc>
+    <lastmod>2026-09-22T17:08:23.999Z</lastmod>
+  </url>
+  <url>
+    <loc>https://giuseppealfonzetti.github.io/LSM/slides/slides_class1.html</loc>
+    <lastmod>2026-09-22T17:08:23.988Z</lastmod>
+  </url>
+  <url>
+    <loc>https://giuseppealfonzetti.github.io/LSM/slides/slides_class5.html</loc>
+    <lastmod>2026-09-22T17:08:23.998Z</lastmod>
+  </url>
+  <url>
+    <loc>https://giuseppealfonzetti.github.io/LSM/slides/slides_class4.html</loc>
+    <lastmod>2026-09-22T17:08:23.998Z</lastmod>
+  </url>
+  <url>
+    <loc>https://giuseppealfonzetti.github.io/LSM/index.html</loc>
+    <lastmod>2026-09-22T17:08:23.934Z</lastmod>
+  </url>
+  <url>
+    <loc>https://giuseppealfonzetti.github.io/LSM/class1.html</loc>
+    <lastmod>2026-09-22T17:08:23.933Z</lastmod>
+  </url>
+  <url>
+    <loc>https://giuseppealfonzetti.github.io/LSM/assets/class5/homework1.html</loc>
+    <lastmod>2026-09-22T17:08:23.929Z</lastmod>
+  </url>
+  <url>
+    <loc>https://giuseppealfonzetti.github.io/LSM/class2.html</loc>
+    <lastmod>2026-09-22T17:08:23.933Z</lastmod>
+  </url>
+  <url>
+    <loc>https://giuseppealfonzetti.github.io/LSM/sol3.html</loc>
+    <lastmod>2026-09-22T17:08:23.999Z</lastmod>
+  </url>
+  <url>
+    <loc>https://giuseppealfonzetti.github.io/LSM/class4.html</loc>
+    <lastmod>2026-09-22T17:08:23.933Z</lastmod>
   </url>
 </urlset>

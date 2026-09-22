@@ -27,4 +27,4 @@ install.packages("tidyverse")
 - [R-graph-gallery](https://r-graph-gallery.com)
 
 ### Past years :
-- [2025/2026 a.y.](past_homework.qmd)
+- [a.y. 2025/2026](homework2526.qmd)

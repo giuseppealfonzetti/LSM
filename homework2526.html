@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Solutions Lab 4 practice – Laboratory of Statistics and Mathematics 2026/2027</title>
+<title>Past Homework – Laboratory of Statistics and Mathematics 2026/2027</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -25,41 +25,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -170,14 +135,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#practice-1" id="toc-practice-1" class="nav-link active" data-scroll-target="#practice-1">Practice 1</a>
+  <li><a href="#homework-1" id="toc-homework-1" class="nav-link active" data-scroll-target="#homework-1">Homework 1</a>
   <ul class="collapse">
-  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise 1</a></li>
-  <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise 2</a></li>
+  <li><a href="#homework-submission" id="toc-homework-submission" class="nav-link" data-scroll-target="#homework-submission">Homework submission</a></li>
   </ul></li>
-  <li><a href="#practice-2" id="toc-practice-2" class="nav-link" data-scroll-target="#practice-2">Practice 2</a>
+  <li><a href="#homework-2" id="toc-homework-2" class="nav-link" data-scroll-target="#homework-2">Homework 2</a>
   <ul class="collapse">
-  <li><a href="#exercise-1-1" id="toc-exercise-1-1" class="nav-link" data-scroll-target="#exercise-1-1">Exercise 1</a></li>
+  <li><a href="#homework-submission-1" id="toc-homework-submission-1" class="nav-link" data-scroll-target="#homework-submission-1">Homework submission</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -187,7 +151,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Solutions Lab 4 practice</h1>
+<h1 class="title">Past Homework</h1>
 </div>
 
 
@@ -204,231 +168,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="practice-1" class="level2">
-<h2 class="anchored" data-anchor-id="practice-1">Practice 1</h2>
-<p>For importing, use the <code>read_xlsx()</code>function and specify the <code>sheet</code> argument.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># declare where you are in your project folder</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">i_am</span>(<span class="st">"practice1.R"</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># construct the path to your data</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"ecommerce.xlsx"</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># read the two sheets by specifying the "sheet" argument</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>purchases <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="at">path =</span> path, <span class="at">sheet =</span> <span class="st">"purchases_history"</span>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>products  <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="at">path =</span> path, <span class="at">sheet =</span> <span class="st">"products"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<section id="exercise-1" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-1">Exercise 1</h3>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>purchases <span class="ot">&lt;-</span> purchases <span class="sc">|&gt;</span> <span class="fu">clean_names</span>()</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>products <span class="ot">&lt;-</span> products <span class="sc">|&gt;</span> <span class="fu">clean_names</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>To compute the total number of sales by product we can use the <code>group_by()</code> + <code>summarise()</code> combo.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>purchases <span class="sc">|&gt;</span> </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(product) <span class="sc">|&gt;</span> </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">number_of_sales =</span> <span class="fu">n</span>()</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 7 × 2
-  product      number_of_sales
-  &lt;chr&gt;                  &lt;int&gt;
-1 e-reader                  96
-2 earphones                115
-3 laptop_1                  48
-4 laptop_2                  46
-5 smartphone_1              49
-6 smartphone_2              52
-7 tablet                    94</code></pre>
-</div>
-</div>
-<p>There is even a faster way to count how many times the values of a given variable appear in the dataset. Literally, you can pipe the <code>count()</code> function</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>purchases <span class="sc">|&gt;</span> </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(product)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 7 × 2
-  product          n
-  &lt;chr&gt;        &lt;int&gt;
-1 e-reader        96
-2 earphones      115
-3 laptop_1        48
-4 laptop_2        46
-5 smartphone_1    49
-6 smartphone_2    52
-7 tablet          94</code></pre>
-</div>
-</div>
-</section>
-<section id="exercise-2" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-2">Exercise 2</h3>
-<p>To compute the total amount of money spent on each product we first join the two datasets,</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>purchases <span class="sc">|&gt;</span> </span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(products, <span class="at">by =</span> <span class="st">"product"</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 500 × 3
-   customer_id                          product      price_euro
-   &lt;chr&gt;                                &lt;chr&gt;             &lt;dbl&gt;
- 1 944e1d3b-bae6-4922-ace1-0cc9523ea46e earphones          90.0
- 2 30df1184-610a-4363-ab62-966ec7ba686f smartphone_1      500. 
- 3 22ddbf6a-96bc-4dce-a5e0-b2fff156b3ec e-reader          200. 
- 4 675cb97c-b0a5-4803-b82b-4e01dce1000e laptop_2          900. 
- 5 d1a9865c-206a-4d0a-90eb-bae417b8497c laptop_1         2140. 
- 6 739fef95-7049-4614-936b-4e9cb9638185 tablet            520. 
- 7 fda758b9-5abb-45fe-85b1-217bbf62216f e-reader          200. 
- 8 e146f416-4c36-4e82-823e-83e640708119 laptop_2          900. 
- 9 966062bc-ee5e-4b4f-aea6-06abeadb2c08 e-reader          200. 
-10 12774dc9-d219-43a3-a795-afde11084f26 e-reader          200. 
-# ℹ 490 more rows</code></pre>
-</div>
-</div>
-<p>and then comput the totals,</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>purchases <span class="sc">|&gt;</span> </span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(products, <span class="at">by =</span> <span class="st">"product"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(product) <span class="sc">|&gt;</span> </span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">total =</span> <span class="fu">sum</span>(price_euro),</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">total_thousands =</span> <span class="fu">sum</span>(price_euro)<span class="sc">/</span><span class="dv">1000</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 7 × 3
-  product        total total_thousands
-  &lt;chr&gt;          &lt;dbl&gt;           &lt;dbl&gt;
-1 e-reader      19199.            19.2
-2 earphones     10349.            10.3
-3 laptop_1     102720.           103. 
-4 laptop_2      41400.            41.4
-5 smartphone_1  24500.            24.5
-6 smartphone_2  15599.            15.6
-7 tablet        48879.            48.9</code></pre>
-</div>
-</div>
-<p>Equivalently, we can also first count how many items have been sold by product type, as in the previous exercise, and then join the resulting table with the price listings</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>purchases <span class="sc">|&gt;</span> </span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(product) <span class="sc">|&gt;</span> </span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(products)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 7 × 3
-  product          n price_euro
-  &lt;chr&gt;        &lt;int&gt;      &lt;dbl&gt;
-1 e-reader        96      200. 
-2 earphones      115       90.0
-3 laptop_1        48     2140. 
-4 laptop_2        46      900. 
-5 smartphone_1    49      500. 
-6 smartphone_2    52      300. 
-7 tablet          94      520. </code></pre>
-</div>
-</div>
-<p>Once here, we need to compute total by product by multiplying their prices and quantities sold</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>purchases <span class="sc">|&gt;</span> </span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(product) <span class="sc">|&gt;</span> </span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(products) <span class="sc">|&gt;</span> </span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">total_thousands =</span> price_euro <span class="sc">*</span> n <span class="sc">/</span><span class="dv">1000</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 7 × 4
-  product          n price_euro total_thousands
-  &lt;chr&gt;        &lt;int&gt;      &lt;dbl&gt;           &lt;dbl&gt;
-1 e-reader        96      200.             19.2
-2 earphones      115       90.0            10.3
-3 laptop_1        48     2140.            103. 
-4 laptop_2        46      900.             41.4
-5 smartphone_1    49      500.             24.5
-6 smartphone_2    52      300.             15.6
-7 tablet          94      520.             48.9</code></pre>
-</div>
-</div>
+<p>Homework assignments from the previous course, kept here for reference.</p>
+<section id="homework-1" class="level2">
+<h2 class="anchored" data-anchor-id="homework-1">Homework 1</h2>
+<ul>
+<li>Create a new project for this homework;</li>
+<li>Download the <code>.rmd</code> homework document and move it in the new project folder.</li>
+</ul>
+<p><a href="https://uniudamce.sharepoint.com/:u:/s/2025-LABORATORYOFSTATISTICSANDMATHEMATICSid.389714/IQDOuS7agzAtTrEu0aGvLdB-AdAEMtBLnYT0_lNRHcPZLZw?e=PtJloK">link to the rmd</a></p>
+<ul>
+<li>Open it and write your name in the <code>author</code> field.</li>
+<li>Render the file and follow the instructions.</li>
+<li>Do not modify the code chunck before the <code>Solutions</code> section!</li>
+<li>Recall to comment and interpret your results!</li>
+</ul>
+<section id="homework-submission" class="level3">
+<h3 class="anchored" data-anchor-id="homework-submission">Homework submission</h3>
+<p>Send your <code>rmd</code> file at <em>giuseppe.alfonzetti@uniud.it</em> by 15/01/2026.</p>
 </section>
 </section>
-<section id="practice-2" class="level2">
-<h2 class="anchored" data-anchor-id="practice-2">Practice 2</h2>
-<section id="exercise-1-1" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-1-1">Exercise 1</h3>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># declare where you are in your project folder</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">i_am</span>(<span class="st">"practice2.R"</span>)</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># construct the path to your data</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"avocados.xlsx"</span>)</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>avocados <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="at">path =</span> path)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>We need to use <code>pivot_longer()</code> to reshape the data:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>new_avo <span class="ot">&lt;-</span> avocados <span class="sc">|&gt;</span> </span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">c</span>(conventional, organic), </span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"type"</span>, </span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"avg_price"</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    ) </span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>new_avo</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 338 × 3
-   date                type         avg_price
-   &lt;dttm&gt;              &lt;chr&gt;            &lt;dbl&gt;
- 1 2015-01-04 00:00:00 conventional     1.01 
- 2 2015-01-04 00:00:00 organic          1.59 
- 3 2015-01-11 00:00:00 conventional     1.11 
- 4 2015-01-11 00:00:00 organic          1.63 
- 5 2015-01-18 00:00:00 conventional     1.13 
- 6 2015-01-18 00:00:00 organic          1.65 
- 7 2015-01-25 00:00:00 conventional     1.12 
- 8 2015-01-25 00:00:00 organic          1.68 
- 9 2015-02-01 00:00:00 conventional     0.962
-10 2015-02-01 00:00:00 organic          1.53 
-# ℹ 328 more rows</code></pre>
-</div>
-</div>
-<p>Once reshaped, we can plot the price trajectories over time:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>new_avo <span class="sc">|&gt;</span> </span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y=</span>avg_price, <span class="at">col=</span>type))<span class="sc">+</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="sol4_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>As always, we can customise the plots as we prefer:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggokabeito)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>new_avo <span class="sc">|&gt;</span> </span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y=</span>avg_price, <span class="at">col=</span>type))<span class="sc">+</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth=</span><span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>, <span class="at">y=</span> <span class="st">"Average price ($)"</span>, <span class="at">color=</span><span class="st">"Avocado origin:"</span>)<span class="sc">+</span></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"top"</span>, </span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    )<span class="sc">+</span></span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_okabe_ito</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="sol4_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
+<section id="homework-2" class="level2">
+<h2 class="anchored" data-anchor-id="homework-2">Homework 2</h2>
+<ul>
+<li>Create a new project for this homework;</li>
+<li>Download the <code>.rmd</code> homework document and move it in the new project folder.</li>
+</ul>
+<p><a href="https://uniudamce.sharepoint.com/:u:/s/2025-LABORATORYOFSTATISTICSANDMATHEMATICSid.389714/IQCIGHAgpkYMT4Rj0DJg2ouVAW30t0DmPb_uMiIoUwAo4QY?e=NfBDNr">link to the rmd</a></p>
+<ul>
+<li>Open it and write your name in the <code>author</code> field and in the first chunk.</li>
+<li>Render the file and follow the instructions.</li>
+<li>Do not modify the code chunck before the <code>Solutions</code> section!</li>
+<li>Recall to comment and interpret your results!</li>
+</ul>
+<section id="homework-submission-1" class="level3">
+<h3 class="anchored" data-anchor-id="homework-submission-1">Homework submission</h3>
+<p>Send your <code>rmd</code> file at <em>giuseppe.alfonzetti@uniud.it</em> by 15/01/2026.</p>
 
 
 </section>

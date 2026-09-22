@@ -1,0 +1,33 @@
+---
+title: "Past Homework"
+---
+
+Homework assignments from the previous course, kept here for reference.
+
+## Homework Lab 5
+
+- Create a new project for this homework;
+- Download the `.rmd` homework document and move it in the new project folder.
+
+[link to the rmd](https://uniudamce.sharepoint.com/:u:/s/2025-LABORATORYOFSTATISTICSANDMATHEMATICSid.389714/IQDOuS7agzAtTrEu0aGvLdB-AdAEMtBLnYT0_lNRHcPZLZw?e=PtJloK)
+
+- Open it and write your name in the `author` field.
+- Render the file and follow the instructions.
+- Do not modify the code chunck before the `Solutions` section!
+
+### Homework submission
+Send your `rmd` file at *giuseppe.alfonzetti@uniud.it* by 15/01/2026.
+
+## Homework Lab 6
+
+- Create a new project for this homework;
+- Download the `.rmd` homework document and move it in the new project folder.
+
+[link to the rmd](https://uniudamce.sharepoint.com/:u:/s/2025-LABORATORYOFSTATISTICSANDMATHEMATICSid.389714/IQCIGHAgpkYMT4Rj0DJg2ouVAW30t0DmPb_uMiIoUwAo4QY?e=NfBDNr)
+
+- Open it and write your name in the `author` field and in the first chunk.
+- Render the file and follow the instructions.
+- Do not modify the code chunck before the `Solutions` section!
+
+### Homework submission
+Send your `rmd` file at *giuseppe.alfonzetti@uniud.it* by 15/01/2026.

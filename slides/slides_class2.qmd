@@ -1,0 +1,613 @@
+---
+title: "Data manipulation"
+subtitle: "Laboratory of Statistics and Mathematics 2026/2027"
+author: Giuseppe Alfonzetti
+format:
+  revealjs:
+    slide-number: true
+    incremental: false
+    footer: "Data manipulation"
+    theme: ../themes/slides_theme.scss
+    transition: convex
+    transition-speed: fast
+title-slide-attributes:
+    data-background-color: "#1565C0"
+    data-footer: " "
+embed-resources: true
+highlight-style: tango
+---
+
+```{r load}
+library(tidyverse)
+```
+
+
+
+# Rearranging & summarising {background="#1565C0"}
+
+## The `tidyverse` verbs {style="font-size: 0.5em;"}
+
+```{r}
+library(palmerpenguins)
+```
+
+We illustrate with the `penguins` dataset:
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+penguins
+```
+
+## `select()` columns {style="font-size: 0.5em;"}
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+my_penguins <- select(penguins, species, island, sex, bill_length_mm, body_mass_g, year)
+my_penguins
+```
+
+## `filter()` rows {style="font-size: 0.5em;"}
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+filter(my_penguins, sex == "female")
+```
+
+. . .
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+filter(my_penguins, sex == "female", island == "Biscoe")
+```
+
+## `mutate()` new columns {style="font-size: 0.5em;"}
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+mutate(my_penguins, body_mass_kg = body_mass_g / 1000)
+```
+
+. . .
+
+Conditionally, with `replace()`:
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+mutate(my_penguins,
+       bill_length_mm = replace(bill_length_mm, bill_length_mm > 39, 100))
+```
+
+## Pipes `|>` {style="font-size: 0.5em;"}
+
+The pipe passes the result on the left into the next function, so you can chain
+verbs into a readable recipe:
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+#| code-line-numbers: "1|2|3|4|5|6"
+penguins |>
+    select(species, island, sex, body_mass_g, bill_length_mm) |>
+    mutate(body_mass_kg = body_mass_g / 1000) |>
+    filter(sex == "female") |>
+    arrange(bill_length_mm) |>
+    select(-body_mass_g)
+```
+
+. . .
+
+```{r}
+#| echo: FALSE
+#| eval: TRUE
+penguins |>
+    select(species, island, sex, body_mass_g, bill_length_mm) |>
+    mutate(body_mass_kg = body_mass_g / 1000) |>
+    filter(sex == "female") |>
+    arrange(bill_length_mm) |>
+    select(-body_mass_g)
+```
+
+## Summarise by group {style="font-size: 0.5em;"}
+
+`group_by()` + `summarise()` collapse each group to a single row:
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+#| code-line-numbers: "1|2|3"
+penguins |>
+    group_by(species) |>
+    summarise(average_bill_length = mean(bill_length_mm, na.rm = TRUE))
+```
+
+. . .
+
+```{r}
+#| echo: FALSE
+#| eval: TRUE
+penguins |>
+    group_by(species) |>
+    summarise(average_bill_length = mean(bill_length_mm, na.rm = TRUE))
+```
+
+## Mutate by group {style="font-size: 0.5em;"}
+
+`group_by()` + `mutate()` keep every row but compute within each group:
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+penguins |>
+    select(species, island, bill_length_mm) |>
+    group_by(species) |>
+    mutate(
+        species_average = mean(bill_length_mm, na.rm = TRUE),
+        dist_from_average = bill_length_mm - species_average
+        )
+```
+
+# Working with multiple data frames {background="#1565C0"}
+
+## Case study {style="font-size: 0.6em;"}
+
+```{r}
+professions <- read_csv(here::here("assets/class4/professions.csv"))
+dates <- read_csv(here::here("assets/class4/dates.csv"))
+works <- read_csv(here::here("assets/class4/works.csv"))
+```
+
+Information about 10 women in science who changed the world — spread across
+**three** datasets:
+
+```{r}
+#| echo: TRUE
+professions |> select(name)
+```
+
+## Information spread across three datasets {style="font-size: 0.7em;"}
+::: {.panel-tabset}
+
+### Professions
+```{r}
+#| echo: TRUE
+professions
+```
+
+### Dates
+```{r}
+#| echo: TRUE
+dates
+```
+
+### Works
+```{r}
+#| echo: TRUE
+works
+```
+
+:::
+
+## Desired output {style="font-size: 0.6em;"}
+
+```{r}
+#| echo: FALSE
+professions |>
+    left_join(dates) |>
+    left_join(works)
+```
+
+## Joining data frames {style="font-size: 0.6em;"}
+
+- `left_join()`: all rows from x
+- `right_join()`: all rows from y
+- `full_join()`: all rows from both x and y
+- `inner_join()`: only rows with a match in both
+- `semi_join()`: rows from x with a match in y, keeping only x's columns
+- `anti_join()`: rows from x with **no** match in y
+
+## Example {style="font-size: 0.6em;"}
+
+::: {.columns}
+::: {.column width="50%"}
+
+```{r}
+x <- data.frame(
+  id = c(1, 2, 3),
+  value_x = c("x1", "x2", "x3")
+  )
+```
+
+```{r}
+#| echo=TRUE
+x
+```
+:::
+::: {.column width="50%"}
+
+```{r}
+y <- data.frame(
+  id = c(1, 2, 4),
+  value_y = c("y1", "y2", "y4")
+  )
+```
+
+```{r}
+#| echo=TRUE
+y
+```
+:::
+:::
+
+## `left_join()` {style="font-size: 0.8em;"}
+
+::: {.columns}
+::: {.column width="50%"}
+![](../assets/class4/left-join.gif)
+:::
+::: {.column width="40%"}
+
+```{r}
+#| echo=TRUE
+x |>
+    left_join(y)
+```
+
+:::
+:::
+
+## `right_join()` {style="font-size: 0.8em;"}
+
+::: {.columns}
+::: {.column width="50%"}
+![](../assets/class4/right-join.gif)
+:::
+::: {.column width="40%"}
+
+```{r}
+#| echo=TRUE
+x |>
+    right_join(y)
+```
+
+:::
+:::
+
+## `full_join()` {style="font-size: 0.8em;"}
+
+::: {.columns}
+::: {.column width="50%"}
+![](../assets/class4/full-join.gif)
+:::
+::: {.column width="40%"}
+
+```{r}
+#| echo=TRUE
+x |>
+    full_join(y)
+```
+
+:::
+:::
+
+## `inner_join()` {style="font-size: 0.8em;"}
+
+::: {.columns}
+::: {.column width="50%"}
+![](../assets/class4/inner-join.gif)
+:::
+::: {.column width="40%"}
+
+```{r}
+#| echo=TRUE
+x |>
+    inner_join(y)
+```
+
+:::
+:::
+
+## `semi_join()` {style="font-size: 0.8em;"}
+
+::: {.columns}
+::: {.column width="50%"}
+![](../assets/class4/semi-join.gif)
+:::
+::: {.column width="40%"}
+
+```{r}
+#| echo=TRUE
+x |>
+    semi_join(y)
+```
+
+:::
+:::
+
+## `anti_join()` {style="font-size: 0.8em;"}
+
+::: {.columns}
+::: {.column width="50%"}
+![](../assets/class4/anti-join.gif)
+:::
+::: {.column width="40%"}
+
+```{r}
+#| echo=TRUE
+x |>
+    anti_join(y)
+```
+
+:::
+:::
+
+## Back to the data {style="font-size: 0.8em;"}
+
+```{r}
+#| echo=TRUE
+professions |>
+    left_join(dates) |>  # join by name
+    left_join(works)     # join by name
+```
+
+# Pivoting {background="#1565C0"}
+
+```{r}
+customers <- read_csv(here::here("assets/class4/customers.csv"))
+prices <- read_csv(here::here("assets/class4/prices.csv"))
+```
+
+## Case study {style="font-size: 0.8em;"}
+
+::: {.columns}
+::: {.column width="50%"}
+
+```{r}
+#| echo=TRUE
+customers
+```
+
+:::
+::: {.column width="40%"}
+
+```{r}
+#| echo=TRUE
+prices
+```
+:::
+:::
+
+## Desired output {style="font-size: 0.8em;"}
+
+```{r}
+#| echo=FALSE
+customers |>
+  pivot_longer(cols = item_1:item_3, names_to = "item_id", values_to = "item") |>
+  left_join(prices)
+```
+
+## From wide to long: `pivot_longer()` {style="font-size: 0.8em;"}
+
+::: {.columns}
+::: {.column width="50%"}
+
+```{r}
+customers
+```
+
+:::
+::: {.column width="50%"}
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+#| code-line-numbers: "2,6|3|4|5"
+purchases <- customers |>
+  pivot_longer(
+    cols = c(item_1, item_2, item_3),  # columns to pivot
+    names_to = "item_id",              # names -> new column item_id
+    values_to = "item"                 # values -> new column item
+    )
+purchases
+```
+:::
+:::
+
+## From long to wide: `pivot_wider()` {style="font-size: 0.8em;"}
+
+Going back from purchases to customers:
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+#| code-line-numbers: "1|2,5|3|4"
+purchases |>
+  pivot_wider(
+    names_from = "item_id",   # column names
+    values_from = "item"      # values in columns
+    )
+```
+
+## Putting it together {style="font-size: 0.8em;"}
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+purchases |>
+  left_join(prices)
+```
+
+# Import {background="#1565C0"}
+
+## Work inside an R Project {style="font-size: 0.6em;"}
+
+Before reading any data, organise your work in an **RStudio Project**: a folder
+that contains your scripts *and* your data.
+
+- `File -> New Project ...` in RStudio creates the project folder.
+- Move your data file (e.g. `employees.xlsx`) inside that folder.
+
+. . .
+
+The `here` package builds file paths **relative to the project root**, so you
+never hard-code absolute paths like `C:/Users/...` and never need `setwd()`. The
+same code then runs on any machine or collaborator's laptop:
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+library(here)
+
+i_am("practice1.R")               # declare where this script lives
+path <- here("data", "employees.xlsx")  # build the path to the data
+path
+```
+
+- `i_am()` tells `here` which file you're running, so it can locate the root.
+- `here("data", "employees.xlsx")` then always points to `<project>/data/employees.xlsx`.
+
+
+
+## Reading Excel files: `read_xlsx()` {style="font-size: 0.6em;"}
+
+Proprietary spreadsheets (`.xls`, `.xlsx`) need the `readxl` package:
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+library(readxl)
+
+path <- here("data", "employees.xlsx")
+dt <- read_xlsx(path = path)
+```
+
+. . .
+
+An Excel file can contain **several sheets**. Pick one with the `sheet` argument:
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+purchases <- read_xlsx(path = path, sheet = "purchases_history")
+products  <- read_xlsx(path = path, sheet = "products")
+```
+
+## Save your results {style="font-size: 0.5em;"}
+
+Use `here()` to write files into your project too. Take a result like:
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+my_res <- penguins |>
+    group_by(species) |>
+    summarise(average_bill_length = mean(bill_length_mm, na.rm = TRUE))
+my_res
+```
+
+**As an R data object:**
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+save(my_res, file = here("my_results.rda"))  # save
+load(here("my_results.rda"))                 # load next time
+```
+
+**As an Excel file:**
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+library(writexl)
+write_xlsx(my_res, path = here("my_results.xlsx"))
+```
+
+# Cleaning {background="#1565C0"}
+
+## Inconsistent column names {style="font-size: 0.55em;"}
+
+Real files rarely have tidy names: spaces, random capitalisation, dots...
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+raw <- data.frame(`Last NAME` = c("Curie", "Franklin"),
+                  `First-name` = c("Marie", "Rosalind"),
+                  `Seniority` = c(12, 7),
+                  check.names = FALSE)  # keep the messy names as-is
+raw
+```
+
+. . .
+
+`clean_names()` from the `janitor` package standardises them to `snake_case`:
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+library(janitor)
+clean_names(raw)
+```
+
+## Missing values {style="font-size: 0.55em;"}
+
+Missing entries are stored as `NA`. `summary()` reports them column by column:
+
+```{r}
+#| echo: FALSE
+#| eval: TRUE
+my_df <- data.frame(
+    id = 1:5,
+    ad_type = c("pop-up", "banner", "video", "banner", "pop-up"),
+    n_clicks = c(56, 23, 321, NA, 10),
+    sales = c(7, NA, 25, 10, 23))
+```
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+my_df
+```
+
+. . .
+
+**Locate** them with `is.na()`:
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+is.na(my_df$n_clicks)
+```
+
+## Missing values: imputation {style="font-size: 0.55em;"}
+
+A common fix is to **replace** missing values with a summary of the column, e.g.
+its median. With the tidyverse, combine `mutate()` and `replace()`:
+
+```{r}
+#| echo: TRUE
+#| eval: TRUE
+my_df |>
+  mutate(n_clicks = replace(n_clicks, is.na(n_clicks),
+                            median(n_clicks, na.rm = TRUE)))
+```
+
+. . .
+
+Remember: any operation involving `NA` returns `NA`, so always pass
+`na.rm = TRUE` to the summary function.
+
+
+# Hands-on {background="#1565C0"}
+
+## Practice
+
+- Connect to [https://giuseppealfonzetti.github.io/LSM/](https://giuseppealfonzetti.github.io/LSM/)
+
+- Click on the "Material" [(💻)](https://giuseppealfonzetti.github.io/LSM/class2.html) icon corresponding to today lab.

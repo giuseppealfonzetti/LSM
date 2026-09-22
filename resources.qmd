@@ -25,3 +25,6 @@ install.packages("tidyverse")
 ### Other resources:
 - [Why should I use R?](https://www.jumpingrivers.com/blog/comparing-r-excel-data-wrangling/)
 - [R-graph-gallery](https://r-graph-gallery.com)
+
+### Past years :
+- [2025/2026 a.y.](past_homework.qmd)

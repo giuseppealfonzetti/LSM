@@ -1,5 +1,8 @@
 project:
   type: website
+  render:
+    - "*.qmd"
+    - "!assets/"
 
 website:
   title: "Laboratory of Statistics and Mathematics 2026/2027"
@@ -12,6 +15,8 @@ website:
     contents:
       - href: index.qmd
         text: Schedule
+      - href: homework.qmd
+        text: Homework
       - href: resources.qmd
         text: Resources
   page-footer: 

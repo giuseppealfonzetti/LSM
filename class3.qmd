@@ -1,265 +1,172 @@
 ---
 title: "Resources for Lab 3"
 
-execute: 
+execute:
   warning: false
   message: false
 ---
 
-```{r}
-#| echo: FALSE
-knitr::opts_chunk$set(
-    out.width = "50%", #
-    fig.width = 4,     # reasonable size
-    fig.asp = 0.618,   # golden ratio
-    fig.align = "right" # mostly what I want
-)
-```
-
-
-
 ::: {.cell .page-columns .page-full .column-screen .grey-section}
 
-### Practice 1
+### Practice: the employees report
+
+In Lab 2 you analysed the employees of two companies with R scripts. Now you will turn that analysis into a **report**: a single `.Rmd` file that mixes text, code and results, and that you can re-knit whenever the data change.
+
+You need the two datasets from Lab 2. If you no longer have them, download them again:
 
 ```{r}
 #| echo: FALSE
-#| eval: TRUE
-library(tidyverse)
 library(downloadthis)
 
-
-library(randomNames)
-
-set.seed(1)
-n <- 150
-depts <- c('Marketing', 'Accounting', 'Sales', 'Finance', 'HR', 'I.T.')
-
-base_salary <- 50000
-
-salary_depts <- tibble(
-  department = depts, 
-  dept_base_salary = rnorm(length(depts), mean = base_salary, sd = 5000),
-  slope = runif(length(depts), 1000, 10000)  
+download_file(
+  path = "assets/class2/employees.xlsx",
+  button_label = "Download employees.xlsx",
+  button_type = "success",
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  class = "button_small"
 )
 
-empl <- tibble(full_name = randomNames(n)) |> 
-  distinct() |> 
-  separate(full_name, into = c("last_name", "first_name"), sep = ", ") |> 
-  mutate(
-    department = sample(depts, n, replace = TRUE),
-    seniority = sample(0:15, size = n, replace = TRUE)
-  ) |> 
-  left_join(salary_depts, by = "department") |> 
-  mutate(
-    salary = dept_base_salary + slope * seniority + rnorm(n, 0, 3000),
-    ID = 1000 + row_number()
-  ) |> 
-    select(-dept_base_salary, -slope)
-writexl::write_xlsx(empl, "assets/class2/employees.xlsx")
-
-empl|> 
-    download_this(
-    output_name = "employees",
-    output_extension = ".xlsx",
-    button_label = "Download employees.xlsx",
-    button_type = "success",
-    has_icon = TRUE,
-    icon = "fa fa-save",
-    class = "button_small"
-  )
+download_file(
+  path = "assets/class3/raw_data_employees.xlsx",
+  output_name = "employees_company2",
+  button_label = "Download employees_company2.xlsx",
+  button_type = "success",
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  class = "button_small"
+)
 ```
 
+**Before you start**
 
-- Download the `employees.xlsx`.
-- Create an R Project where to analyse the `employees.xlsx` dataset and move the `xlsx` file within the project directory.
-- Get the path to the data using the `here()` function.
-- Import the dataset in R with the `read_xlsx()` function.
+- Open the R Project you used in Lab 2: double-click its `.Rproj` file, or use *File > Open Project...* in RStudio. Check that the project name appears in the top-right corner of RStudio.
+- Put both Excel files in the `data` folder of the project, renaming the second one `employees_company2.xlsx` if needed. Your project should look like this:
+
+```
+my_project/
+├── my_project.Rproj
+├── report.Rmd          <- you will create this now
+└── data/
+    ├── employees.xlsx
+    └── employees_company2.xlsx
+```
+
+- Go to *File > New File > R Markdown...*. In the window that opens, choose *Document*, set the title to "Employees report", write your name as author, select *HTML* and click *OK*. If RStudio asks to install some packages, accept.
+- RStudio opens an example document. Save it with *File > Save* as `report.Rmd`, directly in the project folder (not inside `data`).
+- Click **Knit**. An HTML page with the example content should open, and a `report.html` file appears next to `report.Rmd`.
+- Now look at the example: the YAML header between `---`, the text, the grey code chunks. Then delete everything **below** the first code chunk (the one starting with ```` ```{r setup, include=FALSE} ````).
 
 ::: {.panel-tabset}
 ##### Exercise 1
 
-- How many observations are collected in the dataset? Use the `dim()` function.
+Setup.
 
-- What's the average salary in the company? Use either the function `mean()`or `summary()`
+- Add a table of contents to the output by editing the YAML header. Replace the line `output: html_document` with the following (indentation matters: use 2 spaces per level):
+
+```yaml
+output:
+  html_document:
+    toc: true
+```
+
+- Complete the `setup` chunk so that it loads the packages, declares where the report is and imports the data. Replace each `___` with the right value:
+
+````markdown
+```{{r setup, include=FALSE}}
+knitr::opts_chunk$set(echo = TRUE)
+
+# packages
+library(tidyverse)
+library(here)
+library(readxl)
+library(janitor)
+
+# declare where this file is within the project
+i_am("___")
+
+# import the data
+dt <- read_xlsx(here("___", "___"))
+```
+````
+
+- Before knitting, run the chunk with the green ▶ button in its top-right corner, then type `dt` in the console. Do you see the data? Knit only when the chunk works.
+- The `setup` chunk has the option `include=FALSE`. Knit the document: do you see the code or the data anywhere? What does this option do?
+- Change `echo = TRUE` into `echo = FALSE, message = FALSE` in `knitr::opts_chunk$set()`. You will see the effect in the next exercises: the code of all the following chunks will be hidden.
+
+::: {.callout-tip collapse="true"}
+## Common errors when knitting
+
+- `` `path` does not exist ``: the file is not where you said it is. Check that `employees.xlsx` is inside the `data` folder (or in whatever folder matching your `here()` call), that the name is spelled exactly the same (capital letters matter), and that `report.Rmd` is in the project folder.
+- `Could not find associated project in working directory`: the file name in `i_am()` does not match the name of your `.Rmd`, or you are not working inside the R Project.
+- `object 'dt' not found`: knitting starts from an empty session and ignores what you ran in the console. Every object the report uses must be created by a chunk in the `.Rmd`, above the chunk that uses it.
+- `there is no package called ...`: install the missing package from the console with `install.packages()`. Never put `install.packages()` inside the `.Rmd`.
+:::
 
 ##### Exercise 2
 
-- Use `filter()` and `arrange()` to check who are the three top earners in the `I.T` department.
+Write a section called `## Overview` with a short paragraph reporting:
 
-- Use `group_by()`,  `summarise()` and `median()` to get the median salary in the `I.T.` department.
+- the number of employees in the company,
+- their average salary,
+- the number of new hires (employees with `seniority` equal to 0).
 
-Using `geom_point()`, construct a scatterplot for salary and seniority, colored by department. Store it in `my_plot`. Try adding a theme to the plot, for example:
+Do not type any number by hand: use inline R code, for example
 
-```{r}
-#| echo: TRUE
-#| eval: FALSE
-my_plot + theme_minimal()
-```
+````markdown
+The company employs `r knitr::inline_expr("nrow(dt)")` people.
+````
 
-What happens?
-
-- Use `labs()` to modify the labels of the plot. For example:
-
-```{r}
-#| echo: TRUE
-#| eval: FALSE
-my_plot + theme_minimal() + labs(x="Seniority (years)", y="Salary", color="Department:")
-```
-
-- Use `facet_grid()` to create a multi-window plot
-
-```{r}
-#| echo: TRUE
-#| eval: FALSE
-my_plot + facet_grid(~department)
-```
-
-- Export your plot with the function `ggsave()`
-
-```{r}
-#| echo: TRUE
-#| eval: FALSE
-my_great_plot <- my_plot + theme_minimal() + labs(x="Seniority (years)", y="Salary", color="Department:")+ facet_grid(~department)
-
-ggsave(my_great_plot, filename = here("great_plot.jpeg"))
-
-```
+What happens to the average salary if you just use `round(mean(dt$salary))`? Try `format()` with the `big.mark` argument.
 
 ##### Exercise 3
 
-- Use `group_by()` and `summarise()` to compute the average and total expenditure for salaries by department
+Write a section called `## Salaries by department`.
+
+- Add a chunk that computes the summary table of Lab 2 (median salary, number of employees and number of new hires by department) and prints it with `knitr::kable()`. Use the `digits` and `col.names` arguments to make it readable.
+- Add a chunk with the bar plot of the median salary by department. Give it a caption with the chunk option `fig.cap`:
+
+````markdown
+```{{r median-plot, fig.cap="Median salary by department"}}
+...
+```
+````
 
 ##### Exercise 4
 
-- How many employees have just been hired in the company?
+Below the plot, write a bullet list of key findings.
 
-- How many employees have just been hired in the I.T. department?
-
-- Compute the average salary of employees from the Finance department with at least 8 years seniority.
+- One item should state which department has the highest median salary, in **bold**. Compute the name in a chunk and store it in an object (for example `top_dept`), then use it with inline code.
+- Add the salary vs seniority scatterplot, faceted by department, from Lab 2.
+- Add a link to the [tidyverse website](https://www.tidyverse.org/).
 
 ##### Exercise 5
 
-Create a summary table where you report:
+HR now wants the same report for company 2.
 
-- the median salary by department (using the function `median()`), 
-
-- the number of employees by department (using the function `n()`), 
-
-- the number of new hired by department.
-
-Save it as an excel file via the `write_xlsx()` function.
+- In the *Files* pane of RStudio, tick `report.Rmd` and use *More > Copy...* to make a copy called `report_company2.Rmd`. Open the copy, change the title in the YAML header, and change `i_am("report.Rmd")` into `i_am("report_company2.Rmd")`.
+- First, try the naive way: in the `setup` chunk of the copy, replace `employees.xlsx` with `employees_company2.xlsx` and knit. Why does it fail? (Look at the column names of the two files.)
+- Fix it: in the `setup` chunk, clean the column names of the company 2 data with `clean_names()` and replace the missing salaries with the median salary of their department, as you did in [Lab 2](sol2.qmd#exercise-2-1). Store the result in `dt` and knit again.
+- Open `report.html` and `report_company2.html` side by side. You now have two complete reports, one per company, but you only wrote the text once: every number, table and plot was updated by R. That's why we write reports in R Markdown!
 
 ##### Exercise 6
 
-Given the summary table in the previous exercise, 
-reproduce the following bar plot of the median salary by department (hint: use `geom_col()`).
+The readers of the company 2 report should know that some salaries were imputed. In `report_company2.Rmd`, write a section called `## Data quality`.
+
+- The `setup` chunk already replaced the missing salaries in `dt`. To count them, add a new chunk that reads the raw file again into `dt2`, cleaning the names but without imputing. You don't need `i_am()` again: it is already in the `setup` chunk.
 
 ```{r}
-#| echo: FALSE
-#| eval: TRUE
-#| fig-align: right
-#| fig-width: 4
-#| fig-height: 2
-
-empl |> 
-    group_by(department) |> 
-    summarise(median_salary=median(salary)) |> 
-    ggplot(aes(x=department, y=median_salary)) +
-    geom_col()
+#| eval: FALSE
+dt2 <- read_xlsx(here("___", "___")) |>
+    clean_names()
 ```
+
+- In a sentence, report how many salaries are missing (inline code again). Hint: `is.na()` returns `TRUE` for each missing value, and `sum()` counts the `TRUE`s.
+- Show a table with, for each department, the number of missing salaries, the average salary before the imputation (from `dt2`, with `na.rm = TRUE`) and after it (from `dt`). Hint: compute two summary tables by department and join them with `left_join()`.
 
 ##### Exercise 7
 
-You have to create an Excel file where employees from different department are collected in different sheets.
-
-In R, you can create multi-sheets Excel files by feeding `write_xlsx()` with a list of datasets. Assume you stored the original `employees.xlsx`dataset in the dataframe `dt`. Now, try running
-
-```{r}
-#| echo: TRUE
-#| eval: FALSE
-my_departments <- split(dt, dt$department)
-```
-
-- What does the `split()`function do? Run `?split()` to read the documentation.
-
-- What kind of object is stored in `my_departments`? Run `typeof(my_departments)` to investigate.
-
-- Feed `write_xlsx()` with `my_departments`to create a multi-sheet Excel file.
-
-:::
-:::
-
-
-::: {.cell .page-columns .page-full .column-screen .grey-section}
-
-### Practice 2
-
-```{r}
-#| echo: FALSE
-#| eval: TRUE
-library(tidyverse)
-library(downloadthis)
-
-
-library(randomNames)
-
-set.seed(3)
-n <- 200
-depts <- c('Marketing', 'Accounting', 'Sales', 'Finance', 'HR', 'I.T.')
-
-base_salary <- 50000
-
-salary_depts <- tibble(
-  department = depts, 
-  dept_base_salary = rnorm(length(depts), mean = base_salary, sd = 5000),
-  slope = runif(length(depts), 1000, 10000)  
-)
-
-empl <- tibble(full_name = randomNames(n)) |> 
-  distinct() |> 
-  separate(full_name, into = c("last_name", "first_name"), sep = ", ") |> 
-  mutate(
-    department = sample(depts, n, replace = TRUE),
-    seniority = sample(0:15, size = n, replace = TRUE)
-  ) |> 
-  left_join(salary_depts, by = "department") |> 
-  mutate(
-    salary = dept_base_salary + slope * seniority + rnorm(n, 0, 3000),
-    ID = 1000 + row_number()
-  ) |> 
-    select(-dept_base_salary, -slope) |> 
-    mutate(salary=map_dbl(salary, ~if_else(rbinom(1,1,.9)==0, NA, .x))) |> 
-    rename(`Last NAME`=last_name, `First-name`=first_name, `Seniority`=seniority)
-writexl::write_xlsx(empl, "assets/class3/raw_data_employees.xlsx")
-
-empl|> 
-    download_this(
-    output_name = "employees_company2",
-    output_extension = ".xlsx",
-    button_label = "Download employees_company2.xlsx",
-    button_type = "success",
-    has_icon = TRUE,
-    icon = "fa fa-save",
-    class = "button_small"
-  )
-```
-
-- The HR department sent you the employees file from a different company.
-- Download the `employees_company2.xlsx` and import it in R.
-- As you can see, the file has a structure that is very similar to the previous database. Nevertheless, it presents two critical issues:
-    - Column names do not follow a consistent notation. Sometimes they are capitalized, sometimes they are not. Some times they includes spaces, sometimes they do not. 
-    - There are missing values
-
-::: {.panel-tabset}
-##### Exercise 1
-
-Use the function `clean_names()` from the `janitor` package to tidy up column names automatically
-
-##### Exercise 2
-
-- How many missing values are present in the salary column? Use the `summary()` function.
-- Replace missing values with the median salary of department the missing value belongs to.
+- Change the output of one of the reports to `word_document` and knit. Compare the result with the HTML version.
 
 :::
 :::

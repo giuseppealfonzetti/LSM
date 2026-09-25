@@ -1,0 +1,162 @@
+---
+title: "Laboratory of Statistics and Mathematics - Data analysis report A"
+author: "Write here your name"
+output:
+  pdf_document:
+    toc: true
+---
+
+```{r student-id}
+# write your student ID (matricola) here, e.g. student_id <- 123456
+student_id <- NA
+```
+
+```{r setup, include=FALSE}
+# do not modify this!
+knitr::opts_chunk$set(
+    echo = TRUE,
+    message = FALSE,
+    warning = FALSE,
+    out.width = "80%",
+    fig.width = 7,
+    fig.asp = 0.6,
+    fig.align = "center"
+)
+```
+
+```{r dataset, echo=FALSE}
+# do not modify this!
+if (is.na(as.integer(student_id))) stop("Write your student ID in the first chunk of the document.")
+set.seed(as.integer(student_id))
+
+library(tidyverse)
+
+hw_data <- local({
+  n_users <- 1500
+
+  cities    <- c("Milano", "Torino", "Padova", "Udine", "Treviso", "Trieste")
+  city_size <- c(0.30, 0.22, 0.15, 0.12, 0.11, 0.10) * exp(rnorm(6, 0, 0.1))
+  city_eff  <- c(0.20, 0.10, 0, 0, -0.05, -0.05) + rnorm(6, 0, 0.1)
+  city_time <- c(3, 2, 0, -2, -1, -2) + rnorm(6, 0, 1)
+  names(city_eff) <- names(city_time) <- cities
+  city <- sample(cities, size = n_users, replace = TRUE, prob = city_size)
+
+  device <- sample(c("mobile", "desktop"), size = n_users, replace = TRUE, prob = c(0.7, 0.3))
+  age <- round(rnorm(n_users, mean = 35, sd = 10))
+  age <- pmin(pmax(age, 18), 70)
+
+  coupon_num <- rbinom(n_users, size = 1, prob = 0.3)
+  coupon <- factor(coupon_num, levels = c(0, 1), labels = c("no_coupon", "coupon"))
+
+  avg_delivery_time <- rnorm(n_users, mean = 35, sd = 7) +
+    unname(city_time[city]) +
+    ifelse(device == "mobile", -1, 1)
+  avg_delivery_time <- pmax(avg_delivery_time, 15)
+
+  coupon_eff <- pmax(0.6 - 0.03 * (age - 35), 0.05) * runif(1, 0.8, 1.2)
+  log_mu_orders <- log(1.5) +
+    coupon_num * coupon_eff +
+    ifelse(device == "mobile", runif(1, 0.2, 0.5), 0) -
+    0.015 * (age - 35) -
+    0.02 * (avg_delivery_time - 35) +
+    unname(city_eff[city])
+  n_orders <- rnbinom(n_users, size = 1, mu = exp(log_mu_orders))
+
+  spend_per_order <- rlnorm(n_users, meanlog = log(25), sdlog = 0.35) *
+    (1 + 0.005 * (age - 35)) *
+    if_else(coupon == "coupon", 0.9, 1)
+  total_spent <- n_orders * spend_per_order * exp(rnorm(n_users, 0, 0.1))
+  total_spent[n_orders == 0] <- 0
+
+  delivery_data <- tibble(
+    user_id           = as.character(1:n_users),
+    city              = city,
+    device            = device,
+    age               = age,
+    coupon            = coupon,
+    n_orders          = n_orders,
+    total_spent       = round(total_spent, 2),
+    avg_delivery_time = round(avg_delivery_time, 1)
+  )
+
+  user_data <- delivery_data |> select(user_id, age, city)
+  user_data <- user_data[sample(1:n_users, size = n_users), ]
+  delivery_data <- delivery_data |> select(-age, -city)
+  delivery_data <- delivery_data[sample(1:n_users, size = n_users), ]
+
+  list(user_data = user_data, delivery_data = delivery_data)
+})
+
+user_data <- hw_data$user_data
+delivery_data <- hw_data$delivery_data
+rm(hw_data)
+```
+
+# Instructions
+
+## Intro
+
+A food-delivery company ran a discount-coupon campaign. At the beginning of the month, a share of its users received a coupon giving a discount on their orders. During the month, the company collected data about its users across different cities. The company needs to understand whether the campaign has been effective from a business perspective.
+
+The data are stored in two data frames, `user_data` and `delivery_data`, which are already available in your environment once you run the chunks above:
+
+```{r glimpse}
+head(user_data)
+head(delivery_data)
+```
+
+Each row of `user_data` describes a user:
+
+- `user_id`: the unique identifier of the user;
+- `age`: age of the user;
+- `city`: city of the user.
+
+Each row of `delivery_data` describes the activity of a user during the month:
+
+- `user_id`: the unique identifier of the user;
+- `device`: the device most used by the user;
+- `coupon`: whether the user received the coupon or not;
+- `n_orders`: number of orders placed by the user during the month;
+- `total_spent`: total amount of money (euros) spent by the user during the month;
+- `avg_delivery_time`: average delivery time (minutes) of the user's orders.
+
+## Tasks
+
+Answer the following questions in the [Solutions](#solutions) section. For each question:
+
+- show the code you used;
+- present your results with tables (`knitr::kable()`) and/or plots, whichever you find more appropriate;
+- **interpret the results in words**, reporting the relevant numbers with inline R code (do not type numbers by hand).
+
+1. Join the two data frames into a single one. How many users does it contain? Check that no user has been lost.
+2. Produce a table with the number and percentage of users who received the coupon, overall and by city.
+3. Compute the share of users who placed at least one order, for coupon and non-coupon users. Show it with a bar plot.
+4. Split the users into two age groups (under 35 and 35 or older). Does the difference found in question 3 hold in both groups? Show it with a plot.
+5. Focus on the users who placed at least one order. For coupon and non-coupon users, compute the mean and median of the total expenditure and of the average order value (total expenditure divided by the number of orders). Use a plot to compare the distributions of the average order value.
+6. Among the users who placed at least one order, compute the percentage of heavy users (more than five orders), for coupon and non-coupon users.
+7. Does the picture change between mobile and desktop users? Produce a table with one row per device, the share of users with at least one order among coupon and non-coupon users in two separate columns, and their difference in a third column (hint: `pivot_wider()`).
+8. Summarise your results. The coupon lowers the price of each order, but it may increase the number of orders: compare the average revenue per user between coupon and non-coupon users. Would you recommend running the campaign again?
+
+**Do not modify the chunks above this section.** Knit the document to PDF and submit both the `.Rmd` and the `.pdf` files.
+
+# Solutions
+
+```{r}
+library(tidyverse)
+```
+
+## Question 1
+
+## Question 2
+
+## Question 3
+
+## Question 4
+
+## Question 5
+
+## Question 6
+
+## Question 7
+
+## Question 8

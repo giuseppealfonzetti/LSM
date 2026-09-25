@@ -1,0 +1,146 @@
+---
+title: "Laboratory of Statistics and Mathematics - Data analysis report B"
+author: "Write here your name"
+output:
+  pdf_document:
+    toc: true
+---
+
+```{r student-id}
+# write your student ID (matricola) here, e.g. student_id <- 123456
+student_id <- NA
+```
+
+```{r setup, include=FALSE}
+# do not modify this!
+knitr::opts_chunk$set(
+    echo = TRUE,
+    message = FALSE,
+    warning = FALSE,
+    out.width = "80%",
+    fig.width = 7,
+    fig.asp = 0.6,
+    fig.align = "center"
+)
+```
+
+```{r dataset, echo=FALSE}
+# do not modify this!
+if (is.na(as.integer(student_id))) stop("Write your student ID in the first chunk of the document.")
+set.seed(as.integer(student_id))
+
+library(tidyverse)
+
+hw_data <- local({
+  cells <- tribble(
+    ~platform,   ~audience, ~base_ctr, ~base_imp, ~uplift,
+    "Google",    "Young",   0.040,      5000,     0.03,
+    "Google",    "Adult",   0.045,      7000,     0.03,
+    "Google",    "Senior",  0.040,      6000,     0.03,
+    "Facebook",  "Young",   0.010,      3000,     0.06,
+    "Facebook",  "Adult",   0.020,      7000,     0.06,
+    "Facebook",  "Senior",  0.025,      8000,     0.06,
+    "Instagram", "Young",   0.025,      9000,     0.12,
+    "Instagram", "Adult",   0.018,      6000,     0.12,
+    "Instagram", "Senior",  0.008,      2000,     0.12,
+    "TikTok",    "Young",   0.030,     12000,     0.15,
+    "TikTok",    "Adult",   0.015,      5000,     0.15,
+    "TikTok",    "Senior",  0.005,      1500,     0.15
+  ) |>
+    mutate(
+      base_ctr = base_ctr * exp(rnorm(n(), 0, 0.15)),
+      base_imp = base_imp * exp(rnorm(n(), 0, 0.15)),
+      uplift   = uplift * exp(rnorm(n(), 0, 0.2))
+    )
+
+  n_ads <- 50
+  ad_quality <- exp(rnorm(n_ads, 0, 0.2))
+
+  campaigns <- tibble(
+    ad_id    = sample(1:n_ads, 200, replace = TRUE),
+    platform = sample(unique(cells$platform), 200, replace = TRUE),
+    audience = sample(unique(cells$audience), 200, replace = TRUE)
+  ) |>
+    distinct() |>
+    left_join(cells, by = c("platform", "audience"))
+
+  simulate_month <- function(lift) {
+    campaigns |>
+      mutate(
+        impressions = rpois(n(), base_imp * exp(rnorm(n(), 0, 0.3))),
+        ctr         = base_ctr * ad_quality[ad_id] * exp(rnorm(n(), 0, 0.1)) * (1 + lift * uplift),
+        clicks      = as.numeric(rbinom(n(), impressions, pmin(ctr, 1))),
+        clicks      = if_else(runif(n()) < 0.05, NA, clicks)
+      ) |>
+      select(ad_id, platform, audience, impressions, clicks)
+  }
+
+  ads_data <- simulate_month(lift = 0)
+  ads_data_speedup <- simulate_month(lift = 1)
+  ads_data_speedup <- ads_data_speedup[sample(1:nrow(ads_data_speedup)), ]
+
+  list(ads_data = ads_data, ads_data_speedup = ads_data_speedup)
+})
+
+ads_data <- hw_data$ads_data
+ads_data_speedup <- hw_data$ads_data_speedup
+rm(hw_data)
+```
+
+# Instructions
+
+## Intro
+
+In October, your company ran a variety of online ad campaigns across different platforms (Google, Facebook, Instagram, TikTok). Each campaign used one of the company's ads (identified by `ad_id`) on one platform, targeting one audience segment (Young, Adult, Senior).
+
+For each campaign, you recorded the number of *impressions* (how many times the ad was shown) and *clicks* (how many times it was clicked). These allow you to compute the [click-through rate (CTR)](https://en.wikipedia.org/wiki/Click-through_rate), that is the share of impressions converted into clicks. It is the main indicator of the performance of an ad. Some campaigns have missing click counts, because of tracking issues. The October data are collected in `ads_data`:
+
+```{r glimpse-october}
+head(ads_data)
+```
+
+At the end of October, the engineering team optimised the company servers to reduce the loading time of the ads. In November, the company ran the same campaigns again, and collected the results in `ads_data_speedup`:
+
+```{r glimpse-november}
+head(ads_data_speedup)
+```
+
+Both data frames are already available in your environment once you run the chunks above. Each row is a campaign, identified by the combination of `ad_id`, `platform` and `audience`. Columns denote:
+
+- `ad_id`: the identifier of the ad;
+- `platform`: the platform where the ad was shown;
+- `audience`: the targeted audience segment;
+- `impressions`: number of times the ad was shown during the month;
+- `clicks`: number of times the ad was clicked during the month.
+
+## Tasks
+
+Answer the following questions in the [Solutions](#solutions) section. For each question:
+
+- show the code you used;
+- present your results with tables (`knitr::kable()`) and/or plots, whichever you find more appropriate;
+- **interpret the results in words**, reporting the relevant numbers with inline R code (do not type numbers by hand).
+
+1. How many campaigns have missing clicks, in October and in November? Decide how to handle them: you can either drop them, or impute them using the median CTR of the campaigns with the same platform and audience. Explain your choice.
+2. Compute the CTR of each October campaign. Then compare two ways of summarising the overall performance: the mean of the campaign CTRs, and the total number of clicks divided by the total number of impressions. Are they equal? Why?
+3. How does the October CTR vary across platforms and across audiences? Produce a table with one row per platform and one column per audience (hint: `pivot_wider()`), and a plot. Which combinations perform best and worst?
+4. Did the server speed-up improve the performance of the campaigns? Join the October and November data, so that each row contains both months for the same campaign, and compute the change in CTR of each campaign. How many campaigns does the joined data contain? If it differs from the number of campaigns in the original data, explain why. Report the share of campaigns whose CTR improved, overall and by platform, and show the distribution of the changes with a plot.
+5. Summarise your results. Where would you invest the next advertising budget, and did the speed-up pay off?
+
+**Do not modify the chunks above this section.** Knit the document to PDF and submit both the `.Rmd` and the `.pdf` files.
+
+# Solutions
+
+```{r}
+library(tidyverse)
+```
+
+## Question 1
+
+## Question 2
+
+## Question 3
+
+## Question 4
+
+## Question 5

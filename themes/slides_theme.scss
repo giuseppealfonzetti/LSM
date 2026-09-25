@@ -50,3 +50,8 @@ $presentation-heading-color: $theme_blue !default;
   padding: 0.5em 1em;
   margin-bottom: 0.5em;
 }
+
+// kable() tables inherit the slide text size: shrink them to match code output
+.reveal .small-table table {
+  font-size: 0.6em;
+}

@@ -1,0 +1,62 @@
+---
+title: "Homework"
+---
+
+Two data analysis reports, each worth up to **1 additional point** on the final exam (2 points in total). Each homework generates **your own dataset** from your student ID, so every student works on different data.
+
+```{r}
+#| echo: FALSE
+htmltools::tagList(lapply(c("homework_A.Rmd", "homework_B.Rmd"), \(f)
+  downloadthis::download_file(
+    path = file.path("assets/homework", f),
+    button_label = paste("Download", f),
+    button_type = "success",
+    has_icon = TRUE,
+    icon = "fa fa-save",
+    class = "button_small"
+  )
+))
+```
+
+| Homework | Topic | Deadline |
+|---|---|---|
+| A | Effectiveness of a discount-coupon campaign | TBD |
+| B | Performance of online ad campaigns | TBD |
+
+## Instructions
+
+1. Create a new R Project for each homework, and move the downloaded `.Rmd` file into the project folder.
+2. Open the `.Rmd`, write your name in the `author` field of the YAML header, and your student ID (matricola) in the first chunk: `student_id <- 123456`.
+3. Knit the document. The data are created by the chunks at the top of the file, and the instructions and questions follow.
+4. Write your answers in the **Solutions** section, at the end of the document. **Do not modify the chunks above it**: they generate your data.
+5. Knit to PDF and check the result.
+
+## Knitting to PDF
+
+The homework must be knitted to PDF, which requires LaTeX. Install it once, from the R console:
+
+```{r}
+#| eval: FALSE
+install.packages("tinytex")
+tinytex::install_tinytex()
+```
+
+Then restart RStudio. The first knit can take a while, because missing LaTeX packages are downloaded automatically.
+
+::: {.callout-tip}
+## Tips
+
+- Code lines are not wrapped in the PDF: keep them short, and break long function calls over several lines.
+- If you really cannot install LaTeX, change the output to `word_document`, knit, and save the Word file as PDF.
+:::
+
+## Submission
+
+Send both the `.Rmd` and the `.pdf` files to *giuseppe.alfonzetti@uniud.it* by the deadline.
+
+## Evaluation
+
+Each homework is evaluated from 0 to 1 point:
+
+- **Code and reporting (0.5 points)**: the `.Rmd` knits without errors; the code is correct and readable; tables and plots are clear, with meaningful labels; numbers in the text come from inline R code, not typed by hand.
+- **Interpretation and insights (0.5 points)**: every result is explained in words; the conclusions answer the business questions and are supported by the numbers.

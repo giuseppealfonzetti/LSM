@@ -6,3 +6,6 @@
 .quarto
 
 /.quarto/
+
+# homework model solutions: keep out of the public repo
+homework_solutions/

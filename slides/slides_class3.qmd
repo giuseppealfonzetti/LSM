@@ -1,14 +1,13 @@
 ---
-title: "Data manipulation"
-subtitle: "Laboratory of Statistics and Mathematics 2025/2026"
+title: "Automatic reporting"
+subtitle: "Laboratory of Statistics and Mathematics 2026/2027"
 author: Giuseppe Alfonzetti
-format: 
+format:
   revealjs:
     slide-number: true
-    incremental: false   
-    footer: "Data manipulation"
+    incremental: false
+    footer: "Automatic reporting"
     theme: ../themes/slides_theme.scss
-    highlight-style: arrow-light
     transition: convex
     transition-speed: fast
 title-slide-attributes:
@@ -16,435 +15,377 @@ title-slide-attributes:
     data-footer: " "
 embed-resources: true
 highlight-style: tango
-
 ---
 
-## R basics - filtering {style="font-size: 0.5em;"}
-
-Consider the `data.frame`
-```{r}
-#| echo: FALSE
-#| eval: TRUE
-var0 <- 1:5
-var1 <- c("pop-up", "banner", "video", "banner", "pop-up")
-var2 <- c(56, 23, 321, 89, 10)
-var3 <- c(7,2,25, 10, 23)
-var4 <- c(TRUE, FALSE, FALSE, TRUE, TRUE)
-my_df <- data.frame(
-    "id" = var0,
-    "ad_type"= var1, 
-    "n_clicks"=var2, 
-    "sales"=var3, 
-    "weekend"=var4)
-```
-```{r}
-#| echo: TRUE
-#| eval: TRUE
-my_df
-```
-
-. . .
-
-**Create a filter:**
-
-```{r}
-#| echo: TRUE
-#| eval: TRUE
-my_df$ad_type == "banner"
-```
-
-. . .
-
-```{r}
-#| echo: TRUE
-#| eval: TRUE
-my_filter = my_df$sales > 20
-my_filter
-```
-
-. . . 
-
-**View:**
-
-```{r}
-#| echo: TRUE
-#| eval: TRUE
-my_df[my_filter, ]
-```
-
-. . .
-
-**Overwrite:**
-
-```{r}
-#| echo: TRUE
-#| eval: TRUE
-my_df[my_filter, ]$ad_type = c("banner", "banner")
-my_df
-```
-
-## R basics - Missing values {style="font-size: 0.5em;"}
-
-Consider the `data.frame`
-
-```{r}
-var0 <- 1:5
-var1 <- c("pop-up", "banner", "video", "banner", "pop-up")
-var2 <- c(56, 23, 321, NA, 10)
-var3 <- c(7,NA,25, 10, 23)
-var4 <- c(TRUE, FALSE, FALSE, TRUE, TRUE)
-my_df <- data.frame(
-    "id" = var0,
-    "ad_type"= var1, 
-    "n_clicks"=var2, 
-    "sales"=var3, 
-    "weekend"=var4)
-```
-
-```{r}
-#| echo: TRUE
-#| eval: TRUE
-my_df
-```
-
-. . .
-
-```{r}
-#| echo: TRUE
-#| eval: TRUE
-summary(my_df)
-```
-
-
-## R basics - Missing values {style="font-size: 0.5em;"}
-
-Consider the `data.frame`
-
-```{r}
-var0 <- 1:5
-var1 <- c("pop-up", "banner", "video", "banner", "pop-up")
-var2 <- c(56, 23, 321, NA, 10)
-var3 <- c(7,NA,25, 10, 23)
-var4 <- c(TRUE, FALSE, FALSE, TRUE, TRUE)
-my_df <- data.frame(
-    "id" = var0,
-    "ad_type"= var1, 
-    "n_clicks"=var2, 
-    "sales"=var3, 
-    "weekend"=var4)
-```
-
-```{r}
-#| echo: TRUE
-#| eval: TRUE
-my_df
-```
-
-
-**Locate:**
-
-```{r}
-#| echo: TRUE
-#| eval: TRUE
-clicks_missing <- is.na(my_df$n_clicks)
-clicks_missing
-```
-
-. . .
-
-**Replace:**
-
-```{r}
-#| echo: TRUE
-#| eval: TRUE
-my_df$n_clicks[clicks_missing] <- median(my_df$n_clicks, na.rm=TRUE)
-my_df
-```
-
-
-## Data manipulation with `tidyverse` {style="font-size: 0.5em;"}
-
-```{r}
-library(palmerpenguins)
-```
-
-Consider this dataset:
-
-```{r}
-#| echo: TRUE
-#| eval: TRUE
+```{r load}
 library(tidyverse)
-penguins
+library(readxl)
+dt <- read_xlsx("../assets/class2/employees.xlsx")
 ```
 
-**Select:**
+# Why reports from code? {background="#1565C0"}
 
-```{r}
-#| echo: TRUE
-#| eval: TRUE
-my_penguins <- select(penguins, species, island, sex, bill_length_mm, body_mass_g, year)
-my_penguins
-```
+## The copy-paste workflow {style="font-size: 0.6em;"}
 
-## Data manipulation with `tidyverse` {style="font-size: 0.5em;"}
+In Lab 2 you computed summaries and plots in an R script. To share them, you would:
 
-**Filter:**
-
-```{r}
-#| echo: TRUE
-#| eval: TRUE
-filter(my_penguins, sex=="female")
-```
+1. run the script,
+2. copy the numbers into a Word document,
+3. export the plots with `ggsave()` and paste them in,
+4. write the comments around them.
 
 . . .
 
-```{r}
-#| echo: TRUE
-#| eval: TRUE
-filter(my_penguins, sex=="female", island=="Biscoe")
-```
-
-## Data manipulation with `tidyverse` {style="font-size: 0.5em;"}
-
-**Mutate:**
-
-```{r}
-#| echo: TRUE
-#| eval: TRUE
-mutate(my_penguins, body_mass_kg=body_mass_g/1000)
-```
+Then HR sends you a new version of the data...
 
 . . .
 
-```{r}
-#| echo: TRUE
-#| eval: TRUE
-mutate(my_penguins, body_mass_g=body_mass_g+1)
-```
+- every number, table and plot must be copied again, by hand;
+- sooner or later, a number in the text no longer matches the data.
 
-## Data manipulation with `tidyverse` {style="font-size: 0.5em;"}
+## The R Markdown workflow {style="font-size: 0.6em;"}
 
-**Mutate according to logical conditions:**
+One `.Rmd` file contains **text**, **code** and (after knitting) **results**.
 
-```{r}
-#| echo: TRUE
-#| eval: TRUE
-my_penguins
-```
-
-. . . 
-
-```{r}
-#| echo: TRUE
-#| eval: TRUE
-mutate(
-    my_penguins, 
-    bill_length_mm = replace(bill_length_mm, bill_length_mm>39, 100)
-)
-```
-
-
-## Data manipulation with `tidyverse` {style="font-size: 0.5em;"}
-
-**Replace Missing values**
-
-```{r}
-#| echo: TRUE
-#| eval: TRUE
-my_penguins
-```
+- The numbers in the text are computed by R when the document is created.
+- New data? Click **Knit** again: everything updates.
+- The analysis is *reproducible*: anyone with the `.Rmd` and the data gets the same report.
 
 . . .
 
-```{r}
-#| echo: TRUE
-#| eval: TRUE
-mutate(my_penguins, body_mass_g_filled = replace(body_mass_g, is.na(body_mass_g), median(body_mass_g, na.rm=TRUE)))
+The text is written in **markdown**, a simple syntax for formatted text.
+
+# Markdown basics {background="#1565C0"}
+
+## Headers and emphasis {style="font-size: 0.6em;"}
+
+:::: {.columns}
+::: {.column width="50%"}
+**You write**
+
+```markdown
+# Section
+
+## Subsection
+
+### Sub-subsection
+
+Text in *italic*, in **bold**
+and in `code`.
 ```
+:::
+::: {.column width="50%"}
+**You get**
 
-## Data manipulation with `tidyverse` {style="font-size: 0.5em;"}
+<span style="font-size:1.6em;font-weight:bold;">Section</span>
 
-**Replace Missing values**
+<span style="font-size:1.3em;font-weight:bold;">Subsection</span>
 
-```{r}
-#| echo: TRUE
-#| eval: TRUE
-mutate(
-    my_penguins, 
-    body_mass_g = replace(body_mass_g, is.na(body_mass_g), median(body_mass_g, na.rm=TRUE)),
-    bill_length_mm = replace(bill_length_mm, is.na(bill_length_mm), median(bill_length_mm, na.rm=TRUE))
-)
-```
+<span style="font-size:1.1em;font-weight:bold;">Sub-subsection</span>
 
-## Data manipulation with `tidyverse` {style="font-size: 0.5em;"}
-
-**Pipes:**
-
-```{r}
-#| echo: TRUE
-#| eval: TRUE
-penguins
-```
+Text in *italic*, in **bold**
+and in `code`.
+:::
+::::
 
 . . .
+
+Leave an empty line between paragraphs: a single line break is ignored.
+
+## Lists {style="font-size: 0.6em;"}
+
+:::: {.columns}
+::: {.column width="50%"}
+**You write**
+
+```markdown
+- first item
+- second item
+    - nested item
+
+1. first step
+2. second step
+```
+:::
+::: {.column width="50%"}
+**You get**
+
+- first item
+- second item
+    - nested item
+
+1. first step
+2. second step
+:::
+::::
+
+. . .
+
+Lists need an empty line before them, and nested items must be indented by 4 spaces.
+
+## Links, images and tables {style="font-size: 0.6em;"}
+
+:::: {.columns}
+::: {.column width="50%"}
+**You write**
+
+```markdown
+Visit [R4DS](https://r4ds.hadley.nz/).
+
+![](data_science.png){width=40%}
+
+| Dept.   | Employees |
+|---------|-----------|
+| Finance | 32        |
+| HR      | 21        |
+```
+:::
+::: {.column width="50%"}
+**You get**
+
+Visit [R4DS](https://r4ds.hadley.nz/).
+
+![](../assets/ds_life_cycle.png){width=40%}
+
+| Dept.   | Employees |
+|---------|-----------|
+| Finance | 32        |
+| HR      | 21        |
+:::
+::::
+
+. . .
+
+Typing tables by hand is fine for small, fixed content. Tables from data are made by R (more on this later).
+
+## Math {style="font-size: 0.6em;"}
+
+:::: {.columns}
+::: {.column width="50%"}
+**You write**
+
+```markdown
+The sample mean is $\bar{x}$.
+
+$$
+\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i
+$$
+```
+:::
+::: {.column width="50%"}
+**You get**
+
+The sample mean is $\bar{x}$.
+
+$$
+\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i
+$$
+:::
+::::
+
+. . .
+
+Single `$` for math inside a sentence, double `$$` for a centred equation.
+
+# R Markdown {background="#1565C0"}
+
+## Anatomy of an `.Rmd` file {style="font-size: 0.55em;"}
+
+````markdown
+---
+title: "Employees report"
+author: "Giuseppe Alfonzetti"
+output: html_document
+---
+
+## Overview
+
+We analyse the salaries of the company employees.
+
+```{{r}}
+library(readxl)
+dt <- read_xlsx("employees.xlsx")
+summary(dt$salary)
+```
+````
+
+1. **YAML header**, between `---`: title, author, output format.
+2. **Text**, written in markdown.
+3. **Code chunks**, between ```` ```{r} ```` and ```` ``` ````: R code, run when you knit.
+
+## Knitting {style="font-size: 0.6em;"}
+
+- Create a new file: *File > New File > R Markdown...*
+- Click **Knit** (or `Ctrl/Cmd + Shift + K`).
+- R runs every chunk from top to bottom, **in a new, clean session**, and writes an `.html` file next to the `.Rmd`.
+
+. . .
+
+Consequences:
+
+- objects in your environment are **not** visible to the report: the `.Rmd` must load packages and read the data itself;
+- if a chunk throws an error, knitting stops. Run the chunks one by one (green ▶ button) to debug.
+
+## Paths when knitting {style="font-size: 0.6em;"}
+
+When knitting, the working directory is the folder of the `.Rmd` file. As in Lab 2, use `here()` to build paths from the project root:
 
 ```{r}
 #| echo: TRUE
 #| eval: FALSE
-#| code-line-numbers: "1|2|3|4|5|6"
-penguins |> 
-    select(species, island, sex, body_mass_g, bill_length_mm) |> 
-    mutate(body_mass_kg=body_mass_g/1000) |> 
-    filter(sex=="female") |> 
-    arrange(bill_length_mm) |> 
-    select(-body_mass_g)
+library(here)
+i_am("report.Rmd")
+
+dt <- read_xlsx(here("data", "employees.xlsx"))
 ```
 
 . . .
 
-```{r}
-#| echo: FALSE
-#| eval: TRUE
-penguins |> 
-    select(species, island, sex, body_mass_g, bill_length_mm) |> 
-    mutate(body_mass_kg=body_mass_g/1000) |> 
-    filter(sex=="female") |> 
-    arrange(bill_length_mm)|> 
-    select(-body_mass_g)
+The report now knits correctly wherever you save it within the project.
+
+## Chunk options {style="font-size: 0.6em;"}
+
+Options go in the chunk header and control what appears in the output:
+
+````markdown
+```{{r salary-plot, echo=FALSE, fig.cap="Salary by seniority"}}
+ggplot(dt, aes(x = seniority, y = salary)) + geom_point()
 ```
+````
 
+| Option | Effect |
+|---|---|
+| `echo=FALSE` | hide the code, show the results |
+| `eval=FALSE` | show the code, do not run it |
+| `include=FALSE` | run the code, show nothing |
+| `message=FALSE`, `warning=FALSE` | hide messages and warnings |
+| `fig.width`, `fig.height`, `fig.cap` | figure size (inches) and caption |
 
-## Groupwise manipulation {style="font-size: 0.5em;"}
+## The `setup` chunk {style="font-size: 0.6em;"}
 
-**Summarise by group:**
-```{r}
-#| echo: TRUE
-#| eval: FALSE
-#| code-line-numbers: "1|2|3"
-penguins |> 
-    group_by(species) |> 
-    summarise(average_bill_length = mean(bill_length_mm))
+Set default options for **all** chunks once, at the top of the document:
+
+````markdown
+```{{r setup, include=FALSE}}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+
+library(tidyverse)
+library(here)
+library(readxl)
+
+i_am("report.Rmd")
+dt <- read_xlsx(here("data", "employees.xlsx"))
 ```
+````
 
 . . .
 
-```{r}
-#| echo: FALSE
-#| eval: TRUE
-penguins |> 
-    group_by(species) |> 
-    summarise(average_bill_length = mean(bill_length_mm))
-```
+A single chunk can still override the default, e.g. ```` ```{r, echo=TRUE} ````.
+
+## Inline R code {style="font-size: 0.6em;"}
+
+Put R results directly in a sentence with `` `r ` ``:
+
+:::: {.columns}
+::: {.column width="50%"}
+**You write**
+
+````markdown
+The company employs `r knitr::inline_expr("nrow(dt)")` people,
+`r knitr::inline_expr("sum(dt$seniority == 0)")` of them hired this year.
+````
+:::
+::: {.column width="50%"}
+**You get**
+
+The company employs `r nrow(dt)` people,
+`r sum(dt$seniority == 0)` of them hired this year.
+:::
+::::
 
 . . .
 
-```{r}
-#| echo: TRUE
-#| eval: FALSE
-#| code-line-numbers: "3"
-penguins |> 
-    group_by(species) |> 
-    summarise(average_bill_length = mean(bill_length_mm, na.rm=TRUE))
-```
+:::: {.columns}
+::: {.column width="50%"}
+````markdown
+Average salary: `r knitr::inline_expr("round(mean(dt$salary))")`
+
+Average salary: `r knitr::inline_expr('format(round(mean(dt$salary)), big.mark = ",")')`
+````
+:::
+::: {.column width="50%"}
+Average salary: `r round(mean(dt$salary))`
+
+Average salary: `r format(round(mean(dt$salary)), big.mark = ",")`
+:::
+::::
 
 . . .
 
-```{r}
-#| echo: FALSE
-#| eval: TRUE
-penguins |> 
-    group_by(species) |> 
-    summarise(average_bill_length = mean(bill_length_mm, na.rm=TRUE))
-```
+**Never type a number by hand**: if the data change, inline code updates, typed numbers don't.
 
+## Tables {style="font-size: 0.6em;"}
 
-## Groupwise manipulation {style="font-size: 0.5em;"}
+A data frame printed in a chunk looks like console output. `knitr::kable()` turns it into a proper table:
 
-**Mutate by group:**
-```{r}
-#| echo: TRUE
-#| eval: FALSE
-#| code-line-numbers: "1|2|3|4"
-penguins |> 
-    select(species, island, bill_length_mm) |> 
-    group_by(species) |> 
-    mutate(species_average_bill_length = mean(bill_length_mm, na.rm=TRUE))
-```
-
-. . .
-
-```{r}
-#| echo: FALSE
-#| eval: TRUE
-penguins |> 
-    select(species, island, bill_length_mm) |> 
-    group_by(species) |> 
-    mutate(species_average_bill_length = mean(bill_length_mm, na.rm=TRUE))
-```
-
-. . .
-
-```{r}
-#| echo: TRUE
-#| eval: FALSE
-#| code-line-numbers: "5|6"
-penguins |> 
-    select(species, island, bill_length_mm) |> 
-    group_by(species) |> 
-    mutate(
-        species_average_bill_length = mean(bill_length_mm, na.rm=TRUE),
-        dist_from_species_average = bill_length_mm - species_average_bill_length
-        )
-```
-
-. . .
-
-```{r}
-#| echo: FALSE
-#| eval: TRUE
-penguins |> 
-    select(species, island, bill_length_mm) |> 
-    group_by(species) |> 
-    mutate(
-        species_average_bill_length = mean(bill_length_mm, na.rm=TRUE),
-        dist_from_species_average = bill_length_mm - species_average_bill_length
-        )
-```
-
-
-## Save objects {style="font-size: 0.5em;"}
-
-
+:::: {.columns}
+::: {.column width="50%"}
 ```{r}
 #| echo: TRUE
 #| eval: TRUE
-my_res <- penguins |> 
-    group_by(species) |> 
-    summarise(average_bill_length = mean(bill_length_mm, na.rm=TRUE))
-my_res
+report_table <- dt |>
+    group_by(department) |>
+    summarise(med_sal = median(salary), total_n = n())
+
+report_table
 ```
-
-**Store as an `R` data object:**
-
+:::
+::: {.column width="50%"}
 ```{r}
 #| echo: TRUE
-#| eval: FALSE
-# To save the object in your current project folder under the name "my_results.rda"
-save(my_res, here("my_results.rda"))
-
-# To load the object when you need it next time
-load(here("my_results.rda"))
+#| eval: TRUE
+#| classes: small-table
+knitr::kable(report_table, digits = 0,
+             col.names = c("Department", "Median salary",
+                           "Employees"))
 ```
+:::
+::::
+
+## Output formats {style="font-size: 0.6em;"}
+
+The `output` field of the YAML header chooses the format:
+
+:::: {.columns}
+::: {.column width="50%"}
+```yaml
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    code_folding: hide
+```
+:::
+::: {.column width="50%"}
+```yaml
+output: word_document
+```
+:::
+::::
+
+- `html_document`: table of contents (`toc`), floating on the side (`toc_float`), code hidden behind a button (`code_folding`).
+- `word_document`: a `.docx` you can keep editing in Word.
+- `pdf_document` also exists, but it requires LaTeX on your laptop: run `install.packages("tinytex")` and then `tinytex::install_tinytex()`.
+
 
 . . .
 
-**Store as an `Excel` file:**
+Same `.Rmd`, different outputs: the content does not change.
 
-```{r}
-#| echo: TRUE
-#| eval: FALSE
+# Hands-on {background="#1565C0"}
 
-# To save the object in a spreadsheet in your current project folder under the name "my_results.rda"
-write_xlsx(my_res, path = here("my_results.xlsx"))
-```
+## Practice
 
+- Connect to [https://giuseppealfonzetti.github.io/LSM/](https://giuseppealfonzetti.github.io/LSM/)
+
+- Click on the "Material" [(💻)](https://giuseppealfonzetti.github.io/LSM/class3.html) icon corresponding to today lab.

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Resources – Laboratory of Statistics and Mathematics 2026/2027</title>
+<title>Homework – Laboratory of Statistics and Mathematics 2026/2027</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -70,7 +70,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./homework.html" rel="prev">
+<link href="./resources.html" rel="next">
+<link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -108,6 +109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="site_libs/font-awesome-6.7.2/js/script.js"></script>
 
 
 <link rel="stylesheet" href="styles.css">
@@ -122,7 +124,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./resources.html">Resources</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./homework.html">Homework</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -155,13 +157,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./homework.html" class="sidebar-item-text sidebar-link">
+  <a href="./homework.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Homework</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./resources.html" class="sidebar-item-text sidebar-link active">
+  <a href="./resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
@@ -175,10 +177,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#install-r-rstudio-and-r-packages" id="toc-install-r-rstudio-and-r-packages" class="nav-link active" data-scroll-target="#install-r-rstudio-and-r-packages">Install R, Rstudio, and R packages</a></li>
-  <li><a href="#textbooks-about-r" id="toc-textbooks-about-r" class="nav-link" data-scroll-target="#textbooks-about-r">Textbooks about R</a></li>
-  <li><a href="#other-resources" id="toc-other-resources" class="nav-link" data-scroll-target="#other-resources">Other resources:</a></li>
-  <li><a href="#past-years" id="toc-past-years" class="nav-link" data-scroll-target="#past-years">Past years :</a></li>
+  <li><a href="#instructions" id="toc-instructions" class="nav-link active" data-scroll-target="#instructions">Instructions</a></li>
+  <li><a href="#knitting-to-pdf" id="toc-knitting-to-pdf" class="nav-link" data-scroll-target="#knitting-to-pdf">Knitting to PDF</a></li>
+  <li><a href="#submission" id="toc-submission" class="nav-link" data-scroll-target="#submission">Submission</a></li>
+  <li><a href="#evaluation" id="toc-evaluation" class="nav-link" data-scroll-target="#evaluation">Evaluation</a></li>
   </ul>
 </nav>
     </div>
@@ -187,7 +189,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Resources</h1>
+<h1 class="title">Homework</h1>
 </div>
 
 
@@ -204,49 +206,129 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="install-r-rstudio-and-r-packages" class="level3">
-<h3 class="anchored" data-anchor-id="install-r-rstudio-and-r-packages">Install R, Rstudio, and R packages</h3>
-<ul>
-<li>Install <em>R</em> and <em>Rstudio</em>: install R and Rstudio on your personal laptop! For a guide, see for example <a href="https://moderndive.com/v2/getting-started.html">this tutorial</a> (Sections 1.1-1.3) and get familiar with Rstudio interface. If you prefer a video tutorial, check it <a href="https://www.youtube.com/playlist?list=PLRPB0ZzEYegOZivdelOuEn-R-XUN-DOjd">here</a>. `in</li>
-<li>In R console, install useful <em>packages</em>, with the <code>install.packages()</code> command. Run</li>
-</ul>
+<p>Two data analysis reports, each worth up to <strong>1 additional point</strong> on the final exam (2 points in total). Each homework generates <strong>your own dataset</strong> from your student ID, so every student works on different data.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<button class="btn btn-success button_small" onclick="
+    async function downloadFile(event) {
+      event.preventDefault();
+      try {
+        const response = await fetch('data:text/x-markdown;base64,LS0tCnRpdGxlOiAiTGFib3JhdG9yeSBvZiBTdGF0aXN0aWNzIGFuZCBNYXRoZW1hdGljcyAtIERhdGEgYW5hbHlzaXMgcmVwb3J0IEEiCmF1dGhvcjogIldyaXRlIGhlcmUgeW91ciBuYW1lIgpvdXRwdXQ6CiAgcGRmX2RvY3VtZW50OgogICAgdG9jOiB0cnVlCi0tLQoKYGBge3Igc3R1ZGVudC1pZH0KIyB3cml0ZSB5b3VyIHN0dWRlbnQgSUQgKG1hdHJpY29sYSkgaGVyZSwgZS5nLiBzdHVkZW50X2lkIDwtIDEyMzQ1NgpzdHVkZW50X2lkIDwtIE5BCmBgYAoKYGBge3Igc2V0dXAsIGluY2x1ZGU9RkFMU0V9CiMgZG8gbm90IG1vZGlmeSB0aGlzIQprbml0cjo6b3B0c19jaHVuayRzZXQoCiAgICBlY2hvID0gVFJVRSwKICAgIG1lc3NhZ2UgPSBGQUxTRSwKICAgIHdhcm5pbmcgPSBGQUxTRSwKICAgIG91dC53aWR0aCA9ICI4MCUiLAogICAgZmlnLndpZHRoID0gNywKICAgIGZpZy5hc3AgPSAwLjYsCiAgICBmaWcuYWxpZ24gPSAiY2VudGVyIgopCmBgYAoKYGBge3IgZGF0YXNldCwgZWNobz1GQUxTRX0KIyBkbyBub3QgbW9kaWZ5IHRoaXMhCmlmIChpcy5uYShhcy5pbnRlZ2VyKHN0dWRlbnRfaWQpKSkgc3RvcCgiV3JpdGUgeW91ciBzdHVkZW50IElEIGluIHRoZSBmaXJzdCBjaHVuayBvZiB0aGUgZG9jdW1lbnQuIikKc2V0LnNlZWQoYXMuaW50ZWdlcihzdHVkZW50X2lkKSkKCmxpYnJhcnkodGlkeXZlcnNlKQoKaHdfZGF0YSA8LSBsb2NhbCh7CiAgbl91c2VycyA8LSAxNTAwCgogIGNpdGllcyAgICA8LSBjKCJNaWxhbm8iLCAiVG9yaW5vIiwgIlBhZG92YSIsICJVZGluZSIsICJUcmV2aXNvIiwgIlRyaWVzdGUiKQogIGNpdHlfc2l6ZSA8LSBjKDAuMzAsIDAuMjIsIDAuMTUsIDAuMTIsIDAuMTEsIDAuMTApICogZXhwKHJub3JtKDYsIDAsIDAuMSkpCiAgY2l0eV9lZmYgIDwtIGMoMC4yMCwgMC4xMCwgMCwgMCwgLTAuMDUsIC0wLjA1KSArIHJub3JtKDYsIDAsIDAuMSkKICBjaXR5X3RpbWUgPC0gYygzLCAyLCAwLCAtMiwgLTEsIC0yKSArIHJub3JtKDYsIDAsIDEpCiAgbmFtZXMoY2l0eV9lZmYpIDwtIG5hbWVzKGNpdHlfdGltZSkgPC0gY2l0aWVzCiAgY2l0eSA8LSBzYW1wbGUoY2l0aWVzLCBzaXplID0gbl91c2VycywgcmVwbGFjZSA9IFRSVUUsIHByb2IgPSBjaXR5X3NpemUpCgogIGRldmljZSA8LSBzYW1wbGUoYygibW9iaWxlIiwgImRlc2t0b3AiKSwgc2l6ZSA9IG5fdXNlcnMsIHJlcGxhY2UgPSBUUlVFLCBwcm9iID0gYygwLjcsIDAuMykpCiAgYWdlIDwtIHJvdW5kKHJub3JtKG5fdXNlcnMsIG1lYW4gPSAzNSwgc2QgPSAxMCkpCiAgYWdlIDwtIHBtaW4ocG1heChhZ2UsIDE4KSwgNzApCgogIGNvdXBvbl9udW0gPC0gcmJpbm9tKG5fdXNlcnMsIHNpemUgPSAxLCBwcm9iID0gMC4zKQogIGNvdXBvbiA8LSBmYWN0b3IoY291cG9uX251bSwgbGV2ZWxzID0gYygwLCAxKSwgbGFiZWxzID0gYygibm9fY291cG9uIiwgImNvdXBvbiIpKQoKICBhdmdfZGVsaXZlcnlfdGltZSA8LSBybm9ybShuX3VzZXJzLCBtZWFuID0gMzUsIHNkID0gNykgKwogICAgdW5uYW1lKGNpdHlfdGltZVtjaXR5XSkgKwogICAgaWZlbHNlKGRldmljZSA9PSAibW9iaWxlIiwgLTEsIDEpCiAgYXZnX2RlbGl2ZXJ5X3RpbWUgPC0gcG1heChhdmdfZGVsaXZlcnlfdGltZSwgMTUpCgogIGNvdXBvbl9lZmYgPC0gcG1heCgwLjYgLSAwLjAzICogKGFnZSAtIDM1KSwgMC4wNSkgKiBydW5pZigxLCAwLjgsIDEuMikKICBsb2dfbXVfb3JkZXJzIDwtIGxvZygxLjUpICsKICAgIGNvdXBvbl9udW0gKiBjb3Vwb25fZWZmICsKICAgIGlmZWxzZShkZXZpY2UgPT0gIm1vYmlsZSIsIHJ1bmlmKDEsIDAuMiwgMC41KSwgMCkgLQogICAgMC4wMTUgKiAoYWdlIC0gMzUpIC0KICAgIDAuMDIgKiAoYXZnX2RlbGl2ZXJ5X3RpbWUgLSAzNSkgKwogICAgdW5uYW1lKGNpdHlfZWZmW2NpdHldKQogIG5fb3JkZXJzIDwtIHJuYmlub20obl91c2Vycywgc2l6ZSA9IDEsIG11ID0gZXhwKGxvZ19tdV9vcmRlcnMpKQoKICBzcGVuZF9wZXJfb3JkZXIgPC0gcmxub3JtKG5fdXNlcnMsIG1lYW5sb2cgPSBsb2coMjUpLCBzZGxvZyA9IDAuMzUpICoKICAgICgxICsgMC4wMDUgKiAoYWdlIC0gMzUpKSAqCiAgICBpZl9lbHNlKGNvdXBvbiA9PSAiY291cG9uIiwgMC45LCAxKQogIHRvdGFsX3NwZW50IDwtIG5fb3JkZXJzICogc3BlbmRfcGVyX29yZGVyICogZXhwKHJub3JtKG5fdXNlcnMsIDAsIDAuMSkpCiAgdG90YWxfc3BlbnRbbl9vcmRlcnMgPT0gMF0gPC0gMAoKICBkZWxpdmVyeV9kYXRhIDwtIHRpYmJsZSgKICAgIHVzZXJfaWQgICAgICAgICAgID0gYXMuY2hhcmFjdGVyKDE6bl91c2VycyksCiAgICBjaXR5ICAgICAgICAgICAgICA9IGNpdHksCiAgICBkZXZpY2UgICAgICAgICAgICA9IGRldmljZSwKICAgIGFnZSAgICAgICAgICAgICAgID0gYWdlLAogICAgY291cG9uICAgICAgICAgICAgPSBjb3Vwb24sCiAgICBuX29yZGVycyAgICAgICAgICA9IG5fb3JkZXJzLAogICAgdG90YWxfc3BlbnQgICAgICAgPSByb3VuZCh0b3RhbF9zcGVudCwgMiksCiAgICBhdmdfZGVsaXZlcnlfdGltZSA9IHJvdW5kKGF2Z19kZWxpdmVyeV90aW1lLCAxKQogICkKCiAgdXNlcl9kYXRhIDwtIGRlbGl2ZXJ5X2RhdGEgfD4gc2VsZWN0KHVzZXJfaWQsIGFnZSwgY2l0eSkKICB1c2VyX2RhdGEgPC0gdXNlcl9kYXRhW3NhbXBsZSgxOm5fdXNlcnMsIHNpemUgPSBuX3VzZXJzKSwgXQogIGRlbGl2ZXJ5X2RhdGEgPC0gZGVsaXZlcnlfZGF0YSB8PiBzZWxlY3QoLWFnZSwgLWNpdHkpCiAgZGVsaXZlcnlfZGF0YSA8LSBkZWxpdmVyeV9kYXRhW3NhbXBsZSgxOm5fdXNlcnMsIHNpemUgPSBuX3VzZXJzKSwgXQoKICBsaXN0KHVzZXJfZGF0YSA9IHVzZXJfZGF0YSwgZGVsaXZlcnlfZGF0YSA9IGRlbGl2ZXJ5X2RhdGEpCn0pCgp1c2VyX2RhdGEgPC0gaHdfZGF0YSR1c2VyX2RhdGEKZGVsaXZlcnlfZGF0YSA8LSBod19kYXRhJGRlbGl2ZXJ5X2RhdGEKcm0oaHdfZGF0YSkKYGBgCgojIEluc3RydWN0aW9ucwoKIyMgSW50cm8KCkEgZm9vZC1kZWxpdmVyeSBjb21wYW55IHJhbiBhIGRpc2NvdW50LWNvdXBvbiBjYW1wYWlnbi4gQXQgdGhlIGJlZ2lubmluZyBvZiB0aGUgbW9udGgsIGEgc2hhcmUgb2YgaXRzIHVzZXJzIHJlY2VpdmVkIGEgY291cG9uIGdpdmluZyBhIGRpc2NvdW50IG9uIHRoZWlyIG9yZGVycy4gRHVyaW5nIHRoZSBtb250aCwgdGhlIGNvbXBhbnkgY29sbGVjdGVkIGRhdGEgYWJvdXQgaXRzIHVzZXJzIGFjcm9zcyBkaWZmZXJlbnQgY2l0aWVzLiBUaGUgY29tcGFueSBuZWVkcyB0byB1bmRlcnN0YW5kIHdoZXRoZXIgdGhlIGNhbXBhaWduIGhhcyBiZWVuIGVmZmVjdGl2ZSBmcm9tIGEgYnVzaW5lc3MgcGVyc3BlY3RpdmUuCgpUaGUgZGF0YSBhcmUgc3RvcmVkIGluIHR3byBkYXRhIGZyYW1lcywgYHVzZXJfZGF0YWAgYW5kIGBkZWxpdmVyeV9kYXRhYCwgd2hpY2ggYXJlIGFscmVhZHkgYXZhaWxhYmxlIGluIHlvdXIgZW52aXJvbm1lbnQgb25jZSB5b3UgcnVuIHRoZSBjaHVua3MgYWJvdmU6CgpgYGB7ciBnbGltcHNlfQpoZWFkKHVzZXJfZGF0YSkKaGVhZChkZWxpdmVyeV9kYXRhKQpgYGAKCkVhY2ggcm93IG9mIGB1c2VyX2RhdGFgIGRlc2NyaWJlcyBhIHVzZXI6CgotIGB1c2VyX2lkYDogdGhlIHVuaXF1ZSBpZGVudGlmaWVyIG9mIHRoZSB1c2VyOwotIGBhZ2VgOiBhZ2Ugb2YgdGhlIHVzZXI7Ci0gYGNpdHlgOiBjaXR5IG9mIHRoZSB1c2VyLgoKRWFjaCByb3cgb2YgYGRlbGl2ZXJ5X2RhdGFgIGRlc2NyaWJlcyB0aGUgYWN0aXZpdHkgb2YgYSB1c2VyIGR1cmluZyB0aGUgbW9udGg6CgotIGB1c2VyX2lkYDogdGhlIHVuaXF1ZSBpZGVudGlmaWVyIG9mIHRoZSB1c2VyOwotIGBkZXZpY2VgOiB0aGUgZGV2aWNlIG1vc3QgdXNlZCBieSB0aGUgdXNlcjsKLSBgY291cG9uYDogd2hldGhlciB0aGUgdXNlciByZWNlaXZlZCB0aGUgY291cG9uIG9yIG5vdDsKLSBgbl9vcmRlcnNgOiBudW1iZXIgb2Ygb3JkZXJzIHBsYWNlZCBieSB0aGUgdXNlciBkdXJpbmcgdGhlIG1vbnRoOwotIGB0b3RhbF9zcGVudGA6IHRvdGFsIGFtb3VudCBvZiBtb25leSAoZXVyb3MpIHNwZW50IGJ5IHRoZSB1c2VyIGR1cmluZyB0aGUgbW9udGg7Ci0gYGF2Z19kZWxpdmVyeV90aW1lYDogYXZlcmFnZSBkZWxpdmVyeSB0aW1lIChtaW51dGVzKSBvZiB0aGUgdXNlcidzIG9yZGVycy4KCiMjIFRhc2tzCgpBbnN3ZXIgdGhlIGZvbGxvd2luZyBxdWVzdGlvbnMgaW4gdGhlIFtTb2x1dGlvbnNdKCNzb2x1dGlvbnMpIHNlY3Rpb24uIEZvciBlYWNoIHF1ZXN0aW9uOgoKLSBzaG93IHRoZSBjb2RlIHlvdSB1c2VkOwotIHByZXNlbnQgeW91ciByZXN1bHRzIHdpdGggdGFibGVzIChga25pdHI6OmthYmxlKClgKSBhbmQvb3IgcGxvdHMsIHdoaWNoZXZlciB5b3UgZmluZCBtb3JlIGFwcHJvcHJpYXRlOwotICoqaW50ZXJwcmV0IHRoZSByZXN1bHRzIGluIHdvcmRzKiosIHJlcG9ydGluZyB0aGUgcmVsZXZhbnQgbnVtYmVycyB3aXRoIGlubGluZSBSIGNvZGUgKGRvIG5vdCB0eXBlIG51bWJlcnMgYnkgaGFuZCkuCgoxLiBKb2luIHRoZSB0d28gZGF0YSBmcmFtZXMgaW50byBhIHNpbmdsZSBvbmUuIEhvdyBtYW55IHVzZXJzIGRvZXMgaXQgY29udGFpbj8gQ2hlY2sgdGhhdCBubyB1c2VyIGhhcyBiZWVuIGxvc3QuCjIuIFByb2R1Y2UgYSB0YWJsZSB3aXRoIHRoZSBudW1iZXIgYW5kIHBlcmNlbnRhZ2Ugb2YgdXNlcnMgd2hvIHJlY2VpdmVkIHRoZSBjb3Vwb24sIG92ZXJhbGwgYW5kIGJ5IGNpdHkuCjMuIENvbXB1dGUgdGhlIHNoYXJlIG9mIHVzZXJzIHdobyBwbGFjZWQgYXQgbGVhc3Qgb25lIG9yZGVyLCBmb3IgY291cG9uIGFuZCBub24tY291cG9uIHVzZXJzLiBTaG93IGl0IHdpdGggYSBiYXIgcGxvdC4KNC4gU3BsaXQgdGhlIHVzZXJzIGludG8gdHdvIGFnZSBncm91cHMgKHVuZGVyIDM1IGFuZCAzNSBvciBvbGRlcikuIERvZXMgdGhlIGRpZmZlcmVuY2UgZm91bmQgaW4gcXVlc3Rpb24gMyBob2xkIGluIGJvdGggZ3JvdXBzPyBTaG93IGl0IHdpdGggYSBwbG90Lgo1LiBGb2N1cyBvbiB0aGUgdXNlcnMgd2hvIHBsYWNlZCBhdCBsZWFzdCBvbmUgb3JkZXIuIEZvciBjb3Vwb24gYW5kIG5vbi1jb3Vwb24gdXNlcnMsIGNvbXB1dGUgdGhlIG1lYW4gYW5kIG1lZGlhbiBvZiB0aGUgdG90YWwgZXhwZW5kaXR1cmUgYW5kIG9mIHRoZSBhdmVyYWdlIG9yZGVyIHZhbHVlICh0b3RhbCBleHBlbmRpdHVyZSBkaXZpZGVkIGJ5IHRoZSBudW1iZXIgb2Ygb3JkZXJzKS4gVXNlIGEgcGxvdCB0byBjb21wYXJlIHRoZSBkaXN0cmlidXRpb25zIG9mIHRoZSBhdmVyYWdlIG9yZGVyIHZhbHVlLgo2LiBBbW9uZyB0aGUgdXNlcnMgd2hvIHBsYWNlZCBhdCBsZWFzdCBvbmUgb3JkZXIsIGNvbXB1dGUgdGhlIHBlcmNlbnRhZ2Ugb2YgaGVhdnkgdXNlcnMgKG1vcmUgdGhhbiBmaXZlIG9yZGVycyksIGZvciBjb3Vwb24gYW5kIG5vbi1jb3Vwb24gdXNlcnMuCjcuIERvZXMgdGhlIHBpY3R1cmUgY2hhbmdlIGJldHdlZW4gbW9iaWxlIGFuZCBkZXNrdG9wIHVzZXJzPyBQcm9kdWNlIGEgdGFibGUgd2l0aCBvbmUgcm93IHBlciBkZXZpY2UsIHRoZSBzaGFyZSBvZiB1c2VycyB3aXRoIGF0IGxlYXN0IG9uZSBvcmRlciBhbW9uZyBjb3Vwb24gYW5kIG5vbi1jb3Vwb24gdXNlcnMgaW4gdHdvIHNlcGFyYXRlIGNvbHVtbnMsIGFuZCB0aGVpciBkaWZmZXJlbmNlIGluIGEgdGhpcmQgY29sdW1uIChoaW50OiBgcGl2b3Rfd2lkZXIoKWApLgo4LiBTdW1tYXJpc2UgeW91ciByZXN1bHRzLiBUaGUgY291cG9uIGxvd2VycyB0aGUgcHJpY2Ugb2YgZWFjaCBvcmRlciwgYnV0IGl0IG1heSBpbmNyZWFzZSB0aGUgbnVtYmVyIG9mIG9yZGVyczogY29tcGFyZSB0aGUgYXZlcmFnZSByZXZlbnVlIHBlciB1c2VyIGJldHdlZW4gY291cG9uIGFuZCBub24tY291cG9uIHVzZXJzLiBXb3VsZCB5b3UgcmVjb21tZW5kIHJ1bm5pbmcgdGhlIGNhbXBhaWduIGFnYWluPwoKKipEbyBub3QgbW9kaWZ5IHRoZSBjaHVua3MgYWJvdmUgdGhpcyBzZWN0aW9uLioqIEtuaXQgdGhlIGRvY3VtZW50IHRvIFBERiBhbmQgc3VibWl0IGJvdGggdGhlIGAuUm1kYCBhbmQgdGhlIGAucGRmYCBmaWxlcy4KCiMgU29sdXRpb25zCgpgYGB7cn0KbGlicmFyeSh0aWR5dmVyc2UpCmBgYAoKIyMgUXVlc3Rpb24gMQoKIyMgUXVlc3Rpb24gMgoKIyMgUXVlc3Rpb24gMwoKIyMgUXVlc3Rpb24gNAoKIyMgUXVlc3Rpb24gNQoKIyMgUXVlc3Rpb24gNgoKIyMgUXVlc3Rpb24gNwoKIyMgUXVlc3Rpb24gOAo=');
+        if (!response.ok) throw new Error('Network response failed');
+        const blob = await response.blob();
+        const blobUrl = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = blobUrl;
+        a.download = 'homework_A.Rmd';
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.dispatchEvent(new MouseEvent('click'));
+        document.body.removeChild(a);
+        setTimeout(() => {
+          window.URL.revokeObjectURL(blobUrl);
+        }, 100);
+        return false;
+      } catch (error) {
+        console.error('Download failed:', error);
+        alert('Download failed. Please try again.');
+      }
+    }
+    downloadFile(event);
+  "><i class="fa fa-save"></i> Download homework_A.Rmd</button>
+<button class="btn btn-success button_small" onclick="
+    async function downloadFile(event) {
+      event.preventDefault();
+      try {
+        const response = await fetch('data:text/x-markdown;base64,LS0tCnRpdGxlOiAiTGFib3JhdG9yeSBvZiBTdGF0aXN0aWNzIGFuZCBNYXRoZW1hdGljcyAtIERhdGEgYW5hbHlzaXMgcmVwb3J0IEIiCmF1dGhvcjogIldyaXRlIGhlcmUgeW91ciBuYW1lIgpvdXRwdXQ6CiAgcGRmX2RvY3VtZW50OgogICAgdG9jOiB0cnVlCi0tLQoKYGBge3Igc3R1ZGVudC1pZH0KIyB3cml0ZSB5b3VyIHN0dWRlbnQgSUQgKG1hdHJpY29sYSkgaGVyZSwgZS5nLiBzdHVkZW50X2lkIDwtIDEyMzQ1NgpzdHVkZW50X2lkIDwtIE5BCmBgYAoKYGBge3Igc2V0dXAsIGluY2x1ZGU9RkFMU0V9CiMgZG8gbm90IG1vZGlmeSB0aGlzIQprbml0cjo6b3B0c19jaHVuayRzZXQoCiAgICBlY2hvID0gVFJVRSwKICAgIG1lc3NhZ2UgPSBGQUxTRSwKICAgIHdhcm5pbmcgPSBGQUxTRSwKICAgIG91dC53aWR0aCA9ICI4MCUiLAogICAgZmlnLndpZHRoID0gNywKICAgIGZpZy5hc3AgPSAwLjYsCiAgICBmaWcuYWxpZ24gPSAiY2VudGVyIgopCmBgYAoKYGBge3IgZGF0YXNldCwgZWNobz1GQUxTRX0KIyBkbyBub3QgbW9kaWZ5IHRoaXMhCmlmIChpcy5uYShhcy5pbnRlZ2VyKHN0dWRlbnRfaWQpKSkgc3RvcCgiV3JpdGUgeW91ciBzdHVkZW50IElEIGluIHRoZSBmaXJzdCBjaHVuayBvZiB0aGUgZG9jdW1lbnQuIikKc2V0LnNlZWQoYXMuaW50ZWdlcihzdHVkZW50X2lkKSkKCmxpYnJhcnkodGlkeXZlcnNlKQoKaHdfZGF0YSA8LSBsb2NhbCh7CiAgY2VsbHMgPC0gdHJpYmJsZSgKICAgIH5wbGF0Zm9ybSwgICB+YXVkaWVuY2UsIH5iYXNlX2N0ciwgfmJhc2VfaW1wLCB+dXBsaWZ0LAogICAgIkdvb2dsZSIsICAgICJZb3VuZyIsICAgMC4wNDAsICAgICAgNTAwMCwgICAgIDAuMDMsCiAgICAiR29vZ2xlIiwgICAgIkFkdWx0IiwgICAwLjA0NSwgICAgICA3MDAwLCAgICAgMC4wMywKICAgICJHb29nbGUiLCAgICAiU2VuaW9yIiwgIDAuMDQwLCAgICAgIDYwMDAsICAgICAwLjAzLAogICAgIkZhY2Vib29rIiwgICJZb3VuZyIsICAgMC4wMTAsICAgICAgMzAwMCwgICAgIDAuMDYsCiAgICAiRmFjZWJvb2siLCAgIkFkdWx0IiwgICAwLjAyMCwgICAgICA3MDAwLCAgICAgMC4wNiwKICAgICJGYWNlYm9vayIsICAiU2VuaW9yIiwgIDAuMDI1LCAgICAgIDgwMDAsICAgICAwLjA2LAogICAgIkluc3RhZ3JhbSIsICJZb3VuZyIsICAgMC4wMjUsICAgICAgOTAwMCwgICAgIDAuMTIsCiAgICAiSW5zdGFncmFtIiwgIkFkdWx0IiwgICAwLjAxOCwgICAgICA2MDAwLCAgICAgMC4xMiwKICAgICJJbnN0YWdyYW0iLCAiU2VuaW9yIiwgIDAuMDA4LCAgICAgIDIwMDAsICAgICAwLjEyLAogICAgIlRpa1RvayIsICAgICJZb3VuZyIsICAgMC4wMzAsICAgICAxMjAwMCwgICAgIDAuMTUsCiAgICAiVGlrVG9rIiwgICAgIkFkdWx0IiwgICAwLjAxNSwgICAgICA1MDAwLCAgICAgMC4xNSwKICAgICJUaWtUb2siLCAgICAiU2VuaW9yIiwgIDAuMDA1LCAgICAgIDE1MDAsICAgICAwLjE1CiAgKSB8PgogICAgbXV0YXRlKAogICAgICBiYXNlX2N0ciA9IGJhc2VfY3RyICogZXhwKHJub3JtKG4oKSwgMCwgMC4xNSkpLAogICAgICBiYXNlX2ltcCA9IGJhc2VfaW1wICogZXhwKHJub3JtKG4oKSwgMCwgMC4xNSkpLAogICAgICB1cGxpZnQgICA9IHVwbGlmdCAqIGV4cChybm9ybShuKCksIDAsIDAuMikpCiAgICApCgogIG5fYWRzIDwtIDUwCiAgYWRfcXVhbGl0eSA8LSBleHAocm5vcm0obl9hZHMsIDAsIDAuMikpCgogIGNhbXBhaWducyA8LSB0aWJibGUoCiAgICBhZF9pZCAgICA9IHNhbXBsZSgxOm5fYWRzLCAyMDAsIHJlcGxhY2UgPSBUUlVFKSwKICAgIHBsYXRmb3JtID0gc2FtcGxlKHVuaXF1ZShjZWxscyRwbGF0Zm9ybSksIDIwMCwgcmVwbGFjZSA9IFRSVUUpLAogICAgYXVkaWVuY2UgPSBzYW1wbGUodW5pcXVlKGNlbGxzJGF1ZGllbmNlKSwgMjAwLCByZXBsYWNlID0gVFJVRSkKICApIHw+CiAgICBkaXN0aW5jdCgpIHw+CiAgICBsZWZ0X2pvaW4oY2VsbHMsIGJ5ID0gYygicGxhdGZvcm0iLCAiYXVkaWVuY2UiKSkKCiAgc2ltdWxhdGVfbW9udGggPC0gZnVuY3Rpb24obGlmdCkgewogICAgY2FtcGFpZ25zIHw+CiAgICAgIG11dGF0ZSgKICAgICAgICBpbXByZXNzaW9ucyA9IHJwb2lzKG4oKSwgYmFzZV9pbXAgKiBleHAocm5vcm0obigpLCAwLCAwLjMpKSksCiAgICAgICAgY3RyICAgICAgICAgPSBiYXNlX2N0ciAqIGFkX3F1YWxpdHlbYWRfaWRdICogZXhwKHJub3JtKG4oKSwgMCwgMC4xKSkgKiAoMSArIGxpZnQgKiB1cGxpZnQpLAogICAgICAgIGNsaWNrcyAgICAgID0gYXMubnVtZXJpYyhyYmlub20obigpLCBpbXByZXNzaW9ucywgcG1pbihjdHIsIDEpKSksCiAgICAgICAgY2xpY2tzICAgICAgPSBpZl9lbHNlKHJ1bmlmKG4oKSkgPCAwLjA1LCBOQSwgY2xpY2tzKQogICAgICApIHw+CiAgICAgIHNlbGVjdChhZF9pZCwgcGxhdGZvcm0sIGF1ZGllbmNlLCBpbXByZXNzaW9ucywgY2xpY2tzKQogIH0KCiAgYWRzX2RhdGEgPC0gc2ltdWxhdGVfbW9udGgobGlmdCA9IDApCiAgYWRzX2RhdGFfc3BlZWR1cCA8LSBzaW11bGF0ZV9tb250aChsaWZ0ID0gMSkKICBhZHNfZGF0YV9zcGVlZHVwIDwtIGFkc19kYXRhX3NwZWVkdXBbc2FtcGxlKDE6bnJvdyhhZHNfZGF0YV9zcGVlZHVwKSksIF0KCiAgbGlzdChhZHNfZGF0YSA9IGFkc19kYXRhLCBhZHNfZGF0YV9zcGVlZHVwID0gYWRzX2RhdGFfc3BlZWR1cCkKfSkKCmFkc19kYXRhIDwtIGh3X2RhdGEkYWRzX2RhdGEKYWRzX2RhdGFfc3BlZWR1cCA8LSBod19kYXRhJGFkc19kYXRhX3NwZWVkdXAKcm0oaHdfZGF0YSkKYGBgCgojIEluc3RydWN0aW9ucwoKIyMgSW50cm8KCkluIE9jdG9iZXIsIHlvdXIgY29tcGFueSByYW4gYSB2YXJpZXR5IG9mIG9ubGluZSBhZCBjYW1wYWlnbnMgYWNyb3NzIGRpZmZlcmVudCBwbGF0Zm9ybXMgKEdvb2dsZSwgRmFjZWJvb2ssIEluc3RhZ3JhbSwgVGlrVG9rKS4gRWFjaCBjYW1wYWlnbiB1c2VkIG9uZSBvZiB0aGUgY29tcGFueSdzIGFkcyAoaWRlbnRpZmllZCBieSBgYWRfaWRgKSBvbiBvbmUgcGxhdGZvcm0sIHRhcmdldGluZyBvbmUgYXVkaWVuY2Ugc2VnbWVudCAoWW91bmcsIEFkdWx0LCBTZW5pb3IpLgoKRm9yIGVhY2ggY2FtcGFpZ24sIHlvdSByZWNvcmRlZCB0aGUgbnVtYmVyIG9mICppbXByZXNzaW9ucyogKGhvdyBtYW55IHRpbWVzIHRoZSBhZCB3YXMgc2hvd24pIGFuZCAqY2xpY2tzKiAoaG93IG1hbnkgdGltZXMgaXQgd2FzIGNsaWNrZWQpLiBUaGVzZSBhbGxvdyB5b3UgdG8gY29tcHV0ZSB0aGUgW2NsaWNrLXRocm91Z2ggcmF0ZSAoQ1RSKV0oaHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvQ2xpY2stdGhyb3VnaF9yYXRlKSwgdGhhdCBpcyB0aGUgc2hhcmUgb2YgaW1wcmVzc2lvbnMgY29udmVydGVkIGludG8gY2xpY2tzLiBJdCBpcyB0aGUgbWFpbiBpbmRpY2F0b3Igb2YgdGhlIHBlcmZvcm1hbmNlIG9mIGFuIGFkLiBTb21lIGNhbXBhaWducyBoYXZlIG1pc3NpbmcgY2xpY2sgY291bnRzLCBiZWNhdXNlIG9mIHRyYWNraW5nIGlzc3Vlcy4gVGhlIE9jdG9iZXIgZGF0YSBhcmUgY29sbGVjdGVkIGluIGBhZHNfZGF0YWA6CgpgYGB7ciBnbGltcHNlLW9jdG9iZXJ9CmhlYWQoYWRzX2RhdGEpCmBgYAoKQXQgdGhlIGVuZCBvZiBPY3RvYmVyLCB0aGUgZW5naW5lZXJpbmcgdGVhbSBvcHRpbWlzZWQgdGhlIGNvbXBhbnkgc2VydmVycyB0byByZWR1Y2UgdGhlIGxvYWRpbmcgdGltZSBvZiB0aGUgYWRzLiBJbiBOb3ZlbWJlciwgdGhlIGNvbXBhbnkgcmFuIHRoZSBzYW1lIGNhbXBhaWducyBhZ2FpbiwgYW5kIGNvbGxlY3RlZCB0aGUgcmVzdWx0cyBpbiBgYWRzX2RhdGFfc3BlZWR1cGA6CgpgYGB7ciBnbGltcHNlLW5vdmVtYmVyfQpoZWFkKGFkc19kYXRhX3NwZWVkdXApCmBgYAoKQm90aCBkYXRhIGZyYW1lcyBhcmUgYWxyZWFkeSBhdmFpbGFibGUgaW4geW91ciBlbnZpcm9ubWVudCBvbmNlIHlvdSBydW4gdGhlIGNodW5rcyBhYm92ZS4gRWFjaCByb3cgaXMgYSBjYW1wYWlnbiwgaWRlbnRpZmllZCBieSB0aGUgY29tYmluYXRpb24gb2YgYGFkX2lkYCwgYHBsYXRmb3JtYCBhbmQgYGF1ZGllbmNlYC4gQ29sdW1ucyBkZW5vdGU6CgotIGBhZF9pZGA6IHRoZSBpZGVudGlmaWVyIG9mIHRoZSBhZDsKLSBgcGxhdGZvcm1gOiB0aGUgcGxhdGZvcm0gd2hlcmUgdGhlIGFkIHdhcyBzaG93bjsKLSBgYXVkaWVuY2VgOiB0aGUgdGFyZ2V0ZWQgYXVkaWVuY2Ugc2VnbWVudDsKLSBgaW1wcmVzc2lvbnNgOiBudW1iZXIgb2YgdGltZXMgdGhlIGFkIHdhcyBzaG93biBkdXJpbmcgdGhlIG1vbnRoOwotIGBjbGlja3NgOiBudW1iZXIgb2YgdGltZXMgdGhlIGFkIHdhcyBjbGlja2VkIGR1cmluZyB0aGUgbW9udGguCgojIyBUYXNrcwoKQW5zd2VyIHRoZSBmb2xsb3dpbmcgcXVlc3Rpb25zIGluIHRoZSBbU29sdXRpb25zXSgjc29sdXRpb25zKSBzZWN0aW9uLiBGb3IgZWFjaCBxdWVzdGlvbjoKCi0gc2hvdyB0aGUgY29kZSB5b3UgdXNlZDsKLSBwcmVzZW50IHlvdXIgcmVzdWx0cyB3aXRoIHRhYmxlcyAoYGtuaXRyOjprYWJsZSgpYCkgYW5kL29yIHBsb3RzLCB3aGljaGV2ZXIgeW91IGZpbmQgbW9yZSBhcHByb3ByaWF0ZTsKLSAqKmludGVycHJldCB0aGUgcmVzdWx0cyBpbiB3b3JkcyoqLCByZXBvcnRpbmcgdGhlIHJlbGV2YW50IG51bWJlcnMgd2l0aCBpbmxpbmUgUiBjb2RlIChkbyBub3QgdHlwZSBudW1iZXJzIGJ5IGhhbmQpLgoKMS4gSG93IG1hbnkgY2FtcGFpZ25zIGhhdmUgbWlzc2luZyBjbGlja3MsIGluIE9jdG9iZXIgYW5kIGluIE5vdmVtYmVyPyBEZWNpZGUgaG93IHRvIGhhbmRsZSB0aGVtOiB5b3UgY2FuIGVpdGhlciBkcm9wIHRoZW0sIG9yIGltcHV0ZSB0aGVtIHVzaW5nIHRoZSBtZWRpYW4gQ1RSIG9mIHRoZSBjYW1wYWlnbnMgd2l0aCB0aGUgc2FtZSBwbGF0Zm9ybSBhbmQgYXVkaWVuY2UuIEV4cGxhaW4geW91ciBjaG9pY2UuCjIuIENvbXB1dGUgdGhlIENUUiBvZiBlYWNoIE9jdG9iZXIgY2FtcGFpZ24uIFRoZW4gY29tcGFyZSB0d28gd2F5cyBvZiBzdW1tYXJpc2luZyB0aGUgb3ZlcmFsbCBwZXJmb3JtYW5jZTogdGhlIG1lYW4gb2YgdGhlIGNhbXBhaWduIENUUnMsIGFuZCB0aGUgdG90YWwgbnVtYmVyIG9mIGNsaWNrcyBkaXZpZGVkIGJ5IHRoZSB0b3RhbCBudW1iZXIgb2YgaW1wcmVzc2lvbnMuIEFyZSB0aGV5IGVxdWFsPyBXaHk/CjMuIEhvdyBkb2VzIHRoZSBPY3RvYmVyIENUUiB2YXJ5IGFjcm9zcyBwbGF0Zm9ybXMgYW5kIGFjcm9zcyBhdWRpZW5jZXM/IFByb2R1Y2UgYSB0YWJsZSB3aXRoIG9uZSByb3cgcGVyIHBsYXRmb3JtIGFuZCBvbmUgY29sdW1uIHBlciBhdWRpZW5jZSAoaGludDogYHBpdm90X3dpZGVyKClgKSwgYW5kIGEgcGxvdC4gV2hpY2ggY29tYmluYXRpb25zIHBlcmZvcm0gYmVzdCBhbmQgd29yc3Q/CjQuIERpZCB0aGUgc2VydmVyIHNwZWVkLXVwIGltcHJvdmUgdGhlIHBlcmZvcm1hbmNlIG9mIHRoZSBjYW1wYWlnbnM/IEpvaW4gdGhlIE9jdG9iZXIgYW5kIE5vdmVtYmVyIGRhdGEsIHNvIHRoYXQgZWFjaCByb3cgY29udGFpbnMgYm90aCBtb250aHMgZm9yIHRoZSBzYW1lIGNhbXBhaWduLCBhbmQgY29tcHV0ZSB0aGUgY2hhbmdlIGluIENUUiBvZiBlYWNoIGNhbXBhaWduLiBIb3cgbWFueSBjYW1wYWlnbnMgZG9lcyB0aGUgam9pbmVkIGRhdGEgY29udGFpbj8gSWYgaXQgZGlmZmVycyBmcm9tIHRoZSBudW1iZXIgb2YgY2FtcGFpZ25zIGluIHRoZSBvcmlnaW5hbCBkYXRhLCBleHBsYWluIHdoeS4gUmVwb3J0IHRoZSBzaGFyZSBvZiBjYW1wYWlnbnMgd2hvc2UgQ1RSIGltcHJvdmVkLCBvdmVyYWxsIGFuZCBieSBwbGF0Zm9ybSwgYW5kIHNob3cgdGhlIGRpc3RyaWJ1dGlvbiBvZiB0aGUgY2hhbmdlcyB3aXRoIGEgcGxvdC4KNS4gU3VtbWFyaXNlIHlvdXIgcmVzdWx0cy4gV2hlcmUgd291bGQgeW91IGludmVzdCB0aGUgbmV4dCBhZHZlcnRpc2luZyBidWRnZXQsIGFuZCBkaWQgdGhlIHNwZWVkLXVwIHBheSBvZmY/CgoqKkRvIG5vdCBtb2RpZnkgdGhlIGNodW5rcyBhYm92ZSB0aGlzIHNlY3Rpb24uKiogS25pdCB0aGUgZG9jdW1lbnQgdG8gUERGIGFuZCBzdWJtaXQgYm90aCB0aGUgYC5SbWRgIGFuZCB0aGUgYC5wZGZgIGZpbGVzLgoKIyBTb2x1dGlvbnMKCmBgYHtyfQpsaWJyYXJ5KHRpZHl2ZXJzZSkKYGBgCgojIyBRdWVzdGlvbiAxCgojIyBRdWVzdGlvbiAyCgojIyBRdWVzdGlvbiAzCgojIyBRdWVzdGlvbiA0CgojIyBRdWVzdGlvbiA1Cg==');
+        if (!response.ok) throw new Error('Network response failed');
+        const blob = await response.blob();
+        const blobUrl = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = blobUrl;
+        a.download = 'homework_B.Rmd';
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.dispatchEvent(new MouseEvent('click'));
+        document.body.removeChild(a);
+        setTimeout(() => {
+          window.URL.revokeObjectURL(blobUrl);
+        }, 100);
+        return false;
+      } catch (error) {
+        console.error('Download failed:', error);
+        alert('Download failed. Please try again.');
+      }
+    }
+    downloadFile(event);
+  "><i class="fa fa-save"></i> Download homework_B.Rmd</button>
 </div>
-</section>
-<section id="textbooks-about-r" class="level3">
-<h3 class="anchored" data-anchor-id="textbooks-about-r">Textbooks about R</h3>
+</div>
 <table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Homework</th>
+<th>Topic</th>
+<th>Deadline</th>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
-<td><a href="https://r4ds.hadley.nz/">R for Data Science, 2e</a></td>
-<td>Wickham, H., Çetinkaya-Rundel, M., and Grolemund, G.</td>
-<td>O’Reilly, 2nd edition, 2022</td>
+<td>A</td>
+<td>Effectiveness of a discount-coupon campaign</td>
+<td>TBD</td>
 </tr>
 <tr class="even">
-<td><a href="https://moderndive.com/index.html">Statistical Inference via Data Science</a></td>
-<td>Ismay, C., Kim, A., Y. and Valdivia, A.</td>
-<td>CRC Press, 2nd edition, 2025</td>
-</tr>
-<tr class="odd">
-<td><a href="https://ggplot2-book.org">ggplot2: Elegant Graphics for Data Analysis</a></td>
-<td>Wickham, H., Navarro, D., Lin Pedersen, T.</td>
-<td>Springer, 3rd edition, 2025</td>
+<td>B</td>
+<td>Performance of online ad campaigns</td>
+<td>TBD</td>
 </tr>
 </tbody>
 </table>
+<section id="instructions" class="level2">
+<h2 class="anchored" data-anchor-id="instructions">Instructions</h2>
+<ol type="1">
+<li>Create a new R Project for each homework, and move the downloaded <code>.Rmd</code> file into the project folder.</li>
+<li>Open the <code>.Rmd</code>, write your name in the <code>author</code> field of the YAML header, and your student ID (matricola) in the first chunk: <code>student_id &lt;- 123456</code>.</li>
+<li>Knit the document. The data are created by the chunks at the top of the file, and the instructions and questions follow.</li>
+<li>Write your answers in the <strong>Solutions</strong> section, at the end of the document. <strong>Do not modify the chunks above it</strong>: they generate your data.</li>
+<li>Knit to PDF and check the result.</li>
+</ol>
 </section>
-<section id="other-resources" class="level3">
-<h3 class="anchored" data-anchor-id="other-resources">Other resources:</h3>
+<section id="knitting-to-pdf" class="level2">
+<h2 class="anchored" data-anchor-id="knitting-to-pdf">Knitting to PDF</h2>
+<p>The homework must be knitted to PDF, which requires LaTeX. Install it once, from the R console:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tinytex"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">install_tinytex</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Then restart RStudio. The first knit can take a while, because missing LaTeX packages are downloaded automatically.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Tips
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <ul>
-<li><a href="https://www.jumpingrivers.com/blog/comparing-r-excel-data-wrangling/">Why should I use R?</a></li>
-<li><a href="https://r-graph-gallery.com">R-graph-gallery</a></li>
+<li>Code lines are not wrapped in the PDF: keep them short, and break long function calls over several lines.</li>
+<li>If you really cannot install LaTeX, change the output to <code>word_document</code>, knit, and save the Word file as PDF.</li>
 </ul>
+</div>
+</div>
 </section>
-<section id="past-years" class="level3">
-<h3 class="anchored" data-anchor-id="past-years">Past years :</h3>
+<section id="submission" class="level2">
+<h2 class="anchored" data-anchor-id="submission">Submission</h2>
+<p>Send both the <code>.Rmd</code> and the <code>.pdf</code> files to <em>giuseppe.alfonzetti@uniud.it</em> by the deadline.</p>
+</section>
+<section id="evaluation" class="level2">
+<h2 class="anchored" data-anchor-id="evaluation">Evaluation</h2>
+<p>Each homework is evaluated from 0 to 1 point:</p>
 <ul>
-<li><a href="./homework2526.html">a.y. 2025/2026</a></li>
+<li><strong>Code and reporting (0.5 points)</strong>: the <code>.Rmd</code> knits without errors; the code is correct and readable; tables and plots are clear, with meaningful labels; numbers in the text come from inline R code, not typed by hand.</li>
+<li><strong>Interpretation and insights (0.5 points)</strong>: every result is explained in words; the conclusions answer the business questions and are supported by the numbers.</li>
 </ul>
 
 
@@ -655,11 +737,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./homework.html" class="pagination-link" aria-label="Homework">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Homework</span>
+      <a href="./index.html" class="pagination-link" aria-label="Schedule">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Schedule</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./resources.html" class="pagination-link" aria-label="Resources">
+        <span class="nav-page-text">Resources</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

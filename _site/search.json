@@ -14,7 +14,7 @@
     "href": "index.html",
     "title": "Laboratory of Statistics and Mathematics",
     "section": "",
-    "text": "Schedule and topics outline for the 2026/2027 lab classes\n\n\n\nDate\nSchedule\nClass\nTopic\nMaterial\nSlides\nSolutions\n\n\n\n\nSept 16\n08:30-11:45\nLab 1\nIntroduction to R\n💻\n📖\n\n\n\nSept 23\n08:30-11:45\nLab 2\nData manipulation\n💻\n📖\n📝\n\n\nSept 30\n08:30-11:45\nLab 3\nAutomatic reporting\n💻\n📖",
+    "text": "Schedule and topics outline for the 2026/2027 lab classes\n\n\n\nDate\nSchedule\nClass\nTopic\nMaterial\nSlides\nSolutions\n\n\n\n\nSept 16\n08:30-11:45\nLab 1\nIntroduction to R\n💻\n📖\n\n\n\nSept 23\n08:30-11:45\nLab 2\nData manipulation\n💻\n📖\n📝\n\n\nSept 30\n08:30-11:45\nLab 3\nAutomatic reporting\n💻\n📖\n📝",
     "crumbs": [
       "Schedule"
     ]
@@ -1672,7 +1672,7 @@
     "href": "sol3.html#exercise-1",
     "title": "Solutions Lab 3 practice",
     "section": "Exercise 1",
-    "text": "Exercise 1\nThe YAML header sets the title, author, date and output format. toc: true adds a table of contents, and toc_float: true keeps it visible on the side while you scroll. The date is inline R code, so it updates every time you knit.\n---\ntitle: \"Employees report\"\nauthor: \"Write here your name\"\ndate: \"`r Sys.Date()`\"\noutput:\n  html_document:\n    toc: true\n    toc_float: true\n---\nThe setup chunk runs all the code the rest of the report needs. With include=FALSE, the chunk is run but neither its code nor its output appears in the report. knitr::opts_chunk$set() sets default options for all the following chunks. Here, echo = FALSE hides the code, because the reader of a report wants results, not R code.\n```{r setup, include=FALSE}\nknitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)\n\nlibrary(tidyverse)\nlibrary(here)\nlibrary(readxl)\nlibrary(janitor)\n\ni_am(\"report.Rmd\")\n\ndt &lt;- read_xlsx(here(\"data\", \"employees.xlsx\"))\n```\nRecall that when you knit, R starts from a clean session. Objects in your environment are not visible, so everything the report uses must be created inside the .Rmd."
+    "text": "Exercise 1\nThe YAML header sets the title, author, date and output format. toc: true adds a table of contents, and toc_float: true keeps it visible on the side while you scroll. The date is inline R code, so it updates every time you knit.\n---\ntitle: \"Employees report\"\nauthor: \"Write here your name\"\noutput:\n  html_document:\n    toc: true\n    toc_float: true\n---\nThe setup chunk runs all the code the rest of the report needs. With include=FALSE, the chunk is run but neither its code nor its output appears in the report. knitr::opts_chunk$set() sets default options for all the following chunks. Here, echo = FALSE hides the code, because the reader of a report wants results, not R code.\n```{r setup, include=FALSE}\nknitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)\n\nlibrary(tidyverse)\nlibrary(here)\nlibrary(readxl)\nlibrary(janitor)\n\ni_am(\"report.Rmd\")\n\ndt &lt;- read_xlsx(here(\"data\", \"employees.xlsx\"))\n```\nRecall that when you knit, R starts from a clean session. Objects in your environment are not visible, so everything the report uses must be created inside the .Rmd."
   },
   {
     "objectID": "sol3.html#exercise-2",

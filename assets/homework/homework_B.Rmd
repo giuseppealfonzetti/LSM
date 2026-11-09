@@ -7,8 +7,8 @@ output:
 ---
 
 ```{r student-id}
-# write your student ID (matricola) here, e.g. student_id <- 123456
-student_id <- NA
+# replace 123 with your student ID (matricola) 
+student_id <- 123
 ```
 
 ```{r setup, include=FALSE}

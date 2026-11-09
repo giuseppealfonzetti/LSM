@@ -26,7 +26,7 @@ knitr::opts_chunk$set(
 
 ```{r dataset, echo=FALSE}
 # do not modify this!
-if (is.na(as.integer(student_id))) stop("Write your student ID in the first chunk of the document.")
+if (as.integer(student_id) %in% c(NA, 123L)) stop("Write your student ID in the first chunk of the document.")
 set.seed(as.integer(student_id))
 
 library(tidyverse)
@@ -127,7 +127,7 @@ Answer the following questions in the [Solutions](#solutions) section. For each 
 4. Did the server speed-up improve the performance of the campaigns? Join the October and November data, so that each row contains both months for the same campaign, and compute the change in CTR of each campaign. How many campaigns does the joined data contain? If it differs from the number of campaigns in the original data, explain why. Report the share of campaigns whose CTR improved, overall and by platform, and show the distribution of the changes with a plot.
 5. Summarise your results. Where would you invest the next advertising budget, and did the speed-up pay off?
 
-**Do not modify the chunks above this section.** Knit the document to PDF and submit both the `.Rmd` and the `.pdf` files.
+**Apart from your student ID in the first chunk, do not modify the chunks above this section.** Knit the document to PDF and submit both the `.Rmd` and the `.pdf` files.
 
 # Solutions
 

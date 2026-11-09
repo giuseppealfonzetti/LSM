@@ -1752,7 +1752,7 @@
     "href": "homework.html#instructions",
     "title": "Homework",
     "section": "Instructions",
-    "text": "Instructions\n\nCreate a new R Project for each homework, and move the downloaded .Rmd file into the project folder.\nOpen the .Rmd, write your name in the author field of the YAML header, and your student ID (matricola) in the first chunk: student_id &lt;- 123456.\nKnit the document. The data are created by the chunks at the top of the file, and the instructions and questions follow.\nWrite your answers in the Solutions section, at the end of the document. Do not modify the chunks above it: they generate your data.\nKnit to PDF and check the result.",
+    "text": "Instructions\n\nCreate a new R Project for each homework, and move the downloaded .Rmd file into the project folder.\nOpen the .Rmd, write your name in the author field of the YAML header, and your student ID (matricola) in the first chunk: student_id &lt;- 123456.\nKnit the document. The data are created by the chunks at the top of the file, and the instructions and questions follow.\nWrite your answers in the Solutions section, at the end of the document. Do not modify the chunks above the Solutions section.\nKnit to PDF and check the result.",
     "crumbs": [
       "Homework"
     ]

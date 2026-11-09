@@ -28,7 +28,7 @@ htmltools::tagList(lapply(c("homework_A.Rmd", "homework_B.Rmd"), \(f)
 1. Create a new R Project for each homework, and move the downloaded `.Rmd` file into the project folder.
 2. Open the `.Rmd`, write your name in the `author` field of the YAML header, and your student ID (matricola) in the first chunk: `student_id <- 123456`.
 3. Knit the document. The data are created by the chunks at the top of the file, and the instructions and questions follow.
-4. Write your answers in the **Solutions** section, at the end of the document. **Do not modify the chunks above it**: they generate your data.
+4. Write your answers in the **Solutions** section, at the end of the document. **Do not modify the chunks above the Solutions section**.
 5. Knit to PDF and check the result.
 
 ## Knitting to PDF
